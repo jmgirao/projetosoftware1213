@@ -1,0 +1,74 @@
+Business Rules: 
+
+- Inactivity Times must be identified and Prompt what was done in the inactivity time!
+- Every action should be saved imediately in the database
+- The Database will store all information and configurations
+- There must be a way to create a task and start timing it in no more than a minute
+- There should be quick shortcuts to change between tasks
+
+
+Restrições:
+- 
+
+
+Casos de Uso:
+	Ativar Tarefa - High
+		-O utilizador abre uma listagem de tarefas inativas.
+		-O utilizador seleciona tarefas e carrega num botão para as reativar.
+		-O sistema volta a apresentar as tarefas no ecrã principal.
+		PC:
+		-Tem de existir pelo menos uma tarefa inativa.
+		Excepcoes:
+		- falha de Ligação à bd quando carrega a lista de tarefas inativas
+		- falha de ligação à bd quando altera as tarefas para ativas
+
+	Exportar Dados - High
+		-O utilizador seleciona um intervalo de datas
+		-O utilizador carrega no botão de exportar
+		-O sistema pergunta onde pretende gravar e o nome do ficheiro a gravar
+		-O sistema exporta os dados para o ficheiro.
+		Excepcoes:
+		- O programa não tem permissões de escrita na pasta onde se pretende gravar
+		- Não é possível ler as tarefas da base de dados
+
+
+	Responder a Inatividade - Medium
+		-O sistema apresenta um ecrã de Inatividade
+		-O utilizador responde indicando o que fez durante a inatividade
+
+	Adicionar Tempo a Tarefa Em execução - Medium
+		-O sistema apresenta um ecrã de inatividade
+		-O Utilizador carrega num botão que indica que o tempo é para adicionar à tarefa em execução 
+		Excepcoes:
+		- Não é possível inserir o tempo na Base de Dados.
+
+	Ignorar Tempo - Low
+		-O sistema apresenta um ecrã de inatividade
+		-O Utilizador carrega num botão que indica que o tempo é para ignorar. 
+	
+	(Adicionar Tempo a nova tarefa)
+
+	(Adicionar Tempo a Tarefa Existente)
+
+	
+	Configurar sistema:
+		-O Utilizador abre a janela de configuração
+		-O sistema apresenta a janela de configuração
+		-O utilizador altera as definições
+		ALT(0):
+		-O utilizador grava as definições carregando no botão gravar 
+		-O sistema grava as definições
+		-O sistema Aplica as definições após gravar com sucesso
+		ALT(1):
+		-O utilizador Fecha a janela sem gravar
+
+		Excepcoes:
+		- Não foi possível gravar as definições na BD
+
+	Configurar Tempo Inativo:
+		-No ecrã de configuração o utilizador altera o número de minutos de inatividade
+		-O utilizador carrega no botão gravar
+		-O sistema grava as definições
+		-O sistema coloca as definições em vigor de imediato
+
+	
