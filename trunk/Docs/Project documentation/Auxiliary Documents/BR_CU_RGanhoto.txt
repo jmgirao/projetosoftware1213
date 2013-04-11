@@ -51,7 +51,7 @@ Casos de Uso:
 	(Adicionar Tempo a Tarefa Existente)
 
 	
-	Configurar sistema:
+	Configurar sistema: Medium
 		-O Utilizador abre a janela de configuração
 		-O sistema apresenta a janela de configuração
 		-O utilizador altera as definições
@@ -65,10 +65,21 @@ Casos de Uso:
 		Excepcoes:
 		- Não foi possível gravar as definições na BD
 
-	Configurar Tempo Inativo:
+	Configurar Tempo Inativo: Low
 		-No ecrã de configuração o utilizador altera o número de minutos de inatividade
 		-O utilizador carrega no botão gravar
 		-O sistema grava as definições
 		-O sistema coloca as definições em vigor de imediato
 
 	
+	Configurar Atalhos: - High
+		-No Ecrã de configuração, o utilizador seleciona a combinação de teclas
+		-O utilizador carrega no botão de gravar
+		-O sistema grava as definições
+		-O sistema coloca as definições em vigor de forma imediata.
+
+	Visualizar Detalhes da tarefa: Medium
+		-O Utilizador seleciona uma tarefa para visualizar
+		-O sistema apresenta os dados da a tarefa incluindo tempos registados
+		
+
