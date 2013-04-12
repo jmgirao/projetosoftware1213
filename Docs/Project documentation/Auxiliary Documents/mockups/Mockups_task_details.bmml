@@ -1,0 +1,111 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1014" measuredH="507" mockupW="987" mockupH="469">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="27" y="38" w="565" h="469" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Task%20Details</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="475" y="78" w="96" h="67" measuredW="73" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <icon>PencilIcon%7Csmall</icon>
+        <text>Edit</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::SubTitle" x="42" y="86" w="-1" h="-1" measuredW="99" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>18</size>
+        <text>Task%20Name%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="152" y="86" w="-1" h="-1" measuredW="51" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <size>16</size>
+        <text>Task%20A</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::SubTitle" x="42" y="124" w="-1" h="-1" measuredW="95" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>18</size>
+        <text>Total%20Time%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::SubTitle" x="152" y="124" w="-1" h="-1" measuredW="51" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <size>16</size>
+        <text>0h36m</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::DataGrid" x="42" y="233" w="529" h="180" measuredW="258" measuredH="113" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <borderStyle>square</borderStyle>
+        <hasHeader>false</hasHeader>
+        <hLines>false</hLines>
+        <rowHeight>36</rowHeight>
+        <selectedIndex>-1</selectedIndex>
+        <text>Start%20Date%2C%20End%20Date%2C%20Time%20Spent%0A11-04-2013%2C11-04-2013%2C0h14m%0A11-04-2013%2C12-04-2013%2C0h22m</text>
+        <value>38</value>
+        <verticalScrollbar>true</verticalScrollbar>
+        <vLines>true</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::DataGrid" x="763" y="233" w="251" h="180" measuredW="180" measuredH="149" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <borderStyle>square</borderStyle>
+        <hasHeader>false</hasHeader>
+        <hLines>false</hLines>
+        <rowHeight>36</rowHeight>
+        <selectedIndex>-1</selectedIndex>
+        <text>Day%2C%20Time%20Spent%0A11-04-2013%2C%200h14m%0A11-04-2013%2C0h15m%0A12-04-2013%2C%200h07m</text>
+        <value>38</value>
+        <verticalScrollbar>true</verticalScrollbar>
+        <vLines>true</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::SubTitle" x="773" y="197" w="-1" h="-1" measuredW="173" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>18</size>
+        <text>Task%20Timings%20by%20Day</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="251" y="428" w="96" h="39" measuredW="56" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Close</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::RadioButton" x="42" y="190" w="-1" h="-1" measuredW="113" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>All%20Task%20Timings</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::RadioButton" x="187" y="190" w="160" h="23" measuredW="133" measuredH="22" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Task%20Timing%20by%20Day</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::Arrow" x="325" y="197" w="423" h="43" measuredW="150" measuredH="100" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13369344</color>
+        <direction>top</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Paragraph" x="605" y="190" w="-1" h="-1" measuredW="200" measuredH="80" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13369344</color>
+        <size>16</size>
+        <text>Changes%20to%20this%20list</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

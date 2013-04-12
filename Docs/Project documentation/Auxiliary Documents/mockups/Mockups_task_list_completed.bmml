@@ -1,0 +1,48 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="659" measuredH="502" mockupW="584" mockupH="413">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="75" y="89" w="584" h="389" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bottomheight>0</bottomheight>
+        <close>true</close>
+        <dragger>false</dragger>
+        <maximizeRestore>false</maximizeRestore>
+        <minimize>true</minimize>
+        <text>Completed%20Tasks</text>
+        <topheight>26</topheight>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="94" y="121" w="133" h="60" measuredW="127" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10470904</color>
+        <icon>JumpOutIcon%7Csmall</icon>
+        <text>Uncompleted</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::DataGrid" x="75" y="203" w="584" h="275" measuredW="285" measuredH="221" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <borderStyle>square</borderStyle>
+        <hasHeader>false</hasHeader>
+        <hLines>true</hLines>
+        <rowHeight>36</rowHeight>
+        <selectedIndex>2</selectedIndex>
+        <text>%2C%20%5Bx%5D%2C%20Task%20Name%2C%20Total%20Time%2C%20%0A%201%2C%20%5Bx%5D%2CTask%20A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2C%2036%0A2%2C%5Bx%5D%2C%20Task%20%20B%2C%2034%2C%20%0A3%2C%20%5Bx%5D%2CTask%20C%2C%2037%2C%20%0A4%2C%5Bx%5D%2CTask%20D%2C%2023%2C%20%0A5%2C%5Bx%5D%2CTask%20E%2C%206%2C%20</text>
+        <value>38</value>
+        <verticalScrollbar>true</verticalScrollbar>
+        <vLines>false</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="524" y="121" w="110" h="60" measuredW="88" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15374745</color>
+        <icon>Trash2Icon%7Csmall</icon>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Tooltip" x="109" y="426" w="229" h="76" measuredW="239" measuredH="0" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Multiselect%20to%20Uncomplete/Delete</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
