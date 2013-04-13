@@ -1,6 +1,6 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="496" measuredH="104" mockupW="333" mockupH="29">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="496" measuredH="161" mockupW="376" mockupH="86">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="163" y="75" w="333" h="29" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="120" y="75" w="376" h="29" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
     <control controlID="1" controlTypeID="com.balsamiq.mockups::Paragraph" x="214" y="83" w="67" h="17" measuredW="200" measuredH="80" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>0%3A00%3A10</text>
@@ -18,11 +18,25 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="163" y="76" w="35" h="27" measuredW="46" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="155" y="76" w="35" h="27" measuredW="46" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
+        <href>Mockups_main_complete%26bm%3BMockups_main_complete.bmml%26bm%3BMockups_main_complete.bmml%26bm%3BMockups_main_complete.bmml</href>
         <icon>HomeIcon%7Csmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2235%2C1%2C70%2C28%22%20href%3D%22Mockups_main_complete.bmml%22%20alt%3D%22Mockups_main_complete%22%20id%3D%224%22/%3E</map>
         <text/>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="120" y="76" w="35" h="27" measuredW="46" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <icon>HandOpenIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Tooltip" x="120" y="104" w="151" h="57" measuredW="152" measuredH="0" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>drag%20to%20move%20this%20window</text>
       </controlProperties>
     </control>
   </controls>
