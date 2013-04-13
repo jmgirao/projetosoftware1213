@@ -1,0 +1,47 @@
+test creating task with empty name and all text valid
+
+steps:
+1 click ok without entering any task name
+2 insert name and description with all text valid and proper sizes
+3 click ok
+
+expected output:
+1.1 show input dialog for the detailed data
+3.1 added new registry
+
+
+
+test creating task with empty name and name or invalide description
+
+steps:
+1 click ok without entering any task name
+2 insert name and description with invalide text or sizes over the maximum defined on the data dictionary
+3 click ok
+
+expected output:
+1.1 show input dialog for the detailed data
+3.1 show mensage “Invalid field!”
+
+
+
+test creating task without empty name and all text valid
+
+steps:
+1 insert name
+2 click ok
+
+expected output:
+2.1 added new registry
+ 
+test creating task without empty name and all text invalid
+
+steps:
+1 insert name
+2 click ok
+
+expected output:
+2.1 show mensage “Invalid field!”
+
+Criteria
+Task.name	The field name accepts until 50 characters and doesn’t accept special characters
+Task.description	The field description accepts until 500 characters and accepts special characters
