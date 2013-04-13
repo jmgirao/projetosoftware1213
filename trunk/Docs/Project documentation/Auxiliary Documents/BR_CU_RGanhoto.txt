@@ -11,6 +11,11 @@ Restrições:
 - 
 
 
+Pressupostos:
+- O cliente garante os requisitos minimos de hardware e software para o uso da nossa aplicação.
+
+
+
 Casos de Uso:
 	Ativar Tarefa - High
 		-O utilizador abre uma listagem de tarefas inativas.
