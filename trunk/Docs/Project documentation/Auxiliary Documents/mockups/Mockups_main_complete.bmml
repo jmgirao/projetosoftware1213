@@ -1,6 +1,6 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1260" measuredH="555" mockupW="1185" mockupH="543">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1524" measuredH="497" mockupW="1432" mockupH="497">
   <controls>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::TitleWindow" x="75" y="72" w="611" h="483" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::TitleWindow" x="339" y="32" w="611" h="465" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
         <bottomheight>0</bottomheight>
         <close>true</close>
@@ -11,24 +11,24 @@
         <topheight>26</topheight>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="90" y="136" w="109" h="60" measuredW="104" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="354" y="133" w="109" h="60" measuredW="104" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockups_task_add%26bm%3BMockups_task_add.bmml%26bm%3BMockups_task_add.bmml%26bm%3BMockups_task_add.bmml</href>
         <icon>PlusBigIcon%7Csmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C124%2C124%2C184%22%20href%3D%22Mockups_task_add.bmml%22%20alt%3D%22Mockups_task_add%22%20id%3D%2217%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22262%2C133%2C371%2C193%22%20href%3D%22Mockups_task_add.bmml%22%20alt%3D%22Mockups_task_add%22%20id%3D%2217%22/%3E</map>
         <menuIcon>false</menuIcon>
         <text>Add%20Task</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::Button" x="338" y="136" w="110" h="60" measuredW="106" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::Button" x="602" y="133" w="110" h="60" measuredW="106" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <color>7317724</color>
         <icon>CheckMarkIcon%7Csmall</icon>
         <text>Complete</text>
       </controlProperties>
     </control>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="214" y="136" w="109" h="60" measuredW="80" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="478" y="133" w="109" h="60" measuredW="80" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <color>9684093</color>
         <icon>RightFillTriangleIcon%7Csmall</icon>
@@ -37,16 +37,16 @@
         <text>Start</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="588" y="144" w="62" h="45" measuredW="46" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="861" y="133" w="62" h="45" measuredW="46" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <color>3355443</color>
-        <href>Mockup_settings%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml</href>
-        <icon>GearIcon%7Csmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22513%2C132%2C575%2C177%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%2220%22/%3E</map>
+        <href>mockups_minimal_view%26bm%3Bmockups_minimal_view.bmml%26bm%3Bmockups_minimal_view.bmml%26bm%3Bmockups_minimal_view.bmml</href>
+        <icon>FullScreenExitIcon%7Csmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22769%2C133%2C831%2C178%22%20href%3D%22mockups_minimal_view.bmml%22%20alt%3D%22mockups_minimal_view%22%20id%3D%2220%22/%3E</map>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="21" controlTypeID="com.balsamiq.mockups::DataGrid" x="90" y="216" w="569" h="275" measuredW="285" measuredH="221" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::DataGrid" x="354" y="213" w="569" h="275" measuredW="285" measuredH="221" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <align>left</align>
         <borderStyle>square</borderStyle>
@@ -60,26 +60,26 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Button" x="463" y="136" w="110" h="60" measuredW="88" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Button" x="727" y="133" w="110" h="60" measuredW="88" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15374745</color>
         <icon>Trash2Icon%7Csmall</icon>
         <text>Delete</text>
       </controlProperties>
     </control>
-    <control controlID="23" controlTypeID="com.balsamiq.mockups::Tooltip" x="143" y="425" w="229" h="60" measuredW="232" measuredH="0" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Tooltip" x="407" y="422" w="229" h="60" measuredW="232" measuredH="0" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Multiselect%20to%20Complete/Delete</text>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::Tooltip" x="920" y="104" w="199" h="92" measuredW="209" measuredH="0" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Tooltip" x="1184" y="101" w="199" h="92" measuredW="209" measuredH="0" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <align>left</align>
         <text>Double%20click%20to%20check%20details.%0ARight%20click%20shows%20context%20menu%3AStart%2CView%20details%2CEdit</text>
         <tooltipDirection>SW</tooltipDirection>
       </controlProperties>
     </control>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Button" x="364" y="12" w="109" h="60" measuredW="85" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Button" x="625" y="0" w="109" h="60" measuredW="85" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16770457</color>
         <icon>PauseIcon%7Csmall</icon>
@@ -88,98 +88,89 @@
         <text>Pause</text>
       </controlProperties>
     </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Arrow" x="268" y="50" w="96" h="94" measuredW="150" measuredH="100" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Arrow" x="532" y="47" w="96" h="94" measuredW="150" measuredH="100" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <direction>bottom</direction>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Paragraph" x="250" y="50" w="200" h="24" measuredW="200" measuredH="80" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Paragraph" x="557" y="18" w="200" h="24" measuredW="200" measuredH="80" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13369344</color>
         <text>Commutes</text>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::Button" x="522" y="500" w="129" h="40" measuredW="121" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>Mockups_task_list_completed%26bm%3BMockups_task_list_completed.bmml%26bm%3BMockups_task_list_completed.bmml%26bm%3BMockups_task_list_completed.bmml</href>
-        <icon>ListIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22447%2C488%2C576%2C528%22%20href%3D%22Mockups_task_list_completed.bmml%22%20alt%3D%22Mockups_task_list_completed%22%20id%3D%2228%22/%3E</map>
-        <size>10</size>
-        <text>Completed%20Tasks</text>
-      </controlProperties>
-    </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::Button" x="97" y="500" w="129" h="40" measuredW="96" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>SaveIcon%7Cxsmall</icon>
-        <size>10</size>
-        <text>Export%20Data</text>
-      </controlProperties>
-    </control>
-    <control controlID="31" controlTypeID="com.balsamiq.mockups::TitleWindow" x="810" y="216" w="450" h="161" measuredW="450" measuredH="400" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::TitleWindow" x="1074" y="213" w="450" h="161" measuredW="450" measuredH="400" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Delete%20Task</text>
         <topheight>30</topheight>
       </controlProperties>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="1057" y="302" w="96" h="37" measuredW="41" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="1321" y="299" w="96" h="37" measuredW="41" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>NO</text>
       </controlProperties>
     </control>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::Button" x="939" y="302" w="96" h="37" measuredW="44" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Button" x="1203" y="299" w="96" h="37" measuredW="44" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13369344</color>
         <text>Yes</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::SubTitle" x="825" y="264" w="388" h="-1" measuredW="358" measuredH="17" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::SubTitle" x="1089" y="261" w="388" h="-1" measuredW="358" measuredH="17" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>true</bold>
         <size>14</size>
         <text>Are%20you%20sure%20you%20want%20to%20delete%20the%20selected%20tasks%3F%3F</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Arrow" x="573" y="166" w="339" h="50" measuredW="150" measuredH="100" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Arrow" x="837" y="163" w="339" h="50" measuredW="150" measuredH="100" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <direction>top</direction>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Button" x="330" y="500" w="129" h="40" measuredW="100" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>Mockups_task_list_completed%26bm%3BMockups_task_list_completed.bmml%26bm%3BMockups_task_list_completed.bmml%26bm%3BMockups_task_list_completed.bmml</href>
-        <icon>GtIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22255%2C488%2C384%2C528%22%20href%3D%22Mockups_task_list_completed.bmml%22%20alt%3D%22Mockups_task_list_completed%22%20id%3D%2237%22/%3E</map>
-        <size>10</size>
-        <text>Minimal%20View</text>
-      </controlProperties>
-    </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::StickyNote" x="671" y="411" w="235" h="129" measuredW="109" measuredH="123" zOrder="19" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>TOO%20MANY%20DECISIONS%20TO%20TAKE%20IN%20THIS%20SCREEN.%20LESS%20RELEVANT%20OPTIONS%20%28export%20data%2C%20minimal%20view%2C%20show%20completed%20tasks%29%20MAY%20BE%20HIDDEN%20IN%20TOP%20MENUS</text>
-      </controlProperties>
-    </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="90" y="99" w="267" h="-1" measuredW="250" measuredH="27" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="354" y="96" w="559" h="-1" measuredW="250" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Type%20task%20name%20here%20to%20add%20task%20faster</text>
       </controlProperties>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::Button" x="609" y="196" w="25" h="23" measuredW="38" measuredH="27" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Button" x="873" y="193" w="25" h="23" measuredW="38" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <icon>UpFillTriangleIcon%7Cxsmall</icon>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Button" x="634" y="196" w="25" h="23" measuredW="38" measuredH="27" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Button" x="898" y="193" w="25" h="23" measuredW="38" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <icon>DownFillTriangleIcon%7Cxsmall</icon>
         <text/>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::MenuBar" x="339" y="55" w="609" h="31" measuredW="82" measuredH="29" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <selectedIndex>-1</selectedIndex>
+        <text>File</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Menu" x="92" y="152" w="164" h="-1" measuredW="150" measuredH="104" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>View%20Completed%20Tasks%0A---%0ASettings%0AExport%20Data%0A---%0AExit</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Arrow" x="210" y="75" w="144" h="77" measuredW="150" measuredH="100" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13576743</color>
+        <direction>bottom</direction>
+        <leftArrow>true</leftArrow>
+        <rightArrow>false</rightArrow>
+        <text>shows%20this%20menu</text>
       </controlProperties>
     </control>
   </controls>
