@@ -1,18 +1,18 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="697" measuredH="276" mockupW="450" mockupH="161">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="688" measuredH="354" mockupW="450" mockupH="243">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="247" y="115" w="450" h="161" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="238" y="111" w="450" h="243" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Add%20Task</text>
         <topheight>30</topheight>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="577" y="201" w="96" h="37" measuredW="45" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="562" y="287" w="96" h="37" measuredW="45" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>Add</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="466" y="201" w="96" h="37" measuredW="64" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="466" y="287" w="96" h="37" measuredW="64" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13369344</color>
         <text>Cancel</text>
@@ -30,5 +30,13 @@
         <text>Task%20Name</text>
       </controlProperties>
     </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::SubTitle" x="262" y="204" w="-1" h="-1" measuredW="99" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>18</size>
+        <text>Description</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Canvas" x="374" y="205" w="299" h="70" measuredW="100" measuredH="70" zOrder="6" locked="false" isInGroup="-1"/>
   </controls>
 </mockup>
