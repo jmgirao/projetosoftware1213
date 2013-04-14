@@ -1,0 +1,14 @@
+test clicking on "Switch to minimal view" button
+
+steps:
+1 the "Switch to minimal view" button are clicked
+
+expected output:
+1.1 the main window desappear
+1.2 a new small window appear near the system clock bar with informations about the running task
+
+
+
+
+Criteria:
+

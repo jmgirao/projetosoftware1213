@@ -1,0 +1,25 @@
+test deleting a task and saying "no" to delete it
+
+steps:
+1 choose task and press the key to delete it
+2 negative option are choosen
+
+expected output:
+1.1 show dialog to confirm task remove
+2.1 the task must not be removed and must have the same status that has before
+
+
+
+test deleting a task and saying "yes" to delete it
+
+steps:
+1 choose task and press the key to delete it
+2 positive option are choosen
+
+expected output:
+1.1 show dialog to confirm task remove
+2.1 the task must be removed and any registry about it in memory and database, must also be removed
+
+
+Criteria:
+

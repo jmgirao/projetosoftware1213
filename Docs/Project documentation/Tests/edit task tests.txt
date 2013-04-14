@@ -1,0 +1,48 @@
+test editing task with all text fields filled and valid
+
+steps:
+1 name and description fiels are filled and update button are clicked
+2 insert name and description with all text valid and proper sizes
+3 click ok
+
+expected output:
+1.1 no error are present, the task data are update and it status must be the same as the previous one
+
+
+
+test editing task with all text fields valid but at least one empty
+
+steps:
+1 name or description fiels are filled (only one of them or any) and update button are clicked
+
+expected output:
+1.1 show mensage "Empty field!”
+
+
+
+
+test editing task with all text fields filled but at least one with invalid characters or over the character size limit
+
+steps:
+1 name and description fiels are filled (but with invalid characters and/or over the size limit)
+
+expected output:
+1.1 Every text must appear, except the invalid characters and until the maximum field size are reached
+
+
+ 
+test editing task with at least one empty text field and at least one with invalid characters or over the character size limit
+
+steps:
+1 name and description fiels are filled (but with invalid characters and/or over the size limit)
+2 update button are clicked
+
+expected output:
+1.1 Every text must appear, except the invalid characters and until the maximum field size are reached
+2.1 show mensage "Empty field!”
+
+
+
+Criteria
+Task.name	The field name accepts until 50 characters and doesn’t accept special characters
+Task.description	The field description accepts until 500 characters and accepts special characters
