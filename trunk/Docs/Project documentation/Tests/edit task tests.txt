@@ -1,48 +1,56 @@
-test editing task with all text fields filled and valid
+test editing task with all text fields filled
 
 steps:
-1 name and description fiels are filled and update button are clicked
-2 insert name and description with all text valid and proper sizes
+1 name field is filled and update button is clicked
+2 insert name and description with the proper sizes
 3 click ok
 
 expected output:
-1.1 no error are present, the task data are update and it status must be the same as the previous one
+1.1 no error are present and the task data is updated
 
 
 
-test editing task with all text fields valid but at least one empty
-
-steps:
-1 name or description fiels are filled (only one of them or any) and update button are clicked
-
-expected output:
-1.1 show mensage "Empty field!”
-
-
-
-
-test editing task with all text fields filled but at least one with invalid characters or over the character size limit
+test editing task name field empty
 
 steps:
-1 name and description fiels are filled (but with invalid characters and/or over the size limit)
+1 name field is not filled and update button are clicked
 
 expected output:
-1.1 Every text must appear, except the invalid characters and until the maximum field size are reached
+1.1 show mensage "Empty name field!”
 
 
- 
-test editing task with at least one empty text field and at least one with invalid characters or over the character size limit
+
+test editing or inserting valid date 
 
 steps:
-1 name and description fiels are filled (but with invalid characters and/or over the size limit)
-2 update button are clicked
+1 edit or insert start date and end date and click update
 
 expected output:
-1.1 Every text must appear, except the invalid characters and until the maximum field size are reached
-2.1 show mensage "Empty field!”
+1.1 window updated with new date and database registry chnaged with new dates
+
+
+
+test editing or inserting invalid date 
+
+steps:
+1 edit or insert start date (after the end date) and end date and click update
+
+expected output:
+1.1 show mensage "Invalid field!” and the reason
+
+
+
+test deleting individual time of a task
+
+steps:
+1 select an individual task from the list and click delete
+
+expected output:
+1.1 individual task is removed from the list and datebase is updated
 
 
 
 Criteria
-Task.name	The field name accepts until 50 characters and doesn’t accept special characters
-Task.description	The field description accepts until 500 characters and accepts special characters
+Task.name	The field name accepts until 50 characters 
+Task.description	The field description accepts until 500 characters
+Task.EditTask.Dates Start date must be sooner than end date and both fields must not be empty

@@ -1,0 +1,7 @@
+test stop time task
+
+steps:
+1 click stop!
+
+expected output:
+1.1 Timer stops and database updates the end date of the current task.

@@ -1,0 +1,7 @@
+test start time task
+
+steps:
+1 select task and click start!
+
+expected output:
+1.1 Timer starts and database creates a new entry for new time with the start date in the selected task.

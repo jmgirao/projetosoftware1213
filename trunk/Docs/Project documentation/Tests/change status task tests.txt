@@ -1,0 +1,25 @@
+test activating tasks 
+
+steps:
+1 a list of tasks will be available and simply click in the task that you wish to activate.
+
+expected output:
+0.0 present a list of tasks
+1.1 tasks change its status to activated and must be visible in the main screen and updated in Database
+
+
+
+
+
+test desactivating tasks
+
+steps:
+1 a list of tasks will be available and simply click in the task that you wish to desactivate.
+expected output:
+0.0 show message "No inactive taks"
+1.1 tasks change its status to desactivated and must be invisible in the main screen, 
+if the checkbox of inactive task is not selected, and updated in Database
+
+
+Criteria:
+
