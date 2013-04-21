@@ -10,5 +10,6 @@ expected output:
 
 
 
-Criteria:
+Criteria: 
+No criteria 
 

@@ -22,4 +22,5 @@ if the checkbox of inactive task is not selected, and updated in Database
 
 
 Criteria:
+No criteria
 
