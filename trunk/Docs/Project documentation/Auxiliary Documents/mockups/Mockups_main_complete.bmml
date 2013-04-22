@@ -27,7 +27,7 @@
     <control controlID="25" controlTypeID="com.balsamiq.mockups::Button" x="97" y="311" w="33" h="27" measuredW="37" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
-        <icon>PauseIcon%7Cxsmall</icon>
+        <icon>StopIcon%7Cxsmall</icon>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
@@ -171,7 +171,6 @@
       <controlProperties>
         <color>16777215</color>
         <icon>XIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22517%2C92%2C554%2C124%22%20href%3D%22Mockups_task_add.bmml%22%20alt%3D%22Mockups_task_add%22%20id%3D%2264%22/%3E</map>
         <menuIcon>false</menuIcon>
         <text/>
       </controlProperties>
