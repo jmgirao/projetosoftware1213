@@ -12,14 +12,7 @@
         <text>Task%20Name%3A</text>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::SubTitle" x="42" y="123" w="-1" h="-1" measuredW="119" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
-      <controlProperties>
-        <bold>true</bold>
-        <size>18</size>
-        <text>Creation%20Date</text>
-      </controlProperties>
-    </control>
-    <control controlID="8" controlTypeID="com.balsamiq.mockups::DataGrid" x="42" y="224" w="529" h="180" measuredW="258" measuredH="110" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::DataGrid" x="42" y="224" w="529" h="180" measuredW="258" measuredH="110" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <align>left</align>
         <borderStyle>square</borderStyle>
@@ -33,30 +26,25 @@
         <vLines>true</vLines>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="251" y="428" w="96" h="39" measuredW="55" measuredH="24" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="251" y="428" w="96" h="39" measuredW="45" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <text>Edit</text>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::SubTitle" x="42" y="159" w="-1" h="-1" measuredW="99" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::SubTitle" x="42" y="124" w="-1" h="-1" measuredW="99" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>true</bold>
         <size>18</size>
         <text>Description</text>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::TextInput" x="174" y="84" w="123" h="-1" measuredW="51" measuredH="24" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::TextInput" x="174" y="84" w="123" h="-1" measuredW="51" measuredH="24" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Task%20A</text>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::TextInput" x="174" y="121" w="123" h="-1" measuredW="78" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>01-02-2013</text>
-      </controlProperties>
-    </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::TextInput" x="174" y="157" w="123" h="-1" measuredW="108" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::TextInput" x="174" y="122" w="123" h="-1" measuredW="108" measuredH="24" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Task%20description</text>
       </controlProperties>
