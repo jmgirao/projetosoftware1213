@@ -18,7 +18,7 @@
         <hLines>true</hLines>
         <rowHeight>36</rowHeight>
         <selectedIndex>1</selectedIndex>
-        <text>%2C%20%2C%20Name%2C%20Total%20Time%2C%20Today%20%2C%20Data%20Stop%2C%20%20%20%20%20%20%20%20%20%20%20%0A%2C%20%20%20%2C%20Task%20%20B%2C%2000%3A34%2C%201%2C%2012%3A00%0A%2C%20%20%20%20%2CTask%20C%2C%2000%3A37%2C%200%2C%2014/04/2013%0A%2C%20%20%20%2CTask%20D%2C%201%3A23%2C%200%2C%2010/04/2013%0A%2C%20%20%20%2CTask%20E%2C%206%3A00%2C%200%2C%2028/03/2013</text>
+        <text>%2C%20%2C%20Name%2C%20Total%20Time%2C%20Today%20%2C%20Data%20Stop%2C%20%20%20%20%20%20%20%20%20%20%20%0A%2C%20%20%20%2C%20Task%20%20B%2C%2001%3A34%2C%2001%3A00%2C%2012%3A00%0A%2C%20%20%20%20%2CTask%20C%2C%2000%3A37%2C%2000%3A00%2C%2014/04/2013%0A%2C%20%20%20%2CTask%20D%2C%201%3A23%2C%2000%3A00%2C%2010/04/2013%0A%2C%20%20%20%2CTask%20E%2C%206%3A00%2C%2000%3A00%2C%2028/03/2013</text>
         <value>15</value>
         <verticalScrollbar>true</verticalScrollbar>
         <vLines>false</vLines>
@@ -109,7 +109,7 @@
         <color>16777215</color>
         <href>Mockups_task_details%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml</href>
         <icon>HLinesIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22414%2C91%2C447%2C124%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%2256%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22337%2C91%2C370%2C124%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%2256%22/%3E</map>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
@@ -140,7 +140,7 @@
         <color>16777215</color>
         <href>Mockup_settings%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml</href>
         <icon>GearIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22465%2C92%2C502%2C124%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%2259%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22429%2C93%2C466%2C125%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%2259%22/%3E</map>
         <menuIcon>false</menuIcon>
         <text/>
       </controlProperties>
