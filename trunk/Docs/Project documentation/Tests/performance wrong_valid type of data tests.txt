@@ -1,0 +1,17 @@
+test inserting data with wrong type of data
+
+steps:
+1 enter the data in the respective field( insert special or num numerical caracters)
+2 click enter key ok button
+
+expected output:
+2.1 Error message
+
+test inserting data
+
+steps:
+1 enter the correct data in the respective field
+2 click enter key ok button
+
+expected output:
+2.1 system accepts changes

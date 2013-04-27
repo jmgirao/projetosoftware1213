@@ -1,0 +1,10 @@
+test transitions between forms
+
+steps:
+1 click on a button to open a new form (edit task for example)
+
+expected output:
+1.1 the form should open in less than 10 seconds
+
+criteria:
+the number of task can't exceed 100.
