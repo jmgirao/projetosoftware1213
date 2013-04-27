@@ -1,0 +1,7 @@
+test startup application in less than 15 seconds
+
+steps:
+1 start the application
+
+expected output:
+1.1 The application should start in less than 15 seconds
