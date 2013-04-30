@@ -29,8 +29,14 @@ namespace KeepYourTime
             InitializeComponent();
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
+
+            if (!DataBase.CreateDB.IsDbCreated())
+            {
+                var cdb = new DataBase.CreateDB();
+                cdb.CreateDatabase();
+            }
         }
-     
+
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
