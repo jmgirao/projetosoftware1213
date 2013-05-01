@@ -5,3 +5,22 @@ steps:
 
 expected output:
 1.1 Timer starts and database creates a new entry for new time with the start date in the selected task.
+
+test start time task with shortcut
+
+steps:
+
+1 click on the shortcut
+
+expected output:
+1.1 Timer starts and database creates a new entry for new time with the start date in the selected task.
+
+test start time task with shortcut when another task is running
+
+steps:
+
+1 click on the shortcut
+
+expected output:
+1.1 Timer stops, saves into database the data corresponding to the task that was executing.
+1.2 Timer starts and database creates a new entry for new time with the start date in the new selected task.

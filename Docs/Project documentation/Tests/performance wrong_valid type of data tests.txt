@@ -1,7 +1,7 @@
-test inserting data with wrong type of data
+test inserting char data with wrong type of data
 
 steps:
-1 enter the data in the respective field( insert special or num numerical caracters)
+1 enter the data in the respective field( insert special or numerical caracters)
 2 click enter key ok button
 
 expected output:
@@ -15,3 +15,12 @@ steps:
 
 expected output:
 2.1 system accepts changes
+
+test inserting numeric data with wrong type of data
+
+steps:
+1 enter the data in the respective field( insert special or caracters)
+2 click enter key ok button
+
+expected output:
+2.1 Error message
