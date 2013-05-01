@@ -1,0 +1,22 @@
+test create shortcut
+
+steps:
+1 select configurations
+2 select the task
+3 select the several options for shortcuts
+4 click ok
+
+expected output:
+3.1 when shortcut is pressed the task associated will start
+
+test inactive timer
+
+steps:
+1 select configurations
+2 insert M time for inactivity alerts (minutes)
+3 click ok
+4 start random task
+5 stay afk for the time M
+
+expected output:
+5.1 New windows appears asking what do you want to do

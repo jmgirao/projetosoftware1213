@@ -1,0 +1,12 @@
+test deleting a task and shortcut validation
+
+steps:
+1 choose task and press the key to delete it
+2 positive option is choosen
+3 click on the shortcut combination
+
+expected output:
+1.1 show dialog to confirm task remove
+2.1 the task must be removed and any registry about it in memory and database, must also be removed
+2.2 If the deleted task had a shortcut associated, the shortcut itself is deleted
+3.1 the system must do a Beep and ignore the shortcut
