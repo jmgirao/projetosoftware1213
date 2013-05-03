@@ -1,6 +1,6 @@
-<mockup version="1.0" skin="sketch" measuredW="653" measuredH="431" mockupW="554" mockupH="398">
+<mockup version="1.0" skin="sketch" measuredW="1137" measuredH="446" mockupW="1038" mockupH="413">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="600" y="404" w="37" h="17" measuredW="40" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="1084" y="419" w="37" h="17" measuredW="40" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>DownFillTriangleIcon%7Cxsmall</icon>
@@ -8,41 +8,41 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="89" y="359" w="554" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="97" y="371" w="225" h="-1" measuredW="249" measuredH="24" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="573" y="374" w="554" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="581" y="386" w="225" h="-1" measuredW="249" measuredH="24" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <size>10</size>
         <text>Type%20task%20name%20here%20to%20add/change%20task%20faster</text>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="380" y="368" w="-1" h="-1" measuredW="65" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="864" y="383" w="-1" h="-1" measuredW="65" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>00%3A01%3A23</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="460" y="364" w="33" h="33" measuredW="40" measuredH="28" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="944" y="379" w="33" h="33" measuredW="40" measuredH="28" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockups_task_details%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml</href>
         <icon>HLinesIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22371%2C341%2C404%2C374%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%224%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22855%2C356%2C888%2C389%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%224%22/%3E</map>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="499" y="364" w="33" h="33" measuredW="40" measuredH="28" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="983" y="379" w="33" h="33" measuredW="40" measuredH="28" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <color>11776947</color>
         <href>Mockups_task_edit%26bm%3BMockups_task_edit.bmml%26bm%3BMockups_task_edit.bmml%26bm%3BMockups_task_edit.bmml</href>
         <icon>PencilIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22410%2C341%2C443%2C374%22%20href%3D%22Mockups_task_edit.bmml%22%20alt%3D%22Mockups_task_edit%22%20id%3D%225%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22894%2C356%2C927%2C389%22%20href%3D%22Mockups_task_edit.bmml%22%20alt%3D%22Mockups_task_edit%22%20id%3D%225%22/%3E</map>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="337" y="367" w="33" h="27" measuredW="40" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="821" y="382" w="33" h="27" measuredW="40" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>StopIcon%7Cxsmall</icon>
@@ -61,17 +61,17 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="554" y="365" w="37" h="32" measuredW="40" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="1038" y="380" w="37" h="32" measuredW="40" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockup_settings%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml</href>
         <icon>GearIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22465%2C342%2C502%2C374%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%228%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22949%2C357%2C986%2C389%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%228%22/%3E</map>
         <menuIcon>false</menuIcon>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="337" y="202" w="37" h="32" measuredW="40" measuredH="28" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="337" y="214" w="37" h="32" measuredW="40" measuredH="28" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>RightFillTriangleIcon%7Cxsmall</icon>
@@ -79,7 +79,7 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="600" y="365" w="37" h="32" measuredW="40" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="1084" y="380" w="37" h="32" measuredW="40" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>XIcon%7Cxsmall</icon>
@@ -87,52 +87,52 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::VRule" x="539" y="371" w="-1" h="20" measuredW="5" measuredH="100" zOrder="8" locked="false" isInGroup="-1"/>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::Canvas" x="89" y="196" w="554" h="45" measuredW="100" measuredH="70" zOrder="9" locked="false" isInGroup="-1"/>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::TextInput" x="97" y="208" w="225" h="-1" measuredW="249" measuredH="24" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::VRule" x="1023" y="386" w="-1" h="20" measuredW="5" measuredH="100" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Canvas" x="89" y="208" w="554" h="45" measuredW="100" measuredH="70" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::TextInput" x="97" y="220" w="225" h="-1" measuredW="249" measuredH="24" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <size>10</size>
         <text>Type%20task%20name%20here%20to%20add/change%20task%20faster</text>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="380" y="205" w="-1" h="-1" measuredW="66" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="380" y="217" w="-1" h="-1" measuredW="66" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>00%3A00%3A00</text>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="460" y="201" w="33" h="33" measuredW="40" measuredH="28" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="460" y="213" w="33" h="33" measuredW="40" measuredH="28" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockups_task_details%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml%26bm%3BMockups_task_details.bmml</href>
         <icon>HLinesIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22371%2C178%2C404%2C211%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%2216%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22371%2C190%2C404%2C223%22%20href%3D%22Mockups_task_details.bmml%22%20alt%3D%22Mockups_task_details%22%20id%3D%2216%22/%3E</map>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="499" y="201" w="33" h="33" measuredW="40" measuredH="28" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="499" y="213" w="33" h="33" measuredW="40" measuredH="28" zOrder="28" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockups_task_edit%26bm%3BMockups_task_edit.bmml%26bm%3BMockups_task_edit.bmml%26bm%3BMockups_task_edit.bmml</href>
         <icon>PencilIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22410%2C178%2C443%2C211%22%20href%3D%22Mockups_task_edit.bmml%22%20alt%3D%22Mockups_task_edit%22%20id%3D%2217%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22410%2C190%2C443%2C223%22%20href%3D%22Mockups_task_edit.bmml%22%20alt%3D%22Mockups_task_edit%22%20id%3D%2217%22/%3E</map>
         <menuIcon>false</menuIcon>
         <state>up</state>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="554" y="202" w="37" h="32" measuredW="40" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="554" y="214" w="37" h="32" measuredW="40" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <href>Mockup_settings%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml%26bm%3BMockup_settings.bmml</href>
         <icon>GearIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22465%2C179%2C502%2C211%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%2219%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22465%2C191%2C502%2C223%22%20href%3D%22Mockup_settings.bmml%22%20alt%3D%22Mockup_settings%22%20id%3D%2219%22/%3E</map>
         <menuIcon>false</menuIcon>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="600" y="202" w="37" h="32" measuredW="40" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="600" y="214" w="37" h="32" measuredW="40" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>XIcon%7Cxsmall</icon>
@@ -140,7 +140,7 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::VRule" x="539" y="208" w="-1" h="20" measuredW="5" measuredH="100" zOrder="15" locked="false" isInGroup="-1"/>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::VRule" x="539" y="220" w="-1" h="20" measuredW="5" measuredH="100" zOrder="15" locked="false" isInGroup="-1"/>
     <control controlID="23" controlTypeID="com.balsamiq.mockups::Canvas" x="89" y="23" w="554" h="45" measuredW="100" measuredH="70" zOrder="17" locked="false" isInGroup="-1"/>
     <control controlID="24" controlTypeID="com.balsamiq.mockups::TextInput" x="97" y="35" w="225" h="-1" measuredW="249" measuredH="24" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
@@ -202,11 +202,23 @@
       </controlProperties>
     </control>
     <control controlID="32" controlTypeID="com.balsamiq.mockups::VRule" x="539" y="35" w="-1" h="20" measuredW="5" measuredH="100" zOrder="24" locked="false" isInGroup="-1"/>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::Button" x="600" y="241" w="37" h="17" measuredW="40" measuredH="28" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Button" x="600" y="253" w="37" h="17" measuredW="40" measuredH="28" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <icon>DownFillTriangleIcon%7Cxsmall</icon>
         <menuIcon>false</menuIcon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Arrow" x="651" y="45" w="433" h="326" measuredW="150" measuredH="100" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <curvature>1</curvature>
+        <direction>top</direction>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Arrow" x="651" y="229" w="218" h="136" measuredW="150" measuredH="100" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
         <text/>
       </controlProperties>
     </control>
