@@ -1,62 +1,65 @@
-SET FOREIGN_KEY_CHECKS=0;
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('FK_Shortcut_Task') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE Shortcut DROP CONSTRAINT FK_Shortcut_Task;
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('FK_Time_Task') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE TaskTime DROP CONSTRAINT FK_Time_Task;
 
 
 
-DROP TABLE IF EXISTS Inactivity CASCADE;
-DROP TABLE IF EXISTS Shortcut CASCADE;
-DROP TABLE IF EXISTS Task CASCADE;
-DROP TABLE IF EXISTS TaskTime CASCADE;
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('Configuration') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE Configuration;
 
-CREATE TABLE Inactivity
-(
-	InactivityID BIGINT NOT NULL,
-	InactivityEnabled BOOL NOT NULL,
-	InactivityTime TINYINT,
-	PRIMARY KEY (InactivityID)
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('Shortcut') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE Shortcut;
 
-) ;
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('Task') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE Task;
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TaskTime') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE TaskTime;
 
 
-CREATE TABLE Shortcut
-(
-	ShortcutId TINYINT NOT NULL,
-	TaskId BIGINT NOT NULL,
-	Ctrl BOOL NOT NULL,
-	Alt BOOL NOT NULL,
-	Shift BOOL NOT NULL,
-	Key VARCHAR(1) NOT NULL,
-	PRIMARY KEY (ShortcutId),
-	KEY (TaskId)
+CREATE TABLE Configuration ( 
+	InactivityEnabled bit NOT NULL,
+	InactivityTime tinyint
+);
 
-) ;
+CREATE TABLE Shortcut ( 
+	ShortcutId tinyint NOT NULL,
+	TaskId bigint NOT NULL,
+	Ctrl bit NOT NULL,
+	Alt bit NOT NULL,
+	Shift bit NOT NULL,
+	Key varchar(1) NOT NULL
+);
 
+CREATE TABLE Task ( 
+	TaskID bigint NOT NULL,
+	TaskName varchar(50) NOT NULL,
+	Description text,
+	Active bit NOT NULL
+);
 
-CREATE TABLE Task
-(
-	TaskID BIGINT NOT NULL,
-	TaskName VARCHAR(50) NOT NULL,
-	Description TEXT,
-	Active BOOL NOT NULL,
-	PRIMARY KEY (TaskID),
-	UNIQUE UQ_Task_TaskName(TaskName)
-
-) ;
-
-
-CREATE TABLE TaskTime
-(
-	TimeId BIGINT NOT NULL,
-	TaskId BIGINT NOT NULL,
-	StartTime DATETIME,
-	StopTime DATETIME,
-	PRIMARY KEY (TimeId),
-	KEY (TaskId)
-
-) ;
+CREATE TABLE TaskTime ( 
+	TimeId bigint NOT NULL,
+	TaskId bigint NOT NULL,
+	StartTime datetime,
+	StopTime datetime
+);
 
 
+ALTER TABLE Task
+	ADD CONSTRAINT UQ_Task_TaskName UNIQUE (TaskName);
 
-SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut 
+	PRIMARY KEY CLUSTERED (ShortcutId);
+
+ALTER TABLE Task ADD CONSTRAINT PK_Task 
+	PRIMARY KEY CLUSTERED (TaskID);
+
+ALTER TABLE TaskTime ADD CONSTRAINT PK_Time 
+	PRIMARY KEY CLUSTERED (TimeId);
+
 
 
 ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task 
