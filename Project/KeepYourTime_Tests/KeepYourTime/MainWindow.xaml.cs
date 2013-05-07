@@ -30,7 +30,7 @@ namespace KeepYourTime
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
 
-            if (!DataBase.CreateDB.IsDbCreated())
+            if (!DataBase.CreateDB.IsDatabaseCreated())
             {
                 var cdb = new DataBase.CreateDB();
                 cdb.CreateDatabase();

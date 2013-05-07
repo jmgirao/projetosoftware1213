@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase
 {
+    /// <summary>
+    /// Database Utils
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     class DBUtils
     {
 
@@ -15,11 +19,19 @@ namespace KeepYourTime.DataBase
 
         public const string Password = "ZK8setbx";
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <returns>The connection String</returns>
         public static string GetConnectionString()
         {
             return string.Format("DataSource=\"{0}\"; Password='{1}'", FileName, Password);
         }
 
+        /// <summary>
+        /// Opens the SQL connection.
+        /// </summary>
+        /// <returns></returns>
         public static SqlCeConnection OpenSqlConnection()
         {
             var conn = new SqlCeConnection(GetConnectionString());
@@ -27,6 +39,11 @@ namespace KeepYourTime.DataBase
             return conn;
         }
 
+        /// <summary>
+        /// Executes the operation.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <returns></returns>
         public static int ExecuteOperation(string SqlQuery)
         {
             var conn = OpenSqlConnection();
@@ -35,6 +52,13 @@ namespace KeepYourTime.DataBase
             return intReturn;
         }
 
+        /// <summary>
+        /// Executes the operation.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns></returns>
         public static int ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
         {
             var cmd = new SqlCeCommand(SqlQuery, connection);
@@ -44,6 +68,11 @@ namespace KeepYourTime.DataBase
             return intAffectedLines;
         }
 
+        /// <summary>
+        /// Selects the table.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <returns></returns>
         public static DataTable SelectTable(string SqlQuery)
         {
             var conn = OpenSqlConnection();
@@ -52,6 +81,13 @@ namespace KeepYourTime.DataBase
             return dtReturn;
         }
 
+        /// <summary>
+        /// Selects the table.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns></returns>
         public static DataTable SelectTable(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
         {
 
@@ -61,6 +97,11 @@ namespace KeepYourTime.DataBase
             return dt;
         }
 
+        /// <summary>
+        /// Selects the value.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <returns></returns>
         public static object SelectValue(string SqlQuery)
         {
             var conn = OpenSqlConnection();
@@ -69,6 +110,13 @@ namespace KeepYourTime.DataBase
             return objReturn;
         }
 
+        /// <summary>
+        /// Selects the value.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns></returns>
         public static object SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
         {
             var cmd = new SqlCeCommand(SqlQuery, connection);
