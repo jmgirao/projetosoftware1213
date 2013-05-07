@@ -24,11 +24,30 @@
         </Canvas>-->
         <Grid>
 
-            <Rectangle HorizontalAlignment="Stretch" Height="50" VerticalAlignment="Top" Fill="Blue"/>
-            <Canvas HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="5" >
-                <Rectangle Width="5" Height="100" Canvas.Left="0" Canvas.Top="0" Fill="Yellow" Name="recSize" Cursor="SizeWE" IsManipulationEnabled="True" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Rectangle RadiusX="5" RadiusY="5" Fill="Red" Grid.Row="1" Stroke="White"
+                           HorizontalAlignment="Right" VerticalAlignment="Top" 
+                           Height="30" Width="100" Margin="15,-10"/>
+                
+                <Rectangle RadiusX="5" RadiusY="5"
+                            Fill="Blue" Stroke="White" />
+
+                <Rectangle Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                           Fill="Transparent" Name="recSize" Cursor="SizeWE" />
+                <Rectangle Width="50" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                           Fill="Transparent" Name="recMove" Cursor="SizeAll"/>
+
+            </Grid>
+            <!--<Canvas HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="5" >
             </Canvas>
-            <Rectangle Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red" Name="recMove" Cursor="SizeAll"/>
+
+            <Rectangle HorizontalAlignment="Stretch" Height="50" VerticalAlignment="Top" Fill="Blue"/>-->
         </Grid>
     </Grid>
 
