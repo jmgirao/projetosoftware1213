@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KeepYourTime
+namespace KeepYourTime.ViewWindows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -30,11 +30,18 @@ namespace KeepYourTime
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
 
+            btnFechar.Click += btnFechar_Click;
+
             if (!DataBase.CreateDB.IsDatabaseCreated())
             {
                 var cdb = new DataBase.CreateDB();
                 cdb.CreateDatabase();
             }
+        }
+
+        void btnFechar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
