@@ -8,20 +8,6 @@
         <SolidColorBrush x:Name="BackgroundBrush" Color="WhiteSmoke" Opacity="0" ></SolidColorBrush>
     </Window.Background>
     <Grid>
-        <!--<Canvas x:Name="ContectHolder" >
-            <Path Stroke="Black" Fill="WhiteSmoke" Opacity="0.8">
-                <Path.Data>
-                    <CombinedGeometry GeometryCombineMode="Exclude">
-                        <CombinedGeometry.Geometry1  >
-                            <RectangleGeometry Rect="0,0,2000,2000"  />
-                        </CombinedGeometry.Geometry1>
-                        <CombinedGeometry.Geometry2>
-                            <RectangleGeometry Rect="75,75,400,900" />
-                        </CombinedGeometry.Geometry2>
-                    </CombinedGeometry>
-                </Path.Data>
-            </Path>
-        </Canvas>-->
         <Grid>
 
             <Grid>

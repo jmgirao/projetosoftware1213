@@ -24,5 +24,25 @@ namespace KeepYourTime
             AffectedLines = 0;
         }
 
+
+        public void Exception(Exception Ex)
+        {
+            Status = MethodStatus.Exception;
+            Message = Ex.Message;
+            StackTrace = Ex.StackTrace;
+        }
+
+
+        public void Exception(Exception Ex, string Query)
+        {
+            Exception(Ex);
+            this.Query = Query;
+        }
+
+        public bool Exits
+        {
+            get
+            { return (Status != MethodStatus.Sucess); }
+        }
     }
 }
