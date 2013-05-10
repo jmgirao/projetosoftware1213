@@ -1,4 +1,4 @@
-﻿<Window x:Class="KeepYourTime.MainWindow"
+﻿<Window x:Class="KeepYourTime.ViewWindows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="100" Width="525" 
@@ -16,24 +16,82 @@
                     <RowDefinition Height="20" />
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
+                <!-- Botão de Expansão -->
                 <Rectangle RadiusX="5" RadiusY="5" Fill="Red" Grid.Row="1" Stroke="White"
                            HorizontalAlignment="Right" VerticalAlignment="Top" 
                            Height="30" Width="100" Margin="15,-10"/>
-                
-                <Rectangle RadiusX="5" RadiusY="5"
-                            Fill="Blue" Stroke="White" />
 
+                <!-- form principal -->
+                <Rectangle RadiusX="5" RadiusY="5"
+                            Fill="LightGray" Stroke="White" />
+
+                <!-- Apoio ao movimento -->
                 <Rectangle Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"
                            Fill="Transparent" Name="recSize" Cursor="SizeWE" />
                 <Rectangle Width="50" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
                            Fill="Transparent" Name="recMove" Cursor="SizeAll"/>
 
-            </Grid>
-            <!--<Canvas HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="5" >
-            </Canvas>
+                <!--Área de Edição -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
 
-            <Rectangle HorizontalAlignment="Stretch" Height="50" VerticalAlignment="Top" Fill="Blue"/>-->
+                    <Button Name="btnFechar" Grid.Column="6" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Name="btnConfig" Grid.Column="5" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Button Name="btnEdit" Grid.Column="4" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="E" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Name="btnTaskDetails" Grid.Column="3" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="D" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock Text="00:00:00" Grid.Column="2"/>
+
+                    <Button Name="btnAdd" Grid.Column="1" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="+" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBox Text="Insira coisas"/>
+
+
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 

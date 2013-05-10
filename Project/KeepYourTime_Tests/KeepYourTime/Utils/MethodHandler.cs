@@ -7,6 +7,11 @@ using KeepYourTime.Utils;
 
 namespace KeepYourTime
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     class MethodHandler
     {
         public string Message { get; set; }
