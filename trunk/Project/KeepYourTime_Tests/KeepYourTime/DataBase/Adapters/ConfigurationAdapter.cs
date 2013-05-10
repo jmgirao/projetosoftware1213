@@ -10,5 +10,7 @@ namespace KeepYourTime.DataBase.Adapters
     {
         public bool Inactivity { get; set; }
         public int InactivityTime { get; set; }
+
+        public List<ShortcutAdapter> Shortcuts { get; set; }
     }
 }

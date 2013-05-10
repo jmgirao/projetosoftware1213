@@ -44,12 +44,20 @@ namespace KeepYourTime.DataBase
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <returns></returns>
-        public static int ExecuteOperation(string SqlQuery)
+        public static MethodHandler ExecuteOperation(string SqlQuery)
         {
-            var conn = OpenSqlConnection();
-            int intReturn = ExecuteOperation(SqlQuery, conn, null);
-            conn.Close();
-            return intReturn;
+            MethodHandler mhResult = new MethodHandler();
+            try
+            {
+                var conn = OpenSqlConnection();
+                mhResult = ExecuteOperation(SqlQuery, conn, null);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
         }
 
         /// <summary>
@@ -59,13 +67,21 @@ namespace KeepYourTime.DataBase
         /// <param name="connection">The connection.</param>
         /// <param name="transaction">The transaction.</param>
         /// <returns></returns>
-        public static int ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
         {
-            var cmd = new SqlCeCommand(SqlQuery, connection);
-            if (transaction != null)
-                cmd.Transaction = transaction;
-            int intAffectedLines = cmd.ExecuteNonQuery();
-            return intAffectedLines;
+            MethodHandler mhResult = new MethodHandler();
+            try
+            {
+                var cmd = new SqlCeCommand(SqlQuery, connection);
+                if (transaction != null)
+                    cmd.Transaction = transaction;
+                mhResult.AffectedLines = cmd.ExecuteNonQuery(); ;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
         }
 
         /// <summary>
@@ -73,28 +89,47 @@ namespace KeepYourTime.DataBase
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <returns></returns>
-        public static DataTable SelectTable(string SqlQuery)
+        public static MethodHandler SelectTable(string SqlQuery, out DataTable ResultData)
         {
-            var conn = OpenSqlConnection();
-            DataTable dtReturn = SelectTable(SqlQuery, conn, null);
-            conn.Close();
-            return dtReturn;
+            MethodHandler mhResult = new MethodHandler();
+            ResultData = null;
+            try
+            {
+                var conn = OpenSqlConnection();
+                mhResult = SelectTable(SqlQuery, conn, null, out ResultData);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
         }
 
         /// <summary>
         /// Selects the table.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="connection">The connection.</param>
-        /// <param name="transaction">The transaction.</param>
+        /// <param name="Connection">The connection.</param>
+        /// <param name="Transaction">The transaction.</param>
         /// <returns></returns>
-        public static DataTable SelectTable(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
+        public static MethodHandler SelectTable(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction, out DataTable ResultData)
         {
-
-            var da = new SqlCeDataAdapter(SqlQuery, connection);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            MethodHandler mhResult = new MethodHandler();
+            ResultData = null;
+            try
+            {
+                var da = new SqlCeDataAdapter(SqlQuery, Connection);
+                var dt = new DataTable();
+                da.Fill(dt);
+                ResultData = dt;
+                mhResult.AffectedLines = dt.Rows.Count;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
         }
 
         /// <summary>
@@ -102,12 +137,21 @@ namespace KeepYourTime.DataBase
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <returns></returns>
-        public static object SelectValue(string SqlQuery)
+        public static MethodHandler SelectValue(string SqlQuery, out object ResultObject)
         {
-            var conn = OpenSqlConnection();
-            object objReturn = SelectValue(SqlQuery, conn, null);
-            conn.Close();
-            return objReturn;
+            MethodHandler mhResult = new MethodHandler();
+            ResultObject = null;
+            try
+            {
+                var conn = OpenSqlConnection();
+                mhResult = SelectValue(SqlQuery, conn, null, out ResultObject);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
         }
 
         /// <summary>
@@ -117,13 +161,23 @@ namespace KeepYourTime.DataBase
         /// <param name="connection">The connection.</param>
         /// <param name="transaction">The transaction.</param>
         /// <returns></returns>
-        public static object SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
+        public static MethodHandler SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, out object ResultObject)
         {
-            var cmd = new SqlCeCommand(SqlQuery, connection);
-            if (transaction != null)
-                cmd.Transaction = transaction;
-            object objReturn = cmd.ExecuteScalar();
-            return objReturn;
+            MethodHandler Result = new MethodHandler();
+            ResultObject = null;
+            try
+            {
+                var cmd = new SqlCeCommand(SqlQuery, connection);
+                if (transaction != null)
+                    cmd.Transaction = transaction;
+                object objReturn = cmd.ExecuteScalar();
+                ResultObject = objReturn;
+            }
+            catch (Exception ex)
+            {
+                Result.Exception(ex, SqlQuery);
+            }
+            return Result;
         }
 
 
