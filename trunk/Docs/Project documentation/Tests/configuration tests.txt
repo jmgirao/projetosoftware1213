@@ -20,3 +20,13 @@ steps:
 
 expected output:
 5.1 New windows appears asking what do you want to do
+
+test export Data
+
+steps:
+1 select configurations
+2 select export data
+3 select the path and file name and click ok/save
+
+expected output:
+3.1 A CSV file will be created with all the data in the system.

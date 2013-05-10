@@ -1,0 +1,6 @@
+test view task details
+1. click on details off a task
+
+expected result
+1.1 The system loads selected task information in the database and presents the task name,
+  description and the individual times list with start date, end date and time spent.
