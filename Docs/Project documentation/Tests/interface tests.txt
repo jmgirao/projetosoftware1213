@@ -1,0 +1,82 @@
+test minimal view
+
+steps:
+1. select minimal view in the superior right corner
+
+expected output
+
+1.1 The system shows minimal view with a textbox to insert the task name, a button to start/stop and add task, a timer,
+ a button to view details, a button to edit task, a button to show configurations, a button to hide/show task list and a button to
+ close the application.
+
+test active buttons
+
+steps:
+1. create and start a task
+2. stop a task
+
+expected output:
+
+The button to show configurations, to hide/show task list and the button to close the application are always active.
+
+test start/add and stop button
+
+steps:
+
+1. start a task
+2. stop a task
+
+expected output
+
+The system changes the start/add button to the stop button, view details button and it starts timer. The edit button is disabled.
+
+test add task
+
+steps:
+1. insert a name of a task that doesn't exist
+
+expected output
+
+
+test search task
+
+steps:
+1. insert a name of a task that exist
+
+expected output
+
+The system enables the start, edit and view details buttons. If the key enter is pressed the system changes the start button to stop
+ button.
+
+test search and switch task
+
+steps:
+
+1. insert a name of a task that exist
+
+expected output:
+The system changes the start/add button to the stop button, view details button and it starts timer. The edit button is disabled.
+
+test configurations panel
+
+steps:
+
+1. click configuration
+
+expected result:
+The system presents a form with:
+an export button.
+a check box to activate/deactivate inactivity alerts and a text box to define the inactivity time. This text box is active only if the inactivity alert is enabled.
+five lines for shortcuts definition with the following objects:
+           one combobox for selecting an existing task,
+           three checkboxes for check/uncheck the control keys ctrl, alt, shift
+           one textbox for and additional key.
+
+test visual effect inactive/active tasks
+
+steps:
+1. click on show inactive tasks
+
+expected output:
+
+The system should differentiate visually the active from inactive tasks

@@ -1,0 +1,35 @@
+test default sort with no task running
+
+1. when entering the program the task list should be sorted by default.
+
+expected output
+
+1.1 The system sorts the tasks order by descending stop date.
+
+
+test default sort with a task running
+
+1. when entering the program the task list should be sorted by default.
+
+expected output
+
+1.1 The system shows in top of the list the current task and after, the others
+sorts the tasks order by descending stop date.
+
+test sort
+
+1. when entering the program the task list can be sorted
+
+expected output
+
+1.1 The system sorts the tasks order by name, total time, spent time of day or stop date.
+ Even if a task is running, it will take the sorted position.
+
+test tasklist options
+
+1. when entering the program the task list should have several options in each task
+
+expected output
+
+1.1 The system allows for each task a set of actions to the user can view details,
+ start/stop, delete tasks and active or inactive them.

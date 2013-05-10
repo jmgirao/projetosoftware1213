@@ -1,0 +1,21 @@
+test inactivity save time
+
+steps:
+1 select a task and start
+2 don't touch the computer (inactivity time)
+3 after the inactivity time return to the computer
+4 click on save time on the dialog that should appear
+
+expected output:
+4.1 time is saved into the data of the task and task continues
+
+test inactivity ignore time
+
+steps:
+1 select a task and start
+2 don't touch the computer (inactivity time)
+3 after the inactivity time return to the computer
+4 click on ignore time on the dialog that should appear
+
+expected output:
+4.1 time is ignored and task resumes

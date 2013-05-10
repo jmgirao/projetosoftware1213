@@ -1,3 +1,13 @@
+test show inactive tasks
+
+steps:
+1 click in the checkbox that allows to show inactive tasks
+
+expected output
+0.0 present a list of active tasks
+1.1 present a list with all tasks including inactive tasks.
+
+
 test activating tasks 
 
 steps:
