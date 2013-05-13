@@ -1,0 +1,462 @@
+Carlos Tomás
+olha onde tem o MINOR/MAJOR
+Review_Report_Template (2).docxabrir · transferir
+
+01:30
+Carlos Tomás
+pos comentários
+diz me so se foi deproposito ou n para aprovar isso
+
+01:33
+João Girão
+o que é o 'X'?
+
+01:33
+Carlos Tomás
+n ta feito
+keres rever as cenas agora
+da me a tua opinião
+tas por ai
+
+01:37
+João Girão
+sim
+ora eu vou-te justificar algumas...
+
+01:38
+Carlos Tomás
+ok
+
+1:38Perdeste uma chamada de Carlos.
+
+01:38
+Carlos Tomás
+tens skype ou assim
+para falarmos
+
+01:39
+João Girão
+o 32 ta correto!
+estamo-nos a referir a dois campos o nome e a descrição
+sim
+
+01:40
+Carlos Tomás
+ok mas n devia ter virgula ou assim
+ou tar a negrito para se percever
+
+01:40
+João Girão
+em portugues tb se costuma fazer assim
+campos nome e descrição
+
+01:41
+Carlos Tomás
+ok então
+
+01:41
+João Girão
+ora o 39
+o requisito diz que pode ser ordenado por nome, tempo total, tempo de hoje OU data de stop
+
+01:43
+Carlos Tomás
+mas é o k seleccionam
+
+01:43
+João Girão
+a palavra OU está a dizer que é UM desses!
+
+01:43
+Carlos Tomás
+ou podem ser vários
+
+01:43
+João Girão
+se fosse por vários teriamos and/or
+achas que n continua claro?
+
+01:45
+Carlos Tomás
+ok
+e a 43
+
+01:47
+João Girão
+Podes ter 9999999 horas
+
+01:47
+Carlos Tomás
+tas?
+ok
+
+01:48
+João Girão
+Até podes ter bem mais horas que isso
+Se fores ao c# e meteres new date (1900,01,01) - date.today
+ele vai aceitar
+ele vai aceitar
+
+01:48
+Carlos Tomás
+ok
+o 34
+
+01:50
+João Girão
+eh pá... iss foi mais bem explicado nos requisitos de inatividade
+
+01:51
+Carlos Tomás
+onde k linha?
+mas mete na data k dá pa mais de 99 horas
+
+01:52
+João Girão
+apartir da 349
+nesses requisitos
+ok
+oh, mas se ta omisso deve-se considerar isso! ja é conhecimento do programador...
+nós dizemos que é no formato de hh:mm à partida n há dias nem semanas nem anos...
+
+01:53
+Carlos Tomás
+e se tiver a ver um video conta inactividade
+
+01:54
+João Girão
+conta... é só eventos de teclado e rato
+
+01:54
+Carlos Tomás
+ok
+o 27
+mas haviam de dizer isso lá
+
+01:55
+João Girão
+ok
+o 27...
+ja n estou recordado...
+cho que já sei
+é o visualize Task Details
+já existe um fluxo alternativo
+
+02:00
+Carlos Tomás
+acho k era como as coisas eram selecionadas
+
+02:00
+João Girão
+em que o utilizador expande a lista
+
+02:00
+Carlos Tomás
+no configure shoutcurts
+mas das actividades
+
+02:02
+João Girão
+n percebi...
+
+02:02
+Carlos Tomás
+expande a lista e depois seleciona o k ker
+?
+
+02:03
+João Girão
+expande a lista e dps continua o basicpath
+clica no botão details
+
+02:03
+Carlos Tomás
+mas poseram isso lá?
+
+02:04
+João Girão
+The user expands the tasks list. (at 1)
+
+02:05
+Carlos Tomás
+ok k linha k n tou a encontrar
+o 17
+
+02:05
+João Girão
+linha 236
+
+02:07
+Carlos Tomás
+ok
+
+02:08
+João Girão
+ah pah! esse pormenor escapou...
+
+02:09
+Carlos Tomás
+o girão
+15
+
+02:10
+João Girão
+o fluxo alternativo tem uma cena que é o (at ...)
+é onde começa
+
+02:11
+Carlos Tomás
+mas em alguns tem o numero
+mesmo tendo o at
+
+02:12
+João Girão
+(at 1) 
+2 The user ignores the time. 3 The system ignores the time.
+um exemplo
+
+02:14
+Carlos Tomás
+sim mas nesse n tem o 2
+UC-006-ChangeRunningTask
+
+02:15
+João Girão
+ah... falta o número 2
+porque dps tens o 3
+
+02:16
+Carlos Tomás
+sim
+o 10
+7 e 3
+para acavarmos
+
+02:17
+João Girão
+o 10
+
+02:18
+Carlos Tomás
+sim
+The error message isn't described on the document. That information is missing
+
+02:19
+João Girão
+sinceramente, n colocamos nada por que ainda n sabiamos as circunstancias do tipo de programação e do estilo das mensagens...
+que tens a dizer?
+
+02:21
+Carlos Tomás
+opa vou por isso nos comentários
+o 7
+
+02:22
+João Girão
+basicamente é uma coisa que ainda n bem pensada para especificar os tipos de mensagem!
+sabesque é relacionada com a base dedados
+e depende como seorganiza o trabalho...
+
+02:23
+Carlos Tomás
+sim eu entendi
+
+02:23
+João Girão
+vai ficar uma pessoa responsavel por fazer métodos que cria as mensagem!
+
+02:23
+Carlos Tomás
+so kuando fizerem é k vão saver
+
+02:24
+João Girão
+ya...
+sabemos que vamos ter uma mensagem para aquele fim!
+agr é o 7
+
+02:24
+Carlos Tomás
+sim
+opa vosses repetem sempre bue as cenas
+
+02:26
+João Girão
+porque basicamente a descrição éo proprio caso de uso e o vai ao encontro do fluxo!
+foi a justificação da responsavel pelos casos de uso 
+mas é!
+
+02:28
+Carlos Tomás
+isso deveria ser corrigido
+
+02:29
+João Girão
+a descrição vem sempre ao encontro
+
+02:29
+Carlos Tomás
+mas acho k n vai fazer mal ao projecto
+vá é so informaçã duplicada
+
+02:29
+João Girão
+achas que se deve alterar isso?
+eu penso que n
+tu é que mandas!
+
+02:29
+Carlos Tomás
+opa é assim ficava melhor
+mas se n fizerem n tem mal isso n vai atrapalar o projecto
+
+02:30
+João Girão
+em termos de horas ja vai um pouco a mais 
+
+02:30
+Carlos Tomás
+uma vez que a informação tá lá
+
+02:31
+João Girão
+alterar a descrição?
+
+02:31
+Carlos Tomás
+n vale a pena acho eu
+
+02:32
+João Girão
+ok
+
+02:32
+Carlos Tomás
+por que a informação tá lá tá é repetida
+o 3
+
+02:33
+João Girão
+The chapter 2 is a section where the application is generically described.
+é mesmo para ser uma descrição genérica do problema
+a aplicação é mesmo de gestão de tarefas!
+
+02:35
+Carlos Tomás
+acho que o of é um by
+
+02:36
+João Girão
+onde?
+
+02:36
+Carlos Tomás
+linha 9
+
+02:38
+João Girão
+porquê um by?! n vai darao mesmo?
+já percebi
+by one - por um
+of one - de um
+
+02:41
+Carlos Tomás
+sim
+
+02:41
+João Girão
+mas tb pode ser "por um"
+
+02:41
+Carlos Tomás
+opa eu n sei explicar mas n me suava bem
+
+02:42
+João Girão
+a carla é que é a pró do grupo em inglês...
+n sei se deixou escapar ou se está bem...
+realmente soa melhor by one
+bom, então fica by one
+ta tudo?!
+tenho de ir ressonar!
+
+02:47
+Carlos Tomás
+ok
+eu vou enviar isto com os comentários
+
+02:48
+João Girão
+ok
+dps o que fazemos
+?
+voltamos a enviar?
+
+02:49
+Carlos Tomás
+Review_Report_Template (2).docxabrir · transferir
+
+02:50
+João Girão
+viste o documento que enviamos?
+do review report
+
+02:50
+Carlos Tomás
+n
+
+enviame
+se faz favor
+
+02:52
+João Girão
+enviei-te para o email juntamente com o SRS
+ou n?
+
+02:54
+Carlos Tomás
+o srs e mokups sim
+o outro n
+
+02:54
+João Girão
+ah paaaaaaaaaaaaaaaaaaaaaaaaa
+
+02:55
+Carlos Tomás
+opa eu amanha n devo tar em casa
+por isso enviame e depois na terça eu envio te
+mas manda me agora
+n há problema
+?
+d so te enviar na terça
+
+02:56
+João Girão
+Review_Report_SRS_Inspection.docxabrir · transferir
+
+02:56
+Carlos Tomás
+?
+
+02:56
+João Girão
+era isso que te falava
+que me tinha esquecido de enviar
+tinha lá algumas justiciações
+mas pronto...
+alteramos e enviamos!
+
+02:58
+Carlos Tomás
+ok
+
+02:59
+João Girão
+xau 
+ate amanha!
+
+03:00
+Carlos Tomás
+ate amanha
