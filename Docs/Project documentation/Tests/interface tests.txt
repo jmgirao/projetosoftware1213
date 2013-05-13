@@ -34,14 +34,16 @@ test add task
 
 steps:
 1. insert a name of a task that doesn't exist
+2. Click enter
 
 expected output
-
+The system will create and start the new task.
 
 test search task
 
 steps:
 1. insert a name of a task that exist
+2. Click enter
 
 expected output
 
@@ -53,6 +55,7 @@ test search and switch task
 steps:
 
 1. insert a name of a task that exist
+2. Click enter
 
 expected output:
 The system changes the start/add button to the stop button, view details button and it starts timer. The edit button is disabled.
