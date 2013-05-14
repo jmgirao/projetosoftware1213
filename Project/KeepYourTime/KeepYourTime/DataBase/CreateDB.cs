@@ -15,7 +15,7 @@ namespace KeepYourTime.DataBase
     /// <remarks>
     /// CREATED BY Rui Ganhoto
     /// </remarks>
-    class CreateDB
+    public class CreateDB
     {
 
         /// <summary>

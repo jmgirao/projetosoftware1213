@@ -14,7 +14,7 @@ namespace KeepYourTime
     /// <remarks>
     /// CREATED BY Rui Ganhoto
     /// </remarks>
-    class MethodHandler
+    public class MethodHandler
     {
         public string Message { get; set; }
         public MethodStatus Status { get; set; }

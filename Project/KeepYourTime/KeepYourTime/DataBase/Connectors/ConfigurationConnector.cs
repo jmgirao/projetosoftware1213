@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Connectors
 {
-    class ConfigurationConnector
+    public class ConfigurationConnector
     {
 
         /// <summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Adapters
 {
-    class ConfigurationAdapter
+    public class ConfigurationAdapter
     {
         public bool Inactivity { get; set; }
         public int InactivityTime { get; set; }
