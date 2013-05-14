@@ -9,9 +9,11 @@ namespace KeepYourTime
 {
 
     /// <summary>
-    /// 
+    /// Method Handler to Exception and Status Treatment
     /// </summary>
-    /// <remarks>CREATED BY Rui Ganhoto</remarks>
+    /// <remarks>
+    /// CREATED BY Rui Ganhoto
+    /// </remarks>
     class MethodHandler
     {
         public string Message { get; set; }
@@ -20,6 +22,9 @@ namespace KeepYourTime
         public string Query { get; set; }
         public int AffectedLines { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MethodHandler"/> class.
+        /// </summary>
         public MethodHandler()
         {
             Message = "";
@@ -29,7 +34,10 @@ namespace KeepYourTime
             AffectedLines = 0;
         }
 
-
+        /// <summary>
+        /// Changes Status to Exception.
+        /// </summary>
+        /// <param name="Ex">The Exception</param>
         public void Exception(Exception Ex)
         {
             Status = MethodStatus.Exception;
@@ -37,7 +45,11 @@ namespace KeepYourTime
             StackTrace = Ex.StackTrace;
         }
 
-
+        /// <summary>
+        /// Changes MethodHandler Status to Exception with a query.
+        /// </summary>
+        /// <param name="Ex">The Exception.</param>
+        /// <param name="Query">The query.</param>
         public void Exception(Exception Ex, string Query)
         {
             Exception(Ex);

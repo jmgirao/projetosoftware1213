@@ -11,7 +11,9 @@ namespace KeepYourTime.DataBase
     /// <summary>
     /// Database Utils
     /// </summary>
-    /// <remarks>CREATED BY Rui Ganhoto</remarks>
+    /// <remarks>
+    /// CREATED BY Rui Ganhoto
+    /// </remarks>
     class DBUtils
     {
 
@@ -19,25 +21,28 @@ namespace KeepYourTime.DataBase
 
         public const string Password = "ZK8setbx";
 
+
         /// <summary>
         /// Gets the connection string.
         /// </summary>
-        /// <returns>The connection String</returns>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             return string.Format("DataSource=\"{0}\"; Password='{1}'", FileName, Password);
         }
 
+
         /// <summary>
         /// Opens the SQL connection.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Sql Connection</returns>
         public static SqlCeConnection OpenSqlConnection()
         {
             var conn = new SqlCeConnection(GetConnectionString());
             conn.Open();
             return conn;
         }
+
 
         /// <summary>
         /// Executes the operation.
@@ -59,6 +64,30 @@ namespace KeepYourTime.DataBase
             }
             return mhResult;
         }
+
+
+        /// <summary>
+        /// Executes the operation.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="Parameters">The parameters.</param>
+        /// <returns></returns>
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeParameter[]  Parameters)
+        {
+            MethodHandler mhResult = new MethodHandler();
+            try
+            {
+                var conn = OpenSqlConnection();
+                mhResult = ExecuteOperation(SqlQuery, conn, null,Parameters);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
+        }
+
 
         /// <summary>
         /// Executes the operation.
@@ -84,10 +113,40 @@ namespace KeepYourTime.DataBase
             return mhResult;
         }
 
+
+        /// <summary>
+        /// Executes the operation.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="Parameters">The parameters.</param>
+        /// <returns></returns>
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, SqlCeParameter[] Parameters)
+        {
+            MethodHandler mhResult = new MethodHandler();
+            try
+            {
+                var cmd = new SqlCeCommand(SqlQuery, connection);
+                if (transaction != null)
+                    cmd.Transaction = transaction;
+                foreach (SqlCeParameter p in Parameters)
+                    cmd.Parameters.Add(p);
+                mhResult.AffectedLines = cmd.ExecuteNonQuery(); ;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
+        }
+
+
         /// <summary>
         /// Selects the table.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="ResultData">The result data.</param>
         /// <returns></returns>
         public static MethodHandler SelectTable(string SqlQuery, out DataTable ResultData)
         {
@@ -106,12 +165,14 @@ namespace KeepYourTime.DataBase
             return mhResult;
         }
 
+
         /// <summary>
         /// Selects the table.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="Connection">The connection.</param>
         /// <param name="Transaction">The transaction.</param>
+        /// <param name="ResultData">The result data.</param>
         /// <returns></returns>
         public static MethodHandler SelectTable(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction, out DataTable ResultData)
         {
@@ -119,6 +180,7 @@ namespace KeepYourTime.DataBase
             ResultData = null;
             try
             {
+                
                 var da = new SqlCeDataAdapter(SqlQuery, Connection);
                 var dt = new DataTable();
                 da.Fill(dt);
@@ -132,10 +194,12 @@ namespace KeepYourTime.DataBase
             return mhResult;
         }
 
+
         /// <summary>
         /// Selects the value.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="ResultObject">The result object.</param>
         /// <returns></returns>
         public static MethodHandler SelectValue(string SqlQuery, out object ResultObject)
         {
@@ -144,7 +208,7 @@ namespace KeepYourTime.DataBase
             try
             {
                 var conn = OpenSqlConnection();
-                mhResult = SelectValue(SqlQuery, conn, null, out ResultObject);
+                mhResult = SelectValue(SqlQuery, conn,null, null, out ResultObject);
                 conn.Close();
             }
             catch (Exception ex)
@@ -154,14 +218,42 @@ namespace KeepYourTime.DataBase
             return mhResult;
         }
 
+
+        /// <summary>
+        /// Selects the value.
+        /// </summary>
+        /// <param name="SqlQuery">The SQL query.</param>
+        /// <param name="Parameters">The parameters.</param>
+        /// <param name="ResultObject">The result object.</param>
+        /// <returns></returns>
+        public static MethodHandler SelectValue(string SqlQuery, SqlCeParameter [] Parameters, out object ResultObject)
+        {
+            MethodHandler mhResult = new MethodHandler();
+            ResultObject = null;
+            try
+            {
+                var conn = OpenSqlConnection();
+                mhResult = SelectValue(SqlQuery, conn, null, Parameters, out ResultObject);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex, SqlQuery);
+            }
+            return mhResult;
+        }
+
+
         /// <summary>
         /// Selects the value.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="connection">The connection.</param>
         /// <param name="transaction">The transaction.</param>
+        /// <param name="Parameters">The parameters.</param>
+        /// <param name="ResultObject">The result object.</param>
         /// <returns></returns>
-        public static MethodHandler SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, out object ResultObject)
+        public static MethodHandler SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, SqlCeParameter[] Parameters, out object ResultObject)
         {
             MethodHandler Result = new MethodHandler();
             ResultObject = null;
@@ -170,6 +262,11 @@ namespace KeepYourTime.DataBase
                 var cmd = new SqlCeCommand(SqlQuery, connection);
                 if (transaction != null)
                     cmd.Transaction = transaction;
+
+                if (Parameters != null)
+                    foreach (SqlCeParameter p in Parameters)
+                        cmd.Parameters.Add(p);
+                
                 object objReturn = cmd.ExecuteScalar();
                 ResultObject = objReturn;
             }
@@ -179,10 +276,6 @@ namespace KeepYourTime.DataBase
             }
             return Result;
         }
-
-
-
-
 
     }
 }
