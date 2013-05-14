@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Adapters
 {
-    class TaskTimeAdapter
+    public class TaskTimeAdapter
     {
         public int TimeId { get; set; }
         public int TaskId { get; set; }

@@ -13,7 +13,7 @@ namespace KeepYourTime.DataBase.Connectors
     /// Connection betwen Tasks and DB
     /// </summary>
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
-    class TaskConnector
+    public class TaskConnector
     {
 
         /// <summary>
@@ -70,9 +70,18 @@ namespace KeepYourTime.DataBase.Connectors
             TaskID = 0;
             try
             {
+                
+                //Verify if task with same name exists
                 string strSQL = "SELECT 1 FROM Task WHERE Name = @Name ";
+                
+
+                //Create new task
+                strSQL = "INSERT INTO Task ( ) VALUES ()";
 
 
+                //Get Task ID
+                strSQL = "SELECT IDENT_CURRENT('Task')";
+              
                 //TODO: INSERT Task
             }
             catch (Exception ex)
@@ -94,6 +103,19 @@ namespace KeepYourTime.DataBase.Connectors
             {
 
                 //TODO: UPDATE Task
+                string strSQL = "UPDATE Task SET " +
+                    "Name = @Name, " +
+                    "Description = @Description  " +
+                    "WHERE TaskID = " + Task.TaskId.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+
+                if (mhResult.AffectedLines == 0)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = string.Format("The task {0} doesn't exist!", Task.TaskId);
+                    return mhResult;
+                }
+
             }
             catch (Exception ex)
             {
@@ -103,16 +125,30 @@ namespace KeepYourTime.DataBase.Connectors
         }
 
         /// <summary>
-        /// Deletes the task.
+        /// Actives the task.
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
+        /// <param name="Active">if set to <c>true</c> active else inactive.</param>
         /// <returns></returns>
-        public MethodHandler DeleteTask(int TaskID)
+        public MethodHandler ActiveTask(int TaskID, bool Active)
         {
             var mhResult = new MethodHandler();
             try
             {
-                //TODO:Delete TASK
+
+                //TODO: UPDATE Task
+                string strSQL = "UPDATE Task SET " +
+                    "Active = "+ Active.ToDB() + " " +
+                    "WHERE TaskID = " + TaskID.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+
+                if (mhResult.AffectedLines == 0)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = string.Format("The task {0} doesn't exist!", TaskID);
+                    return mhResult;
+                }
+
             }
             catch (Exception ex)
             {
@@ -121,6 +157,54 @@ namespace KeepYourTime.DataBase.Connectors
             return mhResult;
         }
 
+
+        /// <summary>
+        /// Deletes the task.
+        /// </summary>
+        /// <param name="TaskID">The task ID.</param>
+        /// <returns></returns>
+        public MethodHandler DeleteTask(int TaskID)
+        {
+            var mhResult = new MethodHandler();
+            SqlCeConnection conSql = null;
+            SqlCeTransaction traSql = null;
+            try
+            {
+                //TODO:Delete TASK
+                conSql = DBUtils.OpenSqlConnection();
+                traSql = conSql.BeginTransaction();
+
+                string strSQL = "DELETE FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL, conSql, traSql);
+
+                strSQL = "DELETE FROM Task WHERE TaskID = " + TaskID.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL, conSql, traSql);
+
+                if (mhResult.AffectedLines == 0)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = string.Format("The task {0} doesn't exist!", TaskID);
+                    return mhResult;
+                }
+
+                traSql.Commit();
+                traSql = null;
+                conSql.Close();
+                conSql = null;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                if (traSql != null)
+                    traSql.Rollback();
+                if (conSql != null)
+                    conSql.Close();
+            }
+            return mhResult;
+        }
 
         /// <summary>
         /// Reads the task list.

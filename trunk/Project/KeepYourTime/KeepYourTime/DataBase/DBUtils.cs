@@ -14,7 +14,7 @@ namespace KeepYourTime.DataBase
     /// <remarks>
     /// CREATED BY Rui Ganhoto
     /// </remarks>
-    class DBUtils
+    public class DBUtils
     {
 
         public const string FileName = "db.sdf";
@@ -72,13 +72,13 @@ namespace KeepYourTime.DataBase
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="Parameters">The parameters.</param>
         /// <returns></returns>
-        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeParameter[]  Parameters)
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeParameter[] Parameters)
         {
             MethodHandler mhResult = new MethodHandler();
             try
             {
                 var conn = OpenSqlConnection();
-                mhResult = ExecuteOperation(SqlQuery, conn, null,Parameters);
+                mhResult = ExecuteOperation(SqlQuery, conn, null, Parameters);
                 conn.Close();
             }
             catch (Exception ex)
@@ -180,7 +180,7 @@ namespace KeepYourTime.DataBase
             ResultData = null;
             try
             {
-                
+
                 var da = new SqlCeDataAdapter(SqlQuery, Connection);
                 var dt = new DataTable();
                 da.Fill(dt);
@@ -208,7 +208,7 @@ namespace KeepYourTime.DataBase
             try
             {
                 var conn = OpenSqlConnection();
-                mhResult = SelectValue(SqlQuery, conn,null, null, out ResultObject);
+                mhResult = SelectValue(SqlQuery, conn, null, null, out ResultObject);
                 conn.Close();
             }
             catch (Exception ex)
@@ -226,7 +226,7 @@ namespace KeepYourTime.DataBase
         /// <param name="Parameters">The parameters.</param>
         /// <param name="ResultObject">The result object.</param>
         /// <returns></returns>
-        public static MethodHandler SelectValue(string SqlQuery, SqlCeParameter [] Parameters, out object ResultObject)
+        public static MethodHandler SelectValue(string SqlQuery, SqlCeParameter[] Parameters, out object ResultObject)
         {
             MethodHandler mhResult = new MethodHandler();
             ResultObject = null;
@@ -266,7 +266,7 @@ namespace KeepYourTime.DataBase
                 if (Parameters != null)
                     foreach (SqlCeParameter p in Parameters)
                         cmd.Parameters.Add(p);
-                
+
                 object objReturn = cmd.ExecuteScalar();
                 ResultObject = objReturn;
             }

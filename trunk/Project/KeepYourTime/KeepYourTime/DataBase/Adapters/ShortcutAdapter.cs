@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Adapters
 {
-    class ShortcutAdapter
+    public class ShortcutAdapter
     {
         public int ShortcutId { get; set; }
         public bool Ctrl { get; set; }
