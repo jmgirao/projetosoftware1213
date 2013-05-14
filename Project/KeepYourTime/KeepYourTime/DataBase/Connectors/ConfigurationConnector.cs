@@ -11,6 +11,11 @@ namespace KeepYourTime.DataBase.Connectors
     class ConfigurationConnector
     {
 
+        /// <summary>
+        /// Reads the configuration.
+        /// </summary>
+        /// <param name="Configuration">The configuration.</param>
+        /// <returns></returns>
         public MethodHandler ReadConfiguration(out ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();
@@ -73,6 +78,11 @@ namespace KeepYourTime.DataBase.Connectors
             return mhResult;
         }
 
+        /// <summary>
+        /// Saves the configuration.
+        /// </summary>
+        /// <param name="Configuration">The configuration.</param>
+        /// <returns></returns>
         public MethodHandler SaveConfiguration(ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();

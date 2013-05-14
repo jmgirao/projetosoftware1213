@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.Utils
 {
+    /// <summary>
+    /// Enumeration to have the MethodStatus
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public enum MethodStatus
     {
         Sucess=0,

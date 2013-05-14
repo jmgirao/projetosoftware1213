@@ -29,132 +29,260 @@ namespace KeepYourTime.DataBase
             return (File.Exists(DBUtils.FileName));
         }
 
+
         /// <summary>
         /// Creates the database.
         /// </summary>
-        public void CreateDatabase()
+        /// <returns></returns>
+        public MethodHandler CreateDatabase()
         {
-            string connectionString = DBUtils.GetConnectionString();
-            SqlCeEngine en = new SqlCeEngine(connectionString);
-            en.CreateDatabase();
-            en.Dispose();
 
-            CreateTableTask();
-            CreateTableTaskTime();
+            var mhResult = new MethodHandler();
+            try
+            {
+                string connectionString = DBUtils.GetConnectionString();
+                SqlCeEngine en = new SqlCeEngine(connectionString);
+                en.CreateDatabase();
+                en.Dispose();
 
-            //TODO: se der estoiro, deve apagar a BD.
+                mhResult = CreateTableTask();
+                if (mhResult.Exits) return mhResult;
 
+                mhResult = CreateTableTaskTime();
+                if (mhResult.Exits) return mhResult;
 
+                mhResult = CreateTableConfiguration();
+                if (mhResult.Exits) return mhResult;
+
+                mhResult = CreateTableShortcuts();
+                if (mhResult.Exits) return mhResult;
+                mhResult = ConfigureFields();
+                if (mhResult.Exits) return mhResult;
+
+                mhResult = CreatePrimaryKeys();
+                if (mhResult.Exits) return mhResult;
+
+                mhResult = CreateForeignKeys();
+                if (mhResult.Exits) return mhResult;
+
+                mhResult = InsertValues();
+                if (mhResult.Exits) return mhResult;
+
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                if (mhResult.Status != Utils.MethodStatus.Sucess)
+                {
+                    File.Delete(DBUtils.FileName);
+                }
+            }
+            return mhResult;
         }
+
 
         /// <summary>
         /// Creates the table task.
         /// </summary>
-        private void CreateTableTask()
+        /// <returns></returns>
+        private MethodHandler CreateTableTask()
         {
-            string strSQL = "CREATE TABLE Task( " +
-                "TaskID bigint IDENTITY(1,1) NOT NULL, " +
-                "TaskName varchar(50) NOT NULL, " +
-                "Description VARCHAR(8000) NOT NULL, " +
-                "Active bit NOT NULL, " +
-                ")";
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "CREATE TABLE Task( " +
+                              "TaskID bigint IDENTITY(1,1) NOT NULL, " +
+                              "TaskName varchar(50) NOT NULL, " +
+                              "Description VARCHAR(8000) NOT NULL, " +
+                              "Active bit NOT NULL, " +
+                              ")";
 
-            DBUtils.ExecuteOperation(strSQL);
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
         }
+
 
         /// <summary>
         /// Creates the table task time.
         /// </summary>
-        private void CreateTableTaskTime()
+        /// <returns></returns>
+        private MethodHandler CreateTableTaskTime()
         {
-            string strSQL = "CREATE TABLE TaskTime( " +
-               "TimeId bigint IDENTITY(1,1) NOT NULL, " +
-               "TaskId bigint NOT NULL, " +
-               "StartTime datetime NOT NULL, " +
-               "StopTime datetime NULL, " +
-               ")";
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "CREATE TABLE TaskTime( " +
+                             "TimeId bigint IDENTITY(1,1) NOT NULL, " +
+                             "TaskId bigint NOT NULL, " +
+                             "StartTime datetime NOT NULL, " +
+                             "StopTime datetime NULL, " +
+                             ")";
 
-            DBUtils.ExecuteOperation(strSQL);
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
         }
+
 
         /// <summary>
         /// Creates the table configuration.
         /// </summary>
-        private void CreateTableConfiguration()
+        /// <returns></returns>
+        private MethodHandler CreateTableConfiguration()
         {
-            string strSQL = "CREATE TABLE Configuration ( " +
-                "InactivityEnabled bit NOT NULL, " +
-                "InactivityTime tinyint " +
-                "); ";
-            DBUtils.ExecuteOperation(strSQL);
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "CREATE TABLE Configuration ( " +
+                             "InactivityEnabled bit NOT NULL, " +
+                             "InactivityTime tinyint " +
+                             "); ";
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
         }
+
 
 
         /// <summary>
         /// Creates the table shortcuts.
         /// </summary>
-        private void CreateTableShortcuts()
+        /// <returns></returns>
+        private MethodHandler CreateTableShortcuts()
         {
-            string strSQL = "CREATE TABLE Shortcut ( " +
-                "ShortcutId tinyint NOT NULL, " +
-                "TaskId bigint NOT NULL, " +
-                "Ctrl bit NOT NULL, " +
-                "Alt bit NOT NULL, " +
-                "Shift bit NOT NULL, " +
-                "Key CHAR(1) NOT NULL " +
-                "); ";
-            DBUtils.ExecuteOperation(strSQL);
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "CREATE TABLE Shortcut ( " +
+                             "ShortcutId tinyint NOT NULL, " +
+                             "TaskId bigint NOT NULL, " +
+                             "Ctrl bit NOT NULL, " +
+                             "Alt bit NOT NULL, " +
+                             "Shift bit NOT NULL, " +
+                             "Key CHAR(1) NOT NULL " +
+                             "); ";
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
 
         }
+
 
 
         /// <summary>
         /// Configures the fields.
         /// </summary>
-        private void ConfigureFields()
+        /// <returns></returns>
+        private MethodHandler ConfigureFields()
         {
-            string strSQL = "ALTER TABLE Task ADD CONSTRAINT UQ_Task_TaskName UNIQUE (TaskName); ";
-            DBUtils.ExecuteOperation(strSQL);
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "ALTER TABLE Task ADD CONSTRAINT UQ_Task_TaskName UNIQUE (TaskName); ";
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
         }
+
 
         /// <summary>
         /// Creates the primary keys.
         /// </summary>
-        private void CreatePrimaryKeys()
+        /// <returns></returns>
+        private MethodHandler CreatePrimaryKeys()
         {
-            string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY CLUSTERED (ShortcutId);";
-            DBUtils.ExecuteOperation(strSQL);
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY CLUSTERED (ShortcutId);";
+                DBUtils.ExecuteOperation(strSQL);
 
-            strSQL = "ALTER TABLE Task ADD CONSTRAINT PK_Task PRIMARY KEY CLUSTERED (TaskID);";
-            DBUtils.ExecuteOperation(strSQL);
+                strSQL = "ALTER TABLE Task ADD CONSTRAINT PK_Task PRIMARY KEY CLUSTERED (TaskID);";
+                DBUtils.ExecuteOperation(strSQL);
 
-            strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT PK_Time PRIMARY KEY CLUSTERED (TimeId);";
-            DBUtils.ExecuteOperation(strSQL);
+                strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT PK_Time PRIMARY KEY CLUSTERED (TimeId);";
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
+
 
         }
+
 
         /// <summary>
         /// Creates the foreign keys.
         /// </summary>
-        private void CreateForeignKeys()
+        /// <returns></returns>
+        private MethodHandler CreateForeignKeys()
         {
-            string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
-            DBUtils.ExecuteOperation(strSQL);
 
-            strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT FK_Time_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
-            DBUtils.ExecuteOperation(strSQL);
-        
+            var mhResult = new MethodHandler();
+            try
+            {
+                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
+                DBUtils.ExecuteOperation(strSQL);
+
+                strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT FK_Time_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
+                DBUtils.ExecuteOperation(strSQL);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
         }
+
 
         /// <summary>
         /// Inserts the values.
         /// </summary>
-        private void InsertValues()
-        { 
-            //Insert nas UI
-            //Insert na BD
-
-        
+        /// <returns></returns>
+        private MethodHandler InsertValues()
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                //Insert nas UI
+                //Insert na BD
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            return mhResult;
         }
 
     }
