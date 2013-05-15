@@ -22,7 +22,7 @@ namespace KeepYourTime.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Language {
+    public class Language {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace KeepYourTime.Languages {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KeepYourTime.Languages.Language", typeof(Language).Assembly);
@@ -51,7 +51,7 @@ namespace KeepYourTime.Languages {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string StringCancel {
+        public static string StringCancel {
             get {
                 return ResourceManager.GetString("StringCancel", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        internal static string StringClose {
+        public static string StringClose {
             get {
                 return ResourceManager.GetString("StringClose", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        internal static string StringDescription {
+        public static string StringDescription {
             get {
                 return ResourceManager.GetString("StringDescription", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string StringEdit {
+        public static string StringEdit {
             get {
                 return ResourceManager.GetString("StringEdit", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Edit Task.
         /// </summary>
-        internal static string StringEditTaskTitle {
+        public static string StringEditTaskTitle {
             get {
                 return ResourceManager.GetString("StringEditTaskTitle", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to End Date.
         /// </summary>
-        internal static string StringEndDate {
+        public static string StringEndDate {
             get {
                 return ResourceManager.GetString("StringEndDate", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string StringSave {
+        public static string StringSave {
             get {
                 return ResourceManager.GetString("StringSave", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Start Date.
         /// </summary>
-        internal static string StringStartDate {
+        public static string StringStartDate {
             get {
                 return ResourceManager.GetString("StringStartDate", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Task Name.
         /// </summary>
-        internal static string StringTaskName {
+        public static string StringTaskName {
             get {
                 return ResourceManager.GetString("StringTaskName", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Time Spent.
         /// </summary>
-        internal static string StringTimeSpent {
+        public static string StringTimeSpent {
             get {
                 return ResourceManager.GetString("StringTimeSpent", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
-        internal static string StringToday {
+        public static string StringToday {
             get {
                 return ResourceManager.GetString("StringToday", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Total Time.
         /// </summary>
-        internal static string StringTotalTime {
+        public static string StringTotalTime {
             get {
                 return ResourceManager.GetString("StringTotalTime", resourceCulture);
             }
