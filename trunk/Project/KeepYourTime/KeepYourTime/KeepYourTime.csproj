@@ -55,14 +55,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataBase\DBExtentionMethods.cs" />
+    <Compile Include="Languages\Language.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\MethodHandler.cs" />
     <Compile Include="Utils\MethodStatus.cs" />
+    <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
+      <DependentUpon>EditTaskControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewWindows\InactivityWindow.xaml.cs">
       <DependentUpon>InactivityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewWindows\TaskDetailsWindow.xaml.cs">
       <DependentUpon>TaskDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewWindows\ConfigurationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +125,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Languages\Language.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -130,7 +146,6 @@
     <Folder Include="ViewControls\ConfigurationControls\" />
     <Folder Include="ViewControls\InactivityControls\" />
     <Folder Include="ViewControls\MainWindowControls\" />
-    <Folder Include="ViewControls\TaskDetailsControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
