@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringCancel" xml:space="preserve">
+  <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="StringClose" xml:space="preserve">
+  <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="StringDescription" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="StringEdit" xml:space="preserve">
+  <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="StringEditTaskTitle" xml:space="preserve">
+  <data name="EditTaskTitle" xml:space="preserve">
     <value>Edit Task</value>
   </data>
-  <data name="StringEndDate" xml:space="preserve">
+  <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
-  <data name="StringSave" xml:space="preserve">
+  <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="StringStartDate" xml:space="preserve">
+  <data name="StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
-  <data name="StringTaskName" xml:space="preserve">
+  <data name="TaskName" xml:space="preserve">
     <value>Task Name</value>
   </data>
-  <data name="StringTimeSpent" xml:space="preserve">
+  <data name="TimeSpent" xml:space="preserve">
     <value>Time Spent</value>
   </data>
-  <data name="StringToday" xml:space="preserve">
+  <data name="Today" xml:space="preserve">
     <value>Today</value>
   </data>
-  <data name="StringTotalTime" xml:space="preserve">
+  <data name="TotalTime" xml:space="preserve">
     <value>Total Time</value>
   </data>
 </root>

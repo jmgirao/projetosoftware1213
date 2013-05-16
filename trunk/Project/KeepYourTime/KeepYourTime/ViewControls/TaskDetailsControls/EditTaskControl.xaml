@@ -6,6 +6,7 @@
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
+   
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -23,15 +24,16 @@
             <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.StringEditTaskTitle}" Foreground="White" FontSize="26"/>
+            <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" Foreground="White" FontSize="26"/>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions >
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="60" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Name="LblTaskName" Text="{x:Static p:Language.StringTaskName}" Foreground="White" FontSize="15"/>
+                    <TextBlock Name="LblTaskName" Text="{x:Static p:Language.TaskName}" Foreground="White" FontSize="15"/>
                 </StackPanel>
             </Grid>
 
@@ -41,26 +43,28 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="60" />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="2">
-                    <TextBlock Name="LblDescription" Text="{x:Static p:Language.StringDescription}" Foreground="White" FontSize="15"/>
+                    <TextBlock Name="LblDescription" Text="{x:Static p:Language.Description}" Foreground="White" FontSize="15"/>
                 </StackPanel>
 
             </Grid>
 
-
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
                 <Grid.RowDefinitions >
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="40" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="3" >
-                    <Button Content="{x:Static p:Language.StringClose}" Width="100">
-                    </Button>
+                <StackPanel Grid.Row="4" >
+                   
                 </StackPanel>
             </Grid>
+
+           
         </Grid>
     </Grid>
 </UserControl>

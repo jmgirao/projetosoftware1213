@@ -18,11 +18,18 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     /// <summary>
     /// Interaction logic for EditTask.xaml
     /// </summary>
+    /// <remarks>
+    /// CREATED BY Carla Machado
+    /// </remarks>  
     public partial class EditTask : UserControl
     {
         public EditTask()
         {
             InitializeComponent();
         }
+
+
+       
+
     }
 }
