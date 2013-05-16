@@ -16,7 +16,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="Configuration">The configuration.</param>
         /// <returns></returns>
-        public MethodHandler ReadConfiguration(out ConfigurationAdapter Configuration)
+        public static MethodHandler ReadConfiguration(out ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();
             Configuration = null;
@@ -83,7 +83,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="Configuration">The configuration.</param>
         /// <returns></returns>
-        public MethodHandler SaveConfiguration(ConfigurationAdapter Configuration)
+        public static MethodHandler SaveConfiguration(ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();
             try

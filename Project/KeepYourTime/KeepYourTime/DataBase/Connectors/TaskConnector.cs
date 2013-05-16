@@ -1,6 +1,7 @@
 ﻿using KeepYourTime.DataBase.Adapters;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlServerCe;
 using System.Linq;
@@ -22,14 +23,14 @@ namespace KeepYourTime.DataBase.Connectors
         /// <param name="TaskID">The task ID.</param>
         /// <param name="Task">The task.</param>
         /// <returns></returns>
-        public MethodHandler ReadTask(int TaskID, out TaskAdapter Task)
+        public static MethodHandler ReadTask(int TaskID, out TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
             Task = null;
             try
             {
                 DataTable dtTask = null;
-                string strQuery = "SELECT TaskId, Name, Description, Active FROM Task WHERE Task = " + TaskID.ToString() + " ";
+                string strQuery = "SELECT TaskId, Name, Description, Active FROM Task WHERE TaskId = " + TaskID.ToString() + " ";
                 mhResult = DBUtils.SelectTable(strQuery, out dtTask);
                 if (mhResult.Exits) return mhResult;
 
@@ -45,11 +46,29 @@ namespace KeepYourTime.DataBase.Connectors
                     TaskId = (int)dtTask.Rows[0]["TaskId"],
                     Name = (string)dtTask.Rows[0]["Name"],
                     Description = (string)dtTask.Rows[0]["Description"],
-                    Active = (bool)dtTask.Rows[0]["Active"]
+                    Active = (bool)dtTask.Rows[0]["Active"],
+                    Times = new ObservableCollection<TaskTimeAdapter>()
                 };
 
 
                 //TODO: Read Times
+                strQuery = "SELECT TimeId, Start, End FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
+                DataTable dtTaskTime = null;
+
+                mhResult = DBUtils.SelectTable(strQuery, out dtTaskTime);
+                if (mhResult.Exits) return mhResult;
+
+                foreach (DataRow dr in dtTaskTime.Rows)
+                {
+                    Task.Times.Add(new TaskTimeAdapter
+                    {
+                        TaskId = TaskID,
+                        TimeId = (int)dr["TimeId"],
+                        Start = (DateTime)dr["Start"],
+                        End = (DateTime)dr["End"]
+                    });
+                }
+
             }
             catch (Exception ex)
             {
@@ -64,24 +83,46 @@ namespace KeepYourTime.DataBase.Connectors
         /// <param name="Name">The name.</param>
         /// <param name="TaskID">The task ID.</param>
         /// <returns></returns>
-        public MethodHandler CreateTask(string Name, out int TaskID)
+        public static MethodHandler CreateTask(string Name, out int TaskID)
         {
             var mhResult = new MethodHandler();
             TaskID = 0;
             try
             {
-                
+
                 //Verify if task with same name exists
                 string strSQL = "SELECT 1 FROM Task WHERE Name = @Name ";
-                
+                object objRetornoQuery = null;
+                SqlCeParameter[] Params = new SqlCeParameter[1];
+                Params[0] = new SqlCeParameter("Name", Name);
+                Params[0].DbType = DbType.String;
+                mhResult = DBUtils.SelectValue(strSQL, Params, out objRetornoQuery);
+                if (mhResult.Exits) return mhResult;
+                if (mhResult.AffectedLines == 1)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = "That task already exists";
+                    return mhResult;
+                }
 
                 //Create new task
-                strSQL = "INSERT INTO Task ( ) VALUES ()";
+                strSQL = "INSERT INTO Task (Name, Description, Active ) VALUES (@Name, '', 1)";
+                mhResult = DBUtils.ExecuteOperation(strSQL, Params);
+                if (mhResult.Exits) return mhResult;
+                if (mhResult.AffectedLines == 0)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = "There was an unspecified error creating the task";
+                    return mhResult;
+                }
 
 
                 //Get Task ID
                 strSQL = "SELECT IDENT_CURRENT('Task')";
-              
+                mhResult = DBUtils.SelectValue(strSQL, out objRetornoQuery);
+                if (mhResult.Exits) return mhResult;
+                TaskID = (int)objRetornoQuery;
+
                 //TODO: INSERT Task
             }
             catch (Exception ex)
@@ -96,18 +137,26 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="Task">The task.</param>
         /// <returns></returns>
-        public MethodHandler EditTask(TaskAdapter Task)
+        public static MethodHandler EditTask(TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
             try
             {
 
-                //TODO: UPDATE Task
                 string strSQL = "UPDATE Task SET " +
                     "Name = @Name, " +
                     "Description = @Description  " +
                     "WHERE TaskID = " + Task.TaskId.ToString() + " ";
-                mhResult = DBUtils.ExecuteOperation(strSQL);
+
+                SqlCeParameter[] Parameters = new SqlCeParameter[2];
+                Parameters[0] = new SqlCeParameter("Name", Task.Name);
+                Parameters[0].DbType = DbType.String;
+
+                Parameters[1] = new SqlCeParameter("Description", Task.Description);
+                Parameters[1].DbType = DbType.String;
+
+                mhResult = DBUtils.ExecuteOperation(strSQL, Parameters);
+                if (mhResult.Exits) return mhResult;
 
                 if (mhResult.AffectedLines == 0)
                 {
@@ -125,20 +174,19 @@ namespace KeepYourTime.DataBase.Connectors
         }
 
         /// <summary>
-        /// Actives the task.
+        /// Changes the task to an Active/Inactive State.
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
         /// <param name="Active">if set to <c>true</c> active else inactive.</param>
         /// <returns></returns>
-        public MethodHandler ActiveTask(int TaskID, bool Active)
+        public static MethodHandler ActivateTask(int TaskID, bool Active)
         {
             var mhResult = new MethodHandler();
             try
             {
 
-                //TODO: UPDATE Task
                 string strSQL = "UPDATE Task SET " +
-                    "Active = "+ Active.ToDB() + " " +
+                    "Active = " + Active.ToDB() + " " +
                     "WHERE TaskID = " + TaskID.ToString() + " ";
                 mhResult = DBUtils.ExecuteOperation(strSQL);
 
@@ -157,13 +205,12 @@ namespace KeepYourTime.DataBase.Connectors
             return mhResult;
         }
 
-
         /// <summary>
         /// Deletes the task.
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
         /// <returns></returns>
-        public MethodHandler DeleteTask(int TaskID)
+        public static MethodHandler DeleteTask(int TaskID)
         {
             var mhResult = new MethodHandler();
             SqlCeConnection conSql = null;
@@ -212,13 +259,32 @@ namespace KeepYourTime.DataBase.Connectors
         /// <param name="TaskList">The task list.</param>
         /// <param name="ReadInactiveTasks">if set to <c>true</c> will read inactive tasks.</param>
         /// <returns></returns>
-        public MethodHandler ReadTaskList(out List<TaskAdapter> TaskList, bool ReadInactiveTasks)
+        public static MethodHandler ReadTaskList(out ObservableCollection<TaskAdapter> TaskList, bool ReadInactiveTasks)
         {
             var mhResult = new MethodHandler();
-            TaskList = new List<TaskAdapter>();
+            TaskList = new ObservableCollection<TaskAdapter>();
             try
             {
+                //TODO: Read Task List
 
+                DataTable dtTasks = null;
+                string strQuery = "SELECT TaskId, Name, Description, Active FROM Task ";
+                if (!ReadInactiveTasks) strQuery += "WHERE Active = 1 ";
+
+                mhResult = DBUtils.SelectTable(strQuery, out dtTasks);
+                if (mhResult.Exits) return mhResult;
+
+                foreach (DataRow dr in dtTasks.Rows)
+                {
+
+                    TaskList.Add(new TaskAdapter()
+                    {
+                        TaskId = (int)dr["TaskId"],
+                        Name = (string)dr["Name"],
+                        Description = (string)dr["Description"],
+                        Active = (bool)dr["Active"],
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -232,7 +298,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="Time">The time.</param>
         /// <returns></returns>
-        public MethodHandler AddTime(TaskTimeAdapter Time)
+        public static MethodHandler AddTime(TaskTimeAdapter Time)
         {
             var mhResult = new MethodHandler();
             try
@@ -276,7 +342,6 @@ namespace KeepYourTime.DataBase.Connectors
             }
             return mhResult;
         }
-
 
     }
 }

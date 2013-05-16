@@ -9,7 +9,16 @@ namespace KeepYourTimeTestProject.DatabaseModuleTests
         [TestMethod]
         public void TestMethod1()
         {
-
+            var cdb = new KeepYourTime.DataBase.CreateDB();
+            Assert.AreEqual(KeepYourTime.Utils.MethodStatus.Sucess, cdb.CreateDatabase().Status);
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+
+            Assert.AreEqual(KeepYourTime.Utils.MethodStatus.Sucess, cdb.CreateDatabase().Status);
+        }
+
     }
 }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Adapters
 {
+    /// <summary>
+    /// Adapter for Shortcuts Table
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class ShortcutAdapter
     {
         public int ShortcutId { get; set; }
