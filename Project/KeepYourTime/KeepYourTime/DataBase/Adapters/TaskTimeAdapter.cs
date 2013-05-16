@@ -12,8 +12,8 @@ namespace KeepYourTime.DataBase.Adapters
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class TaskTimeAdapter
     {
-        public int TimeId { get; set; }
-        public int TaskId { get; set; }
+        public long TimeId { get; set; }
+        public long TaskId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 

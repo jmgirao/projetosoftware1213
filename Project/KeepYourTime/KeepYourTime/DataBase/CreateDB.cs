@@ -40,6 +40,8 @@ namespace KeepYourTime.DataBase
             var mhResult = new MethodHandler();
             try
             {
+                if (File.Exists(DBUtils.FileName)) return mhResult;
+
                 string connectionString = DBUtils.GetConnectionString();
                 SqlCeEngine en = new SqlCeEngine(connectionString);
                 en.CreateDatabase();
@@ -95,12 +97,12 @@ namespace KeepYourTime.DataBase
             {
                 string strSQL = "CREATE TABLE Task( " +
                               "TaskID bigint IDENTITY(1,1) NOT NULL, " +
-                              "TaskName varchar(50) NOT NULL, " +
-                              "Description VARCHAR(8000) NOT NULL, " +
+                              "TaskName NVARCHAR(50) NOT NULL, " +
+                              "Description NVARCHAR(4000) NOT NULL, " +
                               "Active bit NOT NULL " +
                               ")";
 
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
             }
             catch (Exception ex)
             {
@@ -127,7 +129,7 @@ namespace KeepYourTime.DataBase
                              "StopTime datetime NULL " +
                              ")";
 
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
             }
             catch (Exception ex)
             {
@@ -151,7 +153,7 @@ namespace KeepYourTime.DataBase
                              "InactivityEnabled bit NOT NULL, " +
                              "InactivityTime tinyint " +
                              "); ";
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
             }
             catch (Exception ex)
             {
@@ -178,9 +180,9 @@ namespace KeepYourTime.DataBase
                              "Ctrl bit NOT NULL, " +
                              "Alt bit NOT NULL, " +
                              "Shift bit NOT NULL, " +
-                             "Key CHAR(1) NOT NULL " +
+                             "ShortcutKey NCHAR(1) NOT NULL " +
                              "); ";
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
             }
             catch (Exception ex)
             {
@@ -203,7 +205,7 @@ namespace KeepYourTime.DataBase
             try
             {
                 string strSQL = "ALTER TABLE Task ADD CONSTRAINT UQ_Task_TaskName UNIQUE (TaskName); ";
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
             }
             catch (Exception ex)
             {
@@ -223,14 +225,17 @@ namespace KeepYourTime.DataBase
             var mhResult = new MethodHandler();
             try
             {
-                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY CLUSTERED (ShortcutId);";
-                DBUtils.ExecuteOperation(strSQL);
+                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY (ShortcutId);";
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+                if (mhResult.Exits) return mhResult;
 
-                strSQL = "ALTER TABLE Task ADD CONSTRAINT PK_Task PRIMARY KEY CLUSTERED (TaskID);";
-                DBUtils.ExecuteOperation(strSQL);
+                strSQL = "ALTER TABLE Task ADD CONSTRAINT PK_Task PRIMARY KEY (TaskID);";
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+                if (mhResult.Exits) return mhResult;
 
-                strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT PK_Time PRIMARY KEY CLUSTERED (TimeId);";
-                DBUtils.ExecuteOperation(strSQL);
+                strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT PK_Time PRIMARY KEY (TimeId);";
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+                if (mhResult.Exits) return mhResult;
             }
             catch (Exception ex)
             {
@@ -253,10 +258,12 @@ namespace KeepYourTime.DataBase
             try
             {
                 string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+                if (mhResult.Exits) return mhResult;
 
                 strSQL = "ALTER TABLE TaskTime ADD CONSTRAINT FK_Time_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
-                DBUtils.ExecuteOperation(strSQL);
+                mhResult = DBUtils.ExecuteOperation(strSQL);
+                if (mhResult.Exits) return mhResult;
             }
             catch (Exception ex)
             {

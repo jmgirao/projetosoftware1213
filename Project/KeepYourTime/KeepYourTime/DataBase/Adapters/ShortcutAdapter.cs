@@ -16,7 +16,7 @@ namespace KeepYourTime.DataBase.Adapters
         public bool Ctrl { get; set; }
         public bool Alt { get; set; }
         public bool Shift { get; set; }
-        public char Key { get; set; }
+        public char ShortcutKey { get; set; }
         public int TaskId { get; set; }
 
     }
