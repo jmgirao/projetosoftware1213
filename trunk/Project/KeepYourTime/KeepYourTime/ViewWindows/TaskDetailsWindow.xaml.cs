@@ -1,5 +1,9 @@
-﻿using System;
+﻿using KeepYourTime.DataBase;
+using KeepYourTime.DataBase.Adapters;
+using KeepYourTime.DataBase.Connectors;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +25,53 @@ namespace KeepYourTime.ViewWindows
     {
         public TaskDetailsWindow()
         {
+            SourceInitialized += Window_Initialized;
             InitializeComponent();
+
+            btCloseTaskDetails.Click += btCloseTaskDetails_Click; 
         }
+
+        /// <summary>
+        /// Handles the Initialized event of the Window control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            var mhResult = new MethodHandler();
+            int idTask = 0;                 //TODO: To receive idTask another window
+            TaskAdapter taskAdapt = new TaskAdapter();
+
+            try
+            {
+                TaskConnector taskCon = new TaskConnector();
+                mhResult = taskCon.ReadTask(idTask, out taskAdapt);
+                if (mhResult.Exits)
+                {
+                    MessageBox.Show(mhResult.Message);
+                    return;
+                }
+
+                string taskName = taskAdapt.Name;
+                string taskDescription = taskAdapt.Description;
+                List<TaskTimeAdapter> taskTimeList = taskAdapt.Times;
+
+                lbTaskNameText.Text = taskName;
+                lbTaskDescriptionText.Text = taskDescription;
+                dgTaskTimes.DataContext = taskTimeList;
+
+            }catch(Exception ex)
+            {
+                mhResult.Exception(ex);
+                MessageBox.Show(mhResult.Message);
+            }
+
+        }
+
+        private void btCloseTaskDetails_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
