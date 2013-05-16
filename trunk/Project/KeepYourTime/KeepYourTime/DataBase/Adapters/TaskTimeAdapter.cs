@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Adapters
 {
+    /// <summary>
+    /// Adapter for TaskTime Table
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class TaskTimeAdapter
     {
         public int TimeId { get; set; }

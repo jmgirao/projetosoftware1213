@@ -97,7 +97,7 @@ namespace KeepYourTime.DataBase
                               "TaskID bigint IDENTITY(1,1) NOT NULL, " +
                               "TaskName varchar(50) NOT NULL, " +
                               "Description VARCHAR(8000) NOT NULL, " +
-                              "Active bit NOT NULL, " +
+                              "Active bit NOT NULL " +
                               ")";
 
                 DBUtils.ExecuteOperation(strSQL);
@@ -124,7 +124,7 @@ namespace KeepYourTime.DataBase
                              "TimeId bigint IDENTITY(1,1) NOT NULL, " +
                              "TaskId bigint NOT NULL, " +
                              "StartTime datetime NOT NULL, " +
-                             "StopTime datetime NULL, " +
+                             "StopTime datetime NULL " +
                              ")";
 
                 DBUtils.ExecuteOperation(strSQL);

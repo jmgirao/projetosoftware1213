@@ -269,6 +269,9 @@ namespace KeepYourTime.DataBase
 
                 object objReturn = cmd.ExecuteScalar();
                 ResultObject = objReturn;
+                Result.AffectedLines = 1; 
+                if (DBNull.Value == objReturn) Result.AffectedLines = 0;
+                
             }
             catch (Exception ex)
             {
