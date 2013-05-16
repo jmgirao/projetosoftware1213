@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
+//
+
+
 namespace KeepYourTime.Languages {
     using System;
     
@@ -22,6 +26,13 @@ namespace KeepYourTime.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+
+    /// <summary>
+    /// Class to Handle string resources for messages and labels
+    /// </summary>
+    /// <remarks>
+    /// CREATED BY Carla Machado
+    /// </remarks>
     public class Language {
         
         private static global::System.Resources.ResourceManager resourceMan;
@@ -63,108 +74,108 @@ namespace KeepYourTime.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string StringCancel {
+        public static string Cancel {
             get {
-                return ResourceManager.GetString("StringCancel", resourceCulture);
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string StringClose {
+        public static string Close {
             get {
-                return ResourceManager.GetString("StringClose", resourceCulture);
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string StringDescription {
+        public static string Description {
             get {
-                return ResourceManager.GetString("StringDescription", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string StringEdit {
+        public static string Edit {
             get {
-                return ResourceManager.GetString("StringEdit", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit Task.
         /// </summary>
-        public static string StringEditTaskTitle {
+        public static string EditTaskTitle {
             get {
-                return ResourceManager.GetString("StringEditTaskTitle", resourceCulture);
+                return ResourceManager.GetString("EditTaskTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to End Date.
         /// </summary>
-        public static string StringEndDate {
+        public static string EndDate {
             get {
-                return ResourceManager.GetString("StringEndDate", resourceCulture);
+                return ResourceManager.GetString("EndDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        public static string StringSave {
+        public static string Save {
             get {
-                return ResourceManager.GetString("StringSave", resourceCulture);
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Start Date.
         /// </summary>
-        public static string StringStartDate {
+        public static string StartDate {
             get {
-                return ResourceManager.GetString("StringStartDate", resourceCulture);
+                return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Task Name.
         /// </summary>
-        public static string StringTaskName {
+        public static string TaskName {
             get {
-                return ResourceManager.GetString("StringTaskName", resourceCulture);
+                return ResourceManager.GetString("TaskName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Time Spent.
         /// </summary>
-        public static string StringTimeSpent {
+        public static string TimeSpent {
             get {
-                return ResourceManager.GetString("StringTimeSpent", resourceCulture);
+                return ResourceManager.GetString("TimeSpent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
-        public static string StringToday {
+        public static string Today {
             get {
-                return ResourceManager.GetString("StringToday", resourceCulture);
+                return ResourceManager.GetString("Today", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Time.
         /// </summary>
-        public static string StringTotalTime {
+        public static string TotalTime {
             get {
-                return ResourceManager.GetString("StringTotalTime", resourceCulture);
+                return ResourceManager.GetString("TotalTime", resourceCulture);
             }
         }
     }
