@@ -22,7 +22,7 @@
         </StackPanel>
         
         <StackPanel Grid.Column="2" Grid.Row="0" VerticalAlignment="Center">
-            <Button Name="btEditTask" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.StringEditTaskTitle}"/>
+            <Button Name="btEditTask" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.EditTaskTitle}"/>
         </StackPanel>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -32,11 +32,11 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Name="lbTaskName" Text="{x:Static p:Language.StringTaskName}" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Name="lbTaskName" Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold"/>
                 <TextBlock Name="lbTaskNameText" Text="task_name" Margin="10,0,0,0" FontSize="18"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,0">
-                <TextBlock Name="lbTaskDescription" Text="{x:Static p:Language.StringDescription}" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Name="lbTaskDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold"/>
                 <TextBlock Name="lbTaskDescriptionText" Text="description" Margin="10,0,0,0" FontSize="18"/>
             </StackPanel>
         </Grid>
@@ -46,14 +46,14 @@
             <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" ColumnHeaderHeight="35" >
                 <DataGrid.Columns>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StringStartDate}" FontSize="16"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StringEndDate}" FontSize="16"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StringTimeSpent}" FontSize="16"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" FontSize="16"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" FontSize="16"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" FontSize="16"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
-        <Button Name="btCloseTaskDetails" Grid.Column="1" Grid.Row="3" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.StringClose}" Click="btCloseTaskDetails_Click"/>
+        <Button Name="btCloseTaskDetails" Grid.Column="1" Grid.Row="3" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.Close}" Click="btCloseTaskDetails_Click"/>
 
     </Grid>
 </Window>

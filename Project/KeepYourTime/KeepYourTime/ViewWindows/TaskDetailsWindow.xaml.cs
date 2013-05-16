@@ -3,6 +3,7 @@ using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
@@ -44,8 +45,7 @@ namespace KeepYourTime.ViewWindows
 
             try
             {
-                TaskConnector taskCon = new TaskConnector();
-                mhResult = taskCon.ReadTask(idTask, out taskAdapt);
+                mhResult = TaskConnector.ReadTask(idTask, out taskAdapt);
                 if (mhResult.Exits)
                 {
                     MessageBox.Show(mhResult.Message);
@@ -54,7 +54,7 @@ namespace KeepYourTime.ViewWindows
 
                 string taskName = taskAdapt.Name;
                 string taskDescription = taskAdapt.Description;
-                List<TaskTimeAdapter> taskTimeList = taskAdapt.Times;
+                ObservableCollection<TaskTimeAdapter> taskTimeList = taskAdapt.Times;
 
                 lbTaskNameText.Text = taskName;
                 lbTaskDescriptionText.Text = taskDescription;
