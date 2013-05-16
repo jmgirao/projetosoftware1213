@@ -13,8 +13,8 @@ namespace KeepYourTime.DataBase.Adapters
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class TaskAdapter
     {
-        public int TaskId { get; set; }
-        public string Name { get; set; }
+        public long TaskId { get; set; }
+        public string TaskName { get; set; }
         public string Description { get; set; }
         public bool Active { get; set; }
 

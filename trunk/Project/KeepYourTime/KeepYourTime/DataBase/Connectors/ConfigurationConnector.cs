@@ -56,7 +56,7 @@ namespace KeepYourTime.DataBase.Connectors
                     {
                         Alt = (bool)dr["Alt"],
                         Ctrl = (bool)dr["Ctrl"],
-                        Key = (char)dr["Key"],
+                        ShortcutKey = (char)dr["ShortcutKey"],
                         Shift = (bool)dr["Shift"],
                         ShortcutId = (int)dr["ShortcutId"],
                         TaskId = (int)dr["TaskId"]
@@ -103,12 +103,12 @@ namespace KeepYourTime.DataBase.Connectors
 
                 foreach (ShortcutAdapter saShort in Configuration.Shortcuts)
                 {
-                    strSql = "INSERT INTO Shortcut (ShortcutId, Ctrl, Alt, Shift, Key, TaskId) VALUES (" +
+                    strSql = "INSERT INTO Shortcut (ShortcutId, Ctrl, Alt, Shift, ShortcutKey, TaskId) VALUES (" +
                         " " + saShort.ShortcutId + ", " +
                         " " + saShort.Ctrl.ToDB() + ", " +
                         " " + saShort.Alt.ToDB() + ", " +
                         " " + saShort.Shift.ToDB() + ", " +
-                        "'" + saShort.Key.ToString() + "'," +
+                        "'" + saShort.ShortcutKey.ToString() + "'," +
                         " " + saShort.TaskId + ", " +
                         ") ";
                 }

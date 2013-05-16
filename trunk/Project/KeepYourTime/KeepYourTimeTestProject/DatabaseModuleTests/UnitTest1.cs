@@ -16,8 +16,8 @@ namespace KeepYourTimeTestProject.DatabaseModuleTests
         [TestMethod]
         public void TestMethod2()
         {
-
-            Assert.AreEqual(KeepYourTime.Utils.MethodStatus.Sucess, cdb.CreateDatabase().Status);
+            long taskId = 0;
+            Assert.AreEqual(KeepYourTime.Utils.MethodStatus.Sucess, KeepYourTime.DataBase.Connectors.TaskConnector.CreateTask("Name2", out taskId).Status);
         }
 
     }
