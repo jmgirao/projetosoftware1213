@@ -6,28 +6,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <!--<ColumnDefinition></ColumnDefinition>-->
-            <!--<ColumnDefinition></ColumnDefinition> -->
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="2">
-            <DataGrid Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn CanUserResize="False" Header="" FontSize="14" />
-                    <DataGridTextColumn CanUserResize="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
-                    <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
-                    <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
-                    <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
-                    <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-
+        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="xpto  teste" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn CanUserResize="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
+                <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
+                <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
+                <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
