@@ -52,7 +52,7 @@ namespace KeepYourTime.ViewWindows
                     return;
                 }
 
-                string taskName = taskAdapt.Name;
+                string taskName = taskAdapt.TaskName;
                 string taskDescription = taskAdapt.Description;
                 ObservableCollection<TaskTimeAdapter> taskTimeList = taskAdapt.Times;
 
