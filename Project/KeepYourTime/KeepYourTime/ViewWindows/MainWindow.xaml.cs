@@ -29,12 +29,18 @@ namespace KeepYourTime.ViewWindows
             InitializeComponent();
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
+            mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
 
             if (!DataBase.CreateDB.IsDatabaseCreated())
             {
                 var cdb = new DataBase.CreateDB();
                 cdb.CreateDatabase();
             }
+        }
+
+        void mvMinimalView_OnTaskCreated(DataBase.Adapters.TaskAdapter Task)
+        {
+            stlShowTaskList.CreatedTask(Task);
         }
 
    

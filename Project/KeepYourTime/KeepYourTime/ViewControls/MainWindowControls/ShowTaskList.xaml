@@ -17,13 +17,13 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="2">
-            <DataGrid Name="dgTaskList" AutoGenerateColumns="False">
+            <DataGrid Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
                 <DataGrid.Columns>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14" />
-                    <DataGridTextColumn CanUserResize="True" Header="TaskName" FontSize="14" HeaderStringFormat="Name"/>
-                    <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14"/>
-                    <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"/>
-                    <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"/>
+                    <DataGridTextColumn CanUserResize="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
+                    <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
+                    <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
+                    <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
                 </DataGrid.Columns>
             </DataGrid>
