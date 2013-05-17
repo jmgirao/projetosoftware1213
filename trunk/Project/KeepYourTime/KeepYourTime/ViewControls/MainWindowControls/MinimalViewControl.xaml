@@ -63,7 +63,7 @@
                     </Button.Template>
                 </Button>
 
-                <!--<TextBox Text="Insira coisas"/>-->
+                <TextBox Text="Insira coisas" Name="txtNomeTask"/>
 
         </Grid>
     </Grid>

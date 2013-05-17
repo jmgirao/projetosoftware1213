@@ -28,9 +28,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </remarks>  
     public partial class ShowTaskList : UserControl
     {
+
+
+        ObservableCollection<TaskAdapter> taskAdapt = null;
+
         public ShowTaskList()
         {
-            
+
             InitializeComponent();
             //InitializeControl();
             this.Loaded += ShowTaskList_Loaded;
@@ -41,14 +45,20 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             InitializeControl();
         }
 
-        private void InitializeControl() { 
+
+        public void CreatedTask(TaskAdapter Task)
+        {
+            taskAdapt.Add(Task);
+        }
+
+        private void InitializeControl()
+        {
             var mhResult = new MethodHandler();
-            ObservableCollection<TaskAdapter> taskAdapt = new ObservableCollection<TaskAdapter>();
-            bool blnActive=false;
-            
+            bool blnActive = false;
+
             try
             {
-                mhResult=TaskConnector.ReadTaskList(out taskAdapt, blnActive);
+                mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
 
                 //tratar mhResult
 
@@ -57,7 +67,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 dgTaskList.ItemsSource = taskAdapt;
 
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 mhResult.Exception(e);
                 MessageBox.Show(mhResult.Message);
             }
