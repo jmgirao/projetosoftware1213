@@ -65,6 +65,9 @@
     <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
       <DependentUpon>MinimalViewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewControls\MainWindowControls\ShowTaskList.xaml.cs">
+      <DependentUpon>ShowTaskList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     <Page Include="ViewControls\MainWindowControls\MinimalViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewControls\MainWindowControls\ShowTaskList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml">
       <SubType>Designer</SubType>
