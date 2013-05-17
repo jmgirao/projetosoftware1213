@@ -7,16 +7,22 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <CheckBox Name="chbActiveTask" IsChecked="False"/>
+                <TextBlock Text="Show inactive tasks"/>
+            </StackPanel>
+        </Grid>
+        
         <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="xpto  teste" />
+                            <Button Content="Play" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -24,7 +30,27 @@
                 <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
                 <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
                 <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
-                <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Detalhes" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Elminar" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="False"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
