@@ -62,6 +62,9 @@
     </Compile>
     <Compile Include="Utils\MethodHandler.cs" />
     <Compile Include="Utils\MethodStatus.cs" />
+    <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
+      <DependentUpon>MinimalViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
     <Compile Include="ViewWindows\TaskDetailsWindow.xaml.cs">
       <DependentUpon>TaskDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ViewControls\MainWindowControls\MinimalViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,7 +152,6 @@
   <ItemGroup>
     <Folder Include="ViewControls\ConfigurationControls\" />
     <Folder Include="ViewControls\InactivityControls\" />
-    <Folder Include="ViewControls\MainWindowControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

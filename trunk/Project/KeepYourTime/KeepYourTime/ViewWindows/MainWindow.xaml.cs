@@ -30,8 +30,6 @@ namespace KeepYourTime.ViewWindows
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
 
-            btnFechar.Click += btnFechar_Click;
-
             if (!DataBase.CreateDB.IsDatabaseCreated())
             {
                 var cdb = new DataBase.CreateDB();
@@ -39,11 +37,7 @@ namespace KeepYourTime.ViewWindows
             }
         }
 
-        void btnFechar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
+   
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
