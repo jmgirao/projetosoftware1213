@@ -30,7 +30,20 @@ namespace KeepYourTime.ViewWindows
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
+            btnExpandir.Click += btnExpandir_Click;
 
+        }
+
+        void btnExpandir_Click(object sender, RoutedEventArgs e)
+        {
+            if (grdDetalhes.Visibility == Visibility.Visible)
+            {
+                collapse();
+            }
+            else
+            {
+                expand();
+            }
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -57,11 +70,13 @@ namespace KeepYourTime.ViewWindows
         void expand()
         {
             this.ResizeMode = System.Windows.ResizeMode.CanResizeWithGrip;
+            grdDetalhes.Visibility = System.Windows.Visibility.Visible;
         }
 
         void collapse()
         {
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
+            grdDetalhes.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         #region Resize
