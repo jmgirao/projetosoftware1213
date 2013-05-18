@@ -31,7 +31,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
 
 
-        ObservableCollection<TaskAdapter> taskAdapt = null;
         ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
 
         public ShowTaskList()
@@ -49,45 +48,54 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public void CreatedTask(TaskAdapter Task)
         {
-            taskAdapt.Add(Task);
+            taskAdaptUi.Add(new TaskAdapterUI(Task));
+        }
+
+        public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
+        {
+            taskAdaptUi = new ObservableCollection<TaskAdapterUI>();
+            foreach (TaskAdapter t in taskAdapt)
+            {
+                taskAdaptUi.Add(new TaskAdapterUI(t));
+            }
+            dgTaskList.ItemsSource = taskAdaptUi;
         }
 
         private void InitializeControl()
         {
             var mhResult = new MethodHandler();
-            bool blnActive = false;
-            
-            if (chkShowActiveTask.IsChecked == true) blnActive = true;
-            else blnActive = false;
 
             try
             {
-                mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
 
-                if (mhResult.Exits)
-                {
-                    MessageBox.Show(mhResult.Message);
-                    return;
-                }
-                dgTaskList.ItemsSource = taskAdapt;
+                bool blnActive = false;
+
+                if (chkShowActiveTask.IsChecked == true) blnActive = true;
+                else blnActive = false;
+
+                ObservableCollection<TaskAdapter> taskAdapt = null;
+                mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
+                if (mhResult.Exits) return;
+
+                ReceiveTaskList(taskAdapt);
             }
             catch (Exception e)
             {
                 mhResult.Exception(e);
-
             }
-            finally {
-                MessageWindow.ShowMethodHandler(mhResult, true);
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
 
         private void chkActiveTask_Checked(object sender, RoutedEventArgs e)
         {
-           // MessageBox.Show("Desactiva");
+            // MessageBox.Show("Desactiva");
         }
 
         private void chkActiveTask_Unchecked(object sender, RoutedEventArgs e)
-        { 
+        {
             //MessageBox.Show("Activa");   
         }
     }

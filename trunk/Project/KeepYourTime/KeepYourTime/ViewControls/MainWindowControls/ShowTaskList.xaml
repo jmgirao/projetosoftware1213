@@ -15,7 +15,7 @@
             <CheckBox Name="chkShowActiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
         </Grid>
         
-        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
+        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="False"  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -24,10 +24,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserResize="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
-                <DataGridTextColumn CanUserResize="False" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
-                <DataGridTextColumn CanUserResize="False" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
-                <DataGridTextColumn CanUserResize="False" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
+                <DataGridTextColumn CanUserResize="True" IsReadOnly="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
+                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Total Time" FontSize="14" Width="100" Binding="{Binding TotalTime}" />
+                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Today" FontSize="14"  Width="100" Binding="{Binding TodayTime}"/>
+                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Stop Date" FontSize="14"  Width="100" Binding="{Binding StopDate}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -42,17 +42,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay}">
+
+                <DataGridCheckBoxColumn Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 </DataGridCheckBoxColumn>
                 
-                <DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox Name="chkActiveTask" IsChecked="{Binding Active}" Command="{Binding TaskId}" Checked="chkActiveTask_Checked" Unchecked="chkActiveTask_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
