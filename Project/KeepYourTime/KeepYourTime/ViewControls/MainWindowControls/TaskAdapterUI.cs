@@ -9,22 +9,36 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 {
     class TaskAdapterUI : TaskAdapter
     {
-        /*public string TotalTime { get { return "XXX:XX"; } }
+        public string TotalTime { get { return "XXX:XX"; } }
         public string TodayTime { get { return "XX:XX"; } }
-        public string StopDate { get { return "12/41/1231"; } }*/
+        public string StopDate { get { return "12/41/1231"; } }
+
+        public bool ActiveChange
+        {
+            get
+            {
+                return this.Active;
+            }
+            set
+            {
+                this.Active = value;
+            }
+        }
 
         public TaskAdapterUI()
         {
-            
-          
+
+
         }
 
         public TaskAdapterUI(TaskAdapter taskBase)
         {
-            //base(taskBase.TotalTime, taskBase.TodayTime, taskBase, StopDate);
-
+            this.TaskId = taskBase.TaskId;
+            this.TaskName = taskBase.TaskName;
+            this.Active = taskBase.Active;
+            this.Description = taskBase.Description;
         }
-        
-        
+
+
     }
 }
