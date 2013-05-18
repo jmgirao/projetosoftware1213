@@ -4,7 +4,7 @@
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.TaskDetailsControls"
         Title="MainWindow" Height="500" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
-        ResizeMode="CanResize" >
+        ResizeMode="CanResize" Topmost="True" >
 	<Window.Resources>
         <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
@@ -40,7 +40,7 @@
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="20" />
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -55,7 +55,7 @@
                 		</TransformGroup>
                 	</Grid.RenderTransform>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -72,7 +72,7 @@
                            Height="30" Width="100" Margin="15,-10"/>
                 <Button Opacity="0" Grid.Row="1" Name="btnExpandir"
                         HorizontalAlignment="Right" VerticalAlignment="Top" 
-                           Height="30" Width="100" Margin="15,-10"/>
+                           Height="30" Width="100" Margin="15,-10" Cursor="Hand"/>
 
                 <!-- form principal -->
                 <Rectangle RadiusX="5" RadiusY="5"

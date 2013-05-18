@@ -29,8 +29,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </remarks>  
     public partial class ShowTaskList : UserControl
     {
-
-
         ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
 
         public ShowTaskList()
@@ -45,7 +43,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             InitializeControl();
         }
 
-
         public void CreatedTask(TaskAdapter Task)
         {
             taskAdaptUi.Add(new TaskAdapterUI(Task));
@@ -56,9 +53,19 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             taskAdaptUi = new ObservableCollection<TaskAdapterUI>();
             foreach (TaskAdapter t in taskAdapt)
             {
-                taskAdaptUi.Add(new TaskAdapterUI(t));
+                var ta = new TaskAdapterUI(t);
+                taskAdaptUi.Add(ta);
+                ta.OnTaskDeactivated += ta_OnTaskDeactivated;
             }
             dgTaskList.ItemsSource = taskAdaptUi;
+        }
+
+        void ta_OnTaskDeactivated(object sender, EventArgs e)
+        {
+            if (chkShowInactiveTask.IsChecked.Value == false)
+            {
+                Dispatcher.BeginInvoke((Action)(() => taskAdaptUi.Remove((TaskAdapterUI)sender)));
+            }
         }
 
         private void InitializeControl()
@@ -67,16 +74,14 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
             try
             {
-                bool blnActive = false;
-
-                if (chkShowActiveTask.IsChecked == true) blnActive = true;
-                else blnActive = false;
+                bool blnActive = chkShowInactiveTask.IsChecked.Value;
 
                 ObservableCollection<TaskAdapter> taskAdapt = null;
                 mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
                 if (mhResult.Exits) return;
 
                 ReceiveTaskList(taskAdapt);
+
             }
             catch (Exception e)
             {

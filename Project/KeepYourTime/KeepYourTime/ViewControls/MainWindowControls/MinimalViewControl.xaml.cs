@@ -45,7 +45,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             intTaskID = 1;  //The task id that's running or that's selected in the textbox
             var detailswindows = new TaskDetailsWindow();
-            detailswindows.Show();
+            detailswindows.ShowDialog();
         }
 
         void btnAdd_Click(object sender, RoutedEventArgs e)
