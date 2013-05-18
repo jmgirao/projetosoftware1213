@@ -45,12 +45,12 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,20,0,0">
             <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold"/>
-            <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" IsReadOnly="True" ColumnHeaderHeight="35" Width="auto" AutoGenerateColumns="False" GridLinesVisibility="None" >
+            <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" IsReadOnly="True" ColumnHeaderHeight="35" CanUserAddRows="False" Width="auto" AutoGenerateColumns="False" GridLinesVisibility="None" >
                 <DataGrid.Columns>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
                     <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartTime}" FontSize="16" Width="*" SortDirection="Ascending" />
                     <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding StopTime}"  FontSize="16" Width="*" />
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" FontSize="16" Width="*"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" Binding="{Binding TimeSpent}"  FontSize="16" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
