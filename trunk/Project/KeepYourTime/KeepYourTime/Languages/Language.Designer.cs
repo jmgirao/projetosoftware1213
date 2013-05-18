@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-//
-
-
 namespace KeepYourTime.Languages {
     using System;
     
@@ -26,13 +22,6 @@ namespace KeepYourTime.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-
-    /// <summary>
-    /// Class to Handle string resources for messages and labels
-    /// </summary>
-    /// <remarks>
-    /// CREATED BY Carla Machado
-    /// </remarks>
     public class Language {
         
         private static global::System.Resources.ResourceManager resourceMan;
@@ -86,6 +75,15 @@ namespace KeepYourTime.Languages {
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete task time.
+        /// </summary>
+        public static string DeleteTimeTooltip {
+            get {
+                return ResourceManager.GetString("DeleteTimeTooltip", resourceCulture);
             }
         }
         

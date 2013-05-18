@@ -123,6 +123,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="DeleteTimeTooltip" xml:space="preserve">
+    <value>Delete task time</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
