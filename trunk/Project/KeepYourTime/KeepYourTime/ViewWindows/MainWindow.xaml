@@ -17,19 +17,25 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1" Grid.RowSpan="2">
+                <Grid  Grid.RowSpan="3" Name="grdDetalhes" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid  Grid.Row="1">
+                    <Rectangle Grid.RowSpan="2" Fill="Turquoise" Margin="5"
+                               RadiusX="5" RadiusY="5"/>
+                    <Grid Grid.Row="1">
                         <!--Aqui é para colocar os componentes da linha de baixo!-->
-                        <MainWindowControls:ShowTaskList x:Name="stlShowTaskList"/>
+                        <MainWindowControls:ShowTaskList x:Name="stlShowTaskList" Margin="10"/>
                     </Grid>
                 </Grid>
                 <!-- Botão de Expansão -->
                 <Rectangle RadiusX="5" RadiusY="5" Fill="Red" Grid.Row="1" Stroke="White"
                            HorizontalAlignment="Right" VerticalAlignment="Top" 
+                           Height="30" Width="100" Margin="15,-10"/>
+                <Button Opacity="0" Grid.Row="1" Name="btnExpandir"
+                        HorizontalAlignment="Right" VerticalAlignment="Top" 
                            Height="30" Width="100" Margin="15,-10"/>
 
                 <!-- form principal -->
