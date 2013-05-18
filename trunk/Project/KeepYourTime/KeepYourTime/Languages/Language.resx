@@ -123,9 +123,6 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="DeleteTimeTooltip" xml:space="preserve">
-    <value>Delete task time</value>
-  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -170,6 +167,12 @@
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
+  </data>
+  <data name="TooltipAddTime" xml:space="preserve">
+    <value>Add new task time</value>
+  </data>
+  <data name="TooltipDeleteTime" xml:space="preserve">
+    <value>Delete task time</value>
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Total Time</value>

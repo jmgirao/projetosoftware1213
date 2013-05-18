@@ -79,15 +79,6 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete task time.
-        /// </summary>
-        public static string DeleteTimeTooltip {
-            get {
-                return ResourceManager.GetString("DeleteTimeTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -219,6 +210,24 @@ namespace KeepYourTime.Languages {
         public static string Today {
             get {
                 return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new task time.
+        /// </summary>
+        public static string TooltipAddTime {
+            get {
+                return ResourceManager.GetString("TooltipAddTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete task time.
+        /// </summary>
+        public static string TooltipDeleteTime {
+            get {
+                return ResourceManager.GetString("TooltipDeleteTime", resourceCulture);
             }
         }
         
