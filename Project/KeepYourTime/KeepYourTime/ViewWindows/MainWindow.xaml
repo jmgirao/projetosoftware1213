@@ -5,6 +5,34 @@
         Title="MainWindow" Height="500" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
         ResizeMode="CanResize" >
+	<Window.Resources>
+        <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.09"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-227.5"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+        <Storyboard x:Key="sbShowTaskList" x:Name="sbShowTaskList">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0.088"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
+				<EasingDoubleKeyFrame KeyTime="0" Value="-228"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	<!--<Window.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard x:Name="sbHideTaskList_BeginStoryboard" Storyboard="{StaticResource sbHideTaskList}"/>
+			<BeginStoryboard Storyboard="{StaticResource sbShowTaskList}"/>
+		</EventTrigger>
+	</Window.Triggers>-->
     <Window.Background >
         <SolidColorBrush x:Name="BackgroundBrush" Color="WhiteSmoke" Opacity="0" ></SolidColorBrush>
     </Window.Background>
@@ -17,7 +45,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid  Grid.RowSpan="3" Name="grdDetalhes" >
+                <Grid  Grid.RowSpan="3" Name="grdDetalhes" RenderTransformOrigin="0.5,0.5" >
+                	<Grid.RenderTransform>
+                		<TransformGroup>
+                			<ScaleTransform/>
+                			<SkewTransform/>
+                			<RotateTransform/>
+                			<TranslateTransform/>
+                		</TransformGroup>
+                	</Grid.RenderTransform>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="Auto"/>

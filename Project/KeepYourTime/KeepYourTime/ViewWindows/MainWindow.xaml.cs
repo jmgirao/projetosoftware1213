@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -31,7 +32,7 @@ namespace KeepYourTime.ViewWindows
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-
+            
         }
 
         void btnExpandir_Click(object sender, RoutedEventArgs e)
@@ -60,22 +61,32 @@ namespace KeepYourTime.ViewWindows
             stlShowTaskList.CreatedTask(Task);
         }
 
-
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
 
-        //quando ta graden
+        //quando ta grande
         void expand()
         {
             this.ResizeMode = System.Windows.ResizeMode.CanResizeWithGrip;
+            Storyboard sb = this.FindResource("sbShowTaskList") as Storyboard;
+            sb.Begin();
             grdDetalhes.Visibility = System.Windows.Visibility.Visible;
         }
 
         void collapse()
         {
+
+            Storyboard sb = this.FindResource("sbHideTaskList") as Storyboard;
+            sb.Begin();
+            sb.Completed += sb_Completed;
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
+          
+        }
+
+        void sb_Completed(object sender, EventArgs e)
+        {
             grdDetalhes.Visibility = System.Windows.Visibility.Collapsed;
         }
 
