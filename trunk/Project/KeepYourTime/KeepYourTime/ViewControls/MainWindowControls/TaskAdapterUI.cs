@@ -23,17 +23,25 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
             set
             {
-                 var mhResult = new MethodHandler();
-                try{
-                    this.Active = value;
+                var mhResult = new MethodHandler();
+                try
+                {
                     mhResult = TaskConnector.ActivateTask(this.TaskId, value);
+                    if (mhResult.Exits) return;
+                    this.Active = value;
+
+                    if (this.Active == false)
+                        if (OnTaskDeactivated != null)
+                            OnTaskDeactivated((object)this, new EventArgs());
                     
-                   
-                }catch(Exception ex){
-                    mhResult.Exception(ex); 
                 }
-                finally{
-                    MessageWindow.ShowMethodHandler(mhResult,false);
+                catch (Exception ex)
+                {
+                    mhResult.Exception(ex);
+                }
+                finally
+                {
+                    MessageWindow.ShowMethodHandler(mhResult, false);
                 }
             }
         }
@@ -52,6 +60,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.Description = taskBase.Description;
         }
 
-
+        public event EventHandler OnTaskDeactivated;
     }
 }

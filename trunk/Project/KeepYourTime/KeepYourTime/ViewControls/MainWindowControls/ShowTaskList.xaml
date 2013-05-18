@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         
         <Grid>
-            <CheckBox Name="chkShowActiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
+            <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
         </Grid>
         
         <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" >
@@ -43,8 +43,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridCheckBoxColumn IsReadOnly="False" Header="Active" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                </DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn IsReadOnly="False" Header="Active" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
                 
             </DataGrid.Columns>
         </DataGrid>
