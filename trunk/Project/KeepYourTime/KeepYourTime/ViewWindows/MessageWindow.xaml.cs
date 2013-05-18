@@ -29,8 +29,9 @@ namespace KeepYourTime.ViewWindows
 
         void MessageWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             this.DataContext = mhResult;
+            HideMessage();
         }
 
         MethodHandler mhResult = null;
@@ -44,5 +45,11 @@ namespace KeepYourTime.ViewWindows
             winMessage.Show();
         }
 
+
+        async void HideMessage()
+        {
+            await Task.Delay(3000);
+            this.Close();
+        }
     }
 }
