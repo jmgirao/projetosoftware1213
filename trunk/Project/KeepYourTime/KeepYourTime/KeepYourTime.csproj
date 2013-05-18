@@ -82,6 +82,7 @@
     <Compile Include="ViewControls\TaskDetailsControls\TaskDetailsControl.xaml.cs">
       <DependentUpon>TaskDetailsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewControls\TaskDetailsControls\TaskTimeAdapterUI.cs" />
     <Compile Include="ViewWindows\InactivityWindow.xaml.cs">
       <DependentUpon>InactivityWindow.xaml</DependentUpon>
     </Compile>

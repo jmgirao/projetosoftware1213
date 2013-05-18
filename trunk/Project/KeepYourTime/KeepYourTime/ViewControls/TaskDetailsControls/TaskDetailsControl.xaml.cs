@@ -94,8 +94,12 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 tasktime.StopTime = new DateTime(2013, 2, 13, 6, 30, 00);
                 ocTaskTimeList.Add(tasktime);
 
-                dgTaskTimes.ItemsSource = ocTaskTimeList;
+                ObservableCollection<TaskTimeAdapterUI> ocTaskTimeUIList = new ObservableCollection<TaskTimeAdapterUI>();
+                foreach(TaskTimeAdapter tta in ocTaskTimeList)
+                    ocTaskTimeUIList.Add(new TaskTimeAdapterUI(tta));
                 
+
+                dgTaskTimes.ItemsSource = ocTaskTimeUIList;  
 
             }
             catch (Exception ex)
