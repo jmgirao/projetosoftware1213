@@ -21,6 +21,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// <summary>
     /// Interaction logic for MinimalViewControl.xaml
     /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public partial class MinimalViewControl : UserControl
     {
         public static int intTaskID = 0;    //identify task to select the task data
@@ -77,6 +78,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
 
         }
+
         void btnFechar_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
