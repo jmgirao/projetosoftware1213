@@ -24,13 +24,17 @@ namespace KeepYourTime.ViewWindows
     {
         public MainWindow()
         {
-            SourceInitialized += MainWindow_SourceInitialized;
-
             InitializeComponent();
+            this.SourceInitialized += MainWindow_SourceInitialized;
+            this.Loaded += MainWindow_Loaded;
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
 
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             if (!DataBase.CreateDB.IsDatabaseCreated())
             {
                 var cdb = new DataBase.CreateDB();
@@ -43,7 +47,7 @@ namespace KeepYourTime.ViewWindows
             stlShowTaskList.CreatedTask(Task);
         }
 
-   
+
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
