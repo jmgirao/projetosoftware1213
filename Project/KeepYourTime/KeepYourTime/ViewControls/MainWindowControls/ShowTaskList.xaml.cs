@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using KeepYourTime.DataBase;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
+using KeepYourTime.ViewWindows;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -31,12 +32,12 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
 
         ObservableCollection<TaskAdapter> taskAdapt = null;
+        ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
 
         public ShowTaskList()
         {
 
             InitializeComponent();
-            //InitializeControl();
             this.Loaded += ShowTaskList_Loaded;
         }
 
@@ -58,13 +59,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             
             if (chkShowActiveTask.IsChecked == true) blnActive = true;
             else blnActive = false;
-            //MessageBox.Show(blnActive.ToString());
 
             try
             {
                 mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
 
-                if (mhResult.Exits){
+                if (mhResult.Exits)
+                {
                     MessageBox.Show(mhResult.Message);
                     return;
                 }
@@ -73,15 +74,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             catch (Exception e)
             {
                 mhResult.Exception(e);
-                MessageBox.Show(mhResult.Message);
+
+            }
+            finally {
+                MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 
         private void chkActiveTask_Checked(object sender, RoutedEventArgs e)
         {
            // MessageBox.Show("Desactiva");
-            
-            
         }
 
         private void chkActiveTask_Unchecked(object sender, RoutedEventArgs e)

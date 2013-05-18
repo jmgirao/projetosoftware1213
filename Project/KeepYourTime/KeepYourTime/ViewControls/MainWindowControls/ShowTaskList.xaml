@@ -10,11 +10,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
         <Grid>
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <CheckBox Name="chkShowActiveTask" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
-                <TextBlock Text="Show inactive tasks"/>
-            </StackPanel>
+            <CheckBox Name="chkShowActiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
         </Grid>
         
         <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="True" >
@@ -44,10 +42,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
+                <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay}">
+                </DataGridCheckBoxColumn>
+                
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Name="chkActiveTask" IsChecked="{Binding Active}" Checked="chkActiveTask_Checked" Unchecked="chkActiveTask_Unchecked"/>
+                            <CheckBox Name="chkActiveTask" IsChecked="{Binding Active}" Command="{Binding TaskId}" Checked="chkActiveTask_Checked" Unchecked="chkActiveTask_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
