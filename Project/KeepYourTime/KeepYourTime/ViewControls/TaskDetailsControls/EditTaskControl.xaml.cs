@@ -26,9 +26,16 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     /// </remarks>  
     public partial class EditTask : UserControl
     {
+        ObservableCollection<TaskTimeAdapterUI> taskTimesAdapterUI = null;
+        long EditTaskId = -1; //Default value indicating not initialized
+
         public EditTask()
         {
             InitializeComponent();
+
+            this.Loaded += EditTaskControl_Loaded;
+            btnCancel.Click += btnCancel_Click;
+            btnSave.Click += btnSave_Click; 
         }
 
 
@@ -55,29 +62,36 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             var mhResult = new MethodHandler();          
             TaskAdapter taskToEdit = new TaskAdapter();
 
+            TaskID = 2;
             try
             {
-                //mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
-                //if (mhResult.Exits)
-                //{
-                //    MessageBox.Show(mhResult.Message);
-                //    return;
-                //}
+                mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
+                
+                if (mhResult.Exits)
+                {
+                    MessageBox.Show(mhResult.Message);
+                    return;
+                }
 
 
-                taskToEdit.TaskName = "teste";
-                taskToEdit.Description = "descrição";
+                //Test data
+                //taskToEdit.TaskName = "teste";
+                //taskToEdit.Description = "descrição";
                 taskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
                 taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 1, TaskId = 1, StartTime = DateTime.Today, StopTime = DateTime.Now });
-                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, StartTime = DateTime.Today, StopTime = DateTime.Now });
-                
-                
+                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, StartTime = new DateTime(2013, 4, 12, 12, 00, 00), StopTime = new DateTime(2013, 4, 12, 12, 30, 00) });
+                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 3, TaskId = 3, StartTime = new DateTime(2013, 4, 12, 12, 00, 00), StopTime = new DateTime(2013, 4, 12, 12, 00, 00) });
 
+
+                EditTaskId = taskToEdit.TaskId;
                 TxtTaskName.Text = taskToEdit.TaskName;
                 TxtDescription.Text = taskToEdit.Description;
-                dgTaskTimes.ItemsSource = taskToEdit.Times;
 
-                
+                taskTimesAdapterUI = new ObservableCollection<TaskTimeAdapterUI>();
+                foreach (TaskTimeAdapter tta in taskToEdit.Times)
+                    taskTimesAdapterUI.Add(new TaskTimeAdapterUI(tta));
+
+                dgTaskTimes.ItemsSource = taskTimesAdapterUI;                               
 
             }
             catch (Exception ex)
@@ -110,17 +124,28 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// CREATED BY Carla Machado
         /// </remarks> 
         void btnSave_Click(object sender, RoutedEventArgs e)
-        {
+        {           
+            if (EditTaskId == -1)
+            {
+                //TODO - tratar excepção
+                MessageBox.Show("Sem Tarefa - alterar msg");
+                return;
+            }
+
+
             var mhResult = new MethodHandler();  
 
             try
-            {
-                TaskAdapter TaskToEdit = new TaskAdapter();                             
+            {               
+                TaskAdapter TaskToEdit = new TaskAdapter();
 
+                TaskToEdit.TaskId = EditTaskId;
                 TaskToEdit.TaskName = TxtTaskName.Text;
                 TaskToEdit.Description = TxtDescription.Text;
+                TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
                 
-                
+                foreach (var time in taskTimesAdapterUI)
+                    TaskToEdit.Times.Add(time);                
 
                 mhResult = TaskConnector.EditTask(TaskToEdit);
             }

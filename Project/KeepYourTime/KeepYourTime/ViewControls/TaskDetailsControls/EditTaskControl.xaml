@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800"
-             Loaded="EditTaskControl_Loaded">
+             d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
         <Style TargetType="Button"  x:Key="Btn">
@@ -17,9 +16,14 @@
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="15"/>
         </Style>
+        <Style TargetType="Button"  x:Key="BtnImage">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>       
     </UserControl.Resources>
 
-    <Grid Margin="20">        
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -27,6 +31,12 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
         <StackPanel Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center">
             <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" FontSize="40" FontWeight="Bold"/>
@@ -36,26 +46,44 @@
             <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
             <TextBox Name="TxtTaskName" Width="200" Height="25"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
             <TextBlock VerticalAlignment="Center" Name="LblDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold" Width="120"/>
-            <TextBox Name="TxtDescription" Width="200" Height="25"/>
+            <TextBox Name="TxtDescription" Width="200" Height="25" />
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Vertical">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="4" Orientation="Vertical">
             <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold" Margin="5"/>
-            <ListView Name="dgTaskTimes">                
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Grid.Column="0"  Text=""/>
+                <TextBlock Grid.Column="1" Text="{x:Static p:Language.StartDate}"/>
+                <TextBlock Grid.Column="2" Text="{x:Static p:Language.EndDate}"/>
+                <TextBlock Grid.Column="3" Text="{x:Static p:Language.TimeSpent}"/>
+            </StackPanel>
+
+            <ListView Name="dgTaskTimes" >
                 <ListView.ItemTemplate>
-                    <DataTemplate>                       
+                    <DataTemplate>
                         <TaskDetailsControls:EditTimeLineControl />
                     </DataTemplate>
-                </ListView.ItemTemplate>               
+                </ListView.ItemTemplate>
             </ListView>
+            <StackPanel Height="50">
+                <Button Name="btnAddTime" Style="{StaticResource BtnImage}" HorizontalAlignment="Left" ToolTip="{x:Static p:Language.TooltipAddTime}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/KeepYourTime;component/Assets/Add.png" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Name="btnSave" Style="{StaticResource Btn}" Click="btnSave_Click" HorizontalAlignment="Left" Content="{x:Static p:Language.Save}"/>
-            <Button Name="btnCancel" Style="{StaticResource Btn}" Click="btnCancel_Click" HorizontalAlignment="Right" Content="{x:Static p:Language.Cancel}"/>
+        <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="btnSave" Style="{StaticResource Btn}" HorizontalAlignment="Left" Content="{x:Static p:Language.Save}"/>
+            <Button Name="btnCancel" Style="{StaticResource Btn}" HorizontalAlignment="Right" Content="{x:Static p:Language.Cancel}"/>
         </StackPanel>
 
     </Grid>
