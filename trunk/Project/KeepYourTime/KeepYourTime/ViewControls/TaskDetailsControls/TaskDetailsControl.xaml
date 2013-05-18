@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center">
-            <TextBlock Name="lbTitle" Text="Task Details" FontSize="40" FontWeight="Bold"/>
+            <TextBlock Name="lbTitle" Text="{x:Static p:Language.TaskDetailsTitle}" FontSize="40" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="0" VerticalAlignment="Center">
