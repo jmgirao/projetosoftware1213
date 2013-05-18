@@ -79,6 +79,9 @@
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewControls\TaskDetailsControls\EditTimeLineControl.xaml.cs">
+      <DependentUpon>EditTimeLineControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewControls\TaskDetailsControls\TaskDetailsControl.xaml.cs">
       <DependentUpon>TaskDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewControls\TaskDetailsControls\EditTimeLineControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +189,12 @@
   <ItemGroup>
     <Folder Include="ViewControls\ConfigurationControls\" />
     <Folder Include="ViewControls\InactivityControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

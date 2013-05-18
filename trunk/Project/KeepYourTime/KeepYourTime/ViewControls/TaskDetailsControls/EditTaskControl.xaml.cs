@@ -31,6 +31,18 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             InitializeComponent();
         }
 
+
+        private void EditTaskControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeControl();
+        }
+
+
+        private void InitializeControl()
+        {
+            LoadTask(1);
+        }
+
        /// <summary>
        /// loads all the information from a certain task
        /// </summary>
@@ -38,28 +50,34 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// <remarks>
         /// CREATED BY Carla Machado
         /// </remarks> 
-        public void LoadTask(int TaskID)
+        private void LoadTask(int TaskID)
         {            
             var mhResult = new MethodHandler();          
             TaskAdapter taskToEdit = new TaskAdapter();
 
             try
             {
-                mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
-                if (mhResult.Exits)
-                {
-                    MessageBox.Show(mhResult.Message);
-                    return;
-                }
+                //mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
+                //if (mhResult.Exits)
+                //{
+                //    MessageBox.Show(mhResult.Message);
+                //    return;
+                //}
 
-                string taskName = taskToEdit.TaskName;
-                string taskDescription = taskToEdit.Description;
-                ObservableCollection<TaskTimeAdapter> taskTimeList = taskToEdit.Times;
+
+                taskToEdit.TaskName = "teste";
+                taskToEdit.Description = "descrição";
+                taskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
+                taskToEdit.Times.Add(new TaskTimeAdapter(){TimeId=1, TaskId=1, Start= DateTime.Today, End= DateTime.Now});
+                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, Start = DateTime.Today, End = DateTime.Now });
+                
+                
 
                 TxtTaskName.Text = taskToEdit.TaskName;
                 TxtDescription.Text = taskToEdit.Description;
-               //TODO - task times
+                dgTaskTimes.ItemsSource = taskToEdit.Times;
 
+                
 
             }
             catch (Exception ex)
@@ -101,7 +119,8 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
 
                 TaskToEdit.TaskName = TxtTaskName.Text;
                 TaskToEdit.Description = TxtDescription.Text;
-
+                
+                
 
                 mhResult = TaskConnector.EditTask(TaskToEdit);
             }
@@ -111,7 +130,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 MessageBox.Show(mhResult.Message);
             }
         }
-       
+
 
     }
 }

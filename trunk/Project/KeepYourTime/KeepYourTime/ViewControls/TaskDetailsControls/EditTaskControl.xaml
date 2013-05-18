@@ -1,73 +1,62 @@
-﻿<UserControl x:Class="KeepYourTime.ViewControls.TaskDetailsControls.EditTask"
+﻿<UserControl xmlns:TaskDetailsControls="clr-namespace:KeepYourTime.ViewControls.TaskDetailsControls"  x:Class="KeepYourTime.ViewControls.TaskDetailsControls.EditTask"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
-   
+             d:DesignHeight="600" d:DesignWidth="800"
+             Loaded="EditTaskControl_Loaded">
+
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Button"  x:Key="Btn">
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="15"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="20">        
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center">
-            <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" Foreground="White" FontSize="40" FontWeight="Bold"/>
-        </StackPanel>        
-
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Name="LblTaskName" Text="{x:Static p:Language.TaskName}" Foreground="White" FontSize="20" FontWeight="Bold" Width="120"/>
-                <TextBox Name="TxtTaskName" Width="150" Height="25"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,0">
-                <TextBlock VerticalAlignment="Center" Name="LblDescription" Text="{x:Static p:Language.Description}" Foreground="White" FontSize="20" FontWeight="Bold" Width="120"/>
-                <TextBox Name="TxtDescription" Width="150" Height="25"/>
-
-            </StackPanel>
-        </Grid>
-
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,20,0,0">
-            <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold"/>
-            <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" ColumnHeaderHeight="35" Width="450" >
-                <DataGrid.Columns>
-                   
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartDateTask}" FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding EndDateTask}" FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" Binding="{Binding TimeSentTask}" FontSize="16" Width="150"/>
-                </DataGrid.Columns>
-            </DataGrid>
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" FontSize="40" FontWeight="Bold"/>
         </StackPanel>
 
-        <Button Name="btnSave" Grid.Column="1" Grid.Row="3" Click="btnSave_Click" HorizontalAlignment="Left" Content="{x:Static p:Language.Save}"/>
-        <Button Name="btnCancel" Grid.Column="1" Grid.Row="3" Click="btnCancel_Click" HorizontalAlignment="Right" Content="{x:Static p:Language.Cancel}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
+            <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
+            <TextBox Name="TxtTaskName" Width="200" Height="25"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
+            <TextBlock VerticalAlignment="Center" Name="LblDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold" Width="120"/>
+            <TextBox Name="TxtDescription" Width="200" Height="25"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Vertical">
+            <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold" Margin="5"/>
+            <ListView Name="dgTaskTimes">                
+                <ListView.ItemTemplate>
+                    <DataTemplate>                       
+                        <TaskDetailsControls:EditTimeLineControl />
+                    </DataTemplate>
+                </ListView.ItemTemplate>               
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="btnSave" Style="{StaticResource Btn}" Click="btnSave_Click" HorizontalAlignment="Left" Content="{x:Static p:Language.Save}"/>
+            <Button Name="btnCancel" Style="{StaticResource Btn}" Click="btnCancel_Click" HorizontalAlignment="Right" Content="{x:Static p:Language.Cancel}"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>
