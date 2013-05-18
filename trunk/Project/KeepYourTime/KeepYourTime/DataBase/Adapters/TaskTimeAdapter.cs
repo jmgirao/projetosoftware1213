@@ -14,8 +14,8 @@ namespace KeepYourTime.DataBase.Adapters
     {
         public long TimeId { get; set; }
         public long TaskId { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime StopTime { get; set; }
 
     }
 }
