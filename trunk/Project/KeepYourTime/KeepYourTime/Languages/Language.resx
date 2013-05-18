@@ -138,6 +138,21 @@
   <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="InactiveBtnDiscardTime" xml:space="preserve">
+    <value>Discard time</value>
+  </data>
+  <data name="InactiveBtnSaveTime" xml:space="preserve">
+    <value>Add time to actual task</value>
+  </data>
+  <data name="InactiveMinutesPart1" xml:space="preserve">
+    <value>You have been inactive for </value>
+  </data>
+  <data name="InactiveMinutesPart2" xml:space="preserve">
+    <value> minutes</value>
+  </data>
+  <data name="InactiveQuestion" xml:space="preserve">
+    <value>What do you want to do with that?</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
