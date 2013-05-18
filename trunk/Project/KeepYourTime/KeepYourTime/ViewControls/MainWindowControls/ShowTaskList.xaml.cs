@@ -67,7 +67,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
             try
             {
-
                 bool blnActive = false;
 
                 if (chkShowActiveTask.IsChecked == true) blnActive = true;
@@ -87,16 +86,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
-        }
-
-        private void chkActiveTask_Checked(object sender, RoutedEventArgs e)
-        {
-            // MessageBox.Show("Desactiva");
-        }
-
-        private void chkActiveTask_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("Activa");   
         }
     }
 }

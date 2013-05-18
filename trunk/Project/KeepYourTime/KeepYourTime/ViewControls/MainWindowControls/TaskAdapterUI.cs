@@ -1,4 +1,6 @@
 ﻿using KeepYourTime.DataBase.Adapters;
+using KeepYourTime.DataBase.Connectors;
+using KeepYourTime.ViewWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,18 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
             set
             {
-                this.Active = value;
+                 var mhResult = new MethodHandler();
+                try{
+                    this.Active = value;
+                    mhResult = TaskConnector.ActivateTask(this.TaskId, value);
+                    
+                   
+                }catch(Exception ex){
+                    mhResult.Exception(ex); 
+                }
+                finally{
+                    MessageWindow.ShowMethodHandler(mhResult,false);
+                }
             }
         }
 
