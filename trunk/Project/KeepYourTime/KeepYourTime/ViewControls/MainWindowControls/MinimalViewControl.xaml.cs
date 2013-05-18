@@ -23,7 +23,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     public partial class MinimalViewControl : UserControl
     {
-        public static int taskID = 0;
+        public static int intTaskID = 0;    //identify task to select the task data
 
         public MinimalViewControl()
         {
@@ -42,7 +42,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <remarks>CREATED BY João Girão</remarks>
         void btnTaskDetails_Click(object sender, RoutedEventArgs e)
         {
-            taskID = 1; //The task id that's running or that's selected in the textbox
+            intTaskID = 1;  //The task id that's running or that's selected in the textbox
             var detailswindows = new TaskDetailsWindow();
             detailswindows.Show();
         }
