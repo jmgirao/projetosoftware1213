@@ -35,22 +35,22 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Name="lbTaskName" Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Name="lbTaskNameText" Text="task_name" Margin="10,0,0,0" FontSize="18"/>
+                <TextBlock Name="lbTaskNameText" Text="task_name" Margin="10,0,0,0" FontSize="16" VerticalAlignment="Bottom"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock Name="lbTaskDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Name="lbTaskDescriptionText" Text="description" Margin="10,0,0,0" FontSize="18"/>
+                <TextBlock Name="lbTaskDescriptionText" Text="description" Margin="10,0,0,0" FontSize="16" VerticalAlignment="Bottom"/>
             </StackPanel>
         </Grid>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,20,0,0">
             <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold"/>
-            <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" ColumnHeaderHeight="35" Width="450" >
+            <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" IsReadOnly="True" ColumnHeaderHeight="35" Width="auto" AutoGenerateColumns="False" GridLinesVisibility="None" >
                 <DataGrid.Columns>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartDate}" FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding EndDate}"  FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" FontSize="16" Width="150"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartTime}" FontSize="16" Width="*" SortDirection="Ascending" />
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding StopTime}"  FontSize="16" Width="*" />
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" FontSize="16" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

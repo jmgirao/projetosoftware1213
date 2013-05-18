@@ -58,25 +58,44 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         private void InitializeControl()
         {
             var mhResult = new MethodHandler();
-            int idTask = MinimalViewControl.taskID;                 //To receive idTask another window
-            TaskAdapter taskAdapt = new TaskAdapter();
+            int intIdTask = MinimalViewControl.intTaskID;                 //To receive idTask another window (defined in the MinimalViewControl) 
+            TaskAdapter taTaskAdapt = new TaskAdapter();
 
             try
             {
-                mhResult = TaskConnector.ReadTask(idTask, out taskAdapt);
+                mhResult = TaskConnector.ReadTask(intIdTask, out taTaskAdapt);
                 if (mhResult.Exits)
                 {
                     MessageWindow.ShowMethodHandler(mhResult, true);
                     return;
                 }
 
-                string strtaskName = taskAdapt.TaskName;
-                string strtaskDescription = taskAdapt.Description;
-                ObservableCollection<TaskTimeAdapter> taskTimeList = taskAdapt.Times;
+                string strTaskName = taTaskAdapt.TaskName;
+                string strTaskDescription = taTaskAdapt.Description;
+                ObservableCollection<TaskTimeAdapter> ocTaskTimeList = taTaskAdapt.Times;
 
-                lbTaskNameText.Text = strtaskName;
-                lbTaskDescriptionText.Text = strtaskDescription;
-                dgTaskTimes.ItemsSource = taskTimeList;
+                lbTaskNameText.Text = strTaskName;
+                lbTaskDescriptionText.Text = strTaskDescription;
+
+                /*
+                 *CREATE TIMES 
+                 */
+                TaskTimeAdapter tasktime = new TaskTimeAdapter();
+                tasktime.TimeId = 1;
+                tasktime.TaskId = 1;
+                tasktime.StartTime = new DateTime(2013, 4, 12, 12, 00, 00);
+                tasktime.StopTime = new DateTime(2013, 4, 12, 12, 30, 00);
+                ocTaskTimeList.Add(tasktime);
+
+                tasktime = new TaskTimeAdapter();
+                tasktime.TimeId = 2;
+                tasktime.TaskId = 1;
+                tasktime.StartTime = new DateTime(2013, 2, 13, 1, 00, 00);
+                tasktime.StopTime = new DateTime(2013, 2, 13, 6, 30, 00);
+                ocTaskTimeList.Add(tasktime);
+
+                dgTaskTimes.ItemsSource = ocTaskTimeList;
+                
 
             }
             catch (Exception ex)
@@ -95,7 +114,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// <remarks>CREATED BY João Girão</remarks>
         private void btCloseTaskDetails_Click(object sender, RoutedEventArgs e)
         {
-           
+            Window.GetWindow(this).Close();
         }
     }
 
