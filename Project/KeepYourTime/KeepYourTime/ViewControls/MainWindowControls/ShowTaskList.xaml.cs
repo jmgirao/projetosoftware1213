@@ -56,22 +56,50 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             var mhResult = new MethodHandler();
             bool blnActive = false;
 
+            if (chkShowActiveTask.IsChecked == true) blnActive = true;
+            else blnActive = false;
+            MessageBox.Show(blnActive.ToString());
+
             try
             {
                 mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
 
-                //tratar mhResult
-
-                //codigo dgTaskList 
-                //dgTaskList.
+                if (mhResult.Exits){
+                    MessageBox.Show(mhResult.Message);
+                    return;
+                }
                 dgTaskList.ItemsSource = taskAdapt;
-
             }
             catch (Exception e)
             {
                 mhResult.Exception(e);
                 MessageBox.Show(mhResult.Message);
             }
+        }
+
+        private void chkActiveTask_Checked(object sender, RoutedEventArgs e)
+        {
+            string strContent = sender.ToString();
+            string[] words = strContent.Split(' ');
+            string strIdTask = words[1];
+            strIdTask = System.Text.RegularExpressions.Regex.Match(strIdTask, @"\d+").Value;
+            
+            MessageBox.Show("Desativada" + strIdTask);
+            var mhResult = new MethodHandler();
+            mhResult = TaskConnector.ActivateTask((long)Convert.ToDouble(strIdTask), false);
+            
+        }
+
+        private void chkActiveTask_Unchecked(object sender, RoutedEventArgs e)
+        {
+            string strContent = sender.ToString();
+            string[] words = strContent.Split(' ');
+            string strIdTask = words[1];
+            strIdTask = System.Text.RegularExpressions.Regex.Match(strIdTask, @"\d+").Value;
+            MessageBox.Show("Activa");
+            var mhResult = new MethodHandler();
+            mhResult = TaskConnector.ActivateTask((long)Convert.ToDouble(strIdTask), true);
+            
         }
     }
 }

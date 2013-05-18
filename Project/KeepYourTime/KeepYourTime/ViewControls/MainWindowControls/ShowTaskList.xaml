@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <Grid>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <CheckBox Name="chbActiveTask" IsChecked="False"/>
+                <CheckBox Name="chkShowActiveTask" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
                 <TextBlock Text="Show inactive tasks"/>
             </StackPanel>
         </Grid>
@@ -47,7 +47,9 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="False"/>
+                            <CheckBox Name="chkActiveTask" IsChecked="{Binding Active}" Checked="chkActiveTask_Checked" Unchecked="chkActiveTask_Unchecked"
+                                      Content="{Binding TaskId}" ContentStringFormat=""
+                                      CommandParameter="{Binding TaskId}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
