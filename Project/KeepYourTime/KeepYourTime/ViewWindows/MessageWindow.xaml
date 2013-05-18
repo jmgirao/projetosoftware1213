@@ -11,11 +11,12 @@
         <Grid Name="ContentGrid">
             <Rectangle Fill="Teal"/>
             <StackPanel >
-                <TextBlock Name="lblResult" Text="{Binding Status}"/>
-                <TextBlock Name="lblMensagem" Text="{Binding Message}" />
-                <TextBlock Name="lblQuery" Text="{Binding Query}" />
-                <TextBlock Name="lblDetalhe" Text="{Binding StackTrace}"/>
+                <TextBlock Name="lblResult" Text="{Binding Status}" />
+                <TextBlock Name="lblMensagem" Text="{Binding Message}"  TextWrapping="Wrap"/>
+                <TextBlock Name="lblQuery" Text="{Binding Query}"  TextWrapping="Wrap"/>
+                <TextBlock Name="lblDetalhe" Text="{Binding StackTrace}" TextWrapping="Wrap"/>
             </StackPanel>
+            <Button Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="btnClick" />
         </Grid>
     </Grid>
 </Window>
