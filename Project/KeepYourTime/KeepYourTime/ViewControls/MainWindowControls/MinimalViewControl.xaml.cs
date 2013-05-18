@@ -23,11 +23,28 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     public partial class MinimalViewControl : UserControl
     {
+        public static int taskID = 0;
+
         public MinimalViewControl()
         {
             InitializeComponent();
             btnFechar.Click += btnFechar_Click;
             btnAdd.Click += btnAdd_Click;
+            btnTaskDetails.Click += btnTaskDetails_Click;
+
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnTaskDetails control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <remarks>CREATED BY João Girão</remarks>
+        void btnTaskDetails_Click(object sender, RoutedEventArgs e)
+        {
+            taskID = 1; //The task id that's running or that's selected in the textbox
+            var detailswindows = new TaskDetailsWindow();
+            detailswindows.Show();
         }
 
         void btnAdd_Click(object sender, RoutedEventArgs e)

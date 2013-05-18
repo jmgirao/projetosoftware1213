@@ -26,10 +26,8 @@ namespace KeepYourTime.ViewWindows
     {
         public TaskDetailsWindow()
         {
-            InitializeComponent();
-
+            InitializeComponent(); 
         }
-
 
     }
 }

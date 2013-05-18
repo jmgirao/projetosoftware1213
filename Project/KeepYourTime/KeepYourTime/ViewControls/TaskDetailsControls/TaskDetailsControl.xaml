@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800" Loaded="TaskDetailsControl_Loaded" >
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -48,14 +48,14 @@
             <DataGrid Name="dgTaskTimes" Margin="20,20,20,0" Height="200" ColumnHeaderHeight="35" Width="450" >
                 <DataGrid.Columns>
                     <DataGridTextColumn CanUserResize="False" Header="" FontSize="14"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartDateTask}" FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding EndDateTask}" FontSize="16" Width="150"/>
-                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" Binding="{Binding TimeSentTask}" FontSize="16" Width="150"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.StartDate}" Binding="{Binding StartDate}" FontSize="16" Width="150"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.EndDate}" Binding="{Binding EndDate}"  FontSize="16" Width="150"/>
+                    <DataGridTextColumn CanUserSort="True" Header="{x:Static p:Language.TimeSpent}" FontSize="16" Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
-        <Button Name="btCloseTaskDetails" Grid.Column="1" Grid.Row="3" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.Close}" Click="btCloseTaskDetails_Click" />
+        <Button Name="btCloseTaskDetails" Grid.Column="1" Grid.Row="3" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.Close}" />
 
     </Grid>
 </UserControl>
