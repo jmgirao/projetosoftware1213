@@ -68,8 +68,8 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 taskToEdit.TaskName = "teste";
                 taskToEdit.Description = "descrição";
                 taskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
-                taskToEdit.Times.Add(new TaskTimeAdapter(){TimeId=1, TaskId=1, Start= DateTime.Today, End= DateTime.Now});
-                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, Start = DateTime.Today, End = DateTime.Now });
+                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 1, TaskId = 1, StartTime = DateTime.Today, StopTime = DateTime.Now });
+                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, StartTime = DateTime.Today, StopTime = DateTime.Now });
                 
                 
 
