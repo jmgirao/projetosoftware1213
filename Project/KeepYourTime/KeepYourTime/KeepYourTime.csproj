@@ -75,6 +75,7 @@
     <Compile Include="ViewControls\MainWindowControls\ShowTaskList.xaml.cs">
       <DependentUpon>ShowTaskList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewControls\MainWindowControls\TaskAdapterUI.cs" />
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
     </Compile>
