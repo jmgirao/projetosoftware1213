@@ -25,13 +25,20 @@ namespace KeepYourTime.ViewWindows
             this.Loaded += MessageWindow_Loaded;
             this.Left = System.Windows.SystemParameters.PrimaryScreenWidth - this.Width;
             this.Top = 50;
+            btnClick.Click += btnClick_Click;
+        }
+
+        void btnClick_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         void MessageWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
             this.DataContext = mhResult;
-            HideMessage();
+            if (mhResult.Status != Utils.MethodStatus.Exception)
+                HideMessage(5000);
         }
 
         MethodHandler mhResult = null;
@@ -46,9 +53,9 @@ namespace KeepYourTime.ViewWindows
         }
 
 
-        async void HideMessage()
+        async void HideMessage(int Time)
         {
-            await Task.Delay(3000);
+            await Task.Delay(Time);
             this.Close();
         }
     }

@@ -23,6 +23,8 @@ namespace KeepYourTime.ViewWindows
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool blnColappsed = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,15 +37,18 @@ namespace KeepYourTime.ViewWindows
             
         }
 
+        Storyboard sbShowTaskList;
+        Storyboard sbHideTaskList;
+
         void btnExpandir_Click(object sender, RoutedEventArgs e)
         {
-            if (grdDetalhes.Visibility == Visibility.Visible)
+            if (blnColappsed)
             {
-                collapse();
+                expand();
             }
             else
             {
-                expand();
+                collapse();
             }
         }
 
@@ -54,6 +59,10 @@ namespace KeepYourTime.ViewWindows
                 var cdb = new DataBase.CreateDB();
                 cdb.CreateDatabase();
             }
+            sbShowTaskList = this.FindResource("sbShowTaskList") as Storyboard;
+            sbHideTaskList = this.FindResource("sbHideTaskList") as Storyboard;
+
+            sbHideTaskList.Completed += sbHideTaskList_Completed;
         }
 
         void mvMinimalView_OnTaskCreated(DataBase.Adapters.TaskAdapter Task)
@@ -70,22 +79,22 @@ namespace KeepYourTime.ViewWindows
         void expand()
         {
             this.ResizeMode = System.Windows.ResizeMode.CanResizeWithGrip;
-            Storyboard sb = this.FindResource("sbShowTaskList") as Storyboard;
-            sb.Begin();
+            blnColappsed = false;
+            sbHideTaskList.Stop();
+            sbShowTaskList.Begin();
             grdDetalhes.Visibility = System.Windows.Visibility.Visible;
         }
 
         void collapse()
         {
-
-            Storyboard sb = this.FindResource("sbHideTaskList") as Storyboard;
-            sb.Begin();
-            sb.Completed += sb_Completed;
+            blnColappsed = true;
+            sbShowTaskList.Stop();
+            sbHideTaskList.Begin();
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
           
         }
 
-        void sb_Completed(object sender, EventArgs e)
+        void sbHideTaskList_Completed(object sender, EventArgs e)
         {
             grdDetalhes.Visibility = System.Windows.Visibility.Collapsed;
         }
