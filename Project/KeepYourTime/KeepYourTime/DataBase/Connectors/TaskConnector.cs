@@ -52,7 +52,7 @@ namespace KeepYourTime.DataBase.Connectors
 
 
                 //TODO: Read Times
-                strQuery = "SELECT TimeId, Start, End FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
+                strQuery = "SELECT TimeId, StartTime, StopTime FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
                 DataTable dtTaskTime = null;
 
                 mhResult = DBUtils.SelectTable(strQuery, out dtTaskTime);
@@ -64,8 +64,8 @@ namespace KeepYourTime.DataBase.Connectors
                     {
                         TaskId = TaskID,
                         TimeId = (long)dr["TimeId"],
-                        Start = (DateTime)dr["Start"],
-                        End = (DateTime)dr["End"]
+                        StartTime = (DateTime)dr["StartTime"],
+                        StopTime = (DateTime)dr["StopTime"]
                     });
                 }
 
@@ -321,10 +321,10 @@ namespace KeepYourTime.DataBase.Connectors
                 strSQL = "INSERT INTO TaskTime (TaskId, StartTime, StopTime)  " +
                     "VALUES (" + Time.TaskId.ToString() + ", @StartTime, @StopTime)";
                 SqlCeParameter[] ParamArray = new SqlCeParameter[2];
-                ParamArray[0] = new SqlCeParameter("StartTime", Time.Start);
+                ParamArray[0] = new SqlCeParameter("StartTime", Time.StartTime);
                 ParamArray[0].DbType = DbType.DateTime;
 
-                ParamArray[1] = new SqlCeParameter("StopTime", Time.End);
+                ParamArray[1] = new SqlCeParameter("StopTime", Time.StopTime);
                 ParamArray[1].DbType = DbType.DateTime;
 
                 mhResult = DBUtils.ExecuteOperation(strSQL, ParamArray);
