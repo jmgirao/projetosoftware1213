@@ -15,6 +15,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public TaskAdapterUI(TaskAdapter taskBase)
         { 
+
         }
     }
 }
