@@ -31,6 +31,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
         ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShowTaskList"/> class.
+        /// </summary>
         public ShowTaskList()
         {
 
@@ -38,16 +41,29 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.Loaded += ShowTaskList_Loaded;
         }
 
+        /// <summary>
+        /// Handles the Loaded event of the ShowTaskList control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void ShowTaskList_Loaded(object sender, RoutedEventArgs e)
         {
             InitializeControl();
         }
 
+        /// <summary>
+        /// Createds the task.
+        /// </summary>
+        /// <param name="Task">The task.</param>
         public void CreatedTask(TaskAdapter Task)
         {
             taskAdaptUi.Add(new TaskAdapterUI(Task));
         }
 
+        /// <summary>
+        /// Receives the task list.
+        /// </summary>
+        /// <param name="taskAdapt">The task adapt.</param>
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
         {
             taskAdaptUi = new ObservableCollection<TaskAdapterUI>();
@@ -60,6 +76,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             dgTaskList.ItemsSource = taskAdaptUi;
         }
 
+        /// <summary>
+        /// Handles the OnTaskDeactivated event of the ta control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         void ta_OnTaskDeactivated(object sender, EventArgs e)
         {
             if (chkShowInactiveTask.IsChecked.Value == false)
@@ -68,6 +89,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
+        /// <summary>
+        /// Initializes the control.
+        /// </summary>
         private void InitializeControl()
         {
             var mhResult = new MethodHandler();

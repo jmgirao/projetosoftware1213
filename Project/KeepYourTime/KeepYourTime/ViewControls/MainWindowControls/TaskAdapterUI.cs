@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
+    /// <summary>
+    /// Class TaskAdapterUI
+    /// </summary>
     class TaskAdapterUI : TaskAdapter
     {
         public string TotalTime { get { return "XXX:XX"; } }
@@ -19,21 +22,20 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             get
             {
-                return this.Active;
+                return (!this.Active);
             }
             set
             {
                 var mhResult = new MethodHandler();
                 try
                 {
-                    mhResult = TaskConnector.ActivateTask(this.TaskId, value);
+                    mhResult = TaskConnector.ActivateTask(this.TaskId, !value);
                     if (mhResult.Exits) return;
-                    this.Active = value;
+                    this.Active = !value;
 
                     if (this.Active == false)
                         if (OnTaskDeactivated != null)
                             OnTaskDeactivated((object)this, new EventArgs());
-                    
                 }
                 catch (Exception ex)
                 {
@@ -46,12 +48,19 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskAdapterUI"/> class.
+        /// </summary>
         public TaskAdapterUI()
         {
 
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskAdapterUI"/> class.
+        /// </summary>
+        /// <param name="taskBase">The task base.</param>
         public TaskAdapterUI(TaskAdapter taskBase)
         {
             this.TaskId = taskBase.TaskId;
@@ -60,6 +69,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.Description = taskBase.Description;
         }
 
+        /// <summary>
+        /// Occurs when [on task deactivated].
+        /// </summary>
         public event EventHandler OnTaskDeactivated;
     }
 }
