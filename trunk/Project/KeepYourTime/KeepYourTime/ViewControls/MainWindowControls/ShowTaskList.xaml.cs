@@ -30,6 +30,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     public partial class ShowTaskList : UserControl
     {
         ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
+        ObservableCollection<TaskAdapterUI> taskAdaptUiInactiveTask = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShowTaskList"/> class.
@@ -57,6 +58,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="Task">The task.</param>
         public void CreatedTask(TaskAdapter Task)
         {
+            //TODO: Ordenar lista quando se cria uma tarefa!
             taskAdaptUi.Add(new TaskAdapterUI(Task));
         }
 
@@ -67,12 +69,41 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
         {
             taskAdaptUi = new ObservableCollection<TaskAdapterUI>();
+            taskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
+
             foreach (TaskAdapter t in taskAdapt)
             {
                 var ta = new TaskAdapterUI(t);
                 taskAdaptUi.Add(ta);
                 ta.OnTaskDeactivated += ta_OnTaskDeactivated;
             }
+
+
+            //The system groups the active tasks and inactive tasks in different groups.
+            foreach (TaskAdapter t in taskAdaptUi) {
+                var ta = new TaskAdapterUI(t);
+                    taskAdaptUiInactiveTask.Add(ta);
+            }
+
+            taskAdaptUi.Clear();
+            foreach (TaskAdapter t in taskAdaptUiInactiveTask)
+            {
+                var ta = new TaskAdapterUI(t);
+                if (ta.Active) {
+                    taskAdaptUi.Add(ta);
+                    ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+                }
+            }
+           foreach (TaskAdapter t in taskAdaptUiInactiveTask)
+            {
+                var ta = new TaskAdapterUI(t);
+                if (!ta.Active)
+                {
+                    taskAdaptUi.Add(ta);
+                    ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+                }
+            }
+           //end
             dgTaskList.ItemsSource = taskAdaptUi;
         }
 
@@ -117,6 +148,14 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btDetails control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        /// CREATED BY Joao Girao
+        /// </remarks>
         private void btDetails_Click(object sender, RoutedEventArgs e)
         {
             var mhResult = new MethodHandler();
