@@ -23,8 +23,8 @@
         <TextBlock x:Name="lblInactiveMinutes" HorizontalAlignment="Left" Margin="176,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="X" Grid.Row="1" Grid.Column="1" Height="16" Width="7"/>
         <TextBlock HorizontalAlignment="Left" Margin="183,4,0,0" TextWrapping="Wrap" Text="{x:Static p:Language.InactiveMinutesPart2}" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="16" Width="46"/>
         <TextBlock HorizontalAlignment="Left" Margin="45,26,0,0" TextWrapping="Wrap" Text="{x:Static p:Language.InactiveQuestion}" VerticalAlignment="Top" Height="16" Width="185" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="btnAddTime" Content="{x:Static p:Language.InactiveBtnSaveTime}" HorizontalAlignment="Left" Margin="6,13,0,0" VerticalAlignment="Top" Width="134" Grid.Row="3" Height="22" Grid.Column="1"/>
-        <Button x:Name="btnDiscardTime" Content="{x:Static p:Language.InactiveBtnDiscardTime}" HorizontalAlignment="Left" Height="22" Margin="165,13,0,0" VerticalAlignment="Top" Width="96" Grid.Row="3" Grid.Column="1"/>
+        <Button x:Name="btnAddTime" Content="{x:Static p:Language.InactiveBtnSaveTime}" HorizontalAlignment="Left" Margin="6,13,0,0" VerticalAlignment="Top" Width="134" Grid.Row="3" Height="22" Grid.Column="1" Click="btnAddTime_Click"/>
+        <Button x:Name="btnDiscardTime" Content="{x:Static p:Language.InactiveBtnDiscardTime}" HorizontalAlignment="Left" Height="22" Margin="165,13,0,0" VerticalAlignment="Top" Width="96" Grid.Row="3" Grid.Column="1" Click="btnDiscardTime_Click"/>
 
     </Grid>
 </UserControl>
