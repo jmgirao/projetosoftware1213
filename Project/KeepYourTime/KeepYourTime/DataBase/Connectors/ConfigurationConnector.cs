@@ -10,6 +10,15 @@ namespace KeepYourTime.DataBase.Connectors
 {
     public class ConfigurationConnector
     {
+        public static const string COLUMN_INACTIVITY_ACTIVE = "Inactivity";
+        public static const string COLUMN_INACTIVITY_TIME = "InactivityTime";
+
+        public static const string COLUMN_SHORTCUT_SHIFT = "Shift";
+        public static const string COLUMN_SHORTCUT_ALT = "Alt";
+        public static const string COLUMN_SHORTCUT_CTRL = "Ctrl";
+        public static const string COLUMN_SHORTCUT_KEY = "ShortcutKey";
+        public static const string COLUMN_SHORTCUT_ID = "ShortcutId";
+        public static const string COLUMN_SHORTCUT_TASK_ID = "TaskId";
 
         /// <summary>
         /// Reads the configuration.
