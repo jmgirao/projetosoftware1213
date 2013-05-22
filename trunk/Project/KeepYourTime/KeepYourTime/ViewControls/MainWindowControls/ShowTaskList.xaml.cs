@@ -116,5 +116,24 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
+
+        private void btDetails_Click(object sender, RoutedEventArgs e)
+        {
+            var mhResult = new MethodHandler();
+
+            try
+            {
+                object objTaskId = ((FrameworkElement)sender).DataContext;
+                MinimalViewControl.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+                var detailswindows = new TaskDetailsWindow();
+                detailswindows.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+
+        }
     }
 }
