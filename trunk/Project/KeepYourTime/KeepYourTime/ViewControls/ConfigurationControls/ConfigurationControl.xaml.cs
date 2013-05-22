@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KeepYourTime.ViewWindows
+namespace KeepYourTime.ViewControls.ConfigurationControls
 {
     /// <summary>
-    /// Interaction logic for InactivityWindow.xaml
+    /// Interaction logic for ConfigurationControl.xaml
     /// </summary>
-    public partial class InactivityWindow : UserControl
+    public partial class ConfigurationControl : UserControl
     {
-        public InactivityWindow()
+        public ConfigurationControl()
         {
             InitializeComponent();
-        }
-
-        private void btnDiscardTime_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAddTime_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -69,6 +69,9 @@
     </Compile>
     <Compile Include="Utils\MethodHandler.cs" />
     <Compile Include="Utils\MethodStatus.cs" />
+    <Compile Include="ViewControls\ConfigurationControls\ConfigurationControl.xaml.cs">
+      <DependentUpon>ConfigurationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
       <DependentUpon>MinimalViewControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
     <Compile Include="ViewWindows\TaskDetailsWindow.xaml.cs">
       <DependentUpon>TaskDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ViewControls\ConfigurationControls\ConfigurationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewControls\MainWindowControls\MinimalViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,7 +194,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewControls\ConfigurationControls\" />
     <Folder Include="ViewControls\InactivityControls\" />
   </ItemGroup>
   <ItemGroup>
