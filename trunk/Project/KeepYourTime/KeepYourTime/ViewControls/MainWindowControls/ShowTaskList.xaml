@@ -43,7 +43,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridCheckBoxColumn IsReadOnly="False" Header="Active" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
+                <DataGridCheckBoxColumn IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
                 
             </DataGrid.Columns>
         </DataGrid>
