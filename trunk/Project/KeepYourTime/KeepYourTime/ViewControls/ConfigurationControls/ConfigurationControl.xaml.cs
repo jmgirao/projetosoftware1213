@@ -23,6 +23,12 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
         public ConfigurationControl()
         {
             InitializeComponent();
+            btCancel.Click += btCancel_Click;
+        }
+
+        void btCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }
