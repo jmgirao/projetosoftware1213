@@ -73,5 +73,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// Occurs when [on task deactivated].
         /// </summary>
         public event EventHandler OnTaskDeactivated;
+        public event EventHandler OnTaskDetails;
     }
 }

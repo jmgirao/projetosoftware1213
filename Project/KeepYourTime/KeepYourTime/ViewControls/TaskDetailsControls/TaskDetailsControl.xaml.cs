@@ -54,16 +54,15 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// <summary>
         /// Initializes the control.
         /// </summary>
-        /// <remarks>CREATED BY João Girão</remarks>
         private void InitializeControl()
         {
             var mhResult = new MethodHandler();
-            int intIdTask = MinimalViewControl.intTaskID;                 //To receive idTask another window (defined in the MinimalViewControl) 
+            long lngIdTask = MinimalViewControl.TaskID;                 //To receive idTask another window (defined in the MinimalViewControl) 
             TaskAdapter taTaskAdapt = new TaskAdapter();
 
             try
             {
-                mhResult = TaskConnector.ReadTask(intIdTask, out taTaskAdapt);
+                mhResult = TaskConnector.ReadTask(lngIdTask, out taTaskAdapt);
                 if (mhResult.Exits)
                 {
                     MessageWindow.ShowMethodHandler(mhResult, true);
@@ -115,7 +114,6 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        /// <remarks>CREATED BY João Girão</remarks>
         private void btCloseTaskDetails_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();

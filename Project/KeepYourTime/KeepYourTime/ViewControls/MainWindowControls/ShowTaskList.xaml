@@ -31,7 +31,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Detalhes" />
+                            <Button Content="Detalhes" Click="btDetails_Click" CommandParameter="{Binding TaskID}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
