@@ -29,10 +29,17 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public MinimalViewControl()
         {
             InitializeComponent();
+            btnConfig.Click += btnConfig_Click;
             btnFechar.Click += btnFechar_Click;
             btnAdd.Click += btnAdd_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
 
+        }
+
+        void btnConfig_Click(object sender, RoutedEventArgs e)
+        {
+            var configWindow = new ConfigurationWindow();
+            configWindow.ShowDialog();
         }
 
         /// <summary>

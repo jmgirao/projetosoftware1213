@@ -42,5 +42,11 @@
             <TextBlock Name="lbTask" Text="{x:Static p:Language.Task}" FontSize="12" FontWeight="Bold"/>
         </StackPanel>
         
+        <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Center">
+            <Button Name="btApply" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Apply}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
+            <Button Name="btCancel" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Cancel}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
