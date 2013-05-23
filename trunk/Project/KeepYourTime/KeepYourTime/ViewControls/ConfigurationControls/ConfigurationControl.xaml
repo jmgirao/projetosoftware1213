@@ -23,7 +23,7 @@
             <TextBlock Name="lbInactiveAlert" Text="{x:Static p:Language.InactivityAlert}" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-            <Button Name="btExportData" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Export}"/>
+            <Button Name="btExportData" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Export}" Click="btExportData_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top">
             <CheckBox Name="chkInactivityAlert" Margin="20" Content="{x:Static p:Language.Active}" FontSize="12" FontWeight="Bold"/>
