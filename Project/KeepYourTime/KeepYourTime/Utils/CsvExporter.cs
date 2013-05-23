@@ -10,21 +10,21 @@ namespace KeepYourTime.Utils
 
     class CsvExporter
     {
-        private static const string FILENAME = "export.csv";
-        private static const string TABLE_SEPARATOR = "$$\n";
+        private static string FILENAME = "export.csv";
+        private static string TABLE_SEPARATOR = "$$\n";
 
         public static MethodHandler ExportDatabaseToCSV(string Path)
         {
             var mhResult = new MethodHandler();
-            string tasksCsv= "";
-            string configCsv= "";
+            string tasksCsv = "";
+            string configCsv = "";
 
-            getTasksAsCsv(out tasksCsv);            
+            getTasksAsCsv(out tasksCsv);
             getConfigAsCsv(out configCsv);
 
             string csv = tasksCsv + TABLE_SEPARATOR + configCsv;
 
-            writeToFile(Path,csv);
+            writeToFile(Path, csv);
 
             return mhResult;
         }
@@ -35,17 +35,17 @@ namespace KeepYourTime.Utils
             var mhResult = new MethodHandler();
 
             ObservableCollection<TaskAdapter> taskList = new ObservableCollection<TaskAdapter>();
-            TaskConnector.ReadTaskList(out taskList,true);
+            TaskConnector.ReadTaskList(out taskList, true);
 
             //first row is the column names
-            Data =  TaskConnector.COLUMN_ID + "," + TaskConnector.COLUMN_NAME + "," + TaskConnector.COLUMN_DESCRIPTION + "," + TaskConnector.COLUMN_ACTIVE + "\n";
-            
-            foreach(TaskAdapter task in taskList) 
+            Data = TaskConnector.COLUMN_ID + "," + TaskConnector.COLUMN_NAME + "," + TaskConnector.COLUMN_DESCRIPTION + "," + TaskConnector.COLUMN_ACTIVE + "\n";
+
+            foreach (TaskAdapter task in taskList)
             {
-                Data += "\"" + task.TaskId + "\"," + task.TaskName + "\"," + task.Description + "\"," + task.Active + "\"\n";
+                Data += "\"" + task.TaskId + "\",\"" + task.TaskName + "\",\"" + task.Description + "\",\"" + task.Active + "\"\n";
             }
 
-            
+
             return mhResult;
         }
 
@@ -55,39 +55,40 @@ namespace KeepYourTime.Utils
 
             ConfigurationAdapter config;
             ConfigurationConnector.ReadConfiguration(out config);
-        
+
             List<ShortcutAdapter> shortcutList = config.Shortcuts;
-            
+
             //header with the colum names
-            Data =  ConfigurationConnector.COLUMN_INACTIVITY_ACTIVE + "," + ConfigurationConnector.COLUMN_INACTIVITY_TIME + "\n";
-            
-            Data += config.Inactivity +","+config.InactivityTime+"\n";
-            Data += "\n";
-   
+            Data = ConfigurationConnector.COLUMN_INACTIVITY_ACTIVE + "," + ConfigurationConnector.COLUMN_INACTIVITY_TIME + "\n";
+
+            Data += "\"" + config.Inactivity + "\",\"" + config.InactivityTime + "\"\n";
+            Data += TABLE_SEPARATOR;
+
             //header with the colum names
-            Data += ConfigurationConnector.COLUMN_SHORTCUT_ID + "," + ConfigurationConnector.COLUMN_SHORTCUT_TASK_ID + "," + ConfigurationConnector.COLUMN_SHORTCUT_CTRL + "," + ConfigurationConnector.COLUMN_SHORTCUT_ALT + "," + ConfigurationConnector.COLUMN_SHORTCUT_SHIFT + "," + ConfigurationConnector.COLUMN_SHORTCUT_KEY + "," + "\n";
-            
-            foreach(ShortcutAdapter shortcut in shortcutList) 
+            Data += ConfigurationConnector.COLUMN_SHORTCUT_ID + "," + ConfigurationConnector.COLUMN_SHORTCUT_TASK_ID + "," + ConfigurationConnector.COLUMN_SHORTCUT_CTRL + "," + ConfigurationConnector.COLUMN_SHORTCUT_ALT + "," + ConfigurationConnector.COLUMN_SHORTCUT_SHIFT + "," + ConfigurationConnector.COLUMN_SHORTCUT_KEY + "\n";
+
+            foreach (ShortcutAdapter shortcut in shortcutList)
             {
-                Data += "\"" + shortcut.ShortcutId + "\"," + shortcut.TaskId + "\"," + shortcut.Ctrl+ "\"," + shortcut.Alt + "\"," +  shortcut.Shift + "\"," + shortcut.ShortcutKey + "\"\n";
+                Data += "\"" + shortcut.ShortcutId + "\",\"" + shortcut.TaskId + "\",\"" + shortcut.Ctrl + "\",\"" + shortcut.Alt + "\",\"" + shortcut.Shift + "\",\"" + shortcut.ShortcutKey + "\"\n";
             }
-            
+
             return mhResult;
         }
 
 
-        private static MethodHandler writeToFile(string Path,string ToWrite) {
+        private static MethodHandler writeToFile(string Path, string ToWrite)
+        {
             var mhResult = new MethodHandler();
 
             // Write the string to a file.
-            System.IO.StreamWriter file = new System.IO.StreamWriter(Path + "/NOME.CSV");
+            System.IO.StreamWriter file = new System.IO.StreamWriter(Path);
             file.WriteLine(ToWrite);
 
             file.Close();
 
             return mhResult;
         }
+    }
 
 
-    
 }
