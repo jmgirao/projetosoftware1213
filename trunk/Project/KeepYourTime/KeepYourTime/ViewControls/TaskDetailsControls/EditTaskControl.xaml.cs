@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
+using KeepYourTime.ViewControls.MainWindowControls;
+
 
 namespace KeepYourTime.ViewControls.TaskDetailsControls
 {
@@ -27,27 +18,52 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     public partial class EditTask : UserControl
     {
         ObservableCollection<TaskTimeAdapterUI> taskTimesAdapterUI = null;
-        long EditTaskId = -1; //Default value indicating not initialized
+        long EditTaskId = -1; //Value indicating not initialized with a task id
+        EditTaskContex PreviousWindow;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public EditTask()
         {
             InitializeComponent();
 
             this.Loaded += EditTaskControl_Loaded;
             btnCancel.Click += btnCancel_Click;
-            btnSave.Click += btnSave_Click; 
+            btnSave.Click += btnSave_Click;
+            btnAddTime.Click += btnAddTime_Click;
         }
 
-
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditTaskControl_Loaded(object sender, RoutedEventArgs e)
         {
             InitializeControl();
         }
 
 
+        /// <summary>
+        /// initializes the necessari data for the form
+        /// </summary>
         private void InitializeControl()
         {
-            LoadTask(1);
+            //TODO - get taskID
+            if (MinimalViewControl.TaskID != null)
+            {
+                EditTaskId = MinimalViewControl.TaskID;
+                PreviousWindow = EditTaskContex.MainWindow;
+            }
+            else
+            {
+                //TODO get context from details
+                PreviousWindow = EditTaskContex.DetailWindow;
+            }
+
+            LoadTask(EditTaskId);
         }
 
        /// <summary>
@@ -57,26 +73,16 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// <remarks>
         /// CREATED BY Carla Machado
         /// </remarks> 
-        private void LoadTask(int TaskID)
+        public bool LoadTask(long TaskID)
         {            
             var mhResult = new MethodHandler();          
             TaskAdapter taskToEdit = new TaskAdapter();
-
-            TaskID = 2;
+           
             try
             {
                 mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
                 
-                if (mhResult.Exits)
-                {
-                    MessageBox.Show(mhResult.Message);
-                    return;
-                }
-
-
-                //Test data
-                //taskToEdit.TaskName = "teste";
-                //taskToEdit.Description = "descrição";
+               //data for test
                 taskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
                 taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 1, TaskId = 1, StartTime = DateTime.Today, StopTime = DateTime.Now });
                 taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, StartTime = new DateTime(2013, 4, 12, 12, 00, 00), StopTime = new DateTime(2013, 4, 12, 12, 30, 00) });
@@ -91,16 +97,38 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 foreach (TaskTimeAdapter tta in taskToEdit.Times)
                     taskTimesAdapterUI.Add(new TaskTimeAdapterUI(tta));
 
-                dgTaskTimes.ItemsSource = taskTimesAdapterUI;                               
+                dgTaskTimes.ItemsSource = taskTimesAdapterUI;
+
+                return true;
 
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
                 MessageBox.Show(mhResult.Message);
+                return false;
             }
             
         }
+
+        /// <summary>
+        /// Function to add a new time line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void btnAddTime_Click(object sender, RoutedEventArgs e)
+        {
+            var ttaTimeToAdd = new TaskTimeAdapterUI();
+
+            ttaTimeToAdd.StartTime = DateTime.Now;
+            ttaTimeToAdd.StopTime = DateTime.Now;           
+
+            taskTimesAdapterUI.Add(ttaTimeToAdd);
+
+            dgTaskTimes.ItemsSource = taskTimesAdapterUI;                      
+        
+        }
+
 
         /// <summary>
         /// Cancels the edition
@@ -112,7 +140,12 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// </remarks> 
         void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (PreviousWindow == EditTaskContex.MainWindow)
+                Window.GetWindow(this).Close();
+            else
+            {
+                //TODO get context e go back
+            }
         }
 
         /// <summary>
@@ -128,10 +161,9 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             if (EditTaskId == -1)
             {
                 //TODO - tratar excepção
-                MessageBox.Show("Sem Tarefa - alterar msg");
+                MessageBox.Show(Languages.Language.InexistentTask);
                 return;
             }
-
 
             var mhResult = new MethodHandler();  
 
@@ -142,12 +174,15 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 TaskToEdit.TaskId = EditTaskId;
                 TaskToEdit.TaskName = TxtTaskName.Text;
                 TaskToEdit.Description = TxtDescription.Text;
-                TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
-                
+                TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();               
+
                 foreach (var time in taskTimesAdapterUI)
-                    TaskToEdit.Times.Add(time);                
+                    TaskToEdit.Times.Add(time);
 
                 mhResult = TaskConnector.EditTask(TaskToEdit);
+
+                btnCancel_Click(sender, e);
+                
             }
             catch (Exception ex)
             {
@@ -156,6 +191,11 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             }
         }
 
+
+        void OnTimeDeleted(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke((Action)(() => taskTimesAdapterUI.Remove((TaskTimeAdapterUI)sender)));
+        }
 
     }
 }
