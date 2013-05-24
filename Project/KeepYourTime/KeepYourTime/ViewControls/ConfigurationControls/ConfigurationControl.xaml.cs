@@ -29,27 +29,43 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             InitializeComponent();
             btCancel.Click += btCancel_Click;
             btApply.Click += btApply_Click;
+            this.Loaded += ConfigurationControl_Loaded;
+
+        }
+
+        void ConfigurationControl_Loaded(object sender, RoutedEventArgs e)
+        {
             var mhResult = new MethodHandler();
             try
             {
                 ObservableCollection<TaskAdapter> taskList;
-
+                var lstCombo = new ObservableCollection<ConfigTaskComboShortcut>();
                 mhResult = TaskConnector.ReadTaskList(out taskList, false);
+                //cbShort1.Items.Add("");
+                //cbShort2.Items.Add("");
+                //cbShort3.Items.Add("");
+                //cbShort4.Items.Add("");
+                //cbShort5.Items.Add("");
 
-                cbShort1.Items.Add("");
-                cbShort2.Items.Add("");
-                cbShort3.Items.Add("");
-                cbShort4.Items.Add("");
-                cbShort5.Items.Add("");
-
-                for (int i = 0; i < taskList.Count; i++)
+                foreach (TaskAdapter t in taskList)
                 {
-                    cbShort1.Items.Add(taskList[i].TaskName);
-                    cbShort2.Items.Add(taskList[i].TaskName);
-                    cbShort3.Items.Add(taskList[i].TaskName);
-                    cbShort4.Items.Add(taskList[i].TaskName);
-                    cbShort5.Items.Add(taskList[i].TaskName);
+                    lstCombo.Add(new ConfigTaskComboShortcut { TaskID = t.TaskId, TaskName = t.TaskName });
+
+                    //cbShort1.Items.Add(taskList[i].TaskName);
+                    //cbShort2.Items.Add(taskList[i].TaskName);
+                    //cbShort3.Items.Add(taskList[i].TaskName);
+                    //cbShort4.Items.Add(taskList[i].TaskName);
+                    //cbShort5.Items.Add(taskList[i].TaskName);
                 }
+
+                cbShort1.ItemsSource = lstCombo;
+                cbShort2.ItemsSource = lstCombo;
+                cbShort3.ItemsSource = lstCombo;
+                cbShort4.ItemsSource = lstCombo;
+                cbShort5.ItemsSource = lstCombo;
+
+                //if (cbShort1.SelectedItem != null)
+                //    ((ConfigTaskComboShortcut)cbShort1.SelectedItem).TaskID = 0;
 
                 ConfigurationAdapter configuration;
                 mhResult = ConfigurationConnector.ReadConfiguration(out configuration);
@@ -81,9 +97,13 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 txtShortcutKey4.Text = listShortcuts[3].ShortcutKey.ToString();
                 txtShortcutKey5.Text = listShortcuts[4].ShortcutKey.ToString();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                mhResult.Exception(e);
+                mhResult.Exception(ex);
+            }
+            finally
+            { 
+                //TODO Mostrar a mensagem
             }
         }
 
@@ -102,7 +122,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             if (result == true)
             {
                 CsvExporter.ExportDatabaseToCSV(dialog.FileName);
-            
+
             }
         }
 
