@@ -250,11 +250,29 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That task already exists.
+        /// </summary>
+        public static string TaskExists {
+            get {
+                return ResourceManager.GetString("TaskExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task Name.
         /// </summary>
         public static string TaskName {
             get {
                 return ResourceManager.GetString("TaskName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task {0} not found.
+        /// </summary>
+        public static string TaskNotFound {
+            get {
+                return ResourceManager.GetString("TaskNotFound", resourceCulture);
             }
         }
         
@@ -300,6 +318,15 @@ namespace KeepYourTime.Languages {
         public static string TotalTime {
             get {
                 return ResourceManager.GetString("TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an unspecified error creating the task.
+        /// </summary>
+        public static string UnpsecifiedErrorCreateTask {
+            get {
+                return ResourceManager.GetString("UnpsecifiedErrorCreateTask", resourceCulture);
             }
         }
     }

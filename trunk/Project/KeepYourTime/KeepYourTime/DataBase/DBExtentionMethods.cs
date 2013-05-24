@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace KeepYourTime.DataBase
 {
     /// <summary>
@@ -19,8 +14,7 @@ namespace KeepYourTime.DataBase
         /// <returns>if <c>true</c> returns "1" else returns "0"</returns>
         public static string ToDB(this bool BooleanValue)
         {
-            if (BooleanValue) return "1";
-            else return "0";
+            return BooleanValue ? "1" : "0";
         }
     }
 

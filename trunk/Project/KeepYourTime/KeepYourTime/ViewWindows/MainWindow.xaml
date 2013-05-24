@@ -81,11 +81,11 @@
                 <!-- Apoio ao movimento -->
                 <Rectangle Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"
                            Fill="Transparent" Name="recSize" Cursor="SizeWE" />
-                <Rectangle Width="50" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                <Rectangle Width="24" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
                            Fill="Transparent" Name="recMove" Cursor="SizeAll"/>
 
 
-                <MainWindowControls:MinimalViewControl Margin="50,5,5,5" x:Name="mvMinimalView"/>
+                <MainWindowControls:MinimalViewControl Margin="24,5,5,5" x:Name="mvMinimalView"/>
             </Grid>
         </Grid>
     </Grid>

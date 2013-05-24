@@ -26,7 +26,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
         /// <param name="Task">The task.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ReadTask(long TaskID, out TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
@@ -34,14 +34,15 @@ namespace KeepYourTime.DataBase.Connectors
             try
             {
                 DataTable dtTask = null;
-                string strQuery = "SELECT TaskId, TaskName, Description, Active FROM Task WHERE TaskId = " + TaskID.ToString() + " ";
+                string strQuery = "";
+                strQuery = "SELECT TaskId, TaskName, Description, Active FROM Task WHERE TaskId = " + TaskID.ToString() + " ";
                 mhResult = DBUtils.SelectTable(strQuery, out dtTask);
                 if (mhResult.Exits) return mhResult;
 
                 if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = String.Format("Task {0} not found", TaskID);
+                    mhResult.Message = String.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
 
@@ -54,9 +55,7 @@ namespace KeepYourTime.DataBase.Connectors
                     Times = new ObservableCollection<TaskTimeAdapter>()
                 };
 
-
-                //TODO: Read Times
-                strQuery = "SELECT TimeId, StartTime, StopTime FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
+                strQuery = "SELECT TimeId, StartTime, StopTime FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ORDER BY StartTime";
                 DataTable dtTaskTime = null;
 
                 mhResult = DBUtils.SelectTable(strQuery, out dtTaskTime);
@@ -86,7 +85,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="Name">The name.</param>
         /// <param name="TaskID">The task ID.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler CreateTask(string Name, out long TaskID)
         {
             var mhResult = new MethodHandler();
@@ -96,40 +95,40 @@ namespace KeepYourTime.DataBase.Connectors
 
                 //Verify if task with same name exists
                 string strSQL = "SELECT 1 FROM Task WHERE TaskName = @Name ";
-                object objRetornoQuery = null;
-                SqlCeParameter[] Params = new SqlCeParameter[1];
-                Params[0] = new SqlCeParameter("Name", Name);
-                Params[0].DbType = DbType.String;
-                mhResult = DBUtils.SelectValue(strSQL, Params, out objRetornoQuery);
+                object objReturn = null;
+
+                SqlCeParameter[] scpParams = new SqlCeParameter[1];
+                scpParams[0] = new SqlCeParameter("Name", Name);
+                scpParams[0].DbType = DbType.String;
+
+                mhResult = DBUtils.SelectValue(strSQL, scpParams, out objReturn);
                 if (mhResult.Exits) return mhResult;
                 if (mhResult.AffectedLines == 1)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = "That task already exists";
+                    mhResult.Message = Languages.Language.TaskExists;
                     return mhResult;
                 }
 
                 //Create new task
                 strSQL = "INSERT INTO Task (TaskName, Description, Active ) VALUES (@Name, '', 1)";
-                Params[0] = new SqlCeParameter("Name", Name);
-                Params[0].DbType = DbType.String;
-                mhResult = DBUtils.ExecuteOperation(strSQL, Params);
+                scpParams[0] = new SqlCeParameter("Name", Name);
+                scpParams[0].DbType = DbType.String;
+                mhResult = DBUtils.ExecuteOperation(strSQL, scpParams);
                 if (mhResult.Exits) return mhResult;
                 if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = "There was an unspecified error creating the task";
+                    mhResult.Message = Languages.Language.UnpsecifiedErrorCreateTask;
                     return mhResult;
                 }
 
 
                 //Get Task ID
                 strSQL = "SELECT MAX(TaskID) FROM Task ";
-                mhResult = DBUtils.SelectValue(strSQL, out objRetornoQuery);
+                mhResult = DBUtils.SelectValue(strSQL, out objReturn);
                 if (mhResult.Exits) return mhResult;
-                TaskID = (long)objRetornoQuery;
-
-                //TODO: INSERT Task
+                TaskID = (long)objReturn;
             }
             catch (Exception ex)
             {
@@ -142,7 +141,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// Edits the task.
         /// </summary>
         /// <param name="Task">The task.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler EditTask(TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
@@ -154,22 +153,24 @@ namespace KeepYourTime.DataBase.Connectors
                     "Description = @Description  " +
                     "WHERE TaskID = " + Task.TaskId.ToString() + " ";
 
-                SqlCeParameter[] Parameters = new SqlCeParameter[2];
-                Parameters[0] = new SqlCeParameter("Name", Task.TaskName);
-                Parameters[0].DbType = DbType.String;
+                SqlCeParameter[] scpParams = new SqlCeParameter[2];
+                scpParams[0] = new SqlCeParameter("Name", Task.TaskName);
+                scpParams[0].DbType = DbType.String;
 
-                Parameters[1] = new SqlCeParameter("Description", Task.Description);
-                Parameters[1].DbType = DbType.String;
+                scpParams[1] = new SqlCeParameter("Description", Task.Description);
+                scpParams[1].DbType = DbType.String;
 
-                mhResult = DBUtils.ExecuteOperation(strSQL, Parameters);
+                mhResult = DBUtils.ExecuteOperation(strSQL, scpParams);
                 if (mhResult.Exits) return mhResult;
 
                 if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = string.Format("The task {0} doesn't exist!", Task.TaskId);
+                    mhResult.Message = string.Format(Languages.Language.TaskNotFound, Task.TaskId);
                     return mhResult;
                 }
+
+                //TODO: Alterar Todos os Tempos Nesta Função
 
             }
             catch (Exception ex)
@@ -184,7 +185,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
         /// <param name="Active">if set to <c>true</c> active else inactive.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ActivateTask(long TaskID, bool Active)
         {
             var mhResult = new MethodHandler();
@@ -199,7 +200,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = string.Format("The task {0} doesn't exist!", TaskID);
+                    mhResult.Message = string.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
 
@@ -215,7 +216,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// Deletes the task.
         /// </summary>
         /// <param name="TaskID">The task ID.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler DeleteTask(long TaskID)
         {
             var mhResult = new MethodHandler();
@@ -223,11 +224,15 @@ namespace KeepYourTime.DataBase.Connectors
             SqlCeTransaction traSql = null;
             try
             {
-                //TODO:Delete TASK
+
                 conSql = DBUtils.OpenSqlConnection();
                 traSql = conSql.BeginTransaction();
 
-                string strSQL = "DELETE FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
+                string strSQL = "";
+                strSQL = "UPDATE Shortcuts SET TaskID = null WHERE TaskID = " + TaskID.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL, conSql, traSql);
+
+                strSQL = "DELETE FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
                 mhResult = DBUtils.ExecuteOperation(strSQL, conSql, traSql);
 
                 strSQL = "DELETE FROM Task WHERE TaskID = " + TaskID.ToString() + " ";
@@ -236,7 +241,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = string.Format("The task {0} doesn't exist!", TaskID);
+                    mhResult.Message = string.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
 
@@ -264,18 +269,20 @@ namespace KeepYourTime.DataBase.Connectors
         /// </summary>
         /// <param name="TaskList">The task list.</param>
         /// <param name="ReadInactiveTasks">if set to <c>true</c> will read inactive tasks.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ReadTaskList(out ObservableCollection<TaskAdapter> TaskList, bool ReadInactiveTasks)
         {
             var mhResult = new MethodHandler();
             TaskList = new ObservableCollection<TaskAdapter>();
             try
             {
-                //TODO: Read Task List
 
+                //TODO: Sum Times;
                 DataTable dtTasks = null;
-                string strQuery = "SELECT TaskId, TaskName, Description, Active FROM Task ";
+                string strQuery = "SELECT TaskId, TaskName, Description, Active FROM Task " +
+                    "";
                 if (!ReadInactiveTasks) strQuery += "WHERE Active = 1 ";
+
 
                 mhResult = DBUtils.SelectTable(strQuery, out dtTasks);
                 if (mhResult.Exits) return mhResult;
@@ -303,7 +310,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// Stops the task.
         /// </summary>
         /// <param name="Time">The time.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler AddTime(TaskTimeAdapter Time)
         {
             var mhResult = new MethodHandler();
@@ -315,23 +322,23 @@ namespace KeepYourTime.DataBase.Connectors
                 mhResult = DBUtils.SelectValue(strSQL, out objTaskExists);
                 if (mhResult.Exits) return mhResult;
 
-                if (objTaskExists.ToString() != "1")
+                if (mhResult.AffectedLines == 0)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
-                    mhResult.Message = string.Format("The task {0} is invalid", Time.TaskId);
+                    mhResult.Message = string.Format(Languages.Language.TaskNotFound, Time.TaskId);
                     return mhResult;
                 }
 
                 strSQL = "INSERT INTO TaskTime (TaskId, StartTime, StopTime)  " +
                     "VALUES (" + Time.TaskId.ToString() + ", @StartTime, @StopTime)";
-                SqlCeParameter[] ParamArray = new SqlCeParameter[2];
-                ParamArray[0] = new SqlCeParameter("StartTime", Time.StartTime);
-                ParamArray[0].DbType = DbType.DateTime;
+                SqlCeParameter[] scpParams = new SqlCeParameter[2];
+                scpParams[0] = new SqlCeParameter("StartTime", Time.StartTime);
+                scpParams[0].DbType = DbType.DateTime;
 
-                ParamArray[1] = new SqlCeParameter("StopTime", Time.StopTime);
-                ParamArray[1].DbType = DbType.DateTime;
+                scpParams[1] = new SqlCeParameter("StopTime", Time.StopTime);
+                scpParams[1].DbType = DbType.DateTime;
 
-                mhResult = DBUtils.ExecuteOperation(strSQL, ParamArray);
+                mhResult = DBUtils.ExecuteOperation(strSQL, scpParams);
                 if (mhResult.Exits) return mhResult;
 
                 object objTimeID = null;
