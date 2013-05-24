@@ -165,6 +165,9 @@
   <data name="InactivityTime" xml:space="preserve">
     <value>Time to detection</value>
   </data>
+  <data name="InexistentTask" xml:space="preserve">
+    <value>The task dosen't exists</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
