@@ -180,8 +180,14 @@
   <data name="TaskDetailsTitle" xml:space="preserve">
     <value>Task Details</value>
   </data>
+  <data name="TaskExists" xml:space="preserve">
+    <value>That task already exists</value>
+  </data>
   <data name="TaskName" xml:space="preserve">
     <value>Task Name</value>
+  </data>
+  <data name="TaskNotFound" xml:space="preserve">
+    <value>Task {0} not found</value>
   </data>
   <data name="TimeSpent" xml:space="preserve">
     <value>Time Spent</value>
@@ -197,5 +203,8 @@
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Total Time</value>
+  </data>
+  <data name="UnpsecifiedErrorCreateTask" xml:space="preserve">
+    <value>There was an unspecified error creating the task</value>
   </data>
 </root>

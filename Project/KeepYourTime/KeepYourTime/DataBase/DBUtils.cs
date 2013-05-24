@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlServerCe;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase
 {
@@ -16,16 +12,17 @@ namespace KeepYourTime.DataBase
     /// </remarks>
     public class DBUtils
     {
-
+        //The database filename
         public const string FileName = "db.sdf";
 
+        //The database password
         public const string Password = "ZK8setbx";
 
 
         /// <summary>
         /// Gets the connection string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The Connection String</returns>
         public static string GetConnectionString()
         {
             return string.Format("DataSource=\"{0}\"; Password='{1}'", FileName, Password);
@@ -48,7 +45,7 @@ namespace KeepYourTime.DataBase
         /// Executes the operation.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ExecuteOperation(string SqlQuery)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -70,8 +67,8 @@ namespace KeepYourTime.DataBase
         /// Executes the operation.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="Parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <param name="Parameters">The parameters. Parameter List to include in query.</param>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeParameter[] Parameters)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -90,21 +87,21 @@ namespace KeepYourTime.DataBase
 
 
         /// <summary>
-        /// Executes the operation.
+        /// Executes an operation.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="connection">The connection.</param>
-        /// <param name="transaction">The transaction.</param>
-        /// <returns></returns>
-        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction)
+        /// <param name="Connection">The connection.</param>
+        /// <param name="Transaction">The transaction. If <c>null</c> works without transaction</param>
+        /// <returns>Method Handler with the method status</returns>
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction)
         {
             MethodHandler mhResult = new MethodHandler();
             try
             {
-                var cmd = new SqlCeCommand(SqlQuery, connection);
-                if (transaction != null)
-                    cmd.Transaction = transaction;
-                mhResult.AffectedLines = cmd.ExecuteNonQuery(); ;
+                var cmd = new SqlCeCommand(SqlQuery, Connection);
+                if (Transaction != null)
+                    cmd.Transaction = Transaction;
+                mhResult.AffectedLines = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -118,18 +115,18 @@ namespace KeepYourTime.DataBase
         /// Executes the operation.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="connection">The connection.</param>
-        /// <param name="transaction">The transaction.</param>
-        /// <param name="Parameters">The parameters.</param>
-        /// <returns></returns>
-        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, SqlCeParameter[] Parameters)
+        /// <param name="Connection">The connection.</param>
+        /// <param name="Transaction">The transaction. If <c>null</c> works without transaction</param>
+        /// <param name="Parameters">The parameters. Parameter List to include in query.</param>
+        /// <returns>Method Handler with the method status</returns>
+        public static MethodHandler ExecuteOperation(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction, SqlCeParameter[] Parameters)
         {
             MethodHandler mhResult = new MethodHandler();
             try
             {
-                var cmd = new SqlCeCommand(SqlQuery, connection);
-                if (transaction != null)
-                    cmd.Transaction = transaction;
+                var cmd = new SqlCeCommand(SqlQuery, Connection);
+                if (Transaction != null)
+                    cmd.Transaction = Transaction;
                 foreach (SqlCeParameter p in Parameters)
                     cmd.Parameters.Add(p);
                 mhResult.AffectedLines = cmd.ExecuteNonQuery(); ;
@@ -147,7 +144,7 @@ namespace KeepYourTime.DataBase
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="ResultData">The result data.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler SelectTable(string SqlQuery, out DataTable ResultData)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -171,9 +168,9 @@ namespace KeepYourTime.DataBase
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="Connection">The connection.</param>
-        /// <param name="Transaction">The transaction.</param>
+        /// <param name="Transaction">The transaction. If <c>null</c> works without transaction</param>
         /// <param name="ResultData">The result data.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler SelectTable(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction, out DataTable ResultData)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -182,6 +179,8 @@ namespace KeepYourTime.DataBase
             {
 
                 var da = new SqlCeDataAdapter(SqlQuery, Connection);
+                if (Transaction != null)
+                    da.SelectCommand.Transaction = Transaction;
                 var dt = new DataTable();
                 da.Fill(dt);
                 ResultData = dt;
@@ -196,11 +195,11 @@ namespace KeepYourTime.DataBase
 
 
         /// <summary>
-        /// Selects the value.
+        /// Selects the value of the first column on first row in the select.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
         /// <param name="ResultObject">The result object.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler SelectValue(string SqlQuery, out object ResultObject)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -223,9 +222,9 @@ namespace KeepYourTime.DataBase
         /// Selects the value.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="Parameters">The parameters.</param>
+        /// <param name="Parameters">The parameters. Parameter List to include in query.</param>
         /// <param name="ResultObject">The result object.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler SelectValue(string SqlQuery, SqlCeParameter[] Parameters, out object ResultObject)
         {
             MethodHandler mhResult = new MethodHandler();
@@ -245,33 +244,30 @@ namespace KeepYourTime.DataBase
 
 
         /// <summary>
-        /// Selects the value.
+        /// Selects the value of the first column on first row in the select.
         /// </summary>
         /// <param name="SqlQuery">The SQL query.</param>
-        /// <param name="connection">The connection.</param>
-        /// <param name="transaction">The transaction.</param>
-        /// <param name="Parameters">The parameters.</param>
+        /// <param name="Connection">The connection.</param>
+        /// <param name="Transaction">The transaction. If <c>null</c> works without transaction</param>
+        /// <param name="Parameters">The parameters. Parameter List to include in query.</param>
         /// <param name="ResultObject">The result object.</param>
-        /// <returns></returns>
-        public static MethodHandler SelectValue(string SqlQuery, SqlCeConnection connection, SqlCeTransaction transaction, SqlCeParameter[] Parameters, out object ResultObject)
+        /// <returns>Method Handler with the method status</returns>
+        public static MethodHandler SelectValue(string SqlQuery, SqlCeConnection Connection, SqlCeTransaction Transaction, SqlCeParameter[] Parameters, out object ResultObject)
         {
             MethodHandler Result = new MethodHandler();
             ResultObject = null;
             try
             {
-                var cmd = new SqlCeCommand(SqlQuery, connection);
-                if (transaction != null)
-                    cmd.Transaction = transaction;
+                var cmd = new SqlCeCommand(SqlQuery, Connection);
+                if (Transaction != null)
+                    cmd.Transaction = Transaction;
 
                 if (Parameters != null)
                     foreach (SqlCeParameter p in Parameters)
                         cmd.Parameters.Add(p);
 
-                object objReturn = cmd.ExecuteScalar();
-                ResultObject = objReturn;
-                Result.AffectedLines = 1;
-                if (objReturn == null) Result.AffectedLines = 0;
-
+                ResultObject = cmd.ExecuteScalar();
+                Result.AffectedLines = (ResultObject == null) ? 0 : 1;
             }
             catch (Exception ex)
             {

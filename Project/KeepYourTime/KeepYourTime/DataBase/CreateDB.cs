@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlServerCe;
-using System.Data;
 
 namespace KeepYourTime.DataBase
 {
@@ -33,10 +28,9 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public MethodHandler CreateDatabase()
         {
-
             var mhResult = new MethodHandler();
             try
             {
@@ -89,12 +83,13 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the table task.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreateTableTask()
         {
             var mhResult = new MethodHandler();
             try
             {
+                //The variable is initializated with the pretended query and will never be updated
                 string strSQL = "CREATE TABLE Task( " +
                               "TaskID bigint IDENTITY(1,1) NOT NULL, " +
                               "TaskName NVARCHAR(50) NOT NULL, " +
@@ -116,12 +111,13 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the table task time.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreateTableTaskTime()
         {
             var mhResult = new MethodHandler();
             try
             {
+                //The variable is initializated with the pretended query and will never be updated
                 string strSQL = "CREATE TABLE TaskTime( " +
                              "TimeId bigint IDENTITY(1,1) NOT NULL, " +
                              "TaskId bigint NOT NULL, " +
@@ -143,12 +139,13 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the table configuration.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreateTableConfiguration()
         {
             var mhResult = new MethodHandler();
             try
             {
+                //The variable is initializated with the pretended query and will never be updated
                 string strSQL = "CREATE TABLE Configuration ( " +
                              "InactivityEnabled bit NOT NULL, " +
                              "InactivityTime tinyint " +
@@ -168,15 +165,16 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the table shortcuts.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreateTableShortcuts()
         {
             var mhResult = new MethodHandler();
             try
             {
+                //The variable is initializated with the pretended query and will never be updated
                 string strSQL = "CREATE TABLE Shortcut ( " +
                              "ShortcutId tinyint NOT NULL, " +
-                             "TaskId bigint NOT NULL, " +
+                             "TaskId bigint NULL, " +
                              "Ctrl bit NOT NULL, " +
                              "Alt bit NOT NULL, " +
                              "Shift bit NOT NULL, " +
@@ -198,12 +196,13 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Configures the fields.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler ConfigureFields()
         {
             var mhResult = new MethodHandler();
             try
             {
+                //The variable is initializated with the pretended query and will never be updated
                 string strSQL = "ALTER TABLE Task ADD CONSTRAINT UQ_Task_TaskName UNIQUE (TaskName); ";
                 mhResult = DBUtils.ExecuteOperation(strSQL);
             }
@@ -219,13 +218,14 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the primary keys.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreatePrimaryKeys()
         {
             var mhResult = new MethodHandler();
             try
             {
-                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY (ShortcutId);";
+                string strSQL = "";
+                strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT PK_Shortcut PRIMARY KEY (ShortcutId);";
                 mhResult = DBUtils.ExecuteOperation(strSQL);
                 if (mhResult.Exits) return mhResult;
 
@@ -250,14 +250,15 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Creates the foreign keys.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler CreateForeignKeys()
         {
 
             var mhResult = new MethodHandler();
             try
             {
-                string strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
+                string strSQL = "";
+                strSQL = "ALTER TABLE Shortcut ADD CONSTRAINT FK_Shortcut_Task FOREIGN KEY (TaskId) REFERENCES Task (TaskID);";
                 mhResult = DBUtils.ExecuteOperation(strSQL);
                 if (mhResult.Exits) return mhResult;
 
@@ -276,14 +277,16 @@ namespace KeepYourTime.DataBase
         /// <summary>
         /// Inserts the values.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         private MethodHandler InsertValues()
         {
             var mhResult = new MethodHandler();
             try
             {
+                string strSQL = "INSERT INTO Configuration";
                 //Insert nas UI
                 //Insert na BD
+
             }
             catch (Exception ex)
             {

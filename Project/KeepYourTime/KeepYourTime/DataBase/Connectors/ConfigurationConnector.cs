@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace KeepYourTime.DataBase.Connectors
 {
+    /// <summary>
+    /// Handles The Configuration Connection with the Database
+    /// </summary>
+    /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class ConfigurationConnector
     {
         public const string COLUMN_INACTIVITY_ACTIVE = "Inactivity";
@@ -24,7 +28,7 @@ namespace KeepYourTime.DataBase.Connectors
         /// Reads the configuration.
         /// </summary>
         /// <param name="Configuration">The configuration.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler ReadConfiguration(out ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();
@@ -67,11 +71,12 @@ namespace KeepYourTime.DataBase.Connectors
                         Ctrl = (bool)dr["Ctrl"],
                         ShortcutKey = (char)dr["ShortcutKey"],
                         Shift = (bool)dr["Shift"],
-                        ShortcutId = (int)dr["ShortcutId"],
-                        TaskId = (int)dr["TaskId"]
+                        ShortcutId = Configuration.Shortcuts.Count + 1,
+                        TaskId = (long)dr["TaskId"]
                     });
                 }
 
+                //this runs if there is less than 5 shortcuts in the database
                 while (Configuration.Shortcuts.Count < 5)
                 {
                     Configuration.Shortcuts.Add(new ShortcutAdapter()
@@ -91,24 +96,28 @@ namespace KeepYourTime.DataBase.Connectors
         /// Saves the configuration.
         /// </summary>
         /// <param name="Configuration">The configuration.</param>
-        /// <returns></returns>
+        /// <returns>Method Handler with the method status</returns>
         public static MethodHandler SaveConfiguration(ConfigurationAdapter Configuration)
         {
             var mhResult = new MethodHandler();
             try
             {
-                string strSql = "DELETE FORM Configuration ";
-                //INSERT
+                string strSql = "";
+                strSql = "DELETE FROM Configuration ";
+                mhResult = DBUtils.ExecuteOperation(strSql);
+                if (mhResult.Exits) return mhResult;
 
                 strSql = "INSERT INTO Configuration (Inactivity, InactivityTime) VALUES (" +
                     Configuration.Inactivity.ToDB() + ", " +
                     Configuration.InactivityTime + " " +
                     ") ";
-
+                mhResult = DBUtils.ExecuteOperation(strSql);
+                if (mhResult.Exits) return mhResult;
 
 
                 strSql = "DELETE FROM Shortcuts ";
-                //INSERTS à bruta!
+                mhResult = DBUtils.ExecuteOperation(strSql);
+                if (mhResult.Exits) return mhResult;
 
                 foreach (ShortcutAdapter saShort in Configuration.Shortcuts)
                 {
@@ -120,6 +129,9 @@ namespace KeepYourTime.DataBase.Connectors
                         "'" + saShort.ShortcutKey.ToString() + "'," +
                         " " + saShort.TaskId + ", " +
                         ") ";
+                    mhResult = DBUtils.ExecuteOperation(strSql);
+                    if (mhResult.Exits) return mhResult;
+
                 }
 
             }
