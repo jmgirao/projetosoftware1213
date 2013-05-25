@@ -54,7 +54,8 @@ namespace KeepYourTime.DataBase.Connectors
 
                 Configuration = new ConfigurationAdapter
                 {
-                    InactivityTime = (int)dtConfigs.Rows[0]["InactivityTime"],
+
+                    InactivityTime = Convert.ToInt32((byte)dtConfigs.Rows[0]["InactivityTime"]),
                     Inactivity = (bool)dtConfigs.Rows[0]["InactivityEnabled"],
                     Shortcuts = new List<ShortcutAdapter>()
                 };
@@ -127,7 +128,7 @@ namespace KeepYourTime.DataBase.Connectors
                         " " + saShort.Alt.ToDB() + ", " +
                         " " + saShort.Shift.ToDB() + ", " +
                         "'" + saShort.ShortcutKey.ToString() + "'," +
-                        " " + saShort.TaskId + ", " +
+                        " " + saShort.TaskId + " " +
                         ") ";
                     mhResult = DBUtils.ExecuteOperation(strSql);
                     if (mhResult.Exits) return mhResult;
