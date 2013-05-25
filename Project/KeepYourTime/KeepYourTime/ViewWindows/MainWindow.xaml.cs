@@ -30,12 +30,34 @@ namespace KeepYourTime.ViewWindows
             InitializeComponent();
             this.SourceInitialized += MainWindow_SourceInitialized;
             this.Loaded += MainWindow_Loaded;
+
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-            
+            Hooks.ActivityHook hk = new Hooks.ActivityHook();
+            hk.InitTimer();
+            hk.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+            //    Hooks.KeyboardHook.LoadHook();
+            //    Hooks.KeyboardHook.KeyPressed += KeyboardHook_KeyPressed;
         }
+
+        void hk_InactiveTimeRefresh(int InactiveSeconds)
+        {
+            Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
+        }
+
+        //void KeyboardHook_KeyPressed(int KeyCode)
+        //{
+        //    if (KeyCode == 13)
+        //        MessageBox.Show("ENTER AHAHAH");
+        //}
+
+        //protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        //{
+        //    base.OnClosing(e);
+        //    Hooks.KeyboardHook.UnloadHook();
+        //}
 
         Storyboard sbShowTaskList;
         Storyboard sbHideTaskList;
@@ -91,7 +113,7 @@ namespace KeepYourTime.ViewWindows
             sbShowTaskList.Stop();
             sbHideTaskList.Begin();
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
-          
+
         }
 
         void sbHideTaskList_Completed(object sender, EventArgs e)
