@@ -4,7 +4,8 @@
         xmlns:p="clr-namespace:KeepYourTime.Languages"
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.TaskDetailsControls"
         Title="TaskDetailsWindow" Height="600" Width="800">
-
-        <UserControls:TaskDetailsControl/>
- 
+    <Grid>
+        <UserControls:TaskDetailsControl x:Name="TaskDetails"/>
+        <UserControls:EditTask x:Name="EditTask" Visibility="Collapsed"/>
+    </Grid>
 </Window>

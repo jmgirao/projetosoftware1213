@@ -26,7 +26,14 @@ namespace KeepYourTime.ViewWindows
     {
         public TaskDetailsWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            TaskDetails.OnEditTaskClick += TaskDetails_OnEditTaskClick;
+        }
+
+        void TaskDetails_OnEditTaskClick(object sender, EventArgs e)
+        {
+            TaskDetails.Visibility = Visibility.Collapsed;
+            EditTask.Visibility = Visibility.Visible;
         }
 
     }
