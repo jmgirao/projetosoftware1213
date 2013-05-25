@@ -1,6 +1,7 @@
 ﻿using KeepYourTime.DataBase;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
+using KeepYourTime.ViewControls.MainWindowControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,10 @@ namespace KeepYourTime.ViewWindows
     /// </summary>
     public partial class TaskDetailsWindow : Window
     {
+
+
+        public static long TaskID = 0;    //identify task to select the task data
+
         public TaskDetailsWindow()
         {
             InitializeComponent();
@@ -34,6 +39,7 @@ namespace KeepYourTime.ViewWindows
         {
             TaskDetails.Visibility = Visibility.Collapsed;
             EditTask.Visibility = Visibility.Visible;
+            EditTask.LoadTask(TaskID);
         }
 
     }

@@ -181,7 +181,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             try
             {
                 object objTaskId = ((FrameworkElement)sender).DataContext;
-                MinimalViewControl.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+                TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
                 var detailswindows = new TaskDetailsWindow();
                 detailswindows.ShowDialog();
             }
@@ -206,7 +206,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             try
             {
                 object objTaskId = ((FrameworkElement)sender).DataContext;
-                MinimalViewControl.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+                TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
 
                 /*
                  
