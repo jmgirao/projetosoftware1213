@@ -33,8 +33,6 @@ namespace KeepYourTime.DataBase.Connectors
         {
             var mhResult = new MethodHandler();
             Configuration = null;
-            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
-                return mhResult;
             try
             {
                 DataTable dtConfigs = null;
