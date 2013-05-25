@@ -66,17 +66,13 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         private void InitializeControl()
         {
             var mhResult = new MethodHandler();
-            long lngIdTask = MinimalViewControl.TaskID;                 //To receive idTask another window (defined in the MinimalViewControl) 
+            long lngIdTask = TaskDetailsWindow.TaskID;                 //To receive idTask another window (defined in the TaskDetailsWindow) 
             TaskAdapter taTaskAdapt = new TaskAdapter();
 
             try
             {
                 mhResult = TaskConnector.ReadTask(lngIdTask, out taTaskAdapt);
-                if (mhResult.Exits)
-                {
-                    MessageWindow.ShowMethodHandler(mhResult, true);
-                    return;
-                }
+                if (mhResult.Exits) return;
 
                 string strTaskName = taTaskAdapt.TaskName;
                 string strTaskDescription = taTaskAdapt.Description;
@@ -88,32 +84,35 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 /*
                  *CREATE TIMES 
                  */
-               /* TaskTimeAdapter tasktime = new TaskTimeAdapter();
-                tasktime.TimeId = 1;
-                tasktime.TaskId = 1;
-                tasktime.StartTime = new DateTime(2013, 4, 12, 12, 00, 00);
-                tasktime.StopTime = new DateTime(2013, 4, 12, 12, 30, 00);
-                ocTaskTimeList.Add(tasktime);
+                /* TaskTimeAdapter tasktime = new TaskTimeAdapter();
+                 tasktime.TimeId = 1;
+                 tasktime.TaskId = 1;
+                 tasktime.StartTime = new DateTime(2013, 4, 12, 12, 00, 00);
+                 tasktime.StopTime = new DateTime(2013, 4, 12, 12, 30, 00);
+                 ocTaskTimeList.Add(tasktime);
 
-                tasktime = new TaskTimeAdapter();
-                tasktime.TimeId = 2;
-                tasktime.TaskId = 1;
-                tasktime.StartTime = new DateTime(2013, 2, 13, 1, 00, 00);
-                tasktime.StopTime = new DateTime(2013, 2, 13, 6, 30, 00);
-                ocTaskTimeList.Add(tasktime);*/
+                 tasktime = new TaskTimeAdapter();
+                 tasktime.TimeId = 2;
+                 tasktime.TaskId = 1;
+                 tasktime.StartTime = new DateTime(2013, 2, 13, 1, 00, 00);
+                 tasktime.StopTime = new DateTime(2013, 2, 13, 6, 30, 00);
+                 ocTaskTimeList.Add(tasktime);*/
 
                 ObservableCollection<TaskTimeAdapterUI> ocTaskTimeUIList = new ObservableCollection<TaskTimeAdapterUI>();
-                foreach(TaskTimeAdapter tta in ocTaskTimeList)
+                foreach (TaskTimeAdapter tta in ocTaskTimeList)
                     ocTaskTimeUIList.Add(new TaskTimeAdapterUI(tta));
-                
 
-                dgTaskTimes.ItemsSource = ocTaskTimeUIList;  
+
+                dgTaskTimes.ItemsSource = ocTaskTimeUIList;
 
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
-                MessageWindow.ShowMethodHandler(mhResult, true);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);                    
             }
 
         }

@@ -20,16 +20,18 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Width" Value="25"/>
             <Setter Property="Height" Value="25"/>
-        </Style>       
+        </Style>
     </UserControl.Resources>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -38,9 +40,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center">
-            <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" FontSize="40" FontWeight="Bold"/>
-        </StackPanel>
+        <!--<StackPanel Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center">-->
+        <TextBlock Name="LblEditTaskTitle" Text="{x:Static p:Language.EditTaskTitle}" 
+                       FontSize="40" FontWeight="Bold"
+                       Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center"/>
+        <!--</StackPanel>-->
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
             <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
@@ -52,37 +56,55 @@
             <TextBox Name="TxtDescription" Width="200" Height="25" />
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="4" Orientation="Vertical">
-            <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" FontWeight="Bold" Margin="5"/>
+        <!--<StackPanel Grid.Row="3" Grid.ColumnSpan="4" Orientation="Vertical">-->
+            <TextBlock Name="lbTaskTimes" Text="Times:" FontSize="20" 
+                       FontWeight="Bold" Margin="5"
+                       Grid.Row="3" Grid.ColumnSpan="4" />
 
-            <StackPanel Orientation="Horizontal">
+            <Grid Grid.Row="4" Grid.ColumnSpan="4" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"  Text=""/>
                 <TextBlock Grid.Column="1" Text="{x:Static p:Language.StartDate}"/>
                 <TextBlock Grid.Column="2" Text="{x:Static p:Language.EndDate}"/>
                 <TextBlock Grid.Column="3" Text="{x:Static p:Language.TimeSpent}"/>
-            </StackPanel>
-            <StackPanel Height="Auto">
-                <ListView Name="dgTaskTimes" BorderThickness="0" MaxHeight="500">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TaskDetailsControls:EditTimeLineControl OnTimeDeleted="OnTimeDeleted" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            </StackPanel>
-            <StackPanel Height="50">
-                <Button Name="btnAddTime" Style="{StaticResource BtnImage}" HorizontalAlignment="Left" ToolTip="{x:Static p:Language.TooltipAddTime}">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="/KeepYourTime;component/Assets/Add.png" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </StackPanel>
-            
-        </StackPanel>
+            </Grid>
+            <ScrollViewer Grid.Row="5" Grid.ColumnSpan="4" >
+                <!--<StackPanel Height="Auto">-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ListView Name="dgTaskTimes" BorderThickness="0" MaxHeight="500">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TaskDetailsControls:EditTimeLineControl OnTimeDeleted="OnTimeDeleted" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Grid.Row="1" Name="btnAddTime" Style="{StaticResource BtnImage}" HorizontalAlignment="Left" ToolTip="{x:Static p:Language.TooltipAddTime}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/KeepYourTime;component/Assets/Add.png" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <!--</StackPanel>-->
+            </ScrollViewer>
+            <!--<StackPanel Height="50">-->
+
+            <!--</StackPanel>-->
+
+        <!--</StackPanel>-->
+
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Name="btnSave" Style="{StaticResource Btn}" HorizontalAlignment="Left" Content="{x:Static p:Language.Save}"/>
             <Button Name="btnCancel" Style="{StaticResource Btn}" HorizontalAlignment="Right" Content="{x:Static p:Language.Cancel}"/>
         </StackPanel>

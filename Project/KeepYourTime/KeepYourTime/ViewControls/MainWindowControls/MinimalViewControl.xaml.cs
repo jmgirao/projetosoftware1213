@@ -24,8 +24,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public partial class MinimalViewControl : UserControl
     {
-        public static long TaskID = 0;    //identify task to select the task data
-        private TaskTimer ttTaskTimer;  
+        //public static long TaskID = 0;    //identify task to select the task data
+        private TaskTimer ttTaskTimer;
+
+        public static long CurrentTaskId = 0;
 
         public MinimalViewControl()
         {
@@ -61,7 +63,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <remarks>CREATED BY João Girão</remarks>
         void btnTaskDetails_Click(object sender, RoutedEventArgs e)
         {
-            TaskID = 1;  //The task id that's running or that's selected in the textbox
+            TaskDetailsWindow.TaskID = CurrentTaskId;  //The task id that's running or that's selected in the textbox
             var detailswindows = new TaskDetailsWindow();
             detailswindows.ShowDialog();
         }
@@ -70,7 +72,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             Application.Current.Shutdown();
         }
-        
+
         #endregion
 
         #region custom events
@@ -78,7 +80,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public delegate void TaskCreatedHandler(TaskAdapter Task);
 
         public event TaskCreatedHandler OnTaskCreated;
-        
+
         #endregion
 
         #region task execution
@@ -148,7 +150,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
-
 
         #endregion
     }

@@ -313,7 +313,6 @@ namespace KeepYourTime.DataBase.Connectors
             try
             {
 
-                //TODO: Sum Times;
                 DataTable dtTasks = null;
 
                 var strQuery = "SELECT T.TaskId, MAX(T.TaskName) [TaskName], " +
