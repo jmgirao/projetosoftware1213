@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KeepYourTime.Utils;
+using System.ComponentModel;
 
 namespace KeepYourTime.ViewControls.TaskDetailsControls
 {
@@ -11,7 +12,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     /// Class TaskTimeAdapterUI
     /// </summary>
     /// <remarks>CREATED BY João Girão</remarks>
-    class TaskTimeAdapterUI : TaskTimeAdapter
+    class TaskTimeAdapterUI : TaskTimeAdapter , INotifyPropertyChanged
     {      
 
         public string TimeSpent
@@ -21,7 +22,23 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 TimeSpan tsTimeSpent = this.StopTime.Subtract(this.StartTime);
                 return tsTimeSpent.TotalHours.ToString("###00") + ":" + tsTimeSpent.Minutes.ToString("00") + ":" + tsTimeSpent.Seconds.ToString("00");
             }
-            set { }
+            set { CalculateStopTime(value); }
+        }
+      
+        public DateTime TriggerStoptTime {
+            get
+            {
+                return StopTime;
+            }
+            set
+            {
+                if (StopTime != value)
+                {
+                    NotifyPropertyChanged("TriggerStopTime");
+                    StopTime = value;
+                    NotifyPropertyChanged("TimeSpent");
+                }
+            }
         }
 
         public TaskTimeAdapterUI() { }
@@ -33,5 +50,44 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             this.StartTime = baseTaskTimer.StartTime;
             this.StopTime = baseTaskTimer.StopTime;
         }
+
+
+        public bool CalculateStopTime(string TimeSpent)
+        {            
+
+            if (string.IsNullOrEmpty(TimeSpent) && StartTime != null)
+            {
+                TriggerStoptTime = (DateTime)StartTime;
+                return true;
+            }
+            else if (StartTime != null)
+            {
+                var dtStopTime = StartTime;
+                var timeSplit = TimeSpent.Split(':');
+                
+                if (timeSplit.Length == 3)
+                {
+
+                    double dbHours = Convert.ToDouble(timeSplit[0]);
+                    dtStopTime = dtStopTime.AddHours(dbHours);
+                    dtStopTime = dtStopTime.AddMinutes(Convert.ToDouble(timeSplit[1]));
+                    dtStopTime = dtStopTime.AddSeconds(Convert.ToDouble(timeSplit[2]));
+                    TriggerStoptTime = dtStopTime;
+
+                    return true;
+                }
+                return false;
+            }
+
+            return false;
+        }
+
+        private void NotifyPropertyChanged(string PropertyName)
+        {
+            if(PropertyChanged!=null)
+                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
