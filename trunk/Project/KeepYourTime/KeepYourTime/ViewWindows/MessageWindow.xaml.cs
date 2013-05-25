@@ -45,6 +45,8 @@ namespace KeepYourTime.ViewWindows
 
         public static void ShowMethodHandler(MethodHandler Result, bool ShowSucess)
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+                return;
             if (Result.Status == Utils.MethodStatus.Sucess && ShowSucess == false) return;
 
             var winMessage = new MessageWindow();
