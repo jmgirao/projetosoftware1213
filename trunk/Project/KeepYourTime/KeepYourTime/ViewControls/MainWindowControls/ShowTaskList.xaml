@@ -29,7 +29,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Play" Style="{StaticResource BtnImage}">
+                            <Button Content="Play" Click="btPlay_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/play.png"/>

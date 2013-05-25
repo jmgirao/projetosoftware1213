@@ -13,6 +13,8 @@ namespace KeepYourTime.DataBase.Adapters
         public string Description { get; set; }
         public bool Active { get; set; }
 
+        public bool IsRunning { get; set; }
+
         public ObservableCollection<TaskTimeAdapter> Times { get; set; }
     }
 }
