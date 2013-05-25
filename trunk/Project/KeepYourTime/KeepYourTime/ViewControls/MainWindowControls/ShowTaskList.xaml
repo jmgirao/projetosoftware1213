@@ -23,8 +23,8 @@
         <Grid>
             <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
         </Grid>
-        
-        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" >
+
+        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" ColumnWidth="*" RowEditEnding="dgTaskList_RowEditEnding"  LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -39,7 +39,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserResize="True" IsReadOnly="True" Header="Name" FontSize="14" Binding="{Binding TaskName}" />
+                <DataGridTextColumn CanUserResize="True" IsReadOnly="True" Header="Name" FontSize="16" Binding="{Binding TaskName}" />
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Total Time" FontSize="16" Width="100" Binding="{Binding TotalTime}" />
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Today" FontSize="16"  Width="100" Binding="{Binding TodayTime}"/>
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Stop Date" FontSize="16"  Width="100" Binding="{Binding StopDate}"/>
