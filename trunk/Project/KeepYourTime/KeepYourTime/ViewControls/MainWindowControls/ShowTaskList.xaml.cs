@@ -37,11 +37,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         public ShowTaskList()
         {
-           
+
             InitializeComponent();
-           
-            
-            this.Loaded += ShowTaskList_Loaded;
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(
+     new DependencyObject()))
+            {
+                this.Loaded += ShowTaskList_Loaded;
+            }
         }
 
         /// <summary>
@@ -82,33 +84,35 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
 
             //The system groups the active tasks and inactive tasks in different groups.
-            foreach (TaskAdapter t in taskAdaptUi) {
+            foreach (TaskAdapter t in taskAdaptUi)
+            {
                 var ta = new TaskAdapterUI(t);
-                    taskAdaptUiInactiveTask.Add(ta);
+                taskAdaptUiInactiveTask.Add(ta);
             }
 
             taskAdaptUi.Clear();
             foreach (TaskAdapter t in taskAdaptUiInactiveTask)
             {
                 var ta = new TaskAdapterUI(t);
-                if (ta.Active) {
+                if (ta.Active)
+                {
                     taskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
                 }
             }
-           foreach (TaskAdapter t in taskAdaptUiInactiveTask)
+            foreach (TaskAdapter t in taskAdaptUiInactiveTask)
             {
                 var ta = new TaskAdapterUI(t);
                 if (!ta.Active)
                 {
                     taskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
-                    
+
                     //TODO: The system should differentiate visually the active from inactive tasks
 
                 }
             }
-           //end
+            //end
             dgTaskList.ItemsSource = taskAdaptUi;
         }
 
