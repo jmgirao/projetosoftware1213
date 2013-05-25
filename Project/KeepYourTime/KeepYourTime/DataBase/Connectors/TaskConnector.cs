@@ -315,9 +315,16 @@ namespace KeepYourTime.DataBase.Connectors
 
                 //TODO: Sum Times;
                 DataTable dtTasks = null;
-                string strQuery = "SELECT TaskId, TaskName, Description, Active FROM Task " +
-                    "";
+
+                var strQuery = "SELECT T.TaskId, MAX(T.TaskName) [TaskName], " +
+                                    "MAX(T.Description) Description, T.Active, " +
+                                    "CAST(COALESCE(SUM(DATEDIFF(S,TT.StartTime,TT.StopTime)),0) AS BIGINT) TotalTime, " +
+                                    "CAST(COALESCE(SUM(DATEDIFF(S,TToday.StartTime,TToday.StopTime)),0) AS BIGINT) TodayTime " +
+                                    "FROM Task T " +
+                                    "LEFT JOIN TaskTime TT ON TT.TaskID = T.TaskID " +
+                                    "LEFT JOIN TaskTime TToday ON TToday.TaskID = T.TaskID AND CONVERT(nvarchar(10), TToday.StartTime,102) = CONVERT(nvarchar(10), GETDATE(),102) ";
                 if (!ReadInactiveTasks) strQuery += "WHERE Active = 1 ";
+                strQuery += "GROUP BY T.TaskID, T.Active ";
 
 
                 mhResult = DBUtils.SelectTable(strQuery, out dtTasks);
@@ -331,6 +338,8 @@ namespace KeepYourTime.DataBase.Connectors
                         TaskId = (long)dr["TaskId"],
                         TaskName = (string)dr["TaskName"],
                         Description = (string)dr["Description"],
+                        TotalTime = (long)dr["TotalTime"],
+                        TodayTime = (long)dr["TodayTime"],
                         Active = (bool)dr["Active"],
                     });
                 }

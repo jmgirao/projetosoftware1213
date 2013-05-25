@@ -13,6 +13,9 @@ namespace KeepYourTime.DataBase.Adapters
         public string Description { get; set; }
         public bool Active { get; set; }
 
+        public long TotalTime { get; set; } // total task time in seconds
+        public long TodayTime { get; set; }  //today time in seconds
+
         public bool IsRunning { get; set; }
 
         public ObservableCollection<TaskTimeAdapter> Times { get; set; }

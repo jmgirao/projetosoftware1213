@@ -44,7 +44,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
                 }
-
+                lngTaskID = TaskID;
                 CurrentTime = new TimeSpan();
                 dtStartTiming = DateTime.Now;
                 tmTaskTimer.Start();
@@ -59,9 +59,20 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
-        public void StopTimingTask()
+        public bool isRunningTask()
         {
+            return tmTaskTimer.Enabled;
+        }
+
+        public TaskTimeAdapter StopTimingTask()
+        {
+
             tmTaskTimer.Stop();
+            TaskTimeAdapter ttTime = new TaskTimeAdapter();
+            ttTime.StartTime = dtStartTiming;
+            ttTime.StopTime = DateTime.Now;
+            ttTime.TaskId = lngTaskID;
+            return ttTime;
         }
 
         public void Time()

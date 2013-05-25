@@ -8,13 +8,13 @@
     <UserControl.Resources>
         <Style TargetType="Button"  x:Key="BtnImage">
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <!--Área de Edição -->
-        <Grid>
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="24"/>
@@ -25,52 +25,52 @@
                 <ColumnDefinition Width="24"/>
             </Grid.ColumnDefinitions>
 
-            <Button Name="btnFechar" Grid.Column="6" Content="Close" Style="{StaticResource BtnImage}">
+            <Button VerticalAlignment="Center" Name="btnFechar" Grid.Column="6" Content="Close" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="/KeepYourTime;component/Assets/play.png"/>
+                        <Image Source="/KeepYourTime;component/Assets/play.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <Button Name="btnConfig" Grid.Column="5" >
+            <Button VerticalAlignment="Center" Name="btnConfig" Grid.Column="5" Content="Config" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Image Source="/KeepYourTime;component/Assets/Settings.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
 
-            <Button Name="btnEdit" Grid.Column="4" >
+            <Button Name="btnEdit" VerticalAlignment="Center" Grid.Column="4" Content="EditTask" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <TextBlock Text="E" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Image Source="/KeepYourTime;component/Assets/EditTask.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <Button Name="btnTaskDetails" Grid.Column="3" >
+            <Button Name="btnTaskDetails" Grid.Column="3" VerticalAlignment="Center" Content="Details" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <TextBlock Text="D" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Image Source="/KeepYourTime;component/Assets/details.ico" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <TextBlock Name="lblTempoDecorrido" Text="00:00:00" Grid.Column="2"/>
+            <TextBlock Name="lblTempoDecorrido" Text="00:00:00" Grid.Column="2" VerticalAlignment="Center"/>
 
             <Button Name="btnAdd" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="/KeepYourTime;component/Assets/Add.png"/>
+                        <Image Source="/KeepYourTime;component/Assets/Add.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Name="btnStop" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}" Visibility="Collapsed">
+            <Button Name="btnStop" Grid.Column="1"  Content="Stop" Style="{StaticResource BtnImage}" Visibility="Collapsed" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="/KeepYourTime;component/Assets/stop.png"/>
+                        <Image Source="/KeepYourTime;component/Assets/stop.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>

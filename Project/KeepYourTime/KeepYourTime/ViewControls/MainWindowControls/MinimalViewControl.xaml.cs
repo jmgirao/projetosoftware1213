@@ -25,8 +25,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     public partial class MinimalViewControl : UserControl
     {
         public static long TaskID = 0;    //identify task to select the task data
-
-        private TaskTimer TT;
+        private TaskTimer ttTaskTimer;  
 
         public MinimalViewControl()
         {
@@ -34,15 +33,19 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnConfig.Click += btnConfig_Click;
             btnFechar.Click += btnFechar_Click;
             btnAdd.Click += btnAdd_Click;
+            btnStop.Click += btnStop_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
-            TT = new TaskTimer();
-            TT.onTimeChanged += TT_onTimeChanged;
+            ttTaskTimer = new TaskTimer();
+            ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
         }
 
-        void TT_onTimeChanged(string time)
+
+        void ttTaskTimer_onTimeChanged(string time)
         {
             Dispatcher.BeginInvoke((Action)(() => lblTempoDecorrido.Text = time));
         }
+
+        #region basic buttons
 
         void btnConfig_Click(object sender, RoutedEventArgs e)
         {
@@ -62,6 +65,23 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             var detailswindows = new TaskDetailsWindow();
             detailswindows.ShowDialog();
         }
+
+        void btnFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        
+        #endregion
+
+        #region custom events
+
+        public delegate void TaskCreatedHandler(TaskAdapter Task);
+
+        public event TaskCreatedHandler OnTaskCreated;
+        
+        #endregion
+
+        #region task execution
 
         void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -94,26 +114,42 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         }
 
-        void btnFechar_Click(object sender, RoutedEventArgs e)
+        void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            StopTask();
         }
-
-        public delegate void TaskCreatedHandler(TaskAdapter Task);
-
-        public event TaskCreatedHandler OnTaskCreated;
 
         public void StartTask(long TaskID)
         {
-            TT.StartTimingTask(TaskID);
+            ttTaskTimer.StartTimingTask(TaskID);
+            btnStop.Visibility = System.Windows.Visibility.Visible;
+            btnAdd.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public void StopTask()
         {
-            TT.StopTimingTask();
-            btnStop.Visibility = System.Windows.Visibility.Collapsed;
-            btnStop.Visibility = System.Windows.Visibility.Collapsed;
+            var mhResult = new MethodHandler();
+            try
+            {
+                if (ttTaskTimer.isRunningTask())
+                {
+                    mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask());
+                    if (mhResult.Exits) return;
+                }
+                btnStop.Visibility = System.Windows.Visibility.Collapsed;
+                btnAdd.Visibility = System.Windows.Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
         }
 
+
+        #endregion
     }
 }
