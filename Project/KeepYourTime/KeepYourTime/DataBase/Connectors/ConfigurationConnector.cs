@@ -59,7 +59,7 @@ namespace KeepYourTime.DataBase.Connectors
                     Shortcuts = new List<ShortcutAdapter>()
                 };
 
-                strQuery = "SELECT * FROM Shortcuts ORDER BY ShortcutId ";
+                strQuery = "SELECT * FROM Shortcut ORDER BY ShortcutId ";
                 mhResult = DBUtils.SelectTable(strQuery, out dtConfigs);
                 if (mhResult.Exits) return mhResult;
 
@@ -115,7 +115,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.Exits) return mhResult;
 
 
-                strSql = "DELETE FROM Shortcuts ";
+                strSql = "DELETE FROM Shortcut ";
                 mhResult = DBUtils.ExecuteOperation(strSql);
                 if (mhResult.Exits) return mhResult;
 

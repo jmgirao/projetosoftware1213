@@ -26,7 +26,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         void tmTaskTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-
+            Time();
         }
 
 
@@ -36,8 +36,18 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             try
             {
                 TaskAdapter taTask = null;
+                tsInitialTaskTime = new TimeSpan(0, 0, 0);
+                mhResult = TaskConnector.ReadTask(TaskID, out taTask);
+                if (mhResult.Exits) return;
 
-                TaskConnector.ReadTask(TaskID, out taTask);
+                foreach (TaskTimeAdapter t in taTask.Times)
+                {
+                    tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
+                }
+
+                CurrentTime = new TimeSpan();
+                dtStartTiming = DateTime.Now;
+                tmTaskTimer.Start();
             }
             catch (Exception ex)
             {
@@ -51,14 +61,27 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public void StopTimingTask()
         {
-
+            tmTaskTimer.Stop();
         }
 
         public void Time()
         {
+            if (CurrentTime != DateTime.Now.Subtract(dtStartTiming))
+            {
+                CurrentTime = DateTime.Now.Subtract(dtStartTiming);
+                var tmTotalTime = CurrentTime.Add(tsInitialTaskTime);
 
+                string strTimeString = tmTotalTime.TotalHours.ToString("00") + ":" +
+                    tmTotalTime.Minutes.ToString("00") + ":" +
+                    tmTotalTime.Seconds.ToString("00");
+
+                if (onTimeChanged != null)
+                    onTimeChanged(strTimeString);
+            }
         }
 
+        public delegate void TimeChangedHandler(string time);
+        public event TimeChangedHandler onTimeChanged;
 
     }
 }
