@@ -24,6 +24,7 @@ namespace KeepYourTime.ViewWindows
     public partial class MainWindow : Window
     {
         private bool blnColappsed = false;
+        Hooks.ActivityHook ahActivityAnalyzer;
 
         public MainWindow()
         {
@@ -35,11 +36,9 @@ namespace KeepYourTime.ViewWindows
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-            Hooks.ActivityHook hk = new Hooks.ActivityHook();
-            hk.InitTimer();
-            hk.InactiveTimeRefresh += hk_InactiveTimeRefresh;
-            //    Hooks.KeyboardHook.LoadHook();
-            //    Hooks.KeyboardHook.KeyPressed += KeyboardHook_KeyPressed;
+            ahActivityAnalyzer = new Hooks.ActivityHook();
+            ahActivityAnalyzer.InitTimer();
+            ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
         }
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
@@ -47,17 +46,12 @@ namespace KeepYourTime.ViewWindows
             Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
         }
 
-        //void KeyboardHook_KeyPressed(int KeyCode)
-        //{
-        //    if (KeyCode == 13)
-        //        MessageBox.Show("ENTER AHAHAH");
-        //}
 
-        //protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        //{
-        //    base.OnClosing(e);
-        //    Hooks.KeyboardHook.UnloadHook();
-        //}
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            ahActivityAnalyzer.StopTimer();
+        }
 
         Storyboard sbShowTaskList;
         Storyboard sbHideTaskList;

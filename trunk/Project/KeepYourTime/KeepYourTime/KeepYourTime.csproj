@@ -58,7 +58,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>TesteXPTO.pfx</AssemblyOriginatorKeyFile>
@@ -97,7 +97,6 @@
     </ApplicationDefinition>
     <Compile Include="DataBase\DBExtentionMethods.cs" />
     <Compile Include="Hooks\ActivityHook.cs" />
-    <Compile Include="Hooks\KeyboardHook.cs" />
     <Compile Include="Languages\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
