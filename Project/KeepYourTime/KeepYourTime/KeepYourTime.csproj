@@ -54,14 +54,13 @@
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TesteXPTO.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -116,6 +115,7 @@
       <DependentUpon>ShowTaskList.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewControls\MainWindowControls\TaskAdapterUI.cs" />
+    <Compile Include="ViewControls\MainWindowControls\TaskTimer.cs" />
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskContex.cs" />
     <Compile Include="ViewControls\TaskDetailsControls\EditTaskControl.xaml.cs">
       <DependentUpon>EditTaskControl.xaml</DependentUpon>
@@ -222,13 +222,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="TesteXPTO.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

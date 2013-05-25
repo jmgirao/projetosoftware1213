@@ -39,11 +39,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
 
             InitializeComponent();
-            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(
-     new DependencyObject()))
-            {
-                this.Loaded += ShowTaskList_Loaded;
-            }
+
+            this.Loaded += ShowTaskList_Loaded;
         }
 
         /// <summary>

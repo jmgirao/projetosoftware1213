@@ -95,5 +95,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public event TaskCreatedHandler OnTaskCreated;
 
+        public void StartTask(int TaskID)
+        { 
+            
+        }
+
+        public void StopTask()
+        { }
+
     }
 }
