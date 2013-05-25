@@ -55,7 +55,7 @@ namespace KeepYourTime.DataBase.Connectors
                 Configuration = new ConfigurationAdapter
                 {
                     InactivityTime = (int)dtConfigs.Rows[0]["InactivityTime"],
-                    Inactivity = (bool)dtConfigs.Rows[0]["Inactivity"],
+                    Inactivity = (bool)dtConfigs.Rows[0]["InactivityEnabled"],
                     Shortcuts = new List<ShortcutAdapter>()
                 };
 
@@ -107,7 +107,7 @@ namespace KeepYourTime.DataBase.Connectors
                 mhResult = DBUtils.ExecuteOperation(strSql);
                 if (mhResult.Exits) return mhResult;
 
-                strSql = "INSERT INTO Configuration (Inactivity, InactivityTime) VALUES (" +
+                strSql = "INSERT INTO Configuration (InactivityEnabled, InactivityTime) VALUES (" +
                     Configuration.Inactivity.ToDB() + ", " +
                     Configuration.InactivityTime + " " +
                     ") ";

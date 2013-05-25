@@ -43,7 +43,7 @@ namespace KeepYourTime.ViewWindows
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
         {
-            Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
+            //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
         }
 
 
