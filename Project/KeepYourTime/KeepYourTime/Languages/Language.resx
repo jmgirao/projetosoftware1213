@@ -141,6 +141,9 @@
   <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Export" xml:space="preserve">
     <value>Export Data</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="InexistentTask" xml:space="preserve">
     <value>The task dosen't exists</value>
+  </data>
+  <data name="IntException" xml:space="preserve">
+    <value>Error, please insert a valid time</value>
   </data>
   <data name="NoPermission" xml:space="preserve">
     <value>You have no permission to write on that folder. Please choose another.</value>
