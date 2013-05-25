@@ -42,11 +42,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 ObservableCollection<TaskAdapter> taskList;
                 var lstCombo = new ObservableCollection<ConfigTaskComboShortcut>();
                 mhResult = TaskConnector.ReadTaskList(out taskList, false);
-                //cbShort1.Items.Add("");
-                //cbShort2.Items.Add("");
-                //cbShort3.Items.Add("");
-                //cbShort4.Items.Add("");
-                //cbShort5.Items.Add("");
+                
 
                 foreach (TaskAdapter t in taskList)
                 {
@@ -72,6 +68,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 mhResult = ConfigurationConnector.ReadConfiguration(out configuration);
                 List<ShortcutAdapter> listShortcuts = configuration.Shortcuts;
 
+                chkInactivityAlert.IsChecked = configuration.Inactivity;
+                txtInactiveTime.Text = configuration.InactivityTime.ToString();
                 //TODO must select the task name for all the combo boxes
 
                 chkShift1.IsChecked = listShortcuts[0].Shift;
@@ -204,7 +202,17 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 var cf = new ConfigurationAdapter();
                 cf.Inactivity = (chkInactivityAlert.IsChecked.HasValue) ? chkInactivityAlert.IsChecked.Value : false;
-                //cf.InactivityTime = 5;
+
+                try
+                {
+                    cf.InactivityTime = int.Parse(txtInactiveTime.Text);
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(Languages.Language.IntException,Languages.Language.Error);
+                    return;
+                }
+                
                 cf.Shortcuts = listShortcuts;
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
 
