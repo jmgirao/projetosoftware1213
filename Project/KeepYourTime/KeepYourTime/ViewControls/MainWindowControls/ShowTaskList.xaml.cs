@@ -193,5 +193,57 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btPlay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void btPlay_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var mhResult = new MethodHandler();
+            ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
+            try
+            {
+                object objTaskId = ((FrameworkElement)sender).DataContext;
+                MinimalViewControl.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+
+                /*
+                 
+                MessageBox.Show("ID da tarefa a ir la para cima: " + MinimalViewControl.TaskID);
+
+                taskAdaptUiPlay = new ObservableCollection<TaskAdapterUI>();
+
+                foreach (TaskAdapter t in taskAdaptUi)
+                {
+                    var ta = new TaskAdapterUI(t);
+                    if(ta.TaskId==MinimalViewControl.TaskID){
+                        ta.IsRunning = true;
+                        taskAdaptUiPlay.Add(ta);
+                        taskAdaptUi.Remove(ta);
+                        break;
+                    }
+                }
+
+                foreach (TaskAdapter t in taskAdaptUiPlay)
+                {
+                    var ta = new TaskAdapterUI(t);
+                    if (ta.IsRunning)
+                    {
+                        taskAdaptUi.Add(ta);
+                        taskAdaptUiPlay.Remove(ta);
+                        break;
+                    }
+                }
+                 
+                */
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+        }
+
     }
 }
