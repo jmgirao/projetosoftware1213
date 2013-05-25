@@ -145,6 +145,8 @@ namespace KeepYourTime.DataBase.Connectors
         public static MethodHandler EditTask(TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
+            SqlCeConnection conSQL = null;
+            SqlCeTransaction traSQL = null;
             try
             {
 
@@ -160,7 +162,11 @@ namespace KeepYourTime.DataBase.Connectors
                 scpParams[1] = new SqlCeParameter("Description", Task.Description);
                 scpParams[1].DbType = DbType.String;
 
-                mhResult = DBUtils.ExecuteOperation(strSQL, scpParams);
+
+                conSQL = DBUtils.OpenSqlConnection();
+                traSQL = conSQL.BeginTransaction();
+
+                mhResult = DBUtils.ExecuteOperation(strSQL, conSQL, traSQL, scpParams);
                 if (mhResult.Exits) return mhResult;
 
                 if (mhResult.AffectedLines == 0)
@@ -170,12 +176,42 @@ namespace KeepYourTime.DataBase.Connectors
                     return mhResult;
                 }
 
-                //TODO: Alterar Todos os Tempos Nesta Função
+                //Changing Times
+                strSQL = "DELETE FROM TaskTime Where TaskID =" + Task.TaskId.ToString() + " ";
+                mhResult = DBUtils.ExecuteOperation(strSQL, conSQL, traSQL);
+                if (mhResult.Exits) return mhResult;
+
+                strSQL = "INSERT INTO TaskTime (TaskId, StartTime, StopTime)  " +
+                    "VALUES (" + Task.TaskId.ToString() + ", @StartTime, @StopTime)";
+                
+                foreach (TaskTimeAdapter t in Task.Times)
+                {
+                    scpParams = new SqlCeParameter[2];
+                    t.TaskId = Task.TaskId;
+                    scpParams[0] = new SqlCeParameter("StartTime", t.StartTime);
+                    scpParams[0].DbType = DbType.DateTime;
+
+                    scpParams[1] = new SqlCeParameter("StopTime", t.StopTime);
+                    scpParams[1].DbType = DbType.DateTime;
+
+                    mhResult = DBUtils.ExecuteOperation(strSQL, conSQL, traSQL, scpParams);
+                    if (mhResult.Exits) return mhResult;
+                }
+
+                traSQL.Commit();
+                traSQL = null;
+                conSQL.Close();
+                conSQL = null;
 
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
+            }
+            finally
+            {
+                if (traSQL != null) traSQL.Rollback();
+                if (conSQL != null) conSQL.Close();
             }
             return mhResult;
         }

@@ -214,5 +214,6 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 mhResult.Exception(ex1);
             }
         }
+
     }
 }
