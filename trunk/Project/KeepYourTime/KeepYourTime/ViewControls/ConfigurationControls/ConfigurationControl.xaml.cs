@@ -1,6 +1,7 @@
 ﻿using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.Utils;
+using KeepYourTime.ViewWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -209,10 +210,10 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 }
                 catch (Exception ex2)
                 {
-                    MessageBox.Show(Languages.Language.IntException,Languages.Language.Error);
+                    MessageBox.Show(Languages.Language.IntException, Languages.Language.Error);
                     return;
                 }
-                
+
                 cf.Shortcuts = listShortcuts;
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
 
@@ -221,6 +222,11 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             catch (Exception ex1)
             {
                 mhResult.Exception(ex1);
+            }
+            finally
+            {
+               MessageWindow.ShowMethodHandler(mhResult,true);
+                
             }
         }
 
