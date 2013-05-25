@@ -210,6 +210,11 @@
     <Resource Include="Assets\Add.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\details.ico" />
+    <Resource Include="Assets\EditTask.png" />
+    <Resource Include="Assets\play.png" />
+    <Resource Include="Assets\Settings.png" />
+    <Resource Include="Assets\stop.png" />
     <Content Include="lib\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
