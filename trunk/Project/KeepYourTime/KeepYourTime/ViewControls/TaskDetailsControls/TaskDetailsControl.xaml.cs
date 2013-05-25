@@ -41,9 +41,12 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             btEditTask.Click += btEditTask_Click;
         }
 
+        public event EventHandler OnEditTaskClick;
+
         void btEditTask_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (OnEditTaskClick != null)
+                OnEditTaskClick(this, new EventArgs());
         }
 
         /// <summary>
