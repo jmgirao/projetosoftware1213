@@ -26,6 +26,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
         public static long TaskID = 0;    //identify task to select the task data
 
+        private TaskTimer TT;
+
         public MinimalViewControl()
         {
             InitializeComponent();
@@ -33,7 +35,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnFechar.Click += btnFechar_Click;
             btnAdd.Click += btnAdd_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
+            TT = new TaskTimer();
+            TT.onTimeChanged += TT_onTimeChanged;
+        }
 
+        void TT_onTimeChanged(string time)
+        {
+            Dispatcher.BeginInvoke((Action)(() => lblTempoDecorrido.Text = time));
         }
 
         void btnConfig_Click(object sender, RoutedEventArgs e)
@@ -73,7 +81,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     OnTaskCreated(taTask);
                 }
-
+                StartTask(taskId);
             }
             catch (Exception ex)
             {
@@ -95,13 +103,17 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public event TaskCreatedHandler OnTaskCreated;
 
-        public void StartTask(int TaskID)
-        { 
-            
+        public void StartTask(long TaskID)
+        {
+            TT.StartTimingTask(TaskID);
         }
 
         public void StopTask()
-        { }
+        {
+            TT.StopTimingTask();
+            btnStop.Visibility = System.Windows.Visibility.Collapsed;
+            btnStop.Visibility = System.Windows.Visibility.Collapsed;
+        }
 
     }
 }

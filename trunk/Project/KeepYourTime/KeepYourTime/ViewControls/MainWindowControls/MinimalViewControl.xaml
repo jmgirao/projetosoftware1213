@@ -13,8 +13,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-
-
         <!--Área de Edição -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -60,7 +58,7 @@
                 </Button.Template>
             </Button>
 
-            <TextBlock Text="00:00:00" Grid.Column="2"/>
+            <TextBlock Name="lblTempoDecorrido" Text="00:00:00" Grid.Column="2"/>
 
             <Button Name="btnAdd" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}">
                 <Button.Template>
@@ -69,9 +67,14 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-
+            <Button Name="btnStop" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}" Visibility="Collapsed">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/KeepYourTime;component/Assets/stop.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <TextBox Text="Insira coisas" Name="txtNomeTask"/>
-
         </Grid>
     </Grid>
 </UserControl>
