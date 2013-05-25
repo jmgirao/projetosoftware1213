@@ -101,6 +101,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     taskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+                    
+                    //TODO: The system should differentiate visually the active from inactive tasks
+
                 }
             }
            //end
