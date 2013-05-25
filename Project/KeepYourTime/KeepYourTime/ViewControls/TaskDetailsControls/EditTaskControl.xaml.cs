@@ -52,16 +52,16 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         private void InitializeControl()
         {
             //TODO - get taskID
-            if (MinimalViewControl.TaskID != null)
-            {
+            //if (MinimalViewControl.TaskID)
+            //{
                 EditTaskId = MinimalViewControl.TaskID;
-                PreviousWindow = EditTaskContex.MainWindow;
-            }
-            else
-            {
-                //TODO get context from details
-                PreviousWindow = EditTaskContex.DetailWindow;
-            }
+            //    PreviousWindow = EditTaskContex.MainWindow;
+            //}
+            //else
+            //{
+            //    //TODO get context from details
+            //    PreviousWindow = EditTaskContex.DetailWindow;
+            //}
 
             LoadTask(EditTaskId);
         }
@@ -80,15 +80,8 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
            
             try
             {
-                mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);
-                
-               //data for test
-                taskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
-                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 1, TaskId = 1, StartTime = DateTime.Today, StopTime = DateTime.Now });
-                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 2, TaskId = 2, StartTime = new DateTime(2013, 4, 12, 12, 00, 00), StopTime = new DateTime(2013, 4, 12, 12, 30, 00) });
-                taskToEdit.Times.Add(new TaskTimeAdapter() { TimeId = 3, TaskId = 3, StartTime = new DateTime(2013, 4, 12, 12, 00, 00), StopTime = new DateTime(2013, 4, 12, 12, 00, 00) });
-
-
+                mhResult = TaskConnector.ReadTask(TaskID, out taskToEdit);                
+              
                 EditTaskId = taskToEdit.TaskId;
                 TxtTaskName.Text = taskToEdit.TaskName;
                 TxtDescription.Text = taskToEdit.Description;
@@ -125,8 +118,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
 
             taskTimesAdapterUI.Add(ttaTimeToAdd);
 
-            dgTaskTimes.ItemsSource = taskTimesAdapterUI;                      
-        
+            dgTaskTimes.ItemsSource = taskTimesAdapterUI;                           
         }
 
 
@@ -190,7 +182,6 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 MessageBox.Show(mhResult.Message);
             }
         }
-
 
         void OnTimeDeleted(object sender, EventArgs e)
         {
