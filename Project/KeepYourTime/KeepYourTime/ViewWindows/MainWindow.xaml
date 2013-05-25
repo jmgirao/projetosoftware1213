@@ -84,7 +84,6 @@
                 <Rectangle Width="24" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
                            Fill="Transparent" Name="recMove" Cursor="SizeAll"/>
 
-
                 <MainWindowControls:MinimalViewControl Margin="24,5,5,5" x:Name="mvMinimalView"/>
             </Grid>
         </Grid>

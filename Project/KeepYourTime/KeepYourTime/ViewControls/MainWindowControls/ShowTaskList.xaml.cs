@@ -37,8 +37,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         public ShowTaskList()
         {
-
+           
             InitializeComponent();
+           
+            
             this.Loaded += ShowTaskList_Loaded;
         }
 
