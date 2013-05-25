@@ -108,6 +108,10 @@
     <Compile Include="ViewControls\ConfigurationControls\ConfigurationControl.xaml.cs">
       <DependentUpon>ConfigurationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewControls\InactivityControls\InactivityControl.xaml.cs">
+      <DependentUpon>InactivityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControls\MainWindowControls\InactivityReaction.cs" />
     <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
       <DependentUpon>MinimalViewControl.xaml</DependentUpon>
     </Compile>
@@ -137,6 +141,10 @@
       <DependentUpon>TaskDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ViewControls\ConfigurationControls\ConfigurationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewControls\InactivityControls\InactivityControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,9 +239,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewControls\InactivityControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\remove.png" />
   </ItemGroup>

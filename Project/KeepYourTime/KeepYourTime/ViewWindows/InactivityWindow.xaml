@@ -1,30 +1,9 @@
-﻿<UserControl x:Class="KeepYourTime.ViewWindows.InactivityWindow"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:p="clr-namespace:KeepYourTime.Languages"
-             mc:Ignorable="d" Height="130" Width="280">
-    <Grid Margin="0,0,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="272"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="44"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="5*"/>
-        </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="33,4,0,0" TextWrapping="Wrap" Text="{x:Static p:Language.InactiveMinutesPart1}" VerticalAlignment="Top" Width="141" Height="16" Grid.Row="1" Grid.Column="1"/>
-        <TextBlock x:Name="lblInactiveMinutes" HorizontalAlignment="Left" Margin="176,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="X" Grid.Row="1" Grid.Column="1" Height="16" Width="7"/>
-        <TextBlock HorizontalAlignment="Left" Margin="183,4,0,0" TextWrapping="Wrap" Text="{x:Static p:Language.InactiveMinutesPart2}" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="16" Width="46"/>
-        <TextBlock HorizontalAlignment="Left" Margin="45,26,0,0" TextWrapping="Wrap" Text="{x:Static p:Language.InactiveQuestion}" VerticalAlignment="Top" Height="16" Width="185" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="btnAddTime" Content="{x:Static p:Language.InactiveBtnSaveTime}" HorizontalAlignment="Left" Margin="6,13,0,0" VerticalAlignment="Top" Width="134" Grid.Row="3" Height="22" Grid.Column="1" Click="btnAddTime_Click"/>
-        <Button x:Name="btnDiscardTime" Content="{x:Static p:Language.InactiveBtnDiscardTime}" HorizontalAlignment="Left" Height="22" Margin="165,13,0,0" VerticalAlignment="Top" Width="96" Grid.Row="3" Grid.Column="1" Click="btnDiscardTime_Click"/>
+﻿<Window x:Class="KeepYourTime.ViewWindows.InactivityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.InactivityControls"
+        Title="InactivityWindow" Height="130" Width="280">
 
-    </Grid>
-</UserControl>
+        <UserControls:InactivityControl/>
+ 
+</Window>
