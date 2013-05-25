@@ -5,34 +5,43 @@ using System.Text;
 using KeepYourTime.DataBase.Connectors;
 using System.Collections.ObjectModel;
 using KeepYourTime.DataBase.Adapters;
+using System.Security;
+using System.Security.Permissions;
 namespace KeepYourTime.Utils
 {
-
-    class CsvExporter
+    /// <summary>
+    /// Methods to export the database to CSV
+    /// </summary>
+    /// <remarks>CREATED BY Filipe Brandão</remarks>
+    public class CsvExporter
     {
-        private static string FILENAME = "export.csv";
         private static string TABLE_SEPARATOR = "$$\n";
 
-        public static MethodHandler ExportDatabaseToCSV(string Path)
+        /// <summary>
+        /// Exports the database to csv
+        /// </summary>
+        /// <param name="Path">The path to save the csv file.</param>
+        public static void ExportDatabaseToCSV(string Path)
         {
-            var mhResult = new MethodHandler();
             string tasksCsv = "";
             string configCsv = "";
 
-            getTasksAsCsv(out tasksCsv);
-            getConfigAsCsv(out configCsv);
+            tasksCsv = getTasksAsCsv();
+            configCsv = getConfigAsCsv();
 
             string csv = tasksCsv + TABLE_SEPARATOR + configCsv;
 
             writeToFile(Path, csv);
 
-            return mhResult;
         }
 
-        private static MethodHandler getTasksAsCsv(out string Data)
+        /// <summary>
+        /// get Tasks table as csv 
+        /// </summary>
+        /// <returns> String that contains the CSV lines from the Tasks table</returns>
+        private static string getTasksAsCsv()
         {
-
-            var mhResult = new MethodHandler();
+            string Data = "";
 
             ObservableCollection<TaskAdapter> taskList = new ObservableCollection<TaskAdapter>();
             TaskConnector.ReadTaskList(out taskList, true);
@@ -45,14 +54,16 @@ namespace KeepYourTime.Utils
                 Data += "\"" + task.TaskId + "\",\"" + task.TaskName + "\",\"" + task.Description + "\",\"" + task.Active + "\"\n";
             }
 
-
-            return mhResult;
+            return Data;
         }
 
-        private static MethodHandler getConfigAsCsv(out string Data)
+        /// <summary>
+        /// get Config table as csv 
+        /// </summary>
+        /// <returns> String that contains the CSV lines from the Config table</returns>
+        private static string getConfigAsCsv()
         {
-            var mhResult = new MethodHandler();
-
+            String Data = "";
             ConfigurationAdapter config;
             ConfigurationConnector.ReadConfiguration(out config);
 
@@ -72,22 +83,24 @@ namespace KeepYourTime.Utils
                 Data += "\"" + shortcut.ShortcutId + "\",\"" + shortcut.TaskId + "\",\"" + shortcut.Ctrl + "\",\"" + shortcut.Alt + "\",\"" + shortcut.Shift + "\",\"" + shortcut.ShortcutKey + "\"\n";
             }
 
-            return mhResult;
+            return Data;
+
         }
 
+        /// <summary>
+        /// Writes text to file 
+        /// </summary>
+        /// <param name="Path">Path to write to</param>
+        /// <param name="Path">Content to write on the file</param>
 
-        private static MethodHandler writeToFile(string Path, string ToWrite)
+        private static void writeToFile(string Path, string ToWrite)
         {
-            var mhResult = new MethodHandler();
-
             // Write the string to a file.
             System.IO.StreamWriter file = new System.IO.StreamWriter(Path);
             file.WriteLine(ToWrite);
-
             file.Close();
-
-            return mhResult;
         }
+
     }
 
 
