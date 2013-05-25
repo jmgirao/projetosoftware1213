@@ -214,6 +214,15 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have no permission to write on that folder. Please choose another..
+        /// </summary>
+        public static string NoPermission {
+            get {
+                return ResourceManager.GetString("NoPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
