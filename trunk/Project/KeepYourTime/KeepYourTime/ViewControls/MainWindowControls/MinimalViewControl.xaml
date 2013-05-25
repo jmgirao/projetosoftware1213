@@ -5,65 +5,72 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Button"  x:Key="BtnImage">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-       
-
-            <!--Área de Edição -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Name="btnFechar" Grid.Column="6" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Name="btnConfig" Grid.Column="5" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
 
 
-                <Button Name="btnEdit" Grid.Column="4" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="E" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+        <!--Área de Edição -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
 
-                <Button Name="btnTaskDetails" Grid.Column="3" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="D" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+            <Button Name="btnFechar" Grid.Column="6" Content="Close" Style="{StaticResource BtnImage}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/KeepYourTime;component/Assets/play.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-                <TextBlock Text="00:00:00" Grid.Column="2"/>
+            <Button Name="btnConfig" Grid.Column="5" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-                <Button Name="btnAdd" Grid.Column="1" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="+" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
 
-                <TextBox Text="Insira coisas" Name="txtNomeTask"/>
+            <Button Name="btnEdit" Grid.Column="4" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <TextBlock Text="E" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Name="btnTaskDetails" Grid.Column="3" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <TextBlock Text="D" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock Text="00:00:00" Grid.Column="2"/>
+
+            <Button Name="btnAdd" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/KeepYourTime;component/Assets/Add.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBox Text="Insira coisas" Name="txtNomeTask"/>
 
         </Grid>
     </Grid>

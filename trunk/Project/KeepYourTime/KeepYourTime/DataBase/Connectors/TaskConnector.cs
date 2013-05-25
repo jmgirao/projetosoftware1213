@@ -31,6 +31,9 @@ namespace KeepYourTime.DataBase.Connectors
         {
             var mhResult = new MethodHandler();
             Task = null;
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             try
             {
                 DataTable dtTask = null;
@@ -90,6 +93,9 @@ namespace KeepYourTime.DataBase.Connectors
         {
             var mhResult = new MethodHandler();
             TaskID = 0;
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             try
             {
 
@@ -145,6 +151,9 @@ namespace KeepYourTime.DataBase.Connectors
         public static MethodHandler EditTask(TaskAdapter Task)
         {
             var mhResult = new MethodHandler();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             SqlCeConnection conSQL = null;
             SqlCeTransaction traSQL = null;
             try
@@ -183,7 +192,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 strSQL = "INSERT INTO TaskTime (TaskId, StartTime, StopTime)  " +
                     "VALUES (" + Task.TaskId.ToString() + ", @StartTime, @StopTime)";
-                
+
                 foreach (TaskTimeAdapter t in Task.Times)
                 {
                     scpParams = new SqlCeParameter[2];
@@ -225,6 +234,9 @@ namespace KeepYourTime.DataBase.Connectors
         public static MethodHandler ActivateTask(long TaskID, bool Active)
         {
             var mhResult = new MethodHandler();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             try
             {
 
@@ -256,6 +268,9 @@ namespace KeepYourTime.DataBase.Connectors
         public static MethodHandler DeleteTask(long TaskID)
         {
             var mhResult = new MethodHandler();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             SqlCeConnection conSql = null;
             SqlCeTransaction traSql = null;
             try
@@ -310,6 +325,9 @@ namespace KeepYourTime.DataBase.Connectors
         {
             var mhResult = new MethodHandler();
             TaskList = new ObservableCollection<TaskAdapter>();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             try
             {
 
@@ -350,6 +368,9 @@ namespace KeepYourTime.DataBase.Connectors
         public static MethodHandler AddTime(TaskTimeAdapter Time)
         {
             var mhResult = new MethodHandler();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return mhResult;
+
             try
             {
                 object objTaskExists = null;
