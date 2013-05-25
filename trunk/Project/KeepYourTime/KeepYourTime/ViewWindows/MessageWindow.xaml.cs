@@ -54,7 +54,6 @@ namespace KeepYourTime.ViewWindows
             winMessage.Show();
         }
 
-
         async void HideMessage(int Time)
         {
             await Task.Delay(Time);
