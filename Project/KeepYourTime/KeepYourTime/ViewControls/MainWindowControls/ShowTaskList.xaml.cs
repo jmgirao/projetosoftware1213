@@ -1,23 +1,12 @@
 ﻿using System;
-using System.Data;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using KeepYourTime.DataBase;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.ViewWindows;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -39,7 +28,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
 
             InitializeComponent();
-
             this.Loaded += ShowTaskList_Loaded;
         }
 
@@ -104,9 +92,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     taskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
-
-                    //TODO: The system should differentiate visually the active from inactive tasks
-
                 }
             }
             //end
@@ -155,6 +140,33 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
         /// <summary>
+        /// Handles the LoadingRow event of the DataGrid control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.DataGridRowEventArgs"/> instance containing the event data.</param>
+        private void DataGrid_LoadingRow(object sender, System.Windows.Controls.DataGridRowEventArgs e)
+        {
+            TaskAdapter RowDataContaxt = e.Row.DataContext as TaskAdapter;
+            if (RowDataContaxt != null)
+                if (!RowDataContaxt.Active)
+                    e.Row.Background = new SolidColorBrush(Colors.LightGray);
+        }
+        /// <summary>
+        /// Handles the RowEditEnding event of the dgTaskList control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridRowEditEndingEventArgs"/> instance containing the event data.</param>
+        private void dgTaskList_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            TaskAdapter RowDataContaxt = e.Row.DataContext as TaskAdapter;
+            if (RowDataContaxt != null)
+                if (!RowDataContaxt.Active)
+                    e.Row.Background = new SolidColorBrush(Colors.LightGray);
+                else
+                    e.Row.Background = new SolidColorBrush(Colors.White);
+        }  
+
+        /// <summary>
         /// Handles the Click event of the btDetails control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -180,5 +192,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
 
         }
+
     }
 }
