@@ -43,17 +43,12 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 ObservableCollection<TaskAdapter> taskList;
                 var lstCombo = new ObservableCollection<ConfigTaskComboShortcut>();
                 mhResult = TaskConnector.ReadTaskList(out taskList, false);
-                
+
+                lstCombo.Add(new ConfigTaskComboShortcut { TaskID = -1, TaskName = " " });
 
                 foreach (TaskAdapter t in taskList)
                 {
                     lstCombo.Add(new ConfigTaskComboShortcut { TaskID = t.TaskId, TaskName = t.TaskName });
-
-                    //cbShort1.Items.Add(taskList[i].TaskName);
-                    //cbShort2.Items.Add(taskList[i].TaskName);
-                    //cbShort3.Items.Add(taskList[i].TaskName);
-                    //cbShort4.Items.Add(taskList[i].TaskName);
-                    //cbShort5.Items.Add(taskList[i].TaskName);
                 }
 
                 cbShort1.ItemsSource = lstCombo;
@@ -71,39 +66,106 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 chkInactivityAlert.IsChecked = configuration.Inactivity;
                 txtInactiveTime.Text = configuration.InactivityTime.ToString();
-                //TODO must select the task name for all the combo boxes
+                
 
-                chkShift1.IsChecked = listShortcuts[0].Shift;
-                chkShift2.IsChecked = listShortcuts[1].Shift;
-                chkShift3.IsChecked = listShortcuts[2].Shift;
-                chkShift4.IsChecked = listShortcuts[3].Shift;
-                chkShift5.IsChecked = listShortcuts[4].Shift;
+                try
+                {
+                    var task1Content = (from task in taskList where task.TaskId == listShortcuts[0].TaskId select task).First();
+                    cbShort1.SelectedItem = new ConfigTaskComboShortcut
+                    {
+                        TaskID = task1Content.TaskId,
+                        TaskName = task1Content.TaskName
+                    };
+                    chkShift1.IsChecked = listShortcuts[0].Shift;
+                    chkCtrl1.IsChecked = listShortcuts[0].Ctrl;
+                    chkAlt1.IsChecked = listShortcuts[0].Alt;
+                    txtShortcutKey1.Text = (listShortcuts[0].ShortcutKey.ToString() != "\0") ? listShortcuts[0].ShortcutKey.ToString()[0].ToString() : "";
+                }
+                catch(Exception ex)
+                {
+                    cbShort1.SelectedIndex = 0;
+                }
 
-                chkCtrl1.IsChecked = listShortcuts[0].Ctrl;
-                chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
-                chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
-                chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
-                chkCtrl5.IsChecked = listShortcuts[4].Ctrl;
+                try
+                {
+                    var task2Content = (from task in taskList where task.TaskId == listShortcuts[1].TaskId select task).First();
+                    cbShort2.SelectedItem = new ConfigTaskComboShortcut
+                    {
+                        TaskID = task2Content.TaskId,
+                        TaskName = task2Content.TaskName
+                    };
+                    chkShift2.IsChecked = listShortcuts[1].Shift;
+                    chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
+                    chkAlt2.IsChecked = listShortcuts[1].Alt;
+                    txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[1].ShortcutKey.ToString()[0].ToString() : "";
+                }
+                catch(Exception ex)
+                {
+                    cbShort2.SelectedIndex = 0;
+                }
 
-                chkAlt1.IsChecked = listShortcuts[0].Alt;
-                chkAlt2.IsChecked = listShortcuts[1].Alt;
-                chkAlt3.IsChecked = listShortcuts[2].Alt;
-                chkAlt4.IsChecked = listShortcuts[3].Alt;
-                chkAlt5.IsChecked = listShortcuts[4].Alt;
+                try
+                {
+                    var task3Content = (from task in taskList where task.TaskId == listShortcuts[2].TaskId select task).First();
+                    cbShort3.SelectedItem = new ConfigTaskComboShortcut
+                    {
+                        TaskID = task3Content.TaskId,
+                        TaskName = task3Content.TaskName
+                    };
+                    chkShift3.IsChecked = listShortcuts[2].Shift;
+                    chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
+                    chkAlt3.IsChecked = listShortcuts[2].Alt;
+                    txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString()[0].ToString() : "";
+                }
+                catch(Exception ex)
+                {
+                    cbShort3.SelectedIndex = 0;
+                }
 
-                txtShortcutKey1.Text = listShortcuts[0].ShortcutKey.ToString();
-                txtShortcutKey2.Text = listShortcuts[1].ShortcutKey.ToString();
-                txtShortcutKey3.Text = listShortcuts[2].ShortcutKey.ToString();
-                txtShortcutKey4.Text = listShortcuts[3].ShortcutKey.ToString();
-                txtShortcutKey5.Text = listShortcuts[4].ShortcutKey.ToString();
+                try
+                {
+                    var task4Content = (from task in taskList where task.TaskId == listShortcuts[3].TaskId select task).First();
+                    cbShort4.SelectedItem = new ConfigTaskComboShortcut
+                    {
+                        TaskID = task4Content.TaskId,
+                        TaskName = task4Content.TaskName
+                    };
+                    chkShift4.IsChecked = listShortcuts[3].Shift;
+                    chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
+                    chkAlt4.IsChecked = listShortcuts[3].Alt;
+                    txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString()[0].ToString() : "";
+                }
+                catch(Exception ex)
+                {
+                    cbShort4.SelectedIndex = 0;
+                }
+
+                try
+                {
+                    var task5Content = (from task in taskList where task.TaskId == listShortcuts[4].TaskId select task).First();
+                    cbShort5.SelectedItem = new ConfigTaskComboShortcut
+                    {
+                        TaskID = task5Content.TaskId,
+                        TaskName = task5Content.TaskName
+                    };
+                    chkShift5.IsChecked = listShortcuts[4].Shift;
+                    chkCtrl5.IsChecked = listShortcuts[4].Ctrl;
+                    chkAlt5.IsChecked = listShortcuts[4].Alt;
+                    txtShortcutKey5.Text = (listShortcuts[4].ShortcutKey.ToString() != "\0") ? listShortcuts[4].ShortcutKey.ToString()[0].ToString() : "";
+                }
+                catch (Exception ex)
+                {
+                    cbShort5.SelectedIndex = 0;
+                }
+
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
             }
             finally
-            { 
-                //TODO Mostrar a mensagem
+            {
+                MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 
@@ -128,78 +190,99 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
         private bool isValideShortcuts()
         {
-            if (cbShort1.SelectedIndex != 0 && txtShortcutKey1.Text.Trim() == "")
+            if (cbShort1.SelectedIndex > 0 && txtShortcutKey1.Text.Trim() == "")
                 return false;
-            if (cbShort2.SelectedIndex != 0 && txtShortcutKey2.Text.Trim() == "")
+            if (cbShort2.SelectedIndex > 0 && txtShortcutKey2.Text.Trim() == "")
                 return false;
-            if (cbShort3.SelectedIndex != 0 && txtShortcutKey3.Text.Trim() == "")
+            if (cbShort3.SelectedIndex > 0 && txtShortcutKey3.Text.Trim() == "")
                 return false;
-            if (cbShort4.SelectedIndex != 0 && txtShortcutKey4.Text.Trim() == "")
+            if (cbShort4.SelectedIndex > 0 && txtShortcutKey4.Text.Trim() == "")
                 return false;
-            if (cbShort5.SelectedIndex != 0 && txtShortcutKey5.Text.Trim() == "")
+            if (cbShort5.SelectedIndex > 0 && txtShortcutKey5.Text.Trim() == "")
                 return false;
             return true;
         }
 
         private void btApply_Click(object sender, RoutedEventArgs e)
         {
+            var mhResult = new MethodHandler();
+
             if (!isValideShortcuts())
             {
-                MessageBox.Show("One shortcut appear to be incomplete, you need to choose any character for it",
-                    "Incomplete shortcut");
+                mhResult.Message = "One shortcut appear to be incomplete, you need to choose any character for it";
                 return;
             }
 
-
-            var mhResult = new MethodHandler();
 
             //TODO taskid must be correctly "generated/readed" and be saved to list
             try
             {
                 List<ShortcutAdapter> listShortcuts = new List<ShortcutAdapter>();
-                listShortcuts.Add(new ShortcutAdapter
-                {
-                    TaskId = 1,
-                    Shift = (chkShift1.IsChecked.HasValue) ? chkShift1.IsChecked.Value : false,
-                    Ctrl = (chkCtrl1.IsChecked.HasValue) ? chkCtrl1.IsChecked.Value : false,
-                    Alt = (chkAlt1.IsChecked.HasValue) ? chkAlt1.IsChecked.Value : false,
-                    ShortcutKey = txtShortcutKey1.Text[0]
-                });
-                listShortcuts.Add(new ShortcutAdapter
-                {
-                    TaskId = 1,
-                    Shift = (chkShift2.IsChecked.HasValue) ? chkShift2.IsChecked.Value : false,
-                    Ctrl = (chkCtrl2.IsChecked.HasValue) ? chkCtrl2.IsChecked.Value : false,
-                    Alt = (chkAlt2.IsChecked.HasValue) ? chkAlt2.IsChecked.Value : false,
-                    ShortcutKey = txtShortcutKey2.Text[0]
-                });
 
-                listShortcuts.Add(new ShortcutAdapter
+                if (((ConfigTaskComboShortcut)cbShort1.SelectedItem).TaskID >= 0)
                 {
-                    TaskId = 1,
-                    Shift = (chkShift3.IsChecked.HasValue) ? chkShift3.IsChecked.Value : false,
-                    Ctrl = (chkCtrl3.IsChecked.HasValue) ? chkCtrl3.IsChecked.Value : false,
-                    Alt = (chkAlt3.IsChecked.HasValue) ? chkAlt3.IsChecked.Value : false,
-                    ShortcutKey = txtShortcutKey3.Text[0]
-                });
+                    listShortcuts.Add(new ShortcutAdapter
+                    {
+                        TaskId = ((ConfigTaskComboShortcut)cbShort1.SelectedItem).TaskID,
+                        ShortcutId = 1,
+                        Shift = (chkShift1.IsChecked.HasValue) ? chkShift1.IsChecked.Value : false,
+                        Ctrl = (chkCtrl1.IsChecked.HasValue) ? chkCtrl1.IsChecked.Value : false,
+                        Alt = (chkAlt1.IsChecked.HasValue) ? chkAlt1.IsChecked.Value : false,
+                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text[0] : ' '
+                    });
+                }
 
-                listShortcuts.Add(new ShortcutAdapter
+                if (((ConfigTaskComboShortcut)cbShort2.SelectedItem).TaskID >= 0)
                 {
-                    TaskId = 1,
-                    Shift = (chkShift4.IsChecked.HasValue) ? chkShift4.IsChecked.Value : false,
-                    Ctrl = (chkCtrl4.IsChecked.HasValue) ? chkCtrl4.IsChecked.Value : false,
-                    Alt = (chkAlt4.IsChecked.HasValue) ? chkAlt4.IsChecked.Value : false,
-                    ShortcutKey = txtShortcutKey4.Text[0]
-                });
+                    listShortcuts.Add(new ShortcutAdapter
+                    {
+                        TaskId = ((ConfigTaskComboShortcut)cbShort2.SelectedItem).TaskID,
+                        ShortcutId = 2,
+                        Shift = (chkShift2.IsChecked.HasValue) ? chkShift2.IsChecked.Value : false,
+                        Ctrl = (chkCtrl2.IsChecked.HasValue) ? chkCtrl2.IsChecked.Value : false,
+                        Alt = (chkAlt2.IsChecked.HasValue) ? chkAlt2.IsChecked.Value : false,
+                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text[0] : ' '
+                    });
+                }
 
-                listShortcuts.Add(new ShortcutAdapter
+                if (((ConfigTaskComboShortcut)cbShort3.SelectedItem).TaskID >= 0)
                 {
-                    TaskId = 1,
-                    Shift = (chkShift5.IsChecked.HasValue) ? chkShift5.IsChecked.Value : false,
-                    Ctrl = (chkCtrl5.IsChecked.HasValue) ? chkCtrl5.IsChecked.Value : false,
-                    Alt = (chkAlt5.IsChecked.HasValue) ? chkAlt5.IsChecked.Value : false,
-                    ShortcutKey = txtShortcutKey5.Text[0]
-                });
+                    listShortcuts.Add(new ShortcutAdapter
+                    {
+                        TaskId = ((ConfigTaskComboShortcut)cbShort3.SelectedItem).TaskID,
+                        ShortcutId = 3,
+                        Shift = (chkShift3.IsChecked.HasValue) ? chkShift3.IsChecked.Value : false,
+                        Ctrl = (chkCtrl3.IsChecked.HasValue) ? chkCtrl3.IsChecked.Value : false,
+                        Alt = (chkAlt3.IsChecked.HasValue) ? chkAlt3.IsChecked.Value : false,
+                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text[0] : ' '
+                    });
+                }
+
+                if (((ConfigTaskComboShortcut)cbShort4.SelectedItem).TaskID >= 0)
+                {
+                    listShortcuts.Add(new ShortcutAdapter
+                    {
+                        TaskId = ((ConfigTaskComboShortcut)cbShort4.SelectedItem).TaskID,
+                        ShortcutId = 4,
+                        Shift = (chkShift4.IsChecked.HasValue) ? chkShift4.IsChecked.Value : false,
+                        Ctrl = (chkCtrl4.IsChecked.HasValue) ? chkCtrl4.IsChecked.Value : false,
+                        Alt = (chkAlt4.IsChecked.HasValue) ? chkAlt4.IsChecked.Value : false,
+                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text[0] : ' '
+                    });
+                }
+
+                if (((ConfigTaskComboShortcut)cbShort5.SelectedItem).TaskID >= 0)
+                {
+                    listShortcuts.Add(new ShortcutAdapter
+                    {
+                        TaskId = ((ConfigTaskComboShortcut)cbShort5.SelectedItem).TaskID,
+                        ShortcutId = 5,
+                        Shift = (chkShift5.IsChecked.HasValue) ? chkShift5.IsChecked.Value : false,
+                        Ctrl = (chkCtrl5.IsChecked.HasValue) ? chkCtrl5.IsChecked.Value : false,
+                        Alt = (chkAlt5.IsChecked.HasValue) ? chkAlt5.IsChecked.Value : false,
+                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text[0] : ' '
+                    });
+                }
 
                 var cf = new ConfigurationAdapter();
                 cf.Inactivity = (chkInactivityAlert.IsChecked.HasValue) ? chkInactivityAlert.IsChecked.Value : false;
