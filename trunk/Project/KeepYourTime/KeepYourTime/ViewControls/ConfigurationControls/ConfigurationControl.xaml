@@ -58,24 +58,24 @@
         <CheckBox Name="chkShift2" Content="SHIFT" HorizontalAlignment="Left" Margin="85,43,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         <CheckBox Name="chkShift3" Content="SHIFT" HorizontalAlignment="Left" Margin="85,70,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         <CheckBox Name="chkShift4" Content="SHIFT" HorizontalAlignment="Left" Margin="85,97,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <CheckBox Name="chkShift5" Content="SHIFT" HorizontalAlignment="Left" Margin="80,124,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <CheckBox Name="chkCtrl1" Content="CTRL" HorizontalAlignment="Left" Margin="137,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <CheckBox Name="chkCtrl2" Content="CTRL" HorizontalAlignment="Left" Margin="136,43,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <CheckBox Name="chkCtrl3" Content="CTRL" HorizontalAlignment="Left" Margin="136,70,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <CheckBox Name="chkShift5" Content="SHIFT" HorizontalAlignment="Left" Margin="85,124,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <CheckBox Name="chkCtrl1" Content="CTRL" HorizontalAlignment="Left" Margin="137,16,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <CheckBox Name="chkCtrl2" Content="CTRL" HorizontalAlignment="Left" Margin="137,43,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <CheckBox Name="chkCtrl3" Content="CTRL" HorizontalAlignment="Left" Margin="137,70,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         <CheckBox Name="chkCtrl4" Content="CTRL" HorizontalAlignment="Left" Margin="137,97,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox Name="chkCtrl5" Content="CTRL" HorizontalAlignment="Left" Margin="137,124,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox Name="chkAlt1" Content="ALT" HorizontalAlignment="Left" Margin="6,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt2" Content="ALT" HorizontalAlignment="Left" Margin="5,43,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox Name="chkAlt2" Content="ALT" HorizontalAlignment="Left" Margin="6,43,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox Name="chkAlt3" Content="ALT" HorizontalAlignment="Left" Margin="6,70,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox Name="chkAlt4" Content="ALT" HorizontalAlignment="Left" Margin="6,97,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt5" Content="ALT" HorizontalAlignment="Left" Margin="10,124,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox Name="chkAlt5" Content="ALT" HorizontalAlignment="Left" Margin="6,124,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,16,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,43,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,70,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,97,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,124,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBox Name="txtShortcutKey1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,16,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
-        <TextBox Name="txtShortcutKey2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,44,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+        <TextBox Name="txtShortcutKey1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+        <TextBox Name="txtShortcutKey2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,39,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
         <TextBox Name="txtShortcutKey3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,67,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
         <TextBox Name="txtShortcutKey4" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,95,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
         <TextBox Name="txtShortcutKey5" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,124,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
