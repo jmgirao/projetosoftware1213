@@ -63,9 +63,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        
-        
-        
 
         <Button Name="btCloseTaskDetails" Grid.Column="1" Grid.Row="3" Margin="10" Width="100" Height="50" Content="{x:Static p:Language.Close}" />
 
