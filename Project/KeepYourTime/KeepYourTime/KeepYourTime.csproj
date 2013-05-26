@@ -112,7 +112,7 @@
     <Compile Include="ViewControls\InactivityControls\InactivityControl.xaml.cs">
       <DependentUpon>InactivityControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Hooks\InactivityReaction.cs" />
+    <Compile Include="Hooks\InactivityDetection.cs" />
     <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
       <DependentUpon>MinimalViewControl.xaml</DependentUpon>
     </Compile>

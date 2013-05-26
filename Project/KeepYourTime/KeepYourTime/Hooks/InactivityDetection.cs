@@ -12,7 +12,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// Class InactivityReaction
     /// </summary>
     /// <remarks>CREATED BY João Girão</remarks>
-    class InactivityReaction
+    class InactivityDetection
     {
 
        // Hooks.ActivityHook ahHook;
@@ -22,11 +22,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InactivityReaction"/> class.
+        /// Initializes a new instance of the <see cref="InactivityDetection"/> class.
         /// </summary>
         /// <param name="TaskId">The task id.</param>
         /// <param name="Timer">The timer.</param>
-        public InactivityReaction(long TaskId, TaskTimer Timer)
+        public InactivityDetection(long TaskId, TaskTimer Timer)
         {
            // ahHook = new Hooks.ActivityHook();
             isInactive = false;
