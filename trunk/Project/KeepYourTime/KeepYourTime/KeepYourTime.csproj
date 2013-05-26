@@ -102,6 +102,7 @@
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\CsvExporter.cs" />
+    <Compile Include="Utils\CurrentConfigurations.cs" />
     <Compile Include="Utils\MethodHandler.cs" />
     <Compile Include="Utils\MethodStatus.cs" />
     <Compile Include="ViewControls\ConfigurationControls\ConfigTaskComboShortcut.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="ViewControls\InactivityControls\InactivityControl.xaml.cs">
       <DependentUpon>InactivityControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewControls\MainWindowControls\InactivityReaction.cs" />
+    <Compile Include="Hooks\InactivityReaction.cs" />
     <Compile Include="ViewControls\MainWindowControls\MinimalViewControl.xaml.cs">
       <DependentUpon>MinimalViewControl.xaml</DependentUpon>
     </Compile>
@@ -252,6 +253,7 @@
     <Resource Include="Assets\play.png" />
     <Resource Include="Assets\Settings.png" />
     <Resource Include="Assets\stop.png" />
+    <Resource Include="Assets\close.png" />
     <Content Include="lib\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
   <ItemGroup>
