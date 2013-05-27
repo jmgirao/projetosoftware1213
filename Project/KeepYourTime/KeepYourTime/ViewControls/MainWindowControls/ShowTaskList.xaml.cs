@@ -29,6 +29,28 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
             InitializeComponent();
             this.Loaded += ShowTaskList_Loaded;
+            chkShowInactiveTask.Checked += chkShowInactiveTask_Checked;
+            chkShowInactiveTask.Unchecked += chkShowInactiveTask_Checked;
+        }
+
+        void chkShowInactiveTask_Checked(object sender, RoutedEventArgs e)
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                mhResult = TaskConnector.ReadTaskList(out MainWindow.taskAdapt, chkShowInactiveTask.IsChecked.Value);
+                if (mhResult.Exits) return;
+
+                ReceiveTaskList(MainWindow.taskAdapt);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
         }
 
         /// <summary>
@@ -38,7 +60,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void ShowTaskList_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeControl();
+
+            //InitializeControl();
         }
 
         /// <summary>
@@ -112,34 +135,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
         /// <summary>
-        /// Initializes the control.
-        /// </summary>
-        private void InitializeControl()
-        {
-            var mhResult = new MethodHandler();
-
-            try
-            {
-                bool blnActive = chkShowInactiveTask.IsChecked.Value;
-
-                ObservableCollection<TaskAdapter> taskAdapt = null;
-                mhResult = TaskConnector.ReadTaskList(out taskAdapt, blnActive);
-                if (mhResult.Exits) return;
-
-                ReceiveTaskList(taskAdapt);
-
-            }
-            catch (Exception e)
-            {
-                mhResult.Exception(e);
-            }
-            finally
-            {
-                MessageWindow.ShowMethodHandler(mhResult, false);
-            }
-        }
-
-        /// <summary>
         /// Handles the LoadingRow event of the DataGrid control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -151,6 +146,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 if (!RowDataContaxt.Active)
                     e.Row.Background = new SolidColorBrush(Colors.LightGray);
         }
+
         /// <summary>
         /// Handles the RowEditEnding event of the dgTaskList control.
         /// </summary>
@@ -205,37 +201,46 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
             try
             {
-                object objTaskId = ((FrameworkElement)sender).DataContext;
-                TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+                if (OnStartTask != null)
+                {
+                    var taTaskUi = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
+                    //TaskDetailsWindow.TaskID = ;
+                    OnStartTask(taTaskUi.TaskId);
+
+                    taskAdaptUi.Move(taskAdaptUi.IndexOf(taTaskUi), 0);
+
+                }
+
+
                 /* 
                
-                 MessageBox.Show("ID da tarefa a ir la para cima: " + MinimalViewControl.TaskID);
+             MessageBox.Show("ID da tarefa a ir la para cima: " + MinimalViewControl.TaskID);
 
-                taskAdaptUiPlay = new ObservableCollection<TaskAdapterUI>();
+            taskAdaptUiPlay = new ObservableCollection<TaskAdapterUI>();
                 
-                foreach (TaskAdapter t in taskAdaptUi)
-                {
-                    var ta = new TaskAdapterUI(t);
-                    if (ta.TaskId == TaskDetailsWindow.TaskID){
-                        ta.IsRunning = true;
-                        taskAdaptUiPlay.Add(ta);
-                        taskAdaptUi.Remove(ta);
-                        break;
-                    }
+            foreach (TaskAdapter t in taskAdaptUi)
+            {
+                var ta = new TaskAdapterUI(t);
+                if (ta.TaskId == TaskDetailsWindow.TaskID){
+                    ta.IsRunning = true;
+                    taskAdaptUiPlay.Add(ta);
+                    taskAdaptUi.Remove(ta);
+                    break;
                 }
+            }
 
-                foreach (TaskAdapter t in taskAdaptUiPlay)
+            foreach (TaskAdapter t in taskAdaptUiPlay)
+            {
+                var ta = new TaskAdapterUI(t);
+                if (ta.IsRunning)
                 {
-                    var ta = new TaskAdapterUI(t);
-                    if (ta.IsRunning)
-                    {
-                        taskAdaptUi.Add(ta);
-                        taskAdaptUiPlay.Remove(ta);
-                        break;
-                    }
+                    taskAdaptUi.Add(ta);
+                    taskAdaptUiPlay.Remove(ta);
+                    break;
                 }
-                 */
-                
+            }
+             */
+
             }
             catch (Exception ex)
             {
@@ -257,25 +262,42 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 foreach (TaskAdapter t in taskAdaptUi)
                 {
                     var ta = new TaskAdapterUI(t);
-                    if (ta.TaskId == TaskDetailsWindow.TaskID){
-                        if (ta.IsRunning == false){
+                    if (ta.TaskId == TaskDetailsWindow.TaskID)
+                    {
+                        if (ta.IsRunning == false)
+                        {
                             taskAdaptUiIsRunning.Add(ta);
                             break;
                         }
                     }
                 }
-                if (taskAdaptUiIsRunning.Count != 0) {
+                if (taskAdaptUiIsRunning.Count != 0)
+                {
                     mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
                     if (mhResult.Exits) return;
-                    InitializeControl();
+
+                    mhResult = TaskConnector.ReadTaskList(out MainWindow.taskAdapt, chkShowInactiveTask.IsChecked.Value);
+                    if (mhResult.Exits) return;
+
+                    ReceiveTaskList(MainWindow.taskAdapt);
+                    //InitializeControl();
                 }
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
+            }
+            finally
+            {
+
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
+
+        public delegate void StartTaskHandler(long TaskID);
+
+        public event StartTaskHandler OnStartTask;
+
 
     }
 }
