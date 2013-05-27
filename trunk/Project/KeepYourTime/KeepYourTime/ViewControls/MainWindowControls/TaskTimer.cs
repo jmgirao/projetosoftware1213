@@ -30,7 +30,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
 
-        public void StartTimingTask(long TaskID)
+        public void StartTimingTask(long TaskID, int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try
@@ -45,8 +45,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
                 }
                 lngTaskID = TaskID;
-                CurrentTime = new TimeSpan();
-                dtStartTiming = DateTime.Now;
+                CurrentTime = new TimeSpan(RemoveSeconds / 3600, (RemoveSeconds % 3600) / 60, (RemoveSeconds % 3600) % 60);
+                dtStartTiming = DateTime.Now.AddSeconds(-RemoveSeconds);
                 tmTaskTimer.Start();
             }
             catch (Exception ex)
@@ -64,13 +64,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             return tmTaskTimer.Enabled;
         }
 
-        public TaskTimeAdapter StopTimingTask()
+        public TaskTimeAdapter StopTimingTask(int RemoveSeconds)
         {
 
             tmTaskTimer.Stop();
             TaskTimeAdapter ttTime = new TaskTimeAdapter();
             ttTime.StartTime = dtStartTiming;
-            ttTime.StopTime = DateTime.Now;
+            ttTime.StopTime = DateTime.Now.AddSeconds(-RemoveSeconds);
             ttTime.TaskId = lngTaskID;
             return ttTime;
         }
@@ -94,5 +94,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public delegate void TimeChangedHandler(string time);
         public event TimeChangedHandler onTimeChanged;
 
+        public void DiscardCurrentTime()
+        {
+            tmTaskTimer.Stop();
+        }
     }
 }

@@ -15,10 +15,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     class InactivityDetection
     {
 
-       // Hooks.ActivityHook ahHook;
-        TaskTimer ttTimer;
-        bool isInactive { get; set; }
-        long TaskId { get; set; }
+        // Hooks.ActivityHook ahHook;
+        //TaskTimer ttTimer;
+        static bool isInactive;
+        //long TaskId;
+        public static int RemoveSeconds = 0;
 
 
         /// <summary>
@@ -26,32 +27,38 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         /// <param name="TaskId">The task id.</param>
         /// <param name="Timer">The timer.</param>
-        public InactivityDetection(long TaskId, TaskTimer Timer)
-        {
-           // ahHook = new Hooks.ActivityHook();
-            isInactive = false;
-            this.TaskId = TaskId;
-            ttTimer = Timer;
-        }
+        //public InactivityDetection(long TaskId)
+        //{
+        //    // ahHook = new Hooks.ActivityHook();
+        //    isInactive = false;
+        //    this.TaskId = TaskId;
+        //}
 
         /// <summary>
         /// Checks the inactive.
         /// </summary>
         /// <param name="InactiveSeconds">The inactive seconds.</param>
         /// <returns><c>true</c>  <c>false</c> otherwise</returns>
-        public bool CheckInactive(int InactiveSeconds)
+        public static bool CheckInactive(int InactiveSeconds)
         {
-            if (InactiveSeconds >= Utils.CurrentConfigurations.allConfig.InactivityTime*60 && !isInactive)
+
+            if (InactiveSeconds >= Utils.CurrentConfigurations.allConfig.InactivityTime * 60 && !isInactive)
             {
-                ttTimer.StopTimingTask();
-                ttTimer.StartTimingTask(TaskId);
                 isInactive = true;
+                return false;
             }
 
-            if (InactiveSeconds == 0 && isInactive)
+            if (InactiveSeconds < 5 && isInactive)
+            {
                 isInactive = false;
-       
-            return isInactive;
+                return true;
+            }
+
+            if (isInactive)
+                RemoveSeconds = InactiveSeconds;
+
+
+            return false;
 
         }
 

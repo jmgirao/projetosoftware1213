@@ -37,9 +37,9 @@ namespace KeepYourTime.ViewWindows
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-           // ahActivityAnalyzer = new Hooks.ActivityHook();
-           // ahActivityAnalyzer.InitTimer();
-           // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+            // ahActivityAnalyzer = new Hooks.ActivityHook();
+            // ahActivityAnalyzer.InitTimer();
+            // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
         }
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
@@ -71,18 +71,33 @@ namespace KeepYourTime.ViewWindows
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!DataBase.CreateDB.IsDatabaseCreated())
+            var mhResult = new MethodHandler();
+            try
             {
-                var cdb = new DataBase.CreateDB();
-                cdb.CreateDatabase();
+                if (!DataBase.CreateDB.IsDatabaseCreated())
+                {
+                    var cdb = new DataBase.CreateDB();
+                    mhResult = cdb.CreateDatabase();
+                    if (mhResult.Exits) return;
+                }
+
+                mhResult = CurrentConfigurations.getConfigurations();
+                if (mhResult.Exits) return;
+
+                sbShowTaskList = this.FindResource("sbShowTaskList") as Storyboard;
+                sbHideTaskList = this.FindResource("sbHideTaskList") as Storyboard;
+
+                sbHideTaskList.Completed += sbHideTaskList_Completed;
+
             }
-
-            CurrentConfigurations.getConfigurations();
-
-            sbShowTaskList = this.FindResource("sbShowTaskList") as Storyboard;
-            sbHideTaskList = this.FindResource("sbHideTaskList") as Storyboard;
-
-            sbHideTaskList.Completed += sbHideTaskList_Completed;
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
         }
 
         void mvMinimalView_OnTaskCreated(DataBase.Adapters.TaskAdapter Task)
