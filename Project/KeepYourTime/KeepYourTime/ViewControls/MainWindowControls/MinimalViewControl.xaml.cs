@@ -26,7 +26,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
         //public static long TaskID = 0;    //identify task to select the task data
         private TaskTimer ttTaskTimer;
-        
+
         Hooks.ActivityHook ahInactivity;
         InactivityDetection irReaction;
 
@@ -43,6 +43,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnTaskDetails.Click += btnTaskDetails_Click;
             ttTaskTimer = new TaskTimer();
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
+
+            ahInactivity = new Hooks.ActivityHook();
+            ahInactivity.InitTimer();
+            ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
         }
 
 
@@ -110,7 +114,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     OnTaskCreated(taTask);
                 }
-                StartTask(taskId);
+                StartTask(taskId, 0);
             }
             catch (Exception ex)
             {
@@ -125,21 +129,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            StopTask();
+            StopTask(0);
         }
 
-        public void StartTask(long TaskID)
+        public void StartTask(long TaskID, int RemoveSeconds)
         {
-            ttTaskTimer.StartTimingTask(TaskID);
+            ttTaskTimer.StartTimingTask(TaskID, RemoveSeconds);
             CurrentTaskId = TaskID;
-
-            if (Utils.CurrentConfigurations.allConfig.InactivityTime != 0)
-            {
-                irReaction = new InactivityDetection(TaskID, ttTaskTimer);
-                ahInactivity = new Hooks.ActivityHook();
-                ahInactivity.InitTimer();
-                ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
-            }
 
             btnStop.Visibility = System.Windows.Visibility.Visible;
             btnAdd.Visibility = System.Windows.Visibility.Collapsed;
@@ -153,35 +149,55 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         void ahInactivity_InactiveTimeRefresh(int InactiveSeconds)
         {
             var mhResult = new MethodHandler();
-            mhResult.Message=InactiveSeconds+"";
-           // Dispatcher.BeginInvoke((Action)(() => MessageWindow.ShowMethodHandler(mhResult,true)));
+            mhResult.Message = InactiveSeconds + "";
+            //Dispatcher.BeginInvoke((Action)(() => MessageWindow.ShowMethodHandler(mhResult,true)));
 
-            if (InactiveSeconds == 0 && irReaction.CheckInactive(InactiveSeconds))
+            //if (Utils.CurrentConfigurations.allConfig.Inactivity == true)
+            if (InactivityDetection.CheckInactive(InactiveSeconds))
             {
-                Dispatcher.BeginInvoke((Action)(() => {
+                Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    var mhResultDispatcher = new MethodHandler();
+                    try
+                    {
+                        TaskTimeAdapter taTime = ttTaskTimer.StopTimingTask(InactivityDetection.RemoveSeconds);
+                        mhResultDispatcher = TaskConnector.AddTime(taTime);
+                        if (mhResultDispatcher.Exits) return;
+                        ttTaskTimer.StartTimingTask(CurrentTaskId, InactivityDetection.RemoveSeconds);
 
-                    var inactWindow = new InactivityWindow();
-                    inactWindow.ShowDialog();
+                        var inactWindow = new InactivityWindow();
+                        inactWindow.ShowDialog();
 
+                        //TODO discard Time
+                        //Se não guardarmos o stop na BD, ele ignora!  ttTaskTimer.StopTimingTask(0); 
+
+                    }
+                    catch (Exception ex)
+                    {
+                        mhResultDispatcher.Exception(ex);
+                    }
+                    finally
+                    {
+                        //MessageWindow.ShowMethodHandler(mhResultDispatcher,false);
+                    }
                 }));
             }
 
+
         }
 
-        public void StopTask()
+        public void StopTask(int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try
             {
                 if (ttTaskTimer.isRunningTask())
                 {
-                    if(ahInactivity!=null)
-                        ahInactivity.StopTimer();
-                    mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask());
+                    mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask(RemoveSeconds));
                     if (mhResult.Exits) return;
                 }
                 btnStop.Visibility = System.Windows.Visibility.Collapsed;
-                btnAdd.Visibility = System.Windows.Visibility.Visible;    
+                btnAdd.Visibility = System.Windows.Visibility.Visible;
             }
             catch (Exception ex)
             {

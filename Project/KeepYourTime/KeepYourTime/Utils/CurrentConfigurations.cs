@@ -22,14 +22,12 @@ namespace KeepYourTime.Utils
             {
                 mhResult = ConfigurationConnector.ReadConfiguration(out allConfig);
                 if (mhResult.Exits) return mhResult;
-
-                return mhResult;
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
-                return mhResult;
             }
+            return mhResult;
 
         }
 
@@ -37,23 +35,23 @@ namespace KeepYourTime.Utils
         {
             var mhResult = new MethodHandler();
 
-            try 
-	        {
+            try
+            {
                 if (caConfig == null)
                     throw new NullReferenceException();
 
-		        allConfig = caConfig;
+                allConfig = caConfig;
                 mhResult.Status = MethodStatus.Sucess;
                 return mhResult;
-	        }
-	        catch (Exception ex)
-	        {
+            }
+            catch (Exception ex)
+            {
                 mhResult.Exception(ex);
                 return mhResult;
-		        
-	        }
-                
-            
+
+            }
+
+
 
         }
 
