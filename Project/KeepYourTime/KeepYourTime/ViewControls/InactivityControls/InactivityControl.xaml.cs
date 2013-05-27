@@ -27,14 +27,18 @@ namespace KeepYourTime.ViewControls.InactivityControls
             btnDiscardTime.Click += btnDiscardTime_Click;
         }
 
+        public static bool blnDiscardTime = true;
+
         void btnDiscardTime_Click(object sender, RoutedEventArgs e)
         {
-            
+            blnDiscardTime = true;
+            Window.GetWindow(this).Close();
         }
 
         void btnAddTime_Click(object sender, RoutedEventArgs e)
         {
-            
+            blnDiscardTime = false;
+            Window.GetWindow(this).Close();
         }
     }
 }
