@@ -28,7 +28,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         private TaskTimer ttTaskTimer;
 
         Hooks.ActivityHook ahInactivity;
-       
+
 
         public static long CurrentTaskId = -1;
 
@@ -172,9 +172,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         var inactWindow = new InactivityWindow();
                         inactWindow.ShowDialog();
 
-                        //TODO discard Time
-                        //Se não guardarmos o stop na BD, ele ignora!  ttTaskTimer.StopTimingTask(0); 
-
+                        if (InactivityControls.InactivityControl.blnDiscardTime)
+                        {
+                            ttTaskTimer.StopTimingTask(0);
+                            ttTaskTimer.StartTimingTask(CurrentTaskId, 0);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -182,7 +184,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     }
                     finally
                     {
-                        //MessageWindow.ShowMethodHandler(mhResultDispatcher,false);
+                        MessageWindow.ShowMethodHandler(mhResultDispatcher, false);
                     }
                 }));
             }
