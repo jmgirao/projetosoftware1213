@@ -28,8 +28,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         private TaskTimer ttTaskTimer;
 
         Hooks.ActivityHook ahInactivity;
-        InactivityDetection irReaction;
-
+       
 
         public static long CurrentTaskId = -1;
 
@@ -45,8 +44,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
 
             ahInactivity = new Hooks.ActivityHook();
-            ahInactivity.InitTimer();
             ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
+            this.Loaded += MinimalViewControl_Loaded;
+        }
+
+        void MinimalViewControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ahInactivity.InitTimer();
         }
 
 
