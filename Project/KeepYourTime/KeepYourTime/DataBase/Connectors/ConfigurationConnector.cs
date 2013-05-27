@@ -70,7 +70,7 @@ namespace KeepYourTime.DataBase.Connectors
                     {
                         Alt = (bool)dr["Alt"],
                         Ctrl = (bool)dr["Ctrl"],
-                        ShortcutKey = (char)dr["ShortcutKey"],
+                        ShortcutKey = (string)dr["ShortcutKey"],
                         Shift = (bool)dr["Shift"],
                         ShortcutId = Configuration.Shortcuts.Count + 1,
                         TaskId = (long)dr["TaskId"]
