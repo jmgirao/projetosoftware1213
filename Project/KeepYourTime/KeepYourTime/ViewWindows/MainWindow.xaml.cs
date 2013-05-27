@@ -25,7 +25,7 @@ namespace KeepYourTime.ViewWindows
     public partial class MainWindow : Window
     {
         private bool blnColappsed = false;
-        Hooks.ActivityHook ahActivityAnalyzer;
+        //Hooks.ActivityHook ahActivityAnalyzer;
 
         public MainWindow()
         {
@@ -37,9 +37,9 @@ namespace KeepYourTime.ViewWindows
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-            ahActivityAnalyzer = new Hooks.ActivityHook();
-            ahActivityAnalyzer.InitTimer();
-            ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+           // ahActivityAnalyzer = new Hooks.ActivityHook();
+           // ahActivityAnalyzer.InitTimer();
+           // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
         }
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
@@ -51,7 +51,7 @@ namespace KeepYourTime.ViewWindows
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            ahActivityAnalyzer.StopTimer();
+            //ahActivityAnalyzer.StopTimer();
         }
 
         Storyboard sbShowTaskList;

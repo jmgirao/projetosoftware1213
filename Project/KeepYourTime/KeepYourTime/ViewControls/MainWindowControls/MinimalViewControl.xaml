@@ -28,7 +28,7 @@
             <Button VerticalAlignment="Center" Name="btnFechar" Grid.Column="6" Content="Close" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="/KeepYourTime;component/Assets/play.png" Height="16"/>
+                        <Image Source="/KeepYourTime;component/Assets/close.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>

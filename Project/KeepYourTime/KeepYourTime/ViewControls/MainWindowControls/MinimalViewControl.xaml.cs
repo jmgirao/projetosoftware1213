@@ -133,10 +133,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ttTaskTimer.StartTimingTask(TaskID);
             CurrentTaskId = TaskID;
 
-            irReaction = new InactivityDetection(TaskID, ttTaskTimer);
-            ahInactivity = new Hooks.ActivityHook();
-            ahInactivity.InitTimer();
-            ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
+            if (Utils.CurrentConfigurations.allConfig.InactivityTime != 0)
+            {
+                irReaction = new InactivityDetection(TaskID, ttTaskTimer);
+                ahInactivity = new Hooks.ActivityHook();
+                ahInactivity.InitTimer();
+                ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
+            }
 
             btnStop.Visibility = System.Windows.Visibility.Visible;
             btnAdd.Visibility = System.Windows.Visibility.Collapsed;
@@ -172,7 +175,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 if (ttTaskTimer.isRunningTask())
                 {
-                    ahInactivity.StopTimer();
+                    if(ahInactivity!=null)
+                        ahInactivity.StopTimer();
                     mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask());
                     if (mhResult.Exits) return;
                 }
