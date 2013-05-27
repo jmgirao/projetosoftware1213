@@ -59,7 +59,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Eliminar" Style="{StaticResource BtnImage}">
+                            <Button Content="Eliminar" Style="{StaticResource BtnImage}" Click="btDelete_Click" CommandParameter="{Binding TaskID}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/remove.png"/>

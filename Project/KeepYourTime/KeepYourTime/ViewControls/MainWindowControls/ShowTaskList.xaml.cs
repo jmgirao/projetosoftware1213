@@ -245,5 +245,27 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var mhResult = new MethodHandler();
+            ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
+            try
+            {
+                object objTaskId = ((FrameworkElement)sender).DataContext;
+                TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+
+                mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
+                if (mhResult.Exits) return;
+
+                InitializeControl();
+
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+        }
+
     }
 }
