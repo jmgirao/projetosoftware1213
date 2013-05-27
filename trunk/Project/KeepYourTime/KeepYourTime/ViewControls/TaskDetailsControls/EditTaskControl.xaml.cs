@@ -141,6 +141,8 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         {
             var mhResult = new MethodHandler();
             TaskAdapter TaskToEdit = new TaskAdapter();
+            TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
+            String strTaskName = TxtTaskName.Text;
 
             if (EditTaskId == -1)
             {
@@ -166,7 +168,14 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 }
             }
 
-            String strTaskName = TxtTaskName.Text;
+            if (!ValidateDistinctTime(taskTimesAdapterUI))
+            {
+                mhResult.Exception(new Exception(Languages.Language.TaskTimesOverlap));
+                MessageWindow.ShowMethodHandler(mhResult, true);
+                return;
+            }
+
+            
 
             if (string.IsNullOrEmpty(strTaskName))
             {
@@ -179,8 +188,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             {
                 TaskToEdit.TaskId = EditTaskId;
                 TaskToEdit.TaskName = strTaskName;
-                TaskToEdit.Description = TxtDescription.Text;
-                TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
+                TaskToEdit.Description = TxtDescription.Text;                
 
                 mhResult = TaskConnector.EditTask(TaskToEdit);
                
@@ -212,11 +220,33 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         {
             if (TaskTime.StartTime == null || TaskTime.StopTime == null)
                 return false;
-            if (TaskTime.StartTime < TaskTime.StopTime)
+            if (TaskTime.StartTime > TaskTime.StopTime)
                 return false;
 
             return true;
-        }        
+        }
+
+        private bool ValidateDistinctTime(ObservableCollection<TaskTimeAdapterUI> TimesList)
+        {
+            foreach (var timeValidate in TimesList)
+            {
+                foreach (var timeLine in TimesList)
+                {
+                    if (timeLine.TimeId != timeValidate.TimeId)
+                    {
+                       //TODO validate equal times and times intervals containing others
+                        if (timeValidate.StartTime == timeLine.StartTime)
+                            return false;
+                        if (timeValidate.StopTime == timeLine.StopTime)
+                            return false;
+                        if (timeValidate.StartTime >= timeLine.StartTime & timeValidate.StopTime<= timeLine.StopTime)
+                            return false;
+                    }
+                }
+            }
+
+            return true;
+        }
 
     }
 }
