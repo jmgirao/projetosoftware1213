@@ -19,14 +19,14 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
+
         <Grid>
-            <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" Checked="ShowTaskList_Loaded" Unchecked="ShowTaskList_Loaded"/>
+            <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" />
         </Grid>
 
         <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" ColumnWidth="*" RowEditEnding="dgTaskList_RowEditEnding"  LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Play" Click="btPlay_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}">
@@ -43,7 +43,7 @@
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Total Time" FontSize="16" Width="100" Binding="{Binding TotalTime}" />
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Today" FontSize="16"  Width="100" Binding="{Binding TodayTime}"/>
                 <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Stop Date" FontSize="16"  Width="100" Binding="{Binding StopDate}"/>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Detalhes" Click="btDetails_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}">
@@ -56,7 +56,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Eliminar" Style="{StaticResource BtnImage}" Click="btDelete_Click" CommandParameter="{Binding TaskID}">
@@ -71,7 +71,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridCheckBoxColumn IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
-                
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -1,6 +1,9 @@
-﻿using KeepYourTime.Utils;
+﻿using KeepYourTime.DataBase.Adapters;
+using KeepYourTime.DataBase.Connectors;
+using KeepYourTime.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -27,6 +30,8 @@ namespace KeepYourTime.ViewWindows
         private bool blnColappsed = false;
         //Hooks.ActivityHook ahActivityAnalyzer;
 
+        public static ObservableCollection<TaskAdapter> taskAdapt = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +50,26 @@ namespace KeepYourTime.ViewWindows
         void hk_InactiveTimeRefresh(int InactiveSeconds)
         {
             //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
+        }
+
+        void LoadTaskList()
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                mhResult = TaskConnector.ReadTaskList(out taskAdapt, true);
+                if (mhResult.Exits) return;
+
+                stlShowTaskList.ReceiveTaskList(taskAdapt);
+            }
+            catch (Exception e)
+            {
+                mhResult.Exception(e);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
         }
 
 
