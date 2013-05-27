@@ -66,7 +66,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 chkInactivityAlert.IsChecked = configuration.Inactivity;
                 txtInactiveTime.Text = configuration.InactivityTime.ToString();
-                
+
 
                 try
                 {
@@ -81,7 +81,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkAlt1.IsChecked = listShortcuts[0].Alt;
                     txtShortcutKey1.Text = (listShortcuts[0].ShortcutKey.ToString() != "\0") ? listShortcuts[0].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     cbShort1.SelectedIndex = 0;
                 }
@@ -99,7 +99,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkAlt2.IsChecked = listShortcuts[1].Alt;
                     txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[1].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     cbShort2.SelectedIndex = 0;
                 }
@@ -117,7 +117,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkAlt3.IsChecked = listShortcuts[2].Alt;
                     txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     cbShort3.SelectedIndex = 0;
                 }
@@ -135,7 +135,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkAlt4.IsChecked = listShortcuts[3].Alt;
                     txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     cbShort4.SelectedIndex = 0;
                 }
@@ -228,7 +228,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift1.IsChecked.HasValue) ? chkShift1.IsChecked.Value : false,
                         Ctrl = (chkCtrl1.IsChecked.HasValue) ? chkCtrl1.IsChecked.Value : false,
                         Alt = (chkAlt1.IsChecked.HasValue) ? chkAlt1.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text[0] : ' '
+                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text : ""
                     });
                 }
 
@@ -241,7 +241,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift2.IsChecked.HasValue) ? chkShift2.IsChecked.Value : false,
                         Ctrl = (chkCtrl2.IsChecked.HasValue) ? chkCtrl2.IsChecked.Value : false,
                         Alt = (chkAlt2.IsChecked.HasValue) ? chkAlt2.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text[0] : ' '
+                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text : ""
                     });
                 }
 
@@ -254,7 +254,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift3.IsChecked.HasValue) ? chkShift3.IsChecked.Value : false,
                         Ctrl = (chkCtrl3.IsChecked.HasValue) ? chkCtrl3.IsChecked.Value : false,
                         Alt = (chkAlt3.IsChecked.HasValue) ? chkAlt3.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text[0] : ' '
+                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text : ""
                     });
                 }
 
@@ -267,7 +267,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift4.IsChecked.HasValue) ? chkShift4.IsChecked.Value : false,
                         Ctrl = (chkCtrl4.IsChecked.HasValue) ? chkCtrl4.IsChecked.Value : false,
                         Alt = (chkAlt4.IsChecked.HasValue) ? chkAlt4.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text[0] : ' '
+                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text : ""
                     });
                 }
 
@@ -280,7 +280,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift5.IsChecked.HasValue) ? chkShift5.IsChecked.Value : false,
                         Ctrl = (chkCtrl5.IsChecked.HasValue) ? chkCtrl5.IsChecked.Value : false,
                         Alt = (chkAlt5.IsChecked.HasValue) ? chkAlt5.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text[0] : ' '
+                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text : ""
                     });
                 }
 
@@ -308,8 +308,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             }
             finally
             {
-               MessageWindow.ShowMethodHandler(mhResult,true);
-                
+                MessageWindow.ShowMethodHandler(mhResult, true);
+
             }
         }
 
