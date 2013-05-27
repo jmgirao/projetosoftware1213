@@ -183,7 +183,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 object objTaskId = ((FrameworkElement)sender).DataContext;
                 TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
                 var detailswindows = new TaskDetailsWindow();
-                detailswindows.ShowDialog();
+                detailswindows.Show();
             }
             catch (Exception ex)
             {
