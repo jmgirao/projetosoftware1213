@@ -48,7 +48,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public void CreatedTask(TaskAdapter Task)
         {
             //TODO: Ordenar lista quando se cria uma tarefa!
-            taskAdaptUi.Add(new TaskAdapterUI(Task));
+            taskAdaptUi.Insert(0, new TaskAdapterUI(Task));
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     e.Row.Background = new SolidColorBrush(Colors.LightGray);
                 else
                     e.Row.Background = new SolidColorBrush(Colors.White);
-        }  
+        }
 
         /// <summary>
         /// Handles the Click event of the btDetails control.
@@ -200,7 +200,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void btPlay_Click(object sender, RoutedEventArgs e)
         {
-            
+
             var mhResult = new MethodHandler();
             ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
             try
