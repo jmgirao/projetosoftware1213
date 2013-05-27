@@ -25,6 +25,10 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             set { CalculateStopTime(value); }
         }
       
+        /// <summary>
+        /// function that updates the stoptime and the time spent update in the interface
+        /// </summary>
+        /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
         public DateTime TriggerStoptTime {
             get
             {
@@ -36,6 +40,27 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 {
                     NotifyPropertyChanged("TriggerStopTime");
                     StopTime = value;
+                    NotifyPropertyChanged("TimeSpent");
+                }
+            }
+        }
+
+        /// <summary>
+        /// function that updates the StartTime and assures the time spent update in the interface
+        /// </summary>
+        /// <remarks>Created by Carla Machado</remarks>
+        public DateTime TriggerStartTime
+        {
+            get
+            {
+                return StartTime;
+            }
+            set
+            {
+                if (StartTime != value)
+                {
+                    NotifyPropertyChanged("TriggerStartTime");
+                    StartTime = value;
                     NotifyPropertyChanged("TimeSpent");
                 }
             }
@@ -82,12 +107,21 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             return false;
         }
 
+        /// <summary>
+        /// trigger of changes by the user
+        /// </summary>
+        /// <param name="PropertyName"></param>
+        ///  /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
         private void NotifyPropertyChanged(string PropertyName)
         {
             if(PropertyChanged!=null)
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        /// <summary>
+        /// event for when a property is changed by the user
+        /// </summary>
+        /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
