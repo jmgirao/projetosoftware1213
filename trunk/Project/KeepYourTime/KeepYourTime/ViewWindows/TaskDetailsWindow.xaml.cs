@@ -2,6 +2,7 @@
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.ViewControls.MainWindowControls;
+using KeepYourTime.ViewControls.TaskDetailsControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,6 +34,13 @@ namespace KeepYourTime.ViewWindows
         {
             InitializeComponent();
             TaskDetails.OnEditTaskClick += TaskDetails_OnEditTaskClick;
+            EditTask.onTaskEditCloseToDetailWindow += EditTask_onTaskEditCloseToDetailWindow; 
+        }
+
+        void EditTask_onTaskEditCloseToDetailWindow(object sender, EventArgs e)
+        {
+            TaskDetails.Visibility = Visibility.Visible;
+            EditTask.Visibility = Visibility.Collapsed;            
         }
 
         void TaskDetails_OnEditTaskClick(object sender, EventArgs e)
@@ -40,6 +48,7 @@ namespace KeepYourTime.ViewWindows
             TaskDetails.Visibility = Visibility.Collapsed;
             EditTask.Visibility = Visibility.Visible;
             EditTask.LoadTask(TaskID);
+            EditTask.PreviousWindow = EditTaskContex.DetailWindow;
         }
 
     }
