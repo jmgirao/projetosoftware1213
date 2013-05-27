@@ -254,11 +254,22 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 object objTaskId = ((FrameworkElement)sender).DataContext;
                 TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
 
-                mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
-                if (mhResult.Exits) return;
+                foreach (TaskAdapter t in taskAdaptUi)
+                {
+                    var ta = new TaskAdapterUI(t);
+                    if (ta.TaskId == TaskDetailsWindow.TaskID)
+                    {
+                        if (ta.IsRunning == false)
+                        {
+                            mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
+                            if (mhResult.Exits) return;
 
-                InitializeControl();
+                            InitializeControl();
 
+                            break;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
