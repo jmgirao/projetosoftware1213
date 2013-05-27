@@ -63,7 +63,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         /// <summary>
         /// Initializes the control.
         /// </summary>
-        private void InitializeControl()
+        public void InitializeControl()
         {
             var mhResult = new MethodHandler();
             long lngIdTask = TaskDetailsWindow.TaskID;                 //To receive idTask another window (defined in the TaskDetailsWindow) 
