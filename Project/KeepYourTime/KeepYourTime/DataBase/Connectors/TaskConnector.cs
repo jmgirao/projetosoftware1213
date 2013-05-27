@@ -150,12 +150,30 @@ namespace KeepYourTime.DataBase.Connectors
             try
             {
 
-                string strSQL = "UPDATE Task SET " +
+                //Verify if task with same name exists
+                string strSQL = "SELECT TaskID FROM Task WHERE TaskName = @Name ";
+                object objReturn = null;
+
+                SqlCeParameter[] scpParams = new SqlCeParameter[1];
+                scpParams[0] = new SqlCeParameter("Name", Task.TaskName);
+                scpParams[0].DbType = DbType.String;
+
+                mhResult = DBUtils.SelectValue(strSQL, scpParams, out objReturn);
+                if (mhResult.Exits) return mhResult;
+                if (mhResult.AffectedLines == 1 && (long)objReturn!= Task.TaskId)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = Languages.Language.TaskExists;
+                    return mhResult;
+                }
+
+
+                strSQL = "UPDATE Task SET " +
                     "TaskName = @Name, " +
                     "Description = @Description  " +
                     "WHERE TaskID = " + Task.TaskId.ToString() + " ";
 
-                SqlCeParameter[] scpParams = new SqlCeParameter[2];
+                scpParams = new SqlCeParameter[2];
                 scpParams[0] = new SqlCeParameter("Name", Task.TaskName);
                 scpParams[0].DbType = DbType.String;
 

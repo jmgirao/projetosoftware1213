@@ -20,7 +20,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             get
             {
                 TimeSpan tsTimeSpent = this.StopTime.Subtract(this.StartTime);
-                return tsTimeSpent.TotalHours.ToString("###00") + ":" + tsTimeSpent.Minutes.ToString("00") + ":" + tsTimeSpent.Seconds.ToString("00");
+                return tsTimeSpent.TotalHours.ToString("###00") + ":" + tsTimeSpent.Minutes.ToString("00"); //+":" + tsTimeSpent.Seconds.ToString("00");
             }
             set { CalculateStopTime(value); }
         }
@@ -96,7 +96,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                     double dbHours = Convert.ToDouble(timeSplit[0]);
                     dtStopTime = dtStopTime.AddHours(dbHours);
                     dtStopTime = dtStopTime.AddMinutes(Convert.ToDouble(timeSplit[1]));
-                    dtStopTime = dtStopTime.AddSeconds(Convert.ToDouble(timeSplit[2]));
+                    //dtStopTime = dtStopTime.AddSeconds(Convert.ToDouble(timeSplit[2]));
                     TriggerStoptTime = dtStopTime;
 
                     return true;

@@ -322,6 +322,15 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The task has overlapped times.
+        /// </summary>
+        public static string TaskTimesOverlap {
+            get {
+                return ResourceManager.GetString("TaskTimesOverlap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Spent.
         /// </summary>
         public static string TimeSpent {
