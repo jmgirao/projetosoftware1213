@@ -42,9 +42,15 @@ namespace KeepYourTime.ViewWindows
             recSize.MouseDown += recSize_MouseDown;
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
+            stlShowTaskList.OnStartTask += stlShowTaskList_OnStartTask;
             // ahActivityAnalyzer = new Hooks.ActivityHook();
             // ahActivityAnalyzer.InitTimer();
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+        }
+
+        void stlShowTaskList_OnStartTask(long TaskID)
+        {
+            mvMinimalView.StartTask(TaskID, 0);
         }
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
@@ -57,7 +63,7 @@ namespace KeepYourTime.ViewWindows
             var mhResult = new MethodHandler();
             try
             {
-                mhResult = TaskConnector.ReadTaskList(out taskAdapt, true);
+                mhResult = TaskConnector.ReadTaskList(out taskAdapt, false);
                 if (mhResult.Exits) return;
 
                 stlShowTaskList.ReceiveTaskList(taskAdapt);
@@ -113,6 +119,8 @@ namespace KeepYourTime.ViewWindows
                 sbHideTaskList = this.FindResource("sbHideTaskList") as Storyboard;
 
                 sbHideTaskList.Completed += sbHideTaskList_Completed;
+
+                LoadTaskList();
 
             }
             catch (Exception ex)

@@ -133,11 +133,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         void btnStop_Click(object sender, RoutedEventArgs e)
         {
+            CurrentTaskId = -1;
             StopTask(0);
         }
 
         public void StartTask(long TaskID, int RemoveSeconds)
         {
+            if (CurrentTaskId != -1)
+                StopTask(0);
+
+
             ttTaskTimer.StartTimingTask(TaskID, RemoveSeconds);
             CurrentTaskId = TaskID;
 
