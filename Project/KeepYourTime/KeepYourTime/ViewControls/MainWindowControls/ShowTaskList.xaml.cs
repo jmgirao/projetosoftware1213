@@ -207,17 +207,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 object objTaskId = ((FrameworkElement)sender).DataContext;
                 TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
-
-                /*
-                 
-                MessageBox.Show("ID da tarefa a ir la para cima: " + MinimalViewControl.TaskID);
+                /* 
+               
+                 MessageBox.Show("ID da tarefa a ir la para cima: " + MinimalViewControl.TaskID);
 
                 taskAdaptUiPlay = new ObservableCollection<TaskAdapterUI>();
-
+                
                 foreach (TaskAdapter t in taskAdaptUi)
                 {
                     var ta = new TaskAdapterUI(t);
-                    if(ta.TaskId==MinimalViewControl.TaskID){
+                    if (ta.TaskId == TaskDetailsWindow.TaskID){
                         ta.IsRunning = true;
                         taskAdaptUiPlay.Add(ta);
                         taskAdaptUi.Remove(ta);
@@ -235,8 +234,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         break;
                     }
                 }
-                 
-                */
+                 */
+                
             }
             catch (Exception ex)
             {
@@ -248,27 +247,27 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             var mhResult = new MethodHandler();
-            ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
+            ObservableCollection<TaskAdapterUI> taskAdaptUiIsRunning = null;
             try
             {
                 object objTaskId = ((FrameworkElement)sender).DataContext;
                 TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
+                taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
 
                 foreach (TaskAdapter t in taskAdaptUi)
                 {
                     var ta = new TaskAdapterUI(t);
-                    if (ta.TaskId == TaskDetailsWindow.TaskID)
-                    {
-                        if (ta.IsRunning == false)
-                        {
-                            mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
-                            if (mhResult.Exits) return;
-
-                            InitializeControl();
-
+                    if (ta.TaskId == TaskDetailsWindow.TaskID){
+                        if (ta.IsRunning == false){
+                            taskAdaptUiIsRunning.Add(ta);
                             break;
                         }
                     }
+                }
+                if (taskAdaptUiIsRunning.Count != 0) {
+                    mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
+                    if (mhResult.Exits) return;
+                    InitializeControl();
                 }
             }
             catch (Exception ex)
