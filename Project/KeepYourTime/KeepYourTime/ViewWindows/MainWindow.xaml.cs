@@ -46,6 +46,7 @@ namespace KeepYourTime.ViewWindows
             // ahActivityAnalyzer = new Hooks.ActivityHook();
             // ahActivityAnalyzer.InitTimer();
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+
         }
 
         void stlShowTaskList_OnStartTask(long TaskID)
@@ -58,31 +59,26 @@ namespace KeepYourTime.ViewWindows
             //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
         }
 
-        void LoadTaskList()
+        public static MethodHandler LoadTaskList()
         {
             var mhResult = new MethodHandler();
             try
             {
                 mhResult = TaskConnector.ReadTaskList(out taskAdapt, false);
-                if (mhResult.Exits) return;
+                if (mhResult.Exits) return mhResult;
 
-                stlShowTaskList.ReceiveTaskList(taskAdapt);
             }
             catch (Exception e)
             {
                 mhResult.Exception(e);
             }
-            finally
-            {
-                MessageWindow.ShowMethodHandler(mhResult, false);
-            }
+            return mhResult;
         }
 
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            //ahActivityAnalyzer.StopTimer();
         }
 
         Storyboard sbShowTaskList;
@@ -120,8 +116,9 @@ namespace KeepYourTime.ViewWindows
 
                 sbHideTaskList.Completed += sbHideTaskList_Completed;
 
-                LoadTaskList();
-
+                mhResult = LoadTaskList();
+                if (mhResult.Exits) return;
+                stlShowTaskList.ReceiveTaskList(taskAdapt);
             }
             catch (Exception ex)
             {
