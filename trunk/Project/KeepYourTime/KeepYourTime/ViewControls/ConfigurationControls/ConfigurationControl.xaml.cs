@@ -26,6 +26,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
     /// </summary>
     public partial class ConfigurationControl : UserControl
     {
+
         public ConfigurationControl()
         {
             InitializeComponent();
@@ -145,7 +146,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             }
             finally
             {
-                MessageWindow.ShowMethodHandler(mhResult, true);
+                MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
 
@@ -166,7 +167,6 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 CsvExporter.ExportDatabaseToCSV(dialog.FileName);
             }
         }
-
 
         private bool isValideShortcuts()
         {

@@ -58,7 +58,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             txtNomeTask.SelectionChanged += txtNomeTask_SelectionChanged;
         }
 
-
         /// <summary>
         /// Handles the SelectionChanged event of the txtNomeTask control.
         /// </summary>
@@ -68,6 +67,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             if (txtNomeTask.Text == "")
             {
+                txtNomeTask.SelectedIndex = -1;
                 if (ttTaskTimer.isRunningTask())
                 {
                     btnStop.Visibility = Visibility.Visible;
@@ -280,7 +280,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
-
         /// <summary>
         /// Starts the task.
         /// </summary>
@@ -400,5 +399,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
         #endregion
+
     }
 }
