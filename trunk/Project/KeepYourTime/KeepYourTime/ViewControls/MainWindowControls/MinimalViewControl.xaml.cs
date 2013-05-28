@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.ViewWindows;
+using KeepYourTime.ViewControls.ConfigurationControls;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -29,8 +30,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         Hooks.ActivityHook ahInactivity;
 
-
         public static long CurrentTaskId = -1;
+
+        public static event EventHandler OnTaskListChanged;
+        public static void RaiseEventOnTaskListChanged()
+        {
+            if (OnTaskListChanged != null) OnTaskListChanged(null, new EventArgs());
+        }
 
         public MinimalViewControl()
         {
@@ -46,13 +52,25 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ahInactivity = new Hooks.ActivityHook();
             ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
             this.Loaded += MinimalViewControl_Loaded;
+            MinimalViewControl.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
+        }
+
+        void MinimalViewControl_OnTaskListChanged(object sender, EventArgs e)
+        {
+            var lstTaskID = new List<ConfigTaskComboShortcut>();
+
+            foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
+            {
+                if (t.Active)
+                    lstTaskID.Add(new ConfigTaskComboShortcut() { TaskID = t.TaskId, TaskName = t.TaskName });
+            }
+            txtNomeTask.ItemsSource = lstTaskID;
         }
 
         void MinimalViewControl_Loaded(object sender, RoutedEventArgs e)
         {
             ahInactivity.InitTimer();
         }
-
 
         void ttTaskTimer_onTimeChanged(string time)
         {
@@ -137,17 +155,36 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             StopTask(0);
         }
 
-        public void StartTask(long TaskID, int RemoveSeconds)
+        public MethodHandler StartTask(long TaskID, int RemoveSeconds)
         {
-            if (CurrentTaskId != -1)
-                StopTask(0);
+            var mhResult = new MethodHandler();
+            try
+            {
+
+                if (CurrentTaskId != -1)
+                    StopTask(0);
 
 
-            ttTaskTimer.StartTimingTask(TaskID, RemoveSeconds);
-            CurrentTaskId = TaskID;
+                mhResult = ttTaskTimer.StartTimingTask(TaskID, RemoveSeconds);
+                if (mhResult.Exits) return mhResult;
 
-            btnStop.Visibility = System.Windows.Visibility.Visible;
-            btnAdd.Visibility = System.Windows.Visibility.Collapsed;
+                CurrentTaskId = TaskID;
+
+                txtNomeTask.Text = ttTaskTimer.TaskName;
+
+                btnStop.Visibility = System.Windows.Visibility.Visible;
+                btnAdd.Visibility = System.Windows.Visibility.Collapsed;
+
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+            return mhResult;
         }
 
         /// <summary>

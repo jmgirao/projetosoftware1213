@@ -38,10 +38,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             var mhResult = new MethodHandler();
             try
             {
-                mhResult = TaskConnector.ReadTaskList(out MainWindow.taskAdapt, chkShowInactiveTask.IsChecked.Value);
+                mhResult = TaskConnector.ReadTaskList(out MainWindow.lstTaskAdapt, chkShowInactiveTask.IsChecked.Value);
                 if (mhResult.Exits) return;
 
-                ReceiveTaskList(MainWindow.taskAdapt);
+                ReceiveTaskList(MainWindow.lstTaskAdapt);
             }
             catch (Exception ex)
             {
@@ -276,10 +276,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
                     if (mhResult.Exits) return;
 
-                    mhResult = TaskConnector.ReadTaskList(out MainWindow.taskAdapt, chkShowInactiveTask.IsChecked.Value);
+                    mhResult = TaskConnector.ReadTaskList(out MainWindow.lstTaskAdapt, chkShowInactiveTask.IsChecked.Value);
                     if (mhResult.Exits) return;
 
-                    ReceiveTaskList(MainWindow.taskAdapt);
+                    ReceiveTaskList(MainWindow.lstTaskAdapt);
                     //InitializeControl();
                 }
             }

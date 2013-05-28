@@ -1,6 +1,7 @@
 ﻿using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.Utils;
+using KeepYourTime.ViewControls.MainWindowControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +31,7 @@ namespace KeepYourTime.ViewWindows
         private bool blnColappsed = false;
         //Hooks.ActivityHook ahActivityAnalyzer;
 
-        public static ObservableCollection<TaskAdapter> taskAdapt = null;
+        public static ObservableCollection<TaskAdapter> lstTaskAdapt = null;
 
         public MainWindow()
         {
@@ -64,7 +65,7 @@ namespace KeepYourTime.ViewWindows
             var mhResult = new MethodHandler();
             try
             {
-                mhResult = TaskConnector.ReadTaskList(out taskAdapt, false);
+                mhResult = TaskConnector.ReadTaskList(out lstTaskAdapt, false);
                 if (mhResult.Exits) return mhResult;
 
             }
@@ -118,7 +119,8 @@ namespace KeepYourTime.ViewWindows
 
                 mhResult = LoadTaskList();
                 if (mhResult.Exits) return;
-                stlShowTaskList.ReceiveTaskList(taskAdapt);
+                stlShowTaskList.ReceiveTaskList(lstTaskAdapt);
+                MinimalViewControl.RaiseEventOnTaskListChanged();
             }
             catch (Exception ex)
             {
