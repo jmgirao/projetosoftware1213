@@ -14,7 +14,7 @@ namespace KeepYourTime.Utils
             if (OnTaskListChanged != null) OnTaskListChanged(null, new EventArgs());
         }
 
-        public static delegate void TaskIDHanlder(long TaskID);
+        public delegate void TaskIDHanlder(long TaskID);
 
         public static event TaskIDHanlder OnTaskUpdated;
 
