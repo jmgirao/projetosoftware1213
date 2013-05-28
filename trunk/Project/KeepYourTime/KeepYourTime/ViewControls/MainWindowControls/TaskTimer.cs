@@ -44,7 +44,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 TaskName = taTask.TaskName;
                 foreach (TaskTimeAdapter t in taTask.Times)
                 {
-                    tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
+                  tsInitialTaskTime=  tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
                 }
                 lngTaskID = TaskID;
                 CurrentTime = new TimeSpan(RemoveSeconds / 3600, (RemoveSeconds % 3600) / 60, (RemoveSeconds % 3600) % 60);

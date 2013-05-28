@@ -33,6 +33,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public static long CurrentTaskId = -1;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MinimalViewControl"/> class.
+        /// </summary>
         public MinimalViewControl()
         {
             InitializeComponent();
@@ -40,7 +43,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnFechar.Click += btnFechar_Click;
             btnAdd.Click += btnAdd_Click;
             btnStop.Click += btnStop_Click;
+            btnResume.Click += btnResume_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
+
+
             ttTaskTimer = new TaskTimer();
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
 
@@ -48,8 +54,66 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
             this.Loaded += MinimalViewControl_Loaded;
             StaticEvents.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
+
+            txtNomeTask.SelectionChanged += txtNomeTask_SelectionChanged;
         }
 
+
+        /// <summary>
+        /// Handles the SelectionChanged event of the txtNomeTask control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
+        void txtNomeTask_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txtNomeTask.Text == "")
+            {
+                if (ttTaskTimer.isRunningTask())
+                {
+                    btnStop.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Collapsed;
+                    btnResume.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    btnStop.Visibility = Visibility.Collapsed;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnResume.Visibility = Visibility.Collapsed;
+                }
+
+            }
+            else
+            {
+                if (txtNomeTask.SelectedItem == null)
+                {
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnStop.Visibility = Visibility.Collapsed;
+                    btnResume.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    var selectedTask = txtNomeTask.SelectedItem as ConfigTaskComboShortcut;
+                    if (selectedTask.TaskID == CurrentTaskId)
+                    {
+                        btnAdd.Visibility = Visibility.Collapsed;
+                        btnStop.Visibility = Visibility.Visible;
+                        btnResume.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        btnAdd.Visibility = Visibility.Collapsed;
+                        btnStop.Visibility = Visibility.Collapsed;
+                        btnResume.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the OnTaskListChanged event of the MinimalViewControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         void MinimalViewControl_OnTaskListChanged(object sender, EventArgs e)
         {
             var lstTaskID = new List<ConfigTaskComboShortcut>();
@@ -62,11 +126,20 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             txtNomeTask.ItemsSource = lstTaskID;
         }
 
+        /// <summary>
+        /// Handles the Loaded event of the MinimalViewControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void MinimalViewControl_Loaded(object sender, RoutedEventArgs e)
         {
             ahInactivity.InitTimer();
         }
 
+        /// <summary>
+        /// Tts the task timer_on time changed.
+        /// </summary>
+        /// <param name="time">The time.</param>
         void ttTaskTimer_onTimeChanged(string time)
         {
             Dispatcher.BeginInvoke((Action)(() => lblTempoDecorrido.Text = time));
@@ -74,6 +147,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         #region basic buttons
 
+        /// <summary>
+        /// Handles the Click event of the btnConfig control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void btnConfig_Click(object sender, RoutedEventArgs e)
         {
             var configWindow = new ConfigurationWindow();
@@ -96,6 +174,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnFechar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void btnFechar_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -105,14 +188,26 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         #region custom events
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Task">The task.</param>
         public delegate void TaskCreatedHandler(TaskAdapter Task);
 
+        /// <summary>
+        /// Occurs when [on task created].
+        /// </summary>
         public event TaskCreatedHandler OnTaskCreated;
 
         #endregion
 
         #region task execution
 
+        /// <summary>
+        /// Handles the Click event of the btnAdd control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var mhResult = new MethodHandler();
@@ -144,17 +239,62 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnStop control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void btnStop_Click(object sender, RoutedEventArgs e)
         {
             CurrentTaskId = -1;
             StopTask(0);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnResume control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        void btnResume_Click(object sender, RoutedEventArgs e)
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                if (ttTaskTimer.isRunningTask())
+                {
+                    mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask(0));
+                    if (mhResult.Exits) return;
+                }
+                var x = txtNomeTask.SelectedItem as ConfigTaskComboShortcut;
+                StartTask(x.TaskID, 0);
+                btnResume.Visibility = Visibility.Collapsed;
+                btnStop.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+        }
+
+
+        /// <summary>
+        /// Starts the task.
+        /// </summary>
+        /// <param name="TaskID">The task ID.</param>
+        /// <param name="RemoveSeconds">The remove seconds.</param>
+        /// <returns></returns>
         public MethodHandler StartTask(long TaskID, int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try
             {
+
+                if (CurrentTaskId == TaskID && RemoveSeconds == 0)
+                    return mhResult;
 
                 if (CurrentTaskId != -1)
                     StopTask(0);
@@ -169,7 +309,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
                 btnStop.Visibility = System.Windows.Visibility.Visible;
                 btnAdd.Visibility = System.Windows.Visibility.Collapsed;
-
+                btnResume.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
             {
@@ -186,7 +326,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// Ahes the inactivity_ inactive time refresh.
         /// </summary>
         /// <param name="InactiveSeconds">The inactive seconds.</param>
-        /// <remarks>CREATED BY João Girão</remarks>
+        /// <remarks>
+        /// CREATED BY João Girão
+        /// </remarks>
         void ahInactivity_InactiveTimeRefresh(int InactiveSeconds)
         {
             var mhResult = new MethodHandler();
@@ -229,6 +371,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         }
 
+        /// <summary>
+        /// Stops the task.
+        /// </summary>
+        /// <param name="RemoveSeconds">The remove seconds.</param>
         public void StopTask(int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
@@ -240,7 +386,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     if (mhResult.Exits) return;
                 }
                 btnStop.Visibility = System.Windows.Visibility.Collapsed;
-                btnAdd.Visibility = System.Windows.Visibility.Visible;
+                btnAdd.Visibility = System.Windows.Visibility.Collapsed;
+                btnResume.Visibility = Visibility.Visible;
             }
             catch (Exception ex)
             {
