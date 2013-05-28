@@ -12,7 +12,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     /// Class TaskTimeAdapterUI
     /// </summary>
     /// <remarks>CREATED BY João Girão</remarks>
-    class TaskTimeAdapterUI : TaskTimeAdapter , INotifyPropertyChanged
+    public class TaskTimeAdapterUI : TaskTimeAdapter , INotifyPropertyChanged
     {      
 
         public string TimeSpent
@@ -20,9 +20,9 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             get
             {
                 TimeSpan tsTimeSpent = this.StopTime.Subtract(this.StartTime);
-                return tsTimeSpent.TotalHours.ToString("###00") + ":" + tsTimeSpent.Minutes.ToString("00"); //+":" + tsTimeSpent.Seconds.ToString("00");
+                return ((int)tsTimeSpent.TotalHours).ToString("###00") + ":" + tsTimeSpent.Minutes.ToString("00") + ":" + tsTimeSpent.Seconds.ToString("00");
             }
-            set { CalculateStopTime(value); }
+            //set { CalculateStopTime(value); }
         }
       
         /// <summary>
@@ -77,35 +77,35 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         }
 
 
-        public bool CalculateStopTime(string TimeSpent)
-        {            
+        //public bool CalculateStopTime(string TimeSpent)
+        //{            
 
-            if (string.IsNullOrEmpty(TimeSpent) && StartTime != null)
-            {
-                TriggerStoptTime = (DateTime)StartTime;
-                return true;
-            }
-            else if (StartTime != null)
-            {
-                var dtStopTime = StartTime;
-                var timeSplit = TimeSpent.Split(':');
+        //    if (string.IsNullOrEmpty(TimeSpent) && StartTime != null)
+        //    {
+        //        TriggerStoptTime = (DateTime)StartTime;
+        //        return true;
+        //    }
+        //    else if (StartTime != null)
+        //    {
+        //        var dtStopTime = StartTime;
+        //        var timeSplit = TimeSpent.Split(':');
                 
-                if (timeSplit.Length == 3)
-                {
+        //        if (timeSplit.Length == 3)
+        //        {
 
-                    double dbHours = Convert.ToDouble(timeSplit[0]);
-                    dtStopTime = dtStopTime.AddHours(dbHours);
-                    dtStopTime = dtStopTime.AddMinutes(Convert.ToDouble(timeSplit[1]));
-                    //dtStopTime = dtStopTime.AddSeconds(Convert.ToDouble(timeSplit[2]));
-                    TriggerStoptTime = dtStopTime;
+        //            double dbHours = Convert.ToDouble(timeSplit[0]);
+        //            dtStopTime = dtStopTime.AddHours(dbHours);
+        //            dtStopTime = dtStopTime.AddMinutes(Convert.ToDouble(timeSplit[1]));
+        //            //dtStopTime = dtStopTime.AddSeconds(Convert.ToDouble(timeSplit[2]));
+        //            TriggerStoptTime = dtStopTime;
 
-                    return true;
-                }
-                return false;
-            }
+        //            return true;
+        //        }
+        //        return false;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         /// <summary>
         /// trigger of changes by the user

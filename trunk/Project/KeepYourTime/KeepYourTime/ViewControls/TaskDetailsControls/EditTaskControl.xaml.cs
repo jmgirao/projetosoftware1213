@@ -27,32 +27,11 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         public EditTask()
         {
             InitializeComponent();
-
-            //this.Loaded += EditTaskControl_Loaded;
+                      
             btnCancel.Click += btnCancel_Click;
             btnSave.Click += btnSave_Click;
             btnAddTime.Click += btnAddTime_Click;
-        }
-
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void EditTaskControl_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    InitializeControl();
-        //}
-
-
-        ///// <summary>
-        ///// initializes the necessari data for the form
-        ///// </summary>
-        //private void InitializeControl()
-        //{
-           
-        //}
+        }       
 
         /// <summary>
         /// loads all the information from a certain task
@@ -107,7 +86,6 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             dgTaskTimes.ItemsSource = taskTimesAdapterUI;
         }
 
-
         /// <summary>
         /// Cancels the edition
         /// </summary>
@@ -120,7 +98,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         {
             if (PreviousWindow == EditTaskContex.MainWindow)
                 Window.GetWindow(this).Close();
-            else if(PreviousWindow == EditTaskContex.DetailWindow)
+            else if (PreviousWindow == EditTaskContex.DetailWindow)
             {
                 if (onTaskEditCloseToDetailWindow != null)
                     onTaskEditCloseToDetailWindow(this, new EventArgs());
@@ -144,60 +122,62 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             TaskToEdit.Times = new ObservableCollection<TaskTimeAdapter>();
             String strTaskName = TxtTaskName.Text;
 
-            if (EditTaskId == -1)
-            {
-                //TODO - tratar excepção
-                //HACK: User MethodHanlder para Isto - GANHOTO
-                mhResult.Exception(new Exception(Languages.Language.InexistentTask));
-                MessageWindow.ShowMethodHandler(mhResult, true);
-                //MessageBox.Show(Languages.Language.InexistentTask);
-                return;
-            }
-
-            foreach (var time in taskTimesAdapterUI)
-            {
-                if (ValidateTaskTime(time))
-                {
-                    TaskToEdit.Times.Add(time);
-                }
-                else
-                {
-                    mhResult.Exception(new Exception(Languages.Language.TimeTaskInvalid));
-                    MessageWindow.ShowMethodHandler(mhResult, true);
-                    return;
-                }
-            }
-
-            if (!ValidateDistinctTime(taskTimesAdapterUI))
-            {
-                mhResult.Exception(new Exception(Languages.Language.TaskTimesOverlap));
-                MessageWindow.ShowMethodHandler(mhResult, true);
-                return;
-            }
-
-            
-
-            if (string.IsNullOrEmpty(strTaskName))
-            {
-                mhResult.Exception(new Exception(Languages.Language.TaskNameMadatory));
-                MessageWindow.ShowMethodHandler(mhResult, true);
-                return;
-            }           
-
             try
             {
+                if (EditTaskId == -1)
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = Languages.Language.InexistentTask;
+                    return;
+                }
+
+                foreach (var time in taskTimesAdapterUI)
+                {
+                    if (ValidateTaskTime(time))
+                    {
+                        TaskToEdit.Times.Add(time);
+                    }
+                    else
+                    {
+                        mhResult.Status = Utils.MethodStatus.Cancel;
+                        mhResult.Message = Languages.Language.TimeTaskInvalid;
+                        return;
+                    }
+                }
+
+                if (!ValidateDistinctTime(taskTimesAdapterUI))
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = Languages.Language.TaskTimesOverlap;
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(strTaskName))
+                {
+                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Message = (Languages.Language.TaskNameMadatory);                    
+                    return;
+                }
+
                 TaskToEdit.TaskId = EditTaskId;
                 TaskToEdit.TaskName = strTaskName;
-                TaskToEdit.Description = TxtDescription.Text;                
+                TaskToEdit.Description = TxtDescription.Text;
 
                 mhResult = TaskConnector.EditTask(TaskToEdit);
-               
+                if (mhResult.Exits) 
+                    return;
+
+                Utils.StaticEvents.RaiseEventOnTaskUpdated(TaskToEdit.TaskId);
+
                 btnCancel_Click(sender, e);
             }
             catch (Exception ex)
             {
-                mhResult.Exception(ex);
-                MessageBox.Show(mhResult.Message);
+                mhResult.Exception(ex);                
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 
@@ -212,34 +192,40 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         }
 
         /// <summary>
-        /// method to validate if a task time is valid
+        /// method to validate if a task time has value and time interval is bigger than 0
         /// </summary>
         /// <param name="TaskTime"></param>
-        /// <returns></returns>
-        private bool ValidateTaskTime(TaskTimeAdapterUI TaskTime)
+        /// <returns>true if time is valid</returns>
+        public bool ValidateTaskTime(TaskTimeAdapterUI TaskTime)
         {
-            if (TaskTime.StartTime == null || TaskTime.StopTime == null)
+            if (TaskTime.StartTime == DateTime.MinValue || TaskTime.StopTime == DateTime.MinValue)
                 return false;
-            if (TaskTime.StartTime > TaskTime.StopTime)
+            if (TaskTime.StartTime >= TaskTime.StopTime)
                 return false;
 
             return true;
         }
 
-        private bool ValidateDistinctTime(ObservableCollection<TaskTimeAdapterUI> TimesList)
+        /// <summary>
+        /// Validates if time intevals are valid, and not subintervals exist
+        /// </summary>
+        /// <param name="TimesList"></param>
+        /// <returns>true if time list is valid</returns>
+        public bool ValidateDistinctTime(ObservableCollection<TaskTimeAdapterUI> TimesList)
         {
             foreach (var timeValidate in TimesList)
             {
                 foreach (var timeLine in TimesList)
                 {
                     if (timeLine.TimeId != timeValidate.TimeId)
-                    {
-                       //TODO validate equal times and times intervals containing others
+                    {                       
                         if (timeValidate.StartTime == timeLine.StartTime)
                             return false;
                         if (timeValidate.StopTime == timeLine.StopTime)
                             return false;
-                        if (timeValidate.StartTime >= timeLine.StartTime & timeValidate.StopTime<= timeLine.StopTime)
+                        if (timeValidate.StartTime >= timeLine.StartTime & timeValidate.StopTime <= timeLine.StopTime)
+                            return false;
+                        if (timeValidate.StartTime >= timeLine.StartTime & timeValidate.StartTime <= timeLine.StopTime)
                             return false;
                     }
                 }
