@@ -105,6 +105,7 @@
     <Compile Include="Utils\CurrentConfigurations.cs" />
     <Compile Include="Utils\MethodHandler.cs" />
     <Compile Include="Utils\MethodStatus.cs" />
+    <Compile Include="Utils\StaticEvents.cs" />
     <Compile Include="ViewControls\ConfigurationControls\ConfigTaskComboShortcut.cs" />
     <Compile Include="ViewControls\ConfigurationControls\ConfigurationControl.xaml.cs">
       <DependentUpon>ConfigurationControl.xaml</DependentUpon>
