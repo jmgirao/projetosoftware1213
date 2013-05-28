@@ -13,6 +13,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
         Timer tmTaskTimer;
 
+        public string TaskName { get; set; }
+
         public TaskTimer()
         {
             tmTaskTimer = new Timer(100);
@@ -30,7 +32,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
 
-        public void StartTimingTask(long TaskID, int RemoveSeconds)
+        public MethodHandler StartTimingTask(long TaskID, int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try
@@ -38,8 +40,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 TaskAdapter taTask = null;
                 tsInitialTaskTime = new TimeSpan(0, 0, 0);
                 mhResult = TaskConnector.ReadTask(TaskID, out taTask);
-                if (mhResult.Exits) return;
-
+                if (mhResult.Exits) return mhResult;
+                TaskName = taTask.TaskName;
                 foreach (TaskTimeAdapter t in taTask.Times)
                 {
                     tsInitialTaskTime.Add(t.StopTime.Subtract(t.StartTime));
@@ -53,10 +55,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 mhResult.Exception(ex);
             }
-            finally
-            {
-                ViewWindows.MessageWindow.ShowMethodHandler(mhResult, false);
-            }
+            return mhResult;
         }
 
         public bool isRunningTask()

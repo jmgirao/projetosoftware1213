@@ -27,7 +27,6 @@ namespace KeepYourTime.ViewWindows
     public partial class TaskDetailsWindow : Window
     {
 
-
         public static long TaskID = 0;    //identify task to select the task data
 
         public TaskDetailsWindow()
