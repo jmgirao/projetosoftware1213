@@ -16,6 +16,7 @@ using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.ViewWindows;
 using KeepYourTime.ViewControls.ConfigurationControls;
+using KeepYourTime.Utils;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -32,12 +33,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public static long CurrentTaskId = -1;
 
-        public static event EventHandler OnTaskListChanged;
-        public static void RaiseEventOnTaskListChanged()
-        {
-            if (OnTaskListChanged != null) OnTaskListChanged(null, new EventArgs());
-        }
-
         public MinimalViewControl()
         {
             InitializeComponent();
@@ -52,7 +47,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ahInactivity = new Hooks.ActivityHook();
             ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
             this.Loaded += MinimalViewControl_Loaded;
-            MinimalViewControl.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
+            StaticEvents.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
         }
 
         void MinimalViewControl_OnTaskListChanged(object sender, EventArgs e)

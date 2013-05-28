@@ -120,7 +120,7 @@ namespace KeepYourTime.ViewWindows
                 mhResult = LoadTaskList();
                 if (mhResult.Exits) return;
                 stlShowTaskList.ReceiveTaskList(lstTaskAdapt);
-                MinimalViewControl.RaiseEventOnTaskListChanged();
+                StaticEvents.RaiseEventOnTaskListChanged();
             }
             catch (Exception ex)
             {
