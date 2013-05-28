@@ -183,11 +183,14 @@
   <data name="Shortcut" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
+  <data name="ShortcutsConfig" xml:space="preserve">
+    <value>Shortcut:</value>
+  </data>
   <data name="StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
-  <data name="Task" xml:space="preserve">
-    <value>Task</value>
+  <data name="TaskConfig" xml:space="preserve">
+    <value>Task:</value>
   </data>
   <data name="TaskDetailsTitle" xml:space="preserve">
     <value>Task Details</value>
