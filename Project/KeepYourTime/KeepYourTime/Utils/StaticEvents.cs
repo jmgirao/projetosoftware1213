@@ -22,5 +22,13 @@ namespace KeepYourTime.Utils
         {
             if (OnTaskUpdated != null) OnTaskUpdated(TaskID);
         }
+
+        public static event TaskIDHanlder OnTaskStarted;
+
+        public static void RaiseEventOnTaskStarted(long TaskID)
+        {
+            if (OnTaskStarted != null) OnTaskStarted(TaskID);
+        }
+
     }
 }

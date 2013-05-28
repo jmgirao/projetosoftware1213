@@ -74,6 +74,13 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <Button Name="btnResume" Grid.Column="1"  Content="Resume" Style="{StaticResource BtnImage}" Visibility="Collapsed" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/KeepYourTime;component/Assets/play.png" Height="16"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <ComboBox x:Name="txtNomeTask" IsEditable="True"></ComboBox>
             <!--<xctk:AutoSelectTextBox Text="555" />-->
             <!--<TextBox Text="Insira coisas" Name="txtNomeTask"/>-->

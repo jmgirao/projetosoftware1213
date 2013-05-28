@@ -264,11 +264,12 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     var ta = new TaskAdapterUI(t);
                     if (ta.TaskId == TaskDetailsWindow.TaskID)
                     {
-                        if (ta.IsRunning == false)
-                        {
-                            taskAdaptUiIsRunning.Add(ta);
-                            break;
-                        }
+                        
+                        //if (ta.IsRunning == false)
+                        //{
+                        taskAdaptUiIsRunning.Add(ta);
+                        //break;
+                        //}
                     }
                 }
                 if (taskAdaptUiIsRunning.Count != 0)
