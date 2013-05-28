@@ -70,12 +70,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    var task1Content = (from task in taskList where task.TaskId == listShortcuts[0].TaskId select task).First();
-                    cbShort1.SelectedItem = new ConfigTaskComboShortcut
-                    {
-                        TaskID = task1Content.TaskId,
-                        TaskName = task1Content.TaskName
-                    };
+                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[0].TaskId select task).First();
+                    cbShort1.SelectedItem = taskCombo;
                     chkShift1.IsChecked = listShortcuts[0].Shift;
                     chkCtrl1.IsChecked = listShortcuts[0].Ctrl;
                     chkAlt1.IsChecked = listShortcuts[0].Alt;
@@ -88,12 +84,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    var task2Content = (from task in taskList where task.TaskId == listShortcuts[1].TaskId select task).First();
-                    cbShort2.SelectedItem = new ConfigTaskComboShortcut
-                    {
-                        TaskID = task2Content.TaskId,
-                        TaskName = task2Content.TaskName
-                    };
+                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[1].TaskId select task).First();
+                    cbShort2.SelectedItem = taskCombo;
                     chkShift2.IsChecked = listShortcuts[1].Shift;
                     chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
                     chkAlt2.IsChecked = listShortcuts[1].Alt;
@@ -106,12 +98,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    var task3Content = (from task in taskList where task.TaskId == listShortcuts[2].TaskId select task).First();
-                    cbShort3.SelectedItem = new ConfigTaskComboShortcut
-                    {
-                        TaskID = task3Content.TaskId,
-                        TaskName = task3Content.TaskName
-                    };
+                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[2].TaskId select task).First();
+                    cbShort3.SelectedItem = taskCombo;
                     chkShift3.IsChecked = listShortcuts[2].Shift;
                     chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
                     chkAlt3.IsChecked = listShortcuts[2].Alt;
@@ -124,12 +112,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    var task4Content = (from task in taskList where task.TaskId == listShortcuts[3].TaskId select task).First();
-                    cbShort4.SelectedItem = new ConfigTaskComboShortcut
-                    {
-                        TaskID = task4Content.TaskId,
-                        TaskName = task4Content.TaskName
-                    };
+                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[3].TaskId select task).First();
+                    cbShort4.SelectedItem = taskCombo;
                     chkShift4.IsChecked = listShortcuts[3].Shift;
                     chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
                     chkAlt4.IsChecked = listShortcuts[3].Alt;
@@ -142,12 +126,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    var task5Content = (from task in taskList where task.TaskId == listShortcuts[4].TaskId select task).First();
-                    cbShort5.SelectedItem = new ConfigTaskComboShortcut
-                    {
-                        TaskID = task5Content.TaskId,
-                        TaskName = task5Content.TaskName
-                    };
+                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[4].TaskId select task).First();
+                    cbShort5.SelectedItem = taskCombo;
                     chkShift5.IsChecked = listShortcuts[4].Shift;
                     chkCtrl5.IsChecked = listShortcuts[4].Ctrl;
                     chkAlt5.IsChecked = listShortcuts[4].Alt;

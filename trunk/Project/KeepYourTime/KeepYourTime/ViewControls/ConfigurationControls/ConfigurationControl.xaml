@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="400">
+             d:DesignHeight="550" d:DesignWidth="400">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,39 +13,57 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="309*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" VerticalAlignment="Center" Name="lbInactiveAlert" Text="{x:Static p:Language.InactivityAlert}" FontSize="24" FontWeight="Bold"/>
-        <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="btExportData" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Export}" Click="btExportData_Click"/>
-
-        <CheckBox  Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top" Name="chkInactivityAlert" Margin="20" Content="{x:Static p:Language.Active}" FontSize="12" FontWeight="Bold"/>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Name="lbInactiveAlert" Text="{x:Static p:Language.InactivityAlert}" FontSize="24" FontWeight="Bold"/>
+            <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="btExportData" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Export}" Click="btExportData_Click"/>
+        </Grid>
+        <CheckBox  Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top" Name="chkInactivityAlert" Margin="0" Content="{x:Static p:Language.Active}" FontSize="12" FontWeight="Bold"/>
 
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" >
             <TextBlock Name="lbInactiveTime" Text="{x:Static p:Language.InactivityTime}" FontSize="16" FontWeight="Bold"/>
-            <TextBox x:Name="txtInactiveTime" Margin="5" Text="{x:Static p:Language.InactiveMinutesPart2}"/>
+            <TextBox x:Name="txtInactiveTime" MaxLength="2" Width="40" Margin="5" Text="{x:Static p:Language.InactiveMinutesPart2}"/>
         </StackPanel>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Name="lbShortcuts" Text="{x:Static p:Language.Shortcut}" FontSize="24" FontWeight="Bold"/>
 
-        <TextBlock  Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Name="lbTask" Text="{x:Static p:Language.Task}" FontSize="12" FontWeight="Bold"/>
-
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.04*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="lbTask" Text="{x:Static p:Language.TaskConfig}" FontSize="12" FontWeight="Bold"/>
+            <TextBlock  Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Text="{x:Static p:Language.ShortcutsConfig}" FontSize="12" FontWeight="Bold"/>
+        </Grid>
+        
         <Button Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Name="btApply" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Apply}"/>
 
         <Button  Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Name="btCancel" Margin="5" Width="100" Height="50" Content="{x:Static p:Language.Cancel}"/>
 
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.6*" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="0.5*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -83,23 +101,27 @@
             <CheckBox Name="chkCtrl4" Content="CTRL" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top"/>
             <CheckBox Name="chkCtrl5" Content="CTRL" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" Grid.Column="2" VerticalAlignment="Top"/>
 
+            <CheckBox Name="chkAlt1" Content="ALT" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" Grid.Column="3" VerticalAlignment="Top"/>
+            <CheckBox Name="chkAlt2" Content="ALT" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top"/>
+            <CheckBox Name="chkAlt3" Content="ALT" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top"/>
+            <CheckBox Name="chkAlt4" Content="ALT" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"/>
+            <CheckBox Name="chkAlt5" Content="ALT" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" Grid.Column="3" VerticalAlignment="Top"/>
 
+            <TextBlock Text="+" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Text="+" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Text="+" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Text="+" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Text="+" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+            <TextBox Name="txtShortcutKey1" MaxLength="1" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+            <TextBox Name="txtShortcutKey2" MaxLength="1" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+            <TextBox Name="txtShortcutKey3" MaxLength="1" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+            <TextBox Name="txtShortcutKey4" MaxLength="1" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+            <TextBox Name="txtShortcutKey5" MaxLength="1" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
         </Grid>
 
-        <CheckBox Name="chkAlt1" Content="ALT" HorizontalAlignment="Left" Margin="6,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt2" Content="ALT" HorizontalAlignment="Left" Margin="6,43,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt3" Content="ALT" HorizontalAlignment="Left" Margin="6,70,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt4" Content="ALT" HorizontalAlignment="Left" Margin="6,97,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox Name="chkAlt5" Content="ALT" HorizontalAlignment="Left" Margin="6,124,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,16,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,43,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,70,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,97,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="48,124,0,0" Grid.Row="4" TextWrapping="Wrap" Text="+" VerticalAlignment="Top"/>
-        <TextBox Name="txtShortcutKey1" MaxLength="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
-        <TextBox Name="txtShortcutKey2" MaxLength="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,39,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
-        <TextBox Name="txtShortcutKey3" MaxLength="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,67,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
-        <TextBox Name="txtShortcutKey4" MaxLength="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,95,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
-        <TextBox Name="txtShortcutKey5" MaxLength="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,124,0,0" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40"/>
+        
+        
+        
     </Grid>
 </UserControl>
