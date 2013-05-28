@@ -255,6 +255,8 @@
     <Resource Include="Assets\Settings.png" />
     <Resource Include="Assets\stop.png" />
     <Resource Include="Assets\close.png" />
+    <Resource Include="Assets\down.png" />
+    <Resource Include="Assets\up.png" />
     <Content Include="lib\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
   <ItemGroup>

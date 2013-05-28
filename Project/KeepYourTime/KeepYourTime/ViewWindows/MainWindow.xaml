@@ -5,29 +5,29 @@
         Title="MainWindow" Height="500" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
         ResizeMode="CanResize" Topmost="False" >
-	<Window.Resources>
+    <Window.Resources>
         <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
-				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.09"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-227.5"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.09"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-227.5"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
         <Storyboard x:Key="sbShowTaskList" x:Name="sbShowTaskList">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0.088"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
-				<EasingDoubleKeyFrame KeyTime="0" Value="-228"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-	</Window.Resources>
-	<!--<Window.Triggers>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.088"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grdDetalhes">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-228"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <!--<Window.Triggers>
 		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
 			<BeginStoryboard x:Name="sbHideTaskList_BeginStoryboard" Storyboard="{StaticResource sbHideTaskList}"/>
 			<BeginStoryboard Storyboard="{StaticResource sbShowTaskList}"/>
@@ -46,20 +46,20 @@
                 </Grid.RowDefinitions>
 
                 <Grid  Grid.RowSpan="3" Name="grdDetalhes" RenderTransformOrigin="0.5,0.5" >
-                	<Grid.RenderTransform>
-                		<TransformGroup>
-                			<ScaleTransform/>
-                			<SkewTransform/>
-                			<RotateTransform/>
-                			<TranslateTransform/>
-                		</TransformGroup>
-                	</Grid.RenderTransform>
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Grid.RowSpan="2" Fill="Turquoise" Margin="5"
+                    <Rectangle Grid.RowSpan="2" Fill="Gray" Margin="5"
                                RadiusX="5" RadiusY="5"/>
                     <Grid Grid.Row="1">
                         <!--Aqui é para colocar os componentes da linha de baixo!-->
@@ -67,16 +67,20 @@
                     </Grid>
                 </Grid>
                 <!-- Botão de Expansão -->
-                <Rectangle RadiusX="5" RadiusY="5" Fill="Red" Grid.Row="1" Stroke="White"
-                           HorizontalAlignment="Right" VerticalAlignment="Top" 
-                           Height="30" Width="100" Margin="15,-10"/>
-                <Button Opacity="0" Grid.Row="1" Name="btnExpandir"
-                        HorizontalAlignment="Right" VerticalAlignment="Top" 
-                           Height="30" Width="100" Margin="15,-10" Cursor="Hand"/>
+                <Grid Height="30" Width="100" Margin="15,-10" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" >
+
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#FF303030" Stroke="White"/>
+                    <Image Margin="0,10,0,2" Name="imgBtnCima" Visibility="Collapsed" Source="/KeepYourTime;component/Assets/up.png" />
+                    <Image Margin="0,10,0,2" Name="imgBtnBaixo" Visibility="Visible" Source="/KeepYourTime;component/Assets/down.png" />
+
+                    <Button Opacity="0" Grid.Row="1" Name="btnExpandir"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           Height="30" Width="100" Cursor="Hand"/>
+                </Grid>
 
                 <!-- form principal -->
                 <Rectangle RadiusX="5" RadiusY="5"
-                            Fill="LightGray" Stroke="White" />
+                            Fill="DarkGray" Stroke="White" />
 
                 <!-- Apoio ao movimento -->
                 <Rectangle Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"

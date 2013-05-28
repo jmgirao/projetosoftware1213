@@ -16,15 +16,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
-            <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" />
-        </Grid>
+        <CheckBox x:Name="chkShowInactiveTask" Content="Show inactive tasks" IsChecked="False" />
 
-        <DataGrid Grid.Row="2" Name="dgTaskList" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" ColumnWidth="*" RowEditEnding="dgTaskList_RowEditEnding"  LoadingRow="DataGrid_LoadingRow">
+
+        <DataGrid Grid.Row="2" Name="dgTaskList" FontWeight="Bold" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" ColumnWidth="*" RowEditEnding="dgTaskList_RowEditEnding"  LoadingRow="DataGrid_LoadingRow" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
@@ -39,10 +38,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserResize="True" IsReadOnly="True" Header="Name" FontSize="16" Binding="{Binding TaskName}" />
-                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Total Time" FontSize="16" Width="100" Binding="{Binding TotalTime}" />
-                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Today" FontSize="16"  Width="100" Binding="{Binding TodayTime}"/>
-                <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Header="Stop Date" FontSize="16"  Width="100" Binding="{Binding StopDate}"/>
+                <DataGridTextColumn CanUserResize="True" FontWeight="Normal" IsReadOnly="True" Header="Name" Binding="{Binding TaskName}" />
+                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Total Time"  Width="100" Binding="{Binding TotalTime}" />
+                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Today"   Width="100" Binding="{Binding TodayTime}"/>
+                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Stop Date"   Width="100" Binding="{Binding StopDate}"/>
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

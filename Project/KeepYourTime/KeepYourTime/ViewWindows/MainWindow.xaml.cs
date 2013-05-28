@@ -147,6 +147,8 @@ namespace KeepYourTime.ViewWindows
         {
             this.ResizeMode = System.Windows.ResizeMode.CanResizeWithGrip;
             blnColappsed = false;
+            imgBtnCima.Visibility = System.Windows.Visibility.Visible;
+            imgBtnBaixo.Visibility = System.Windows.Visibility.Collapsed;
             sbHideTaskList.Stop();
             sbShowTaskList.Begin();
             grdDetalhes.Visibility = System.Windows.Visibility.Visible;
@@ -157,6 +159,8 @@ namespace KeepYourTime.ViewWindows
             blnColappsed = true;
             sbShowTaskList.Stop();
             sbHideTaskList.Begin();
+            imgBtnCima.Visibility = System.Windows.Visibility.Collapsed;
+            imgBtnBaixo.Visibility = System.Windows.Visibility.Visible;
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
 
         }

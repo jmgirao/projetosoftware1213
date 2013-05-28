@@ -9,7 +9,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>-->
         <Grid Name="ContentGrid">
-            <Rectangle Fill="Teal"/>
+            <Rectangle Fill="LightGray"/>
             <StackPanel >
                 <TextBlock Name="lblResult" Text="{Binding Status}" />
                 <TextBlock Name="lblMensagem" Text="{Binding Message}"  TextWrapping="Wrap"/>
