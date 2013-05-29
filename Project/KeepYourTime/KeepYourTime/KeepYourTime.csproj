@@ -71,6 +71,7 @@
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -96,6 +97,7 @@
     </ApplicationDefinition>
     <Compile Include="DataBase\DBExtentionMethods.cs" />
     <Compile Include="Hooks\ActivityHook.cs" />
+    <Compile Include="Hooks\HotKey.cs" />
     <Compile Include="Languages\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
