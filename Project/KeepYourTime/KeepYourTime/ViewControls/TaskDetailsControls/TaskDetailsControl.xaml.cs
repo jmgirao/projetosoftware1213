@@ -81,22 +81,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                 lbTaskNameText.Text = strTaskName;
                 lbTaskDescriptionText.Text = strTaskDescription;
 
-                /*
-                 *CREATE TIMES 
-                 */
-                /* TaskTimeAdapter tasktime = new TaskTimeAdapter();
-                 tasktime.TimeId = 1;
-                 tasktime.TaskId = 1;
-                 tasktime.StartTime = new DateTime(2013, 4, 12, 12, 00, 00);
-                 tasktime.StopTime = new DateTime(2013, 4, 12, 12, 30, 00);
-                 ocTaskTimeList.Add(tasktime);
-
-                 tasktime = new TaskTimeAdapter();
-                 tasktime.TimeId = 2;
-                 tasktime.TaskId = 1;
-                 tasktime.StartTime = new DateTime(2013, 2, 13, 1, 00, 00);
-                 tasktime.StopTime = new DateTime(2013, 2, 13, 6, 30, 00);
-                 ocTaskTimeList.Add(tasktime);*/
+               
 
                 ObservableCollection<TaskTimeAdapterUI> ocTaskTimeUIList = new ObservableCollection<TaskTimeAdapterUI>();
                 foreach (TaskTimeAdapter tta in ocTaskTimeList)
