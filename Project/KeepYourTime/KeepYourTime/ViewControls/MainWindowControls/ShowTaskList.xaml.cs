@@ -145,6 +145,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             if (RowDataContaxt != null)
                 if (!RowDataContaxt.Active)
                     e.Row.Background = new SolidColorBrush(Colors.LightGray);
+                else
+                    e.Row.Background = new SolidColorBrush(Colors.White);
         }
 
         /// <summary>
