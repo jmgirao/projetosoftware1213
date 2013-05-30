@@ -267,7 +267,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         
                         //if (ta.IsRunning == false)
                         //{
-                        taskAdaptUiIsRunning.Add(ta);
+                        if(MinimalViewControl.CurrentTaskId!=ta.TaskId)
+                            taskAdaptUiIsRunning.Add(ta);
                         //break;
                         //}
                     }
