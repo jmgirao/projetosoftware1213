@@ -38,8 +38,9 @@ namespace KeepYourTime.ViewWindows
 
         void EditTask_onTaskEditCloseToDetailWindow(object sender, EventArgs e)
         {
+            TaskDetails.InitializeControl();
             TaskDetails.Visibility = Visibility.Visible;
-            EditTask.Visibility = Visibility.Collapsed;            
+            EditTask.Visibility = Visibility.Collapsed;
         }
 
         void TaskDetails_OnEditTaskClick(object sender, EventArgs e)
