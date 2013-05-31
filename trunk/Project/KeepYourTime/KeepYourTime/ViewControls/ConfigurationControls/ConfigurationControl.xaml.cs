@@ -273,12 +273,16 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 }
                 catch (Exception ex2)
                 {
-                    MessageBox.Show(Languages.Language.IntException, Languages.Language.Error);
+                    mhResult.Message = Languages.Language.IntException;
+                    mhResult.Status = MethodStatus.Exception;
+                    //MessageBox.Show(Languages.Language.IntException, Languages.Language.Error);
                     return;
                 }
 
                 cf.Shortcuts = listShortcuts;
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
+
+                Utils.CurrentConfigurations.getConfigurations();
 
                 Window.GetWindow(this).Close();
             }
@@ -288,8 +292,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             }
             finally
             {
-                MessageWindow.ShowMethodHandler(mhResult, true);
-
+                MessageWindow.ShowMethodHandler(mhResult, true);                
             }
         }
 
