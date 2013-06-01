@@ -92,7 +92,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         /// <param name="taskAdapt">The task adapt.</param>
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
-        {
+        {          
+
             lstTaskAdaptUi = new ObservableCollection<TaskAdapterUI>();
             //lstTaskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
 
@@ -268,11 +269,21 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
+            bool blnShowResult = true; //this should be true for showing the result window
             var mhResult = new MethodHandler();
-            ObservableCollection<TaskAdapterUI> taskAdaptUiIsRunning = null;
+            //ObservableCollection<TaskAdapterUI> taskAdaptUiIsRunning = null;
             try
             {
                 TaskAdapterUI objTaskId = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
+
+                MessageBoxResult mbrConfirmResult = MessageBox.Show(string.Format(Languages.Language.ComfirmTaskDelete, objTaskId.TaskName), Languages.Language.ConfirmDialog, MessageBoxButton.YesNo);
+
+                if (mbrConfirmResult == MessageBoxResult.No)
+                {
+                    blnShowResult = false;
+                    return;
+                }
+                
                 // taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
 
                 //foreach (TaskAdapter t in lstTaskAdaptUi)
@@ -307,6 +318,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
             finally
             {
+                if(blnShowResult)
                 MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }

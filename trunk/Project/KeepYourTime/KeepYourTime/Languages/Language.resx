@@ -129,6 +129,12 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="ComfirmTaskDelete" xml:space="preserve">
+    <value>Are you sure you want to delete the task {0}?</value>
+  </data>
+  <data name="ConfirmDialog" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="InexistentTask" xml:space="preserve">
     <value>The task dosen't exists</value>
+  </data>
+  <data name="InvalidField" xml:space="preserve">
+    <value>Invalid field</value>
   </data>
   <data name="NoPermission" xml:space="preserve">
     <value>You have no permission to write on that folder. Please choose another.</value>
