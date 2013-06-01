@@ -32,21 +32,30 @@
                             <Button Content="Play" Click="btPlay_Click"  ToolTip="{x:Static p:Language.TooltipResumeTask}" IsEnabled="{Binding Active}" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}"  >
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Image Source="/KeepYourTime;component/Assets/play.png"/>
+                                        <Image Source="/KeepYourTime;component/Assets/play.png" Height="20"/>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserResize="True" FontWeight="Normal" IsReadOnly="True" Header="Name" Binding="{Binding TaskName}" />
-                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Total Time"  Width="100" Binding="{Binding TotalTime}" />
-                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Today"   Width="100" Binding="{Binding TodayTime}"/>
-                <DataGridTextColumn CanUserResize="False" FontWeight="Normal" IsReadOnly="True" Header="Stop Date"   Width="100" Binding="{Binding StopDate}"/>
-                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
+                <DataGridTextColumn CanUserResize="True" FontWeight="Normal" 
+                                    IsReadOnly="True" Header="Name" Binding="{Binding TaskName}" />
+                <DataGridTextColumn CanUserResize="False" Width="70" 
+                                    MinWidth="70" MaxWidth="70"  FontWeight="Normal" 
+                                    IsReadOnly="True" Header="Total Time"   
+                                    Binding="{Binding TotalTime}" />
+                <DataGridTextColumn CanUserResize="False" Width="60" MinWidth="60" 
+                                    MaxWidth="60" FontWeight="Normal" IsReadOnly="True" 
+                                    Header="Today"  Binding="{Binding TodayTime}"/>
+                <DataGridTextColumn CanUserResize="False" Width="65" MinWidth="65" 
+                                    MaxWidth="65" FontWeight="Normal" IsReadOnly="True" 
+                                    Header="Stop Date"    Binding="{Binding StopTime}"/>
+                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25" 
+                                        CanUserResize="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Detalhes" Click="btDetails_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}" ToolTip="{x:Static p:Language.TaskDetailsTitle}">
+                            <Button Content="Detalhes"  Click="btDetails_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}" ToolTip="{x:Static p:Language.TaskDetailsTitle}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/details.ico"/>
@@ -56,7 +65,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
+                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25" CanUserResize="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Eliminar" Style="{StaticResource BtnImage}" Click="btDelete_Click" CommandParameter="{Binding TaskID}" ToolTip="{x:Static p:Language.TooltipDeleteTask}">
@@ -70,7 +79,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridCheckBoxColumn IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
+                <DataGridCheckBoxColumn CanUserResize="False" Width="65" MinWidth="65" MaxWidth="65" IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
 
             </DataGrid.Columns>
         </DataGrid>
