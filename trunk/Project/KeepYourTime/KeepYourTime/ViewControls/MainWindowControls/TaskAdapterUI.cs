@@ -20,92 +20,44 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             get
             {
-                string taskAdapTotalTime = "";
-                var mhResult = new MethodHandler();
 
-                try
-                {
+                TimeSpan tsTime = TimeSpan.FromSeconds(this.TotalTime);
+                //taskAdapTotalTime = string.Format("{0:D2}h:{1:D2}m:{2:D2}s",
+                return string.Format("{0:00}:{1:D2}:{2:D2}",
+                    (int)tsTime.TotalHours,
+                    tsTime.Minutes,
+                    tsTime.Seconds);
 
-                    TimeSpan tsTime = TimeSpan.FromSeconds(this.TotalTime);
-                    //taskAdapTotalTime = string.Format("{0:D2}h:{1:D2}m:{2:D2}s",
-                    taskAdapTotalTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                        tsTime.Hours,
-                        tsTime.Minutes,
-                        tsTime.Seconds);
-
-
-                }
-                catch (Exception ex)
-                {
-                    mhResult.Exception(ex);
-                }
-                finally
-                {
-                    MessageWindow.ShowMethodHandler(mhResult, false);
-                }
-                return taskAdapTotalTime;
             }
         }
         public string TodayTimeString
         {
             get
             {
-                string taskAdapTodayTime = "";
-                var mhResult = new MethodHandler();
 
-                try
-                {
-
-                    TimeSpan tsTime = TimeSpan.FromSeconds(this.TodayTime);
-                    taskAdapTodayTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                        tsTime.Hours,
-                        tsTime.Minutes,
-                        tsTime.Seconds);
+                TimeSpan tsTime = TimeSpan.FromSeconds(this.TodayTime);
+                return string.Format("{0:D2}:{1:D2}:{2:D2}",
+                    tsTime.Hours,
+                    tsTime.Minutes,
+                    tsTime.Seconds);
 
 
-                }
-                catch (Exception ex)
-                {
-                    mhResult.Exception(ex);
-                    return taskAdapTodayTime;
-                }
-                finally
-                {
-                    MessageWindow.ShowMethodHandler(mhResult, false);
-                }
-                return taskAdapTodayTime;
+
             }
         }
         public string StopTimeString
         {
             get
             {
-                string taskAdapStopDate = "";
-                var mhResult = new MethodHandler();
-                try
+                //TODO:converter 1/12/2013 para 01/12/2013
+                if (StopTime.Date != DateTime.Today)
                 {
-
-                    //TODO:converter 1/12/2013 para 01/12/2013
-                    if (StopTime.Date != DateTime.Today)
-                    {
-                        taskAdapStopDate = this.StopTime.ToShortDateString();
-                    }
-                    else
-                    {
-                        string strStopTime = this.StopTime.ToShortTimeString();
-                        taskAdapStopDate = strStopTime;
-                    }
-
+                    return this.StopTime.ToString("dd/MM/yyyy");
                 }
-                catch (Exception ex)
+                else
                 {
-                    mhResult.Exception(ex);
+                    return this.StopTime.ToShortTimeString();
                 }
-                finally
-                {
-                    MessageWindow.ShowMethodHandler(mhResult, false);
-                }
-                return taskAdapStopDate;
             }
         }
 

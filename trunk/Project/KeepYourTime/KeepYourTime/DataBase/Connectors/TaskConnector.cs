@@ -291,7 +291,7 @@ namespace KeepYourTime.DataBase.Connectors
                 traSql = conSql.BeginTransaction();
 
                 string strSQL = "";
-                strSQL = "UPDATE Shortcuts SET TaskID = null WHERE TaskID = " + TaskID.ToString() + " ";
+                strSQL = "UPDATE Shortcut SET TaskID = null WHERE TaskID = " + TaskID.ToString() + " ";
                 mhResult = DBUtils.ExecuteOperation(strSQL, conSql, traSql);
 
                 strSQL = "DELETE FROM TaskTime WHERE TaskID = " + TaskID.ToString() + " ";
