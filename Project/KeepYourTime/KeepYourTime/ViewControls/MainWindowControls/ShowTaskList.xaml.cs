@@ -307,8 +307,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
             finally
             {
-
-                MessageWindow.ShowMethodHandler(mhResult, false);
+                MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 
