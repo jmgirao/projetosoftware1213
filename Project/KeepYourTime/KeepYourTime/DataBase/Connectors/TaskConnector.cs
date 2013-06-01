@@ -317,6 +317,8 @@ namespace KeepYourTime.DataBase.Connectors
                 traSql = null;
                 conSql.Close();
                 conSql = null;
+
+                StaticEvents.RaiseEventOnTaskDeleted(TaskID);
             }
             catch (Exception ex)
             {

@@ -50,7 +50,11 @@ namespace KeepYourTime.Utils
             if (OnTimeAdded != null) OnTimeAdded(TaskID);
         }
 
-
+        public static event TaskIDHanlder OnTaskDeleted;
+        public static void RaiseEventOnTaskDeleted(long TaskID)
+        {
+            if (OnTaskDeleted != null) OnTaskDeleted(TaskID);
+        }
 
     }
 }
