@@ -47,10 +47,12 @@ namespace KeepYourTime.ViewWindows
             // ahActivityAnalyzer = new Hooks.ActivityHook();
             // ahActivityAnalyzer.InitTimer();
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
+            CurrentConfigurations.mw = this;
+
 
         }
 
-        void stlShowTaskList_OnStartTask(long TaskID)
+        public void stlShowTaskList_OnStartTask(long TaskID)
         {
             mvMinimalView.StartTask(TaskID, 0);
         }
@@ -102,6 +104,9 @@ namespace KeepYourTime.ViewWindows
             var mhResult = new MethodHandler();
             try
             {
+                HwndSource source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
+                source.AddHook(new HwndSourceHook(WndProc));
+
                 if (!DataBase.CreateDB.IsDatabaseCreated())
                 {
                     var cdb = new DataBase.CreateDB();
@@ -111,6 +116,8 @@ namespace KeepYourTime.ViewWindows
 
                 mhResult = CurrentConfigurations.getConfigurations();
                 if (mhResult.Exits) return;
+
+                CurrentConfigurations.ConfigureHotKeys();
 
                 sbShowTaskList = this.FindResource("sbShowTaskList") as Storyboard;
                 sbHideTaskList = this.FindResource("sbHideTaskList") as Storyboard;
@@ -201,6 +208,22 @@ namespace KeepYourTime.ViewWindows
 
         #endregion
 
-       
+        private static IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+
+            if (msg == 0x312)
+            {
+
+                foreach (var hk in CurrentConfigurations.lstHotKeys)
+                    hk.FilterMessage(msg, wParam);
+                }
+            //if (msg == WM_DESTROY)
+            //{
+            //    handled = true;
+            //}
+            return IntPtr.Zero;
+        }
+
+
     }
 }

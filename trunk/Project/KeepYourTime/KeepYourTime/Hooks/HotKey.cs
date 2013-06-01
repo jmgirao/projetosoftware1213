@@ -187,6 +187,23 @@ namespace KeepYourTime.Hooks
             { return false; }
         }
 
+
+        public bool FilterMessage(int message, IntPtr wParam)
+        {
+            // Only process WM_HOTKEY messages
+            if (message != Hotkey.WM_HOTKEY)
+            { return false; }
+
+            // Check that the ID is our key and we are registerd
+            if (this.registered && (wParam.ToInt32() == this.id))
+            {
+                // Fire the event and pass on the event if our handlers didn't handle it
+                return this.OnPressed();
+            }
+            else
+            { return false; }
+        }
+
         private bool OnPressed()
         {
             // Fire the event if we can
