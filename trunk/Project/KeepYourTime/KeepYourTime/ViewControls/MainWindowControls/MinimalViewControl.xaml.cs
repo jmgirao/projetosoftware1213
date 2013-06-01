@@ -57,11 +57,18 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ahInactivity.InactiveTimeRefresh += ahInactivity_InactiveTimeRefresh;
             this.Loaded += MinimalViewControl_Loaded;
             StaticEvents.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
-
+            StaticEvents.OnTaskDeleted += StaticEvents_OnTaskDeleted;
             txtNomeTask.SelectionChanged += txtNomeTask_SelectionChanged;
 
 
 
+        }
+
+        void StaticEvents_OnTaskDeleted(long TaskID)
+        {
+            var taTask = lstTaskID.FirstOrDefault((t) => t.TaskID == TaskID);
+            if (taTask != null)
+                lstTaskID.Remove(taTask);
         }
 
 
