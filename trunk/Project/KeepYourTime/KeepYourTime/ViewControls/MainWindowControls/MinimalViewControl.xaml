@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300">
     <UserControl.Resources>
@@ -25,7 +26,7 @@
                 <ColumnDefinition Width="24"/>
             </Grid.ColumnDefinitions>
 
-            <Button VerticalAlignment="Center" Name="btnFechar" Grid.Column="6" Content="Close" Style="{StaticResource BtnImage}">
+            <Button VerticalAlignment="Center" Name="btnFechar" Grid.Column="6" Content="Close" ToolTip="{x:Static p:Language.Close}" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/close.png" Height="16"/>
@@ -33,7 +34,7 @@
                 </Button.Template>
             </Button>
 
-            <Button VerticalAlignment="Center" Name="btnConfig" Grid.Column="5" Content="Config" Style="{StaticResource BtnImage}">
+            <Button VerticalAlignment="Center" Name="btnConfig" Grid.Column="5" Content="Config" ToolTip="{x:Static p:Language.TooltipSettings}" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/Settings.png" Height="16"/>
@@ -42,7 +43,7 @@
             </Button>
 
 
-            <Button Name="btnEdit" VerticalAlignment="Center" Grid.Column="4" Content="EditTask" Style="{StaticResource BtnImage}">
+            <Button Name="btnEdit" VerticalAlignment="Center" Grid.Column="4" Content="EditTask" ToolTip="{x:Static p:Language.EditTaskTitle}" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/EditTask.png" Height="16"/>
@@ -50,7 +51,7 @@
                 </Button.Template>
             </Button>
 
-            <Button Name="btnTaskDetails" Grid.Column="3" VerticalAlignment="Center" Content="Details" Style="{StaticResource BtnImage}">
+            <Button Name="btnTaskDetails" Grid.Column="3" VerticalAlignment="Center" ToolTip="{x:Static p:Language.TaskDetailsTitle}" Content="Details" Style="{StaticResource BtnImage}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/details.ico" Height="16"/>
@@ -60,21 +61,21 @@
 
             <TextBlock Name="lblTempoDecorrido" Text="00:00:00" Grid.Column="2" VerticalAlignment="Center"/>
 
-            <Button Name="btnAdd" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}">
+            <Button Name="btnAdd" Grid.Column="1"  Content="Add" Style="{StaticResource BtnImage}" ToolTip="{x:Static p:Language.TooltipAddTask}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/Add.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Name="btnStop" Grid.Column="1"  Content="Stop" Style="{StaticResource BtnImage}" Visibility="Collapsed" VerticalAlignment="Center">
+            <Button Name="btnStop" Grid.Column="1"  Content="Stop" Style="{StaticResource BtnImage}" ToolTip="{x:Static p:Language.TooltipStopTask}" Visibility="Collapsed" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/stop.png" Height="16"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Name="btnResume" Grid.Column="1"  Content="Resume" Style="{StaticResource BtnImage}" Visibility="Collapsed" VerticalAlignment="Center">
+            <Button Name="btnResume" Grid.Column="1"  Content="Resume" Style="{StaticResource BtnImage}" Visibility="Collapsed" VerticalAlignment="Center" ToolTip="{x:Static p:Language.TooltipResumeTask}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="/KeepYourTime;component/Assets/play.png" Height="16"/>
