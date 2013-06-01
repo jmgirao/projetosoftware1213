@@ -24,12 +24,14 @@ namespace KeepYourTime.Utils
         public static void ExportDatabaseToCSV(string Path)
         {
             string tasksCsv = "";
+            string timesCsv = "";
             string configCsv = "";
 
             tasksCsv = getTasksAsCsv();
+            timesCsv = getTimesAsCsv();
             configCsv = getConfigAsCsv();
 
-            string csv = tasksCsv + TABLE_SEPARATOR + configCsv;
+            string csv = tasksCsv + TABLE_SEPARATOR + timesCsv + TABLE_SEPARATOR + configCsv;
 
             writeToFile(Path, csv);
 
@@ -47,11 +49,41 @@ namespace KeepYourTime.Utils
             TaskConnector.ReadTaskList(out taskList, true);
 
             //first row is the column names
-            Data = TaskConnector.COLUMN_ID + "," + TaskConnector.COLUMN_NAME + "," + TaskConnector.COLUMN_DESCRIPTION + "," + TaskConnector.COLUMN_ACTIVE + "\n";
+            Data = TaskConnector.TASK_COLUMN_ID + "," + TaskConnector.TASK_COLUMN_NAME + "," + TaskConnector.TASK_COLUMN_DESCRIPTION + "," + TaskConnector.TASK_COLUMN_ACTIVE + "\n";
 
             foreach (TaskAdapter task in taskList)
             {
                 Data += "\"" + task.TaskId + "\",\"" + task.TaskName + "\",\"" + task.Description + "\",\"" + task.Active + "\"\n";
+
+            }
+
+            
+
+            return Data;
+        }
+
+        /// <summary>
+        /// get Tasks Times table as csv 
+        /// </summary>
+        /// <returns> String that contains the CSV lines from the Tasks table</returns>
+        private static string getTimesAsCsv()
+        {
+            string Data = "";
+
+            ObservableCollection<TaskAdapter> taskList = new ObservableCollection<TaskAdapter>();
+            TaskConnector.ReadTaskList(out taskList, true);
+            //first row is the column names
+            Data = TaskConnector.TIME_COLUMN_ID + "," + TaskConnector.TIME_COLUMN_START + "," + TaskConnector.TIME_COLUMN_STOP + "," + TaskConnector.TIME_COLUMN_TASKID + "\n";
+
+            foreach (TaskAdapter task in taskList)
+            {
+                TaskAdapter taskWithTimes;
+                TaskConnector.ReadTask(task.TaskId,out taskWithTimes);
+
+                foreach (TaskTimeAdapter time in taskWithTimes.Times)
+                {
+                    Data += "\"" + time.TimeId + "\",\"" + time.StartTime + "\",\"" + time.StopTime + "\",\"" + task.TaskId + "\"\n";
+                }
             }
 
             return Data;
