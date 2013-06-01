@@ -87,40 +87,49 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 return taskAdapTodayTime;
             }
         }
-        //public string StopDate 
-        //{ 
-        //    get 
-        //    {
-        //        String taskAdapStopTime = "";
-        //        var mhResult = new MethodHandler();
+        public string StopTime
+        {
+            get
+            {
+                String taskAdapStopDate = "";
+                var mhResult = new MethodHandler();
+                DateTime dtDateSystem = DateTime.Now;
+                string stDate = dtDateSystem.ToShortDateString();
 
-        //        try
-        //        {
-        //            //foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
-        //            //{
-        //            //    if (t.TaskId == this.TaskId)
-        //            //    {
-        //            //        if (t.Times != null)
-        //            //        {
-        //            //            var stTime = t.Times.Max(x => x.StopTime);
-        //            //            taskAdapStopTime = stTime.ToString();
-        //            //            break;
-        //            //        }
-        //            //    }
-        //            //}
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            mhResult.Exception(ex);
-        //            return taskAdapStopTime;
-        //        }
-        //        finally
-        //        {
-        //            MessageWindow.ShowMethodHandler(mhResult, false);
-        //        }
-        //        return taskAdapStopTime;
-        //    } 
-        //}
+                try
+                {
+                    foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
+                    {
+                        if (t.TaskId == this.TaskId)
+                        {
+                            //converter 1/12/2013 para 01/12/2013
+                            string strStopDate = t.StopTime.ToShortDateString();
+                            if (stDate != strStopDate)
+                            {
+                                taskAdapStopDate = t.StopTime.ToString();
+                                break;
+                            }
+                            else
+                            {
+                                string strStopTime = t.StopTime.ToShortTimeString();
+                                taskAdapStopDate = strStopTime;
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    mhResult.Exception(ex);
+                    return taskAdapStopDate;
+                }
+                finally
+                {
+                    MessageWindow.ShowMethodHandler(mhResult, false);
+                }
+                return taskAdapStopDate;
+            }
+        }
 
         public bool ActiveChange
         {
