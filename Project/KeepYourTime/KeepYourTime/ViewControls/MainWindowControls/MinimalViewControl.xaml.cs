@@ -401,54 +401,54 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         #endregion
 
-        /// <summary>
-        /// Handles the KeyDown event of the Grid control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
-        {
-            var mhResult = new MethodHandler();
-            Boolean isPressedCtrl;
-            Boolean isPressedShift;
-            Boolean isPressedAlt;
-            String letter = "";
+        ///// <summary>
+        ///// Handles the KeyDown event of the Grid control.
+        ///// </summary>
+        ///// <param name="sender">The source of the event.</param>
+        ///// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        //private void Grid_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    var mhResult = new MethodHandler();
+        //    Boolean isPressedCtrl;
+        //    Boolean isPressedShift;
+        //    Boolean isPressedAlt;
+        //    String letter = "";
 
-            isPressedCtrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
-            isPressedShift = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
-            isPressedAlt = Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt);
+        //    isPressedCtrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+        //    isPressedShift = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
+        //    isPressedAlt = Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt);
 
-            if (!isPressedCtrl && !isPressedShift && !isPressedAlt)
-            {
-                return;
-            }
+        //    if (!isPressedCtrl && !isPressedShift && !isPressedAlt)
+        //    {
+        //        return;
+        //    }
 
-            if (e.Key >= Key.A && e.Key <= Key.Z)
-            {
-                letter = "" + Convert.ToChar(e.Key - Key.A + 'a');
-            }
-            if (e.Key >= Key.D0 && e.Key <= Key.D9)
-            {
-                letter = "" + Convert.ToChar(e.Key - Key.D0 + '0');
-            }
+        //    if (e.Key >= Key.A && e.Key <= Key.Z)
+        //    {
+        //        letter = "" + Convert.ToChar(e.Key - Key.A + 'a');
+        //    }
+        //    if (e.Key >= Key.D0 && e.Key <= Key.D9)
+        //    {
+        //        letter = "" + Convert.ToChar(e.Key - Key.D0 + '0');
+        //    }
 
-            foreach (var shortcut in Utils.CurrentConfigurations.allConfig.Shortcuts)
-            {
-                if (shortcut.Ctrl==isPressedCtrl && shortcut.Shift==isPressedShift&&shortcut.Alt==isPressedAlt&&shortcut.ShortcutKey==letter)
-                {
-                    DataBase.Adapters.TaskAdapter taskAdapter = null;
-                    mhResult = DataBase.Connectors.TaskConnector.ReadTask(shortcut.TaskId, out taskAdapter);
-                    if (taskAdapter != null)
-                    {
-                        StartTask(shortcut.TaskId, 0);
-                    }
-                    else
-                    {
-                        new Thread(() => Console.Beep()).Start();
-                    }
-                }
-            }
-        }
+        //    foreach (var shortcut in Utils.CurrentConfigurations.allConfig.Shortcuts)
+        //    {
+        //        if (shortcut.Ctrl==isPressedCtrl && shortcut.Shift==isPressedShift&&shortcut.Alt==isPressedAlt&&shortcut.ShortcutKey==letter)
+        //        {
+        //            DataBase.Adapters.TaskAdapter taskAdapter = null;
+        //            mhResult = DataBase.Connectors.TaskConnector.ReadTask(shortcut.TaskId, out taskAdapter);
+        //            if (taskAdapter != null)
+        //            {
+        //                StartTask(shortcut.TaskId, 0);
+        //            }
+        //            else
+        //            {
+        //                new Thread(() => Console.Beep()).Start();
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 }

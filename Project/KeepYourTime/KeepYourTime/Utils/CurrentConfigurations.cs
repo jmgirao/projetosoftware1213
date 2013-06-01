@@ -1,10 +1,12 @@
 ﻿using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.Hooks;
+using KeepYourTime.ViewControls.MainWindowControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,7 +60,7 @@ namespace KeepYourTime.Utils
         }
 
 
-        private static List<Hooks.Hotkey> lstHotKeys = new List<Hooks.Hotkey>();
+        public static List<Hooks.Hotkey> lstHotKeys = new List<Hooks.Hotkey>();
 
         public static KeepYourTime.ViewWindows.MainWindow mw;
 
@@ -67,23 +69,22 @@ namespace KeepYourTime.Utils
 
             while (lstHotKeys.Count > 0)
             {
-                lstHotKeys.First().Unregister();
+                lstHotKeys[0].Unregister();
                 lstHotKeys.RemoveAt(0);
             }
 
 
             foreach (ShortcutAdapter sc in allConfig.Shortcuts)
             {
-                if ((sc.ShortcutKey != ""))
+                if ((sc.ShortcutKey != null && sc.ShortcutKey != "" && sc.TaskId != 0))
                 {
                     var hkHotKey = new Hotkey(GetKeyByString(sc.ShortcutKey), sc.Shift, sc.Ctrl, sc.Alt, false);
                     hkHotKey.TaskID = sc.TaskId;
 
                     hkHotKey.Pressed += hkHotKey_Pressed;
 
-
-
                     hkHotKey.Register(mw);
+                    lstHotKeys.Add(hkHotKey);
                 }
 
             }
@@ -95,14 +96,23 @@ namespace KeepYourTime.Utils
             long TaskID = (sender as Hotkey).TaskID;
 
             //TODO: IF TASK NOT AVAILABLE MAKE SOUND
-
+            DataBase.Adapters.TaskAdapter taskAdapter = null;
+            DataBase.Connectors.TaskConnector.ReadTask(TaskID, out taskAdapter);
+            if (taskAdapter != null && taskAdapter.Active == true)
+            {
+                mw.stlShowTaskList_OnStartTask(TaskID);
+            }
+            else
+            {
+                new Thread(() => Console.Beep()).Start();
+            }
             e.Handled = true;
         }
 
         static private Keys GetKeyByString(string c)
         {
-
-            if (c.Length == 0)
+            
+            if (c == null || c.Length == 0)
                 return Keys.None;
             c = c.ToUpper();
             return (Keys)c[0];

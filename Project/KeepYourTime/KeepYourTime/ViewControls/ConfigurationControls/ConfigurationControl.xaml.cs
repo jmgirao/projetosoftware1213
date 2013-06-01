@@ -284,6 +284,8 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 Utils.CurrentConfigurations.getConfigurations();
 
+                Utils.CurrentConfigurations.ConfigureHotKeys();
+
                 Window.GetWindow(this).Close();
             }
             catch (Exception ex1)

@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid>
         <!--Área de Edição -->
-        <Grid KeyDown="Grid_KeyDown">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="24"/>
