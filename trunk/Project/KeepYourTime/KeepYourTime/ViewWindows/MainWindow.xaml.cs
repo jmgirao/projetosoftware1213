@@ -28,7 +28,7 @@ namespace KeepYourTime.ViewWindows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool blnColappsed = true ;
+        private bool blnColappsed = true;
         //Hooks.ActivityHook ahActivityAnalyzer;
 
         public static ObservableCollection<TaskAdapter> lstTaskAdapt = null;
@@ -49,8 +49,7 @@ namespace KeepYourTime.ViewWindows
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
             CurrentConfigurations.mw = this;
 
-
-        }
+              }
 
         public void stlShowTaskList_OnStartTask(long TaskID)
         {
@@ -61,7 +60,7 @@ namespace KeepYourTime.ViewWindows
         {
             //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
         }
-        
+
         public static MethodHandler LoadTaskList()
         {
             var mhResult = new MethodHandler();
@@ -207,7 +206,7 @@ namespace KeepYourTime.ViewWindows
 
         #endregion
 
-        private static IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
 
             if (msg == 0x312)
@@ -215,13 +214,24 @@ namespace KeepYourTime.ViewWindows
                 foreach (var hk in CurrentConfigurations.lstHotKeys)
                     hk.FilterMessage(msg, wParam);
             }
-            //if (msg == WM_DESTROY)
-            //{
-            //    handled = true;
-            //}
+
+            switch (msg)
+            {
+                case 0x112: // WM_SYSCOMMAND
+                    switch (wParam.ToInt32() & ~0x0F)
+                    {
+                        case 0xF010: // SC_MOVE
+                            this.ResizeMode = ResizeMode.NoResize;
+                            break;
+                    }
+                    break;
+                case 0x2A2: // WM_MOUSELEAVE
+                    this.ResizeMode = ResizeMode.CanResize;
+                    break;
+            }
+
             return IntPtr.Zero;
         }
-
 
     }
 }
