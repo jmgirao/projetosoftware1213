@@ -270,7 +270,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    if(udInactiveTime.Text.
+                    
                     cf.InactivityTime = (int)udInactiveTime.Value;
                 }
                 catch (Exception ex)
