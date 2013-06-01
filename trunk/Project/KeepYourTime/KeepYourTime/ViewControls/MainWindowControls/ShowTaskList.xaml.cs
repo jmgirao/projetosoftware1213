@@ -207,10 +207,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     var taTaskUi = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
                     //TaskDetailsWindow.TaskID = ;
-                    OnStartTask(taTaskUi.TaskId);
-
-                    taskAdaptUi.Move(taskAdaptUi.IndexOf(taTaskUi), 0);
-
+                    if (taTaskUi.Active == true)
+                    {
+                        OnStartTask(taTaskUi.TaskId);
+                        taskAdaptUi.Move(taskAdaptUi.IndexOf(taTaskUi), 0);
+                    }
                 }
 
 
