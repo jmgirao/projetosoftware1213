@@ -21,7 +21,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     public partial class ShowTaskList : UserControl
     {
         ObservableCollection<TaskAdapterUI> lstTaskAdaptUi = null;
-        ObservableCollection<TaskAdapterUI> lstTaskAdaptUiInactiveTask = null;
+        //ObservableCollection<TaskAdapterUI> lstTaskAdaptUiInactiveTask = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShowTaskList"/> class.
@@ -94,42 +94,43 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
         {
             lstTaskAdaptUi = new ObservableCollection<TaskAdapterUI>();
-            lstTaskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
+            //lstTaskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
 
+            //            foreach (TaskAdapter t in taskAdapt)
+            //            {
+            //                var ta = new TaskAdapterUI(t);
+            //                lstTaskAdaptUi.Add(ta);
+            //                ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+            //            }
+
+
+            //            foreach (TaskAdapter t in lstTaskAdaptUi)
+            //            {
+            //                //HACK RG : why two 
+            ////                var ta = new TaskAdapterUI(t);
+            //                lstTaskAdaptUiInactiveTask.Add(ta);
+            //            }
+
+            //lstTaskAdaptUi.Clear();
             foreach (TaskAdapter t in taskAdapt)
             {
                 var ta = new TaskAdapterUI(t);
+                //if (ta.Active)
+                //{
                 lstTaskAdaptUi.Add(ta);
                 ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+                //}
             }
-
-
             //The system groups the active tasks and inactive tasks in different groups.
-            foreach (TaskAdapter t in lstTaskAdaptUi)
-            {
-                var ta = new TaskAdapterUI(t);
-                lstTaskAdaptUiInactiveTask.Add(ta);
-            }
-
-            lstTaskAdaptUi.Clear();
-            foreach (TaskAdapter t in lstTaskAdaptUiInactiveTask)
-            {
-                var ta = new TaskAdapterUI(t);
-                if (ta.Active)
-                {
-                    lstTaskAdaptUi.Add(ta);
-                    ta.OnTaskDeactivated += ta_OnTaskDeactivated;
-                }
-            }
-            foreach (TaskAdapter t in lstTaskAdaptUiInactiveTask)
-            {
-                var ta = new TaskAdapterUI(t);
-                if (!ta.Active)
-                {
-                    lstTaskAdaptUi.Add(ta);
-                    ta.OnTaskDeactivated += ta_OnTaskDeactivated;
-                }
-            }
+            //foreach (TaskAdapter t in taskAdapt)
+            //{
+            //    var ta = new TaskAdapterUI(t);
+            //    if (!ta.Active)
+            //    {
+            //        lstTaskAdaptUi.Add(ta);
+            //        ta.OnTaskDeactivated += ta_OnTaskDeactivated;
+            //    }
+            //}
             //end
             dgTaskList.ItemsSource = lstTaskAdaptUi;
         }
@@ -271,27 +272,26 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             ObservableCollection<TaskAdapterUI> taskAdaptUiIsRunning = null;
             try
             {
-                object objTaskId = ((FrameworkElement)sender).DataContext;
-                TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
-                taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
+                TaskAdapterUI objTaskId = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
+                // taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
 
-                foreach (TaskAdapter t in lstTaskAdaptUi)
-                {
-                    var ta = new TaskAdapterUI(t);
-                    if (ta.TaskId == TaskDetailsWindow.TaskID)
-                    {
+                //foreach (TaskAdapter t in lstTaskAdaptUi)
+                //{
+                //    var ta = new TaskAdapterUI(t);
+                //    if (ta.TaskId == TaskDetailsWindow.TaskID)
+                //    {
 
-                        //if (ta.IsRunning == false)
-                        //{
-                        if (MinimalViewControl.CurrentTaskId != ta.TaskId)
-                            taskAdaptUiIsRunning.Add(ta);
-                        //break;
-                        //}
-                    }
-                }
-                if (taskAdaptUiIsRunning.Count != 0)
+                //        //if (ta.IsRunning == false)
+                //        //{
+                //        if (MinimalViewControl.CurrentTaskId != ta.TaskId)
+                //            taskAdaptUiIsRunning.Add(ta);
+                //        //break;
+                //        //}
+                //    }
+                //}
+                if (MinimalViewControl.CurrentTaskId != objTaskId.TaskId)
                 {
-                    mhResult = TaskConnector.DeleteTask(TaskDetailsWindow.TaskID);
+                    mhResult = TaskConnector.DeleteTask(objTaskId.TaskId);
                     if (mhResult.Exits) return;
 
                     mhResult = TaskConnector.ReadTaskList(out MainWindow.lstTaskAdapt, chkShowInactiveTask.IsChecked.Value);
