@@ -201,6 +201,9 @@
   <data name="TaskExists" xml:space="preserve">
     <value>That task already exists</value>
   </data>
+  <data name="TaskMustHaveName" xml:space="preserve">
+    <value>The task must have a name</value>
+  </data>
   <data name="TaskName" xml:space="preserve">
     <value>Task Name</value>
   </data>
