@@ -18,6 +18,7 @@ using KeepYourTime.ViewWindows;
 using KeepYourTime.ViewControls.ConfigurationControls;
 using KeepYourTime.Utils;
 using System.Threading;
+using System.Collections.ObjectModel;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -33,6 +34,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         Hooks.ActivityHook ahInactivity;
 
         public static long CurrentTaskId = -1;
+        ObservableCollection<ConfigTaskComboShortcut> lstTaskID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MinimalViewControl"/> class.
@@ -46,7 +48,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnStop.Click += btnStop_Click;
             btnResume.Click += btnResume_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
-
 
             ttTaskTimer = new TaskTimer();
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
@@ -120,7 +121,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         void MinimalViewControl_OnTaskListChanged(object sender, EventArgs e)
         {
-            var lstTaskID = new List<ConfigTaskComboShortcut>();
+            lstTaskID = new ObservableCollection<ConfigTaskComboShortcut>();
 
             foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
             {
@@ -232,6 +233,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 if (mhResult.Exits) return;
 
                 taTask.TaskId = taskId;
+                lstTaskID.Add(new ConfigTaskComboShortcut() { TaskID = taTask.TaskId, TaskName = taTask.TaskName });
+
+                txtNomeTask.SelectedIndex = lstTaskID.Count - 1;
 
                 if (OnTaskCreated != null)
                 {
@@ -432,8 +436,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 }
             }
         }
-
-
 
     }
 }
