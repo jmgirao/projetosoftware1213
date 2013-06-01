@@ -4,7 +4,8 @@
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.TaskDetailsControls"
         Title="MainWindow" Height="500" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
-        ResizeMode="CanResize" Topmost="False" MinWidth="570" >
+        ResizeMode="CanResize" Topmost="False" MinWidth="570" 
+        MinHeight="200" >
     <Window.Resources>
         <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
@@ -27,12 +28,6 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <!--<Window.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard x:Name="sbHideTaskList_BeginStoryboard" Storyboard="{StaticResource sbHideTaskList}"/>
-			<BeginStoryboard Storyboard="{StaticResource sbShowTaskList}"/>
-		</EventTrigger>
-	</Window.Triggers>-->
     <Window.Background >
         <SolidColorBrush x:Name="BackgroundBrush" Color="WhiteSmoke" Opacity="0" ></SolidColorBrush>
     </Window.Background>
@@ -45,7 +40,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid  Grid.RowSpan="3" Name="grdDetalhes" RenderTransformOrigin="0.5,0.5" >
+                <Grid  Grid.RowSpan="3" Name="grdDetalhes" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -56,7 +51,6 @@
                     </Grid.RenderTransform>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Rectangle Grid.RowSpan="2" Fill="Gray" Margin="5"
@@ -92,6 +86,4 @@
             </Grid>
         </Grid>
     </Grid>
-
-
 </Window>
