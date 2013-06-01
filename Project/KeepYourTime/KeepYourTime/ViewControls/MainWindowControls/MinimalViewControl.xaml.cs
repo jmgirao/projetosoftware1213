@@ -194,6 +194,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnEdit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             if (txtNomeTask.SelectedIndex != -1)
@@ -203,6 +208,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 var detailswindows = new TaskDetailsWindow();
                 detailswindows.TaskDetails.Visibility = System.Windows.Visibility.Collapsed;
                 detailswindows.EditTask.Visibility = System.Windows.Visibility.Visible;
+                detailswindows.EditTask.LoadTask(TaskDetailsWindow.TaskID);
                 detailswindows.Show();
             }
         }
