@@ -48,8 +48,8 @@
                 <DataGridTextColumn CanUserResize="False" Width="60" MinWidth="60" 
                                     MaxWidth="60" FontWeight="Normal" IsReadOnly="True" 
                                     Header="Today"  Binding="{Binding TodayTime}"/>
-                <DataGridTextColumn CanUserResize="False" Width="65" MinWidth="65" 
-                                    MaxWidth="65" FontWeight="Normal" IsReadOnly="True" 
+                <DataGridTextColumn CanUserResize="False" Width="68" MinWidth="68" 
+                                    MaxWidth="68" FontWeight="Normal" IsReadOnly="True" 
                                     Header="Stop Date"    Binding="{Binding StopTime}"/>
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25" 
                                         CanUserResize="False">
