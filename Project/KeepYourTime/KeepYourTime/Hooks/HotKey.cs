@@ -162,8 +162,6 @@ namespace KeepYourTime.Hooks
             }
             catch (Exception)
             {
-
-                throw;
             }
         }
 
@@ -331,6 +329,8 @@ namespace KeepYourTime.Hooks
                 this.Reregister();
             }
         }
+
+
 
     }
 }

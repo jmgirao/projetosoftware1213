@@ -57,6 +57,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             StaticEvents.OnTaskListChanged += MinimalViewControl_OnTaskListChanged;
 
             txtNomeTask.SelectionChanged += txtNomeTask_SelectionChanged;
+
+
+
         }
 
         /// <summary>
@@ -409,6 +412,26 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         }
 
         #endregion
+
+        private void PART_EditableTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void PART_EditableTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (btnAdd.IsVisible)
+                {
+                    btnAdd_Click(null, null);
+                }
+                else if (btnResume.IsVisible)
+                {
+                    btnResume_Click(null, null);
+                }
+            }
+        }
 
 
 
