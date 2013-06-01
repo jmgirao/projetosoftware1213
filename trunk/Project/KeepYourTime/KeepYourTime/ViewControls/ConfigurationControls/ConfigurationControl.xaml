@@ -36,8 +36,8 @@
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" >
             <TextBlock Name="lbInactiveTime" Text="{x:Static p:Language.InactivityTime}" FontSize="16" FontWeight="Bold"/>
-            <TextBox x:Name="txtInactiveTime" MaxLength="2" Width="40" Margin="5" Text="{x:Static p:Language.InactiveMinutesPart2}"/>
-      <xctk:IntegerUpDown />
+
+            <xctk:IntegerUpDown Minimum="1" Maximum="60" Name="udInactiveTime" Width="50"  IsEnabled="{Binding ElementName=chkInactivityAlert, Path=IsChecked}" />
         </StackPanel>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Name="lbShortcuts" Text="{x:Static p:Language.Shortcut}" FontSize="24" FontWeight="Bold"/>
 
