@@ -96,8 +96,8 @@ namespace KeepYourTime.Utils
             long TaskID = (sender as Hotkey).TaskID;
 
             //TODO: IF TASK NOT AVAILABLE MAKE SOUND
-            DataBase.Adapters.TaskAdapter taskAdapter = null;
-            DataBase.Connectors.TaskConnector.ReadTask(TaskID, out taskAdapter);
+            TaskAdapter taskAdapter = null;
+            TaskConnector.ReadTask(TaskID, out taskAdapter);
             if (taskAdapter != null && taskAdapter.Active == true)
             {
                 mw.stlShowTaskList_OnStartTask(TaskID);

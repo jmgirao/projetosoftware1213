@@ -1,11 +1,12 @@
 ﻿
+using System.ComponentModel;
 namespace KeepYourTime.DataBase.Adapters
 {
     /// <summary>
     /// Adapter for Shortcuts Table
     /// </summary>
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
-    public class ShortcutAdapter
+    public class ShortcutAdapter 
     {
         public int ShortcutId { get; set; }
         public bool Ctrl { get; set; }
@@ -14,5 +15,6 @@ namespace KeepYourTime.DataBase.Adapters
         public string ShortcutKey { get; set; }
         public long TaskId { get; set; }
 
+     
     }
 }
