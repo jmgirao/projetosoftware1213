@@ -144,6 +144,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="ErrorIntBound" xml:space="preserve">
+    <value>The inactivity time value must be between 1 and 60</value>
+  </data>
   <data name="Export" xml:space="preserve">
     <value>Export Data</value>
   </data>
