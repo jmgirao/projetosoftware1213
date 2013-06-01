@@ -219,11 +219,23 @@
   <data name="Today" xml:space="preserve">
     <value>Today</value>
   </data>
+  <data name="TooltipAddTask" xml:space="preserve">
+    <value>Add and Start Task</value>
+  </data>
   <data name="TooltipAddTime" xml:space="preserve">
     <value>Add new task time</value>
   </data>
   <data name="TooltipDeleteTime" xml:space="preserve">
     <value>Delete task time</value>
+  </data>
+  <data name="TooltipResumeTask" xml:space="preserve">
+    <value>Resume Task</value>
+  </data>
+  <data name="TooltipSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TooltipStopTask" xml:space="preserve">
+    <value>Stop Task</value>
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Total Time</value>
