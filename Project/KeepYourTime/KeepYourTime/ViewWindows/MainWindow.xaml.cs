@@ -28,7 +28,7 @@ namespace KeepYourTime.ViewWindows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool blnColappsed = false;
+        private bool blnColappsed = true ;
         //Hooks.ActivityHook ahActivityAnalyzer;
 
         public static ObservableCollection<TaskAdapter> lstTaskAdapt = null;
@@ -61,7 +61,7 @@ namespace KeepYourTime.ViewWindows
         {
             //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
         }
-
+        
         public static MethodHandler LoadTaskList()
         {
             var mhResult = new MethodHandler();
@@ -77,7 +77,6 @@ namespace KeepYourTime.ViewWindows
             }
             return mhResult;
         }
-
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {

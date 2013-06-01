@@ -140,21 +140,31 @@ namespace KeepYourTime.Hooks
 
         public void Unregister()
         {
-            // Check that we have registered
-            if (!this.registered)
-            { throw new NotSupportedException("You cannot unregister a hotkey that is not registered"); }
-
-            // It's possible that the control itself has died: in that case, no need to unregister!
-            if (!(new WindowInteropHelper(this.windowControl).Handle == IntPtr.Zero))
+            try
             {
-                // Clean up after ourselves
-                if (Hotkey.UnregisterHotKey(new WindowInteropHelper(windowControl).Handle, this.id) == 0)
-                { throw new Win32Exception(); }
-            }
 
-            // Clear the control reference and register state
-            this.registered = false;
-            this.windowControl = null;
+
+                // Check that we have registered
+                if (!this.registered)
+                { throw new NotSupportedException("You cannot unregister a hotkey that is not registered"); }
+
+                // It's possible that the control itself has died: in that case, no need to unregister!
+                if (!(new WindowInteropHelper(this.windowControl).Handle == IntPtr.Zero))
+                {
+                    // Clean up after ourselves
+                    if (Hotkey.UnregisterHotKey(new WindowInteropHelper(windowControl).Handle, this.id) == 0)
+                    { throw new Win32Exception(); }
+                }
+
+                // Clear the control reference and register state
+                this.registered = false;
+                this.windowControl = null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void Reregister()
@@ -186,8 +196,7 @@ namespace KeepYourTime.Hooks
             else
             { return false; }
         }
-
-
+        
         public bool FilterMessage(int message, IntPtr wParam)
         {
             // Only process WM_HOTKEY messages
