@@ -66,75 +66,75 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 List<ShortcutAdapter> listShortcuts = configuration.Shortcuts;
 
                 chkInactivityAlert.IsChecked = configuration.Inactivity;
-                udInactiveTime.Value= configuration.InactivityTime;
+                udInactiveTime.Value = configuration.InactivityTime;
 
 
-                try
+                var taskCombo = lstCombo.FirstOrDefault((t) => t.TaskID == listShortcuts[0].TaskId);
+                if (taskCombo != null)
                 {
-                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[0].TaskId select task).First();
                     cbShort1.SelectedItem = taskCombo;
                     chkShift1.IsChecked = listShortcuts[0].Shift;
                     chkCtrl1.IsChecked = listShortcuts[0].Ctrl;
                     chkAlt1.IsChecked = listShortcuts[0].Alt;
                     txtShortcutKey1.Text = (listShortcuts[0].ShortcutKey.ToString() != "\0") ? listShortcuts[0].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch (Exception ex)
+                else
                 {
                     cbShort1.SelectedIndex = 0;
                 }
 
-                try
+                taskCombo = lstCombo.FirstOrDefault((t) => t.TaskID == listShortcuts[1].TaskId);
+                if (taskCombo != null)
                 {
-                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[1].TaskId select task).First();
                     cbShort2.SelectedItem = taskCombo;
                     chkShift2.IsChecked = listShortcuts[1].Shift;
                     chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
                     chkAlt2.IsChecked = listShortcuts[1].Alt;
-                    txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[1].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch (Exception ex)
+                else
                 {
                     cbShort2.SelectedIndex = 0;
                 }
 
-                try
+
+                taskCombo = lstCombo.FirstOrDefault((t) => t.TaskID == listShortcuts[2].TaskId);
+                if (taskCombo != null)
                 {
-                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[2].TaskId select task).First();
                     cbShort3.SelectedItem = taskCombo;
                     chkShift3.IsChecked = listShortcuts[2].Shift;
                     chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
                     chkAlt3.IsChecked = listShortcuts[2].Alt;
                     txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch (Exception ex)
+                else
                 {
                     cbShort3.SelectedIndex = 0;
                 }
 
-                try
+                taskCombo = lstCombo.FirstOrDefault((t) => t.TaskID == listShortcuts[3].TaskId);
+                if (taskCombo != null)
                 {
-                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[3].TaskId select task).First();
                     cbShort4.SelectedItem = taskCombo;
                     chkShift4.IsChecked = listShortcuts[3].Shift;
                     chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
                     chkAlt4.IsChecked = listShortcuts[3].Alt;
                     txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch (Exception ex)
+                else
                 {
                     cbShort4.SelectedIndex = 0;
                 }
 
-                try
+                taskCombo = lstCombo.FirstOrDefault((t) => t.TaskID == listShortcuts[4].TaskId);
+                if (taskCombo != null)
                 {
-                    var taskCombo = (from task in lstCombo where task.TaskID == listShortcuts[4].TaskId select task).First();
                     cbShort5.SelectedItem = taskCombo;
                     chkShift5.IsChecked = listShortcuts[4].Shift;
                     chkCtrl5.IsChecked = listShortcuts[4].Ctrl;
                     chkAlt5.IsChecked = listShortcuts[4].Alt;
                     txtShortcutKey5.Text = (listShortcuts[4].ShortcutKey.ToString() != "\0") ? listShortcuts[4].ShortcutKey.ToString()[0].ToString() : "";
                 }
-                catch (Exception ex)
+                else
                 {
                     cbShort5.SelectedIndex = 0;
                 }
@@ -191,7 +191,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             {
                 mhResult.Message = Languages.Language.ShortcutIncomplete;
                 mhResult.Status = MethodStatus.Exception;
-                MessageWindow.ShowMethodHandler(mhResult, true);   
+                MessageWindow.ShowMethodHandler(mhResult, true);
                 return;
             }
 
@@ -270,7 +270,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
                 try
                 {
-                    
+
                     cf.InactivityTime = (int)udInactiveTime.Value;
                 }
                 catch (Exception ex)
@@ -296,7 +296,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             }
             finally
             {
-                MessageWindow.ShowMethodHandler(mhResult, true);                
+                MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 

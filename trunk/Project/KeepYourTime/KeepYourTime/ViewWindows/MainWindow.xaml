@@ -4,7 +4,7 @@
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.TaskDetailsControls"
         Title="MainWindow" Height="300" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
-        ResizeMode="NoResize" Topmost="False" MinWidth="570" 
+        ResizeMode="CanResize" Topmost="False" MinWidth="570" 
         MinHeight="200" >
     <Window.Resources>
         <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">

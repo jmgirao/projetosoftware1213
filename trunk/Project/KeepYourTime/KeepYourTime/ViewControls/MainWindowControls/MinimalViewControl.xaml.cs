@@ -48,6 +48,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnStop.Click += btnStop_Click;
             btnResume.Click += btnResume_Click;
             btnTaskDetails.Click += btnTaskDetails_Click;
+            btnEdit.Click += btnEdit_Click;
 
             ttTaskTimer = new TaskTimer();
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
@@ -63,6 +64,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         }
 
+
         /// <summary>
         /// Handles the SelectionChanged event of the txtNomeTask control.
         /// </summary>
@@ -70,20 +72,25 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         void txtNomeTask_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (txtNomeTask.Text == "")
+            if (txtNomeTask.Text == "" && e.AddedItems.Count != 1)
             {
+
                 txtNomeTask.SelectedIndex = -1;
                 if (ttTaskTimer.isRunningTask())
                 {
                     btnStop.Visibility = Visibility.Visible;
                     btnAdd.Visibility = Visibility.Collapsed;
                     btnResume.Visibility = Visibility.Collapsed;
+                    btnEdit.IsEnabled = false;
+                    btnTaskDetails.IsEnabled = true;
                 }
                 else
                 {
                     btnStop.Visibility = Visibility.Collapsed;
                     btnAdd.Visibility = Visibility.Visible;
                     btnResume.Visibility = Visibility.Collapsed;
+                    btnEdit.IsEnabled = false;
+                    btnTaskDetails.IsEnabled = false;
                 }
 
             }
@@ -94,6 +101,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     btnAdd.Visibility = Visibility.Visible;
                     btnStop.Visibility = Visibility.Collapsed;
                     btnResume.Visibility = Visibility.Collapsed;
+                    btnEdit.IsEnabled = false;
+                    btnTaskDetails.IsEnabled = false;
                 }
                 else
                 {
@@ -103,12 +112,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         btnAdd.Visibility = Visibility.Collapsed;
                         btnStop.Visibility = Visibility.Visible;
                         btnResume.Visibility = Visibility.Collapsed;
+                        btnEdit.IsEnabled = false;
+                        btnTaskDetails.IsEnabled = true;
                     }
                     else
                     {
                         btnAdd.Visibility = Visibility.Collapsed;
                         btnStop.Visibility = Visibility.Collapsed;
                         btnResume.Visibility = Visibility.Visible;
+                        btnEdit.IsEnabled = true;
+                        btnTaskDetails.IsEnabled = true;
                     }
                 }
             }
@@ -171,9 +184,22 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <remarks>CREATED BY João Girão</remarks>
         void btnTaskDetails_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentTaskId != -1)
+            if (txtNomeTask.SelectedIndex != -1)
             {
-                TaskDetailsWindow.TaskID = CurrentTaskId;  //The task id that's running or that's selected in the textbox
+
+                TaskDetailsWindow.TaskID = lstTaskID[txtNomeTask.SelectedIndex].TaskID;  //The task id that's running or that's selected in the textbox
+                var detailswindows = new TaskDetailsWindow();
+                detailswindows.Show();
+            }
+        }
+
+
+        void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNomeTask.SelectedIndex != -1)
+            {
+
+                TaskDetailsWindow.TaskID = lstTaskID[txtNomeTask.SelectedIndex].TaskID;  //The task id that's running or that's selected in the textbox
                 var detailswindows = new TaskDetailsWindow();
                 detailswindows.Show();
             }
