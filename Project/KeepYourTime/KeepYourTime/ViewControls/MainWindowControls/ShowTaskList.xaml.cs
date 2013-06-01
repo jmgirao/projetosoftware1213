@@ -7,6 +7,8 @@ using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.ViewWindows;
 using System.Windows.Data;
 using System.Windows.Media;
+using KeepYourTime.Utils;
+using System.Linq;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
@@ -18,8 +20,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </remarks>  
     public partial class ShowTaskList : UserControl
     {
-        ObservableCollection<TaskAdapterUI> taskAdaptUi = null;
-        ObservableCollection<TaskAdapterUI> taskAdaptUiInactiveTask = null;
+        ObservableCollection<TaskAdapterUI> lstTaskAdaptUi = null;
+        ObservableCollection<TaskAdapterUI> lstTaskAdaptUiInactiveTask = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShowTaskList"/> class.
@@ -31,6 +33,18 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.Loaded += ShowTaskList_Loaded;
             chkShowInactiveTask.Checked += chkShowInactiveTask_Checked;
             chkShowInactiveTask.Unchecked += chkShowInactiveTask_Checked;
+            StaticEvents.OnTaskStarted += StaticEvents_OnTaskStarted;
+        }
+
+        void StaticEvents_OnTaskStarted(long TaskID)
+        {
+
+            var TaskUI = lstTaskAdaptUi.First((t) => t.TaskId == TaskID);
+            if (TaskUI != null)
+            {
+                lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(TaskUI), 0);
+            }
+
         }
 
         void chkShowInactiveTask_Checked(object sender, RoutedEventArgs e)
@@ -70,8 +84,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="Task">The task.</param>
         public void CreatedTask(TaskAdapter Task)
         {
-            //TODO: Ordenar lista quando se cria uma tarefa!
-            taskAdaptUi.Insert(0, new TaskAdapterUI(Task));
+            lstTaskAdaptUi.Insert(0, new TaskAdapterUI(Task));
         }
 
         /// <summary>
@@ -80,45 +93,45 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="taskAdapt">The task adapt.</param>
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
         {
-            taskAdaptUi = new ObservableCollection<TaskAdapterUI>();
-            taskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
+            lstTaskAdaptUi = new ObservableCollection<TaskAdapterUI>();
+            lstTaskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
 
             foreach (TaskAdapter t in taskAdapt)
             {
                 var ta = new TaskAdapterUI(t);
-                taskAdaptUi.Add(ta);
+                lstTaskAdaptUi.Add(ta);
                 ta.OnTaskDeactivated += ta_OnTaskDeactivated;
             }
 
 
             //The system groups the active tasks and inactive tasks in different groups.
-            foreach (TaskAdapter t in taskAdaptUi)
+            foreach (TaskAdapter t in lstTaskAdaptUi)
             {
                 var ta = new TaskAdapterUI(t);
-                taskAdaptUiInactiveTask.Add(ta);
+                lstTaskAdaptUiInactiveTask.Add(ta);
             }
 
-            taskAdaptUi.Clear();
-            foreach (TaskAdapter t in taskAdaptUiInactiveTask)
+            lstTaskAdaptUi.Clear();
+            foreach (TaskAdapter t in lstTaskAdaptUiInactiveTask)
             {
                 var ta = new TaskAdapterUI(t);
                 if (ta.Active)
                 {
-                    taskAdaptUi.Add(ta);
+                    lstTaskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
                 }
             }
-            foreach (TaskAdapter t in taskAdaptUiInactiveTask)
+            foreach (TaskAdapter t in lstTaskAdaptUiInactiveTask)
             {
                 var ta = new TaskAdapterUI(t);
                 if (!ta.Active)
                 {
-                    taskAdaptUi.Add(ta);
+                    lstTaskAdaptUi.Add(ta);
                     ta.OnTaskDeactivated += ta_OnTaskDeactivated;
                 }
             }
             //end
-            dgTaskList.ItemsSource = taskAdaptUi;
+            dgTaskList.ItemsSource = lstTaskAdaptUi;
         }
 
         /// <summary>
@@ -130,7 +143,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             if (chkShowInactiveTask.IsChecked.Value == false)
             {
-                Dispatcher.BeginInvoke((Action)(() => taskAdaptUi.Remove((TaskAdapterUI)sender)));
+                Dispatcher.BeginInvoke((Action)(() => lstTaskAdaptUi.Remove((TaskAdapterUI)sender)));
             }
         }
 
@@ -200,7 +213,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
 
             var mhResult = new MethodHandler();
-            ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
+            //ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
             try
             {
                 if (OnStartTask != null)
@@ -210,7 +223,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     if (taTaskUi.Active == true)
                     {
                         OnStartTask(taTaskUi.TaskId);
-                        taskAdaptUi.Move(taskAdaptUi.IndexOf(taTaskUi), 0);
+                        lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
                     }
                 }
 
@@ -262,15 +275,15 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 TaskDetailsWindow.TaskID = ((TaskAdapterUI)objTaskId).TaskId;
                 taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
 
-                foreach (TaskAdapter t in taskAdaptUi)
+                foreach (TaskAdapter t in lstTaskAdaptUi)
                 {
                     var ta = new TaskAdapterUI(t);
                     if (ta.TaskId == TaskDetailsWindow.TaskID)
                     {
-                        
+
                         //if (ta.IsRunning == false)
                         //{
-                        if(MinimalViewControl.CurrentTaskId!=ta.TaskId)
+                        if (MinimalViewControl.CurrentTaskId != ta.TaskId)
                             taskAdaptUiIsRunning.Add(ta);
                         //break;
                         //}

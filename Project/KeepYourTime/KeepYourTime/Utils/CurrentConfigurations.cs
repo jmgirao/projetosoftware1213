@@ -92,10 +92,8 @@ namespace KeepYourTime.Utils
 
         static void hkHotKey_Pressed(object sender, System.ComponentModel.HandledEventArgs e)
         {
-            //TODO: Start Task
             long TaskID = (sender as Hotkey).TaskID;
 
-            //TODO: IF TASK NOT AVAILABLE MAKE SOUND
             TaskAdapter taskAdapter = null;
             TaskConnector.ReadTask(TaskID, out taskAdapter);
             if (taskAdapter != null && taskAdapter.Active == true)
