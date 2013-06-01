@@ -1,4 +1,5 @@
 ﻿using KeepYourTime.DataBase.Adapters;
+using KeepYourTime.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -226,6 +227,8 @@ namespace KeepYourTime.DataBase.Connectors
                 conSQL.Close();
                 conSQL = null;
 
+                StaticEvents.RaiseEventOnTaskUpdatedTask(Task);
+
             }
             catch (Exception ex)
             {
@@ -432,6 +435,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 Time.TimeId = (long)objTimeID;
 
+                StaticEvents.RaiseEventOnTimeAdded(Time.TaskId);
             }
             catch (Exception ex)
             {

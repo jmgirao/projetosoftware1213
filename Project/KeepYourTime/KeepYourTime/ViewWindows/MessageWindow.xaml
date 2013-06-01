@@ -9,12 +9,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>-->
         <Grid Name="ContentGrid">
-            <Rectangle Fill="LightGray"/>
-            <StackPanel >
-                <TextBlock Name="lblResult" Text="{Binding Status}" />
+            <Rectangle Fill="#FF343434"/>
+            <StackPanel Margin="10">
+                <!--<TextBlock Name="lblResult" Text="{Binding Status}" />
                 <TextBlock Name="lblMensagem" Text="{Binding Message}"  TextWrapping="Wrap"/>
                 <TextBlock Name="lblQuery" Text="{Binding Query}"  TextWrapping="Wrap"/>
-                <TextBlock Name="lblDetalhe" Text="{Binding StackTrace}" TextWrapping="Wrap"/>
+                <TextBlock Name="lblDetalhe" Text="{Binding StackTrace}" TextWrapping="Wrap"/>-->
+                <TextBlock Name="lblResult" Text="{Binding Status}" FontSize="18" FontWeight="Bold" Foreground="White" />
+                <TextBlock Name="lblMensagem" Text="{Binding Message}" FontWeight="Bold"  TextWrapping="Wrap" Foreground="White" Margin="0,5"/>
+                <!--<TextBlock Name="lblQuery" Text="{Binding Query}"  TextWrapping="Wrap"/>-->
+                <!--<TextBlock Name="lblDetalhe" Text="{Binding StackTrace}" TextWrapping="Wrap"/>-->
             </StackPanel>
             <Button Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="btnClick" />
         </Grid>
