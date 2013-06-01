@@ -213,10 +213,9 @@ namespace KeepYourTime.ViewWindows
 
             if (msg == 0x312)
             {
-
                 foreach (var hk in CurrentConfigurations.lstHotKeys)
                     hk.FilterMessage(msg, wParam);
-                }
+            }
             //if (msg == WM_DESTROY)
             //{
             //    handled = true;

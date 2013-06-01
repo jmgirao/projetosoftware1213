@@ -6,7 +6,7 @@ namespace KeepYourTime.DataBase.Adapters
     /// Adapter for Configuration Table
     /// </summary>
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
-    public class ConfigurationAdapter
+    public class ConfigurationAdapter 
     {
         public bool Inactivity { get; set; }
         public int InactivityTime { get; set; }

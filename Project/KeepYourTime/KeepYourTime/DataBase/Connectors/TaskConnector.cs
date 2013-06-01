@@ -160,7 +160,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 mhResult = DBUtils.SelectValue(strSQL, scpParams, out objReturn);
                 if (mhResult.Exits) return mhResult;
-                if (mhResult.AffectedLines == 1 && (long)objReturn!= Task.TaskId)
+                if (mhResult.AffectedLines == 1 && (long)objReturn != Task.TaskId)
                 {
                     mhResult.Status = Utils.MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.TaskExists;
@@ -204,6 +204,11 @@ namespace KeepYourTime.DataBase.Connectors
 
                 foreach (TaskTimeAdapter t in Task.Times)
                 {
+
+                    t.StartTime = t.StartTime.AddMilliseconds((t.StartTime.Millisecond < 500) ? -t.StartTime.Millisecond : 1000 - t.StartTime.Millisecond);
+                    t.StopTime = t.StopTime.AddMilliseconds((t.StopTime.Millisecond < 500) ? -t.StopTime.Millisecond : 1000 - t.StopTime.Millisecond);
+
+
                     scpParams = new SqlCeParameter[2];
                     t.TaskId = Task.TaskId;
                     scpParams[0] = new SqlCeParameter("StartTime", t.StartTime);
@@ -332,17 +337,28 @@ namespace KeepYourTime.DataBase.Connectors
             {
 
                 DataTable dtTasks = null;
-
-                var strQuery = "SELECT T.TaskId, MAX(T.TaskName) [TaskName], " +
-                                    "MAX(T.Description) Description, T.Active, " +
-                                    "CAST(COALESCE(SUM(DATEDIFF(S,TT.StartTime,TT.StopTime)),0) AS BIGINT) TotalTime, " +
-                                    "CAST(COALESCE(SUM(DATEDIFF(S,TToday.StartTime,TToday.StopTime)),0) AS BIGINT) TodayTime " +
-                                    "FROM Task T " +
-                                    "LEFT JOIN TaskTime TT ON TT.TaskID = T.TaskID " +
-                                    "LEFT JOIN TaskTime TToday ON TToday.TaskID = T.TaskID AND CONVERT(nvarchar(10), TToday.StartTime,102) = CONVERT(nvarchar(10), GETDATE(),102) ";
-                if (!ReadInactiveTasks) strQuery += "WHERE Active = 1 ";
-                strQuery += "GROUP BY T.TaskID, T.Active ";
-
+                var strQuery = "SELECT T.TaskID, T.TaskName, T.Description, T.Active, " +
+                    "CAST(COALESCE(TDAY.Time,0) AS BIGINT) [TodayTime], " +
+                    "CAST(COALESCE(TTOT.Time,0) AS BIGINT) [TotalTime], TTOT.StopTime " +
+                    "FROM Task T " +
+                    "LEFT JOIN (SELECT TT.TaskID, SUM(DATEDIFF(S,TT.StartTime,TT.StopTime)) Time " +
+                    "	FROM TaskTime TT " +
+                    "	WHERE CONVERT(nvarchar(10), TT.StartTime,102) = CONVERT(nvarchar(10), GETDATE(),102) " +
+                    "	GROUP BY TT.TaskID " +
+                    ") AS TDAY ON TDAY.TaskID = T.TaskID " +
+                    "LEFT JOIN (SELECT TT.TaskID, MAX(TT.StopTime) StopTime, SUM(DATEDIFF(S,TT.StartTime,TT.StopTime)) Time " +
+                    "	FROM TaskTime TT " +
+                    "	GROUP BY TT.TaskID " +
+                    ") AS TTOT ON TTOT.TaskID = T.TaskID ";
+                //var strQuery = "SELECT T.TaskId, MAX(T.TaskName) [TaskName], " +
+                //                    "MAX(T.Description) Description, T.Active, " +
+                //                    "(SELECT CAST(COALESCE(SUM(DATEDIFF(S,TT.StartTime,TT.StopTime)),0) AS BIGINT)) FROM TaskTime WHERE TaskID = T.TaskID )  TotalTime, " +
+                //                    "CAST(COALESCE(SUM(DATEDIFF(S,TToday.StartTime,TToday.StopTime)),0) AS BIGINT) TodayTime " +
+                //                    "FROM Task T " +
+                //                    "LEFT JOIN TaskTime TToday ON TToday.TaskID = T.TaskID AND CONVERT(nvarchar(10), TToday.StartTime,102) = CONVERT(nvarchar(10), GETDATE(),102) ";
+                if (!ReadInactiveTasks) strQuery += "WHERE T.Active = 1 ";
+                //strQuery += "GROUP BY T.TaskID, T.Active ";
+                strQuery += "ORDER BY T.Active DESC, TTOT.StopTime DESC ";
 
                 mhResult = DBUtils.SelectTable(strQuery, out dtTasks);
                 if (mhResult.Exits) return mhResult;
@@ -358,6 +374,8 @@ namespace KeepYourTime.DataBase.Connectors
                         TotalTime = (long)dr["TotalTime"],
                         TodayTime = (long)dr["TodayTime"],
                         Active = (bool)dr["Active"],
+                        StopTime = (dr["StopTime"] == DBNull.Value) ? DateTime.MinValue : (DateTime)dr["StopTime"],
+                        Times = new ObservableCollection<TaskTimeAdapter>()
                     });
                 }
             }
@@ -390,6 +408,10 @@ namespace KeepYourTime.DataBase.Connectors
                     mhResult.Message = string.Format(Languages.Language.TaskNotFound, Time.TaskId);
                     return mhResult;
                 }
+
+
+                Time.StartTime = Time.StartTime.AddMilliseconds((Time.StartTime.Millisecond < 500) ? -Time.StartTime.Millisecond : 1000 - Time.StartTime.Millisecond);
+                Time.StopTime = Time.StopTime.AddMilliseconds((Time.StopTime.Millisecond < 500) ? -Time.StopTime.Millisecond : 1000 - Time.StopTime.Millisecond);
 
                 strSQL = "INSERT INTO TaskTime (TaskId, StartTime, StopTime)  " +
                     "VALUES (" + Time.TaskId.ToString() + ", @StartTime, @StopTime)";
