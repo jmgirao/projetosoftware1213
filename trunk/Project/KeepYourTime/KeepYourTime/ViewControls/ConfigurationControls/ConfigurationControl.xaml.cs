@@ -189,12 +189,13 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
             if (!isValideShortcuts())
             {
-                mhResult.Message = "One shortcut appear to be incomplete, you need to choose any character for it";
+                mhResult.Message = Languages.Language.ShortcutIncomplete;
+                mhResult.Status = MethodStatus.Exception;
+                MessageWindow.ShowMethodHandler(mhResult, true);   
                 return;
             }
 
 
-            //TODO taskid must be correctly "generated/readed" and be saved to list
             try
             {
                 List<ShortcutAdapter> listShortcuts = new List<ShortcutAdapter>();
@@ -267,18 +268,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 var cf = new ConfigurationAdapter();
                 cf.Inactivity = (chkInactivityAlert.IsChecked.HasValue) ? chkInactivityAlert.IsChecked.Value : false;
 
-                try
-                {
-                    cf.InactivityTime = (int)udInactiveTime.Value;
-                   
-                }
-                catch (Exception ex2)
-                {
-                    mhResult.Message = Languages.Language.IntException;
-                    mhResult.Status = MethodStatus.Exception;
-                    //MessageBox.Show(Languages.Language.IntException, Languages.Language.Error);
-                    return;
-                }
+                cf.InactivityTime = (int)udInactiveTime.Value;
 
                 cf.Shortcuts = listShortcuts;
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
