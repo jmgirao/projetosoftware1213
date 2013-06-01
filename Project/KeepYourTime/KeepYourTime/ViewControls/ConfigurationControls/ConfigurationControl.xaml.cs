@@ -268,7 +268,17 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 var cf = new ConfigurationAdapter();
                 cf.Inactivity = (chkInactivityAlert.IsChecked.HasValue) ? chkInactivityAlert.IsChecked.Value : false;
 
-                cf.InactivityTime = (int)udInactiveTime.Value;
+                try
+                {
+                    if(udInactiveTime.Text.
+                    cf.InactivityTime = (int)udInactiveTime.Value;
+                }
+                catch (Exception ex)
+                {
+                    mhResult.Message = "Erro de dados";
+                    mhResult.Status = MethodStatus.Exception;
+                    return;
+                }
 
                 cf.Shortcuts = listShortcuts;
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
@@ -282,6 +292,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
             catch (Exception ex1)
             {
                 mhResult.Exception(ex1);
+                return;
             }
             finally
             {
