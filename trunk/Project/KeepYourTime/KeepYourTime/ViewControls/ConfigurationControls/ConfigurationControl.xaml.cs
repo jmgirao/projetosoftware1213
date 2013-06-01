@@ -270,6 +270,12 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 try
                 {
                     cf.InactivityTime = int.Parse(txtInactiveTime.Text);
+                    if (cf.InactivityTime < 1 || cf.InactivityTime > 60)
+                    {
+                        mhResult.Message = Languages.Language.ErrorIntBound;
+                        mhResult.Status = MethodStatus.Exception;
+                        return;
+                    }
                 }
                 catch (Exception ex2)
                 {

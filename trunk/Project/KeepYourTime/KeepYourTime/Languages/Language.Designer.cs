@@ -142,6 +142,15 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The inactivity time value must be between 1 and 60.
+        /// </summary>
+        public static string ErrorIntBound {
+            get {
+                return ResourceManager.GetString("ErrorIntBound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export Data.
         /// </summary>
         public static string Export {
