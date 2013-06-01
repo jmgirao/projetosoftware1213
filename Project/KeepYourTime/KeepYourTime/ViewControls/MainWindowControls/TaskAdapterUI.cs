@@ -4,6 +4,7 @@ using KeepYourTime.ViewWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     class TaskAdapterUI : TaskAdapter
     {
-        public string TotalTime { 
-            get 
+        public string TotalTime
+        {
+            get
             {
-                String taskAdapTotalTime="";
+                String taskAdapTotalTime = "";
                 var mhResult = new MethodHandler();
 
                 try
@@ -37,7 +39,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
                             break;
                         }
-                    }   
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -49,9 +51,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     MessageWindow.ShowMethodHandler(mhResult, false);
                 }
                 return taskAdapTotalTime;
-            } 
+            }
         }
-        public string TodayTime { 
+        public string TodayTime
+        {
             get
             {
                 String taskAdapTodayTime = "";
@@ -82,42 +85,42 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     MessageWindow.ShowMethodHandler(mhResult, false);
                 }
                 return taskAdapTodayTime;
-            } 
+            }
         }
-        public string StopDate 
-        { 
-            get 
-            {
-                String taskAdapStopTime = "";
-                var mhResult = new MethodHandler();
+        //public string StopDate 
+        //{ 
+        //    get 
+        //    {
+        //        String taskAdapStopTime = "";
+        //        var mhResult = new MethodHandler();
 
-                try
-                {
-                    foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
-                    {
-                        if (t.TaskId == this.TaskId)
-                        {
-                            if (t.Times != null)
-                            {
-                                var stTime = t.Times.Max(x => x.StopTime);
-                                taskAdapStopTime = stTime.ToString();
-                                break;
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    mhResult.Exception(ex);
-                    return taskAdapStopTime;
-                }
-                finally
-                {
-                    MessageWindow.ShowMethodHandler(mhResult, false);
-                }
-                return taskAdapStopTime;
-            } 
-        }
+        //        try
+        //        {
+        //            //foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
+        //            //{
+        //            //    if (t.TaskId == this.TaskId)
+        //            //    {
+        //            //        if (t.Times != null)
+        //            //        {
+        //            //            var stTime = t.Times.Max(x => x.StopTime);
+        //            //            taskAdapStopTime = stTime.ToString();
+        //            //            break;
+        //            //        }
+        //            //    }
+        //            //}
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            mhResult.Exception(ex);
+        //            return taskAdapStopTime;
+        //        }
+        //        finally
+        //        {
+        //            MessageWindow.ShowMethodHandler(mhResult, false);
+        //        }
+        //        return taskAdapStopTime;
+        //    } 
+        //}
 
         public bool ActiveChange
         {
@@ -154,6 +157,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 }
             }
         }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaskAdapterUI"/> class.

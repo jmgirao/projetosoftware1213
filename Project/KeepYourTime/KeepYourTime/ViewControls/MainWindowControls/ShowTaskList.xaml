@@ -29,7 +29,7 @@
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Play" Click="btPlay_Click" CommandParameter="{Binding TaskID}" ToolTip="{x:Static p:Language.TooltipResumeTask}" Style="{StaticResource BtnImage}">
+                            <Button Content="Play" Click="btPlay_Click"  ToolTip="{x:Static p:Language.TooltipResumeTask}" IsEnabled="{Binding Active}" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}"  >
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/play.png"/>
