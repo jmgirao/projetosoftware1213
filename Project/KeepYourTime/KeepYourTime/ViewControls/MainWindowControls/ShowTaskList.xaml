@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -28,7 +29,7 @@
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Play" Click="btPlay_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}">
+                            <Button Content="Play" Click="btPlay_Click" CommandParameter="{Binding TaskID}" ToolTip="{x:Static p:Language.TooltipResumeTask}" Style="{StaticResource BtnImage}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/play.png"/>
@@ -45,7 +46,7 @@
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Detalhes" Click="btDetails_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}">
+                            <Button Content="Detalhes" Click="btDetails_Click" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}" ToolTip="{x:Static p:Language.TaskDetailsTitle}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/details.ico"/>
@@ -58,7 +59,7 @@
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Eliminar" Style="{StaticResource BtnImage}" Click="btDelete_Click" CommandParameter="{Binding TaskID}">
+                            <Button Content="Eliminar" Style="{StaticResource BtnImage}" Click="btDelete_Click" CommandParameter="{Binding TaskID}" ToolTip="{x:Static p:Language.TooltipDeleteTask}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Image Source="/KeepYourTime;component/Assets/remove.png"/>

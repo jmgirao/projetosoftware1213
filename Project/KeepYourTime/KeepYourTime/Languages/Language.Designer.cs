@@ -385,6 +385,15 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Task.
+        /// </summary>
+        public static string TooltipDeleteTask {
+            get {
+                return ResourceManager.GetString("TooltipDeleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete task time.
         /// </summary>
         public static string TooltipDeleteTime {
