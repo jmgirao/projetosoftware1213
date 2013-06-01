@@ -174,9 +174,6 @@
   <data name="InexistentTask" xml:space="preserve">
     <value>The task dosen't exists</value>
   </data>
-  <data name="IntException" xml:space="preserve">
-    <value>Error, please insert a valid time</value>
-  </data>
   <data name="NoPermission" xml:space="preserve">
     <value>You have no permission to write on that folder. Please choose another.</value>
   </data>
@@ -185,6 +182,9 @@
   </data>
   <data name="Shortcut" xml:space="preserve">
     <value>Shortcuts</value>
+  </data>
+  <data name="ShortcutIncomplete" xml:space="preserve">
+    <value>One shortcut appear to be incomplete, you need to choose any character for it</value>
   </data>
   <data name="ShortcutsConfig" xml:space="preserve">
     <value>Shortcut:</value>
