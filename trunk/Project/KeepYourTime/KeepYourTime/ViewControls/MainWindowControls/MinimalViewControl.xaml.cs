@@ -216,8 +216,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 if (txtNomeTask.Text.Trim() == "")
                 {
-                    mhResult.Message = "";
+                    mhResult.Message = Languages.Language.TaskMustHaveName;
                     mhResult.Status = MethodStatus.Cancel;
+                    return;
                 }
 
                 long taskId = 0;
@@ -409,7 +410,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         #endregion
 
-       
+
 
     }
 }
