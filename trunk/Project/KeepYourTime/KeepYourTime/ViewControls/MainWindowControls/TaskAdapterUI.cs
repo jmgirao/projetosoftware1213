@@ -16,35 +16,28 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     class TaskAdapterUI : TaskAdapter
     {
-        public string TotalTime
+        public string TotalTimeString
         {
             get
             {
-                String taskAdapTotalTime = "";
+                string taskAdapTotalTime = "";
                 var mhResult = new MethodHandler();
 
                 try
                 {
 
-                    foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
-                    {
-                        if (t.TaskId == this.TaskId)
-                        {
-                            TimeSpan tsTime = TimeSpan.FromSeconds(t.TotalTime);
-                            //taskAdapTotalTime = string.Format("{0:D2}h:{1:D2}m:{2:D2}s",
-                            taskAdapTotalTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                                tsTime.Hours,
-                                tsTime.Minutes,
-                                tsTime.Seconds);
+                    TimeSpan tsTime = TimeSpan.FromSeconds(this.TotalTime);
+                    //taskAdapTotalTime = string.Format("{0:D2}h:{1:D2}m:{2:D2}s",
+                    taskAdapTotalTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                        tsTime.Hours,
+                        tsTime.Minutes,
+                        tsTime.Seconds);
 
-                            break;
-                        }
-                    }
+
                 }
                 catch (Exception ex)
                 {
                     mhResult.Exception(ex);
-                    return taskAdapTotalTime;
                 }
                 finally
                 {
@@ -53,27 +46,23 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 return taskAdapTotalTime;
             }
         }
-        public string TodayTime
+        public string TodayTimeString
         {
             get
             {
-                String taskAdapTodayTime = "";
+                string taskAdapTodayTime = "";
                 var mhResult = new MethodHandler();
 
                 try
                 {
-                    foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
-                    {
-                        if (t.TaskId == this.TaskId)
-                        {
-                            TimeSpan tsTime = TimeSpan.FromSeconds(t.TodayTime);
-                            taskAdapTodayTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                                tsTime.Hours,
-                                tsTime.Minutes,
-                                tsTime.Seconds);
-                            break;
-                        }
-                    }
+
+                    TimeSpan tsTime = TimeSpan.FromSeconds(this.TodayTime);
+                    taskAdapTodayTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                        tsTime.Hours,
+                        tsTime.Minutes,
+                        tsTime.Seconds);
+
+
                 }
                 catch (Exception ex)
                 {
@@ -87,41 +76,30 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 return taskAdapTodayTime;
             }
         }
-        public string StopTime
+        public string StopTimeString
         {
             get
             {
-                String taskAdapStopDate = "";
+                string taskAdapStopDate = "";
                 var mhResult = new MethodHandler();
-                DateTime dtDateSystem = DateTime.Now;
-                string stDate = dtDateSystem.ToShortDateString();
-
                 try
                 {
-                    foreach (TaskAdapter t in MainWindow.lstTaskAdapt)
+
+                    //TODO:converter 1/12/2013 para 01/12/2013
+                    if (StopTime.Date != DateTime.Today)
                     {
-                        if (t.TaskId == this.TaskId)
-                        {
-                            //converter 1/12/2013 para 01/12/2013
-                            string strStopDate = t.StopTime.ToShortDateString();
-                            if (stDate != strStopDate)
-                            {
-                                taskAdapStopDate = t.StopTime.ToString();
-                                break;
-                            }
-                            else
-                            {
-                                string strStopTime = t.StopTime.ToShortTimeString();
-                                taskAdapStopDate = strStopTime;
-                                break;
-                            }
-                        }
+                        taskAdapStopDate = this.StopTime.ToShortDateString();
                     }
+                    else
+                    {
+                        string strStopTime = this.StopTime.ToShortTimeString();
+                        taskAdapStopDate = strStopTime;
+                    }
+
                 }
                 catch (Exception ex)
                 {
                     mhResult.Exception(ex);
-                    return taskAdapStopDate;
                 }
                 finally
                 {
@@ -187,6 +165,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.TaskName = taskBase.TaskName;
             this.Active = taskBase.Active;
             this.Description = taskBase.Description;
+            this.TotalTime = taskBase.TotalTime;
+            this.TodayTime = taskBase.TodayTime;
+            this.StopTime = taskBase.StopTime;
         }
 
         /// <summary>
