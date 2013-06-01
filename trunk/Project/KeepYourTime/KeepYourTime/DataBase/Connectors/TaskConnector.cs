@@ -17,10 +17,16 @@ namespace KeepYourTime.DataBase.Connectors
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public class TaskConnector
     {
-        public static string COLUMN_ID = "TaskID";
-        public static string COLUMN_NAME = "TaskName";
-        public static string COLUMN_DESCRIPTION = "Description";
-        public static string COLUMN_ACTIVE = "Active";
+        public static string TASK_COLUMN_ID = "TaskID";
+        public static string TASK_COLUMN_NAME = "TaskName";
+        public static string TASK_COLUMN_DESCRIPTION = "Description";
+        public static string TASK_COLUMN_ACTIVE = "Active";
+
+        public static string TIME_COLUMN_ID = "TaskID";
+        public static string TIME_COLUMN_START = "StartTime";
+        public static string TIME_COLUMN_STOP = "StopTime";
+        public static string TIME_COLUMN_TASKID = "Active";
+
 
         /// <summary>
         /// Reads the task.
