@@ -69,6 +69,9 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             long lngIdTask = TaskDetailsWindow.TaskID;                 //To receive idTask another window (defined in the TaskDetailsWindow) 
             TaskAdapter taTaskAdapt = new TaskAdapter();
 
+            if (TaskDetailsWindow.TaskID == MinimalViewControl.CurrentTaskId)
+                btEditTask.IsEnabled = false;
+
             try
             {
                 mhResult = TaskConnector.ReadTask(lngIdTask, out taTaskAdapt);
@@ -80,8 +83,6 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
 
                 lbTaskNameText.Text = strTaskName;
                 lbTaskDescriptionText.Text = strTaskDescription;
-
-               
 
                 ObservableCollection<TaskTimeAdapterUI> ocTaskTimeUIList = new ObservableCollection<TaskTimeAdapterUI>();
                 foreach (TaskTimeAdapter tta in ocTaskTimeList)
