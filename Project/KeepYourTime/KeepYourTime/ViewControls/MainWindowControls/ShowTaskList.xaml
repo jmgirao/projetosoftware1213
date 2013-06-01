@@ -44,13 +44,13 @@
                 <DataGridTextColumn CanUserResize="False" Width="70" 
                                     MinWidth="70" MaxWidth="70"  FontWeight="Normal" 
                                     IsReadOnly="True" Header="Total Time"   
-                                    Binding="{Binding TotalTime}" />
+                                    Binding="{Binding TotalTimeString}" />
                 <DataGridTextColumn CanUserResize="False" Width="60" MinWidth="60" 
                                     MaxWidth="60" FontWeight="Normal" IsReadOnly="True" 
-                                    Header="Today"  Binding="{Binding TodayTime}"/>
+                                    Header="Today"  Binding="{Binding TodayTimeString}"/>
                 <DataGridTextColumn CanUserResize="False" Width="68" MinWidth="68" 
                                     MaxWidth="68" FontWeight="Normal" IsReadOnly="True" 
-                                    Header="Stop Date"    Binding="{Binding StopTime}"/>
+                                    Header="Stop Date"    Binding="{Binding StopTimeString}"/>
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25" 
                                         CanUserResize="False">
                     <DataGridTemplateColumn.CellTemplate>
