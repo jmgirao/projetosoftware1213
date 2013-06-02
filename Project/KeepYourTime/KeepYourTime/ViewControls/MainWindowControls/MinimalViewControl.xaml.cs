@@ -439,6 +439,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             var mhResult = new MethodHandler();
             try
             {
+                CurrentTaskId = -1;
                 if (ttTaskTimer.isRunningTask())
                 {
                     mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask(RemoveSeconds));
