@@ -249,6 +249,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     {
                         OnStartTask(taTaskUi.TaskId);
                         lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
+                        taTaskUi.NotifyPropertyChanged("TaskRunning");
                     }
                 }
 
@@ -286,6 +287,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
+            }
+            finally
+            {
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }

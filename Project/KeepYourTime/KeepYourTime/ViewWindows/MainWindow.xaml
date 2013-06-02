@@ -5,7 +5,7 @@
         Title="MainWindow" Height="300" Width="525" 
         AllowsTransparency="True" WindowStyle="None"
         ResizeMode="CanResize" Topmost="False" MinWidth="570" 
-        MinHeight="200" >
+        MinHeight="200" Icon="/KeepYourTime;component/Assets/icons/app.ico" >
     <Window.Resources>
         <Storyboard x:Key="sbHideTaskList" x:Name="sbHideTaskList">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grdDetalhes">
