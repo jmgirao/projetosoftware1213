@@ -39,14 +39,31 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         void StaticEvents_OnTimeAdded(long TaskID)
         {
-            lstTaskAdaptUi.Clear();
+            //lstTaskAdaptUi.Clear();
             var mhResult = new MethodHandler();
             try
             {
                 mhResult = TaskConnector.ReadTaskList(out MainWindow.lstTaskAdapt, chkShowInactiveTask.IsChecked.Value);
                 if (mhResult.Exits) return;
 
-                ReceiveTaskList(MainWindow.lstTaskAdapt);
+                TaskAdapter taskBD = MainWindow.lstTaskAdapt.FirstOrDefault((t) => t.TaskId == TaskID);
+                if (taskBD != null)
+                {
+                    TaskAdapterUI taskUI = lstTaskAdaptUi.FirstOrDefault((t) => t.TaskId == TaskID);
+                    if (taskUI != null)
+                    {
+                        var intIndex = lstTaskAdaptUi.IndexOf(taskUI);
+                        lstTaskAdaptUi.RemoveAt(intIndex);
+                        taskUI = new TaskAdapterUI(taskBD);
+                        taskUI.OnTaskDeactivated += ta_OnTaskDeactivated;
+                        //lstTaskAdaptUi[intIndex] = taskUI;
+                        lstTaskAdaptUi.Insert(intIndex, taskUI);
+                        //taskUI.NotifyPropertyChanged("TaskRunning");
+                    }
+                }
+
+
+                //ReceiveTaskList(MainWindow.lstTaskAdapt);
             }
             catch (Exception ex)
             {
@@ -58,7 +75,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
 
         }
-
+        
         void StaticEvents_OnTaskStarted(long TaskID)
         {
 
@@ -115,7 +132,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         /// <param name="taskAdapt">The task adapt.</param>
         public void ReceiveTaskList(ObservableCollection<TaskAdapter> taskAdapt)
-        {          
+        {
 
             lstTaskAdaptUi = new ObservableCollection<TaskAdapterUI>();
             //lstTaskAdaptUiInactiveTask = new ObservableCollection<TaskAdapterUI>();
@@ -310,7 +327,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     blnShowResult = false;
                     return;
                 }
-                
+
                 // taskAdaptUiIsRunning = new ObservableCollection<TaskAdapterUI>();
 
                 //foreach (TaskAdapter t in lstTaskAdaptUi)
@@ -345,8 +362,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
             finally
             {
-                if(blnShowResult)
-                MessageWindow.ShowMethodHandler(mhResult, true);
+                if (blnShowResult)
+                    MessageWindow.ShowMethodHandler(mhResult, true);
             }
         }
 
