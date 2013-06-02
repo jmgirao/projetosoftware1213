@@ -53,12 +53,12 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
             <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
-            <TextBox Name="TxtTaskName" Width="200" Height="25"/>
+            <TextBox Name="TxtTaskName" Width="200" Height="25" MaxLength="50"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
             <TextBlock VerticalAlignment="Center" Name="LblDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold" Width="120"/>
-            <TextBox Name="TxtDescription" Width="200" Height="25" />
+            <TextBox Name="TxtDescription" Width="200" Height="25" MaxLength="500"/>
         </StackPanel>
 
         <!--<StackPanel Grid.Row="3" Grid.ColumnSpan="4" Orientation="Vertical">-->
