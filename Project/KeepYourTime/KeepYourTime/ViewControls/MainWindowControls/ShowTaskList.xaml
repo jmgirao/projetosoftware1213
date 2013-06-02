@@ -29,10 +29,21 @@
                 <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Play" Click="btPlay_Click"  ToolTip="{x:Static p:Language.TooltipResumeTask}" IsEnabled="{Binding Active}" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}"  >
+                            <Button x:Name="btnPlay" Content="Play" Click="btPlay_Click"  ToolTip="{x:Static p:Language.TooltipResumeTask}" IsEnabled="{Binding Active}" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}"  >
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Image Source="/KeepYourTime;component/Assets/play.png" Height="20"/>
+                                        <Image>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Source" Value="/KeepYourTime;component/Assets/play.png"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding TaskRunning}" Value="1">
+                                                            <Setter Property="Image.Source" Value="/KeepYourTime;component/Assets/stop.png" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>   
+                                            </Image.Style>
+                                        </Image>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
