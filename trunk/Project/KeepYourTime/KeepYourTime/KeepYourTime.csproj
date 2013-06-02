@@ -63,6 +63,9 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\icons\app.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="PresentationFramework.Aero" />
@@ -263,6 +266,9 @@
     <Resource Include="Assets\close.png" />
     <Resource Include="Assets\down.png" />
     <Resource Include="Assets\up.png" />
+    <Resource Include="Assets\icons\app.ico" />
+    <Resource Include="Assets\icons\settings.ico" />
+    <Resource Include="Assets\icons\taskDetails.ico" />
     <Content Include="lib\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
   <ItemGroup>
