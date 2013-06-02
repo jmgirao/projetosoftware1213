@@ -405,7 +405,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         if (mhResultDispatcher.Exits) return;
                         ttTaskTimer.StartTimingTask(CurrentTaskId, InactivityDetection.RemoveSeconds);
 
-                        InactivityControls.InactivityControl.InactiveTime = InactiveSeconds / 60;
+                        InactivityControls.InactivityControl.InactiveTime = InactivityDetection.RemoveSeconds / 60;
                         var inactWindow = new InactivityWindow();
 
                         inactWindow.ShowDialog();
