@@ -16,6 +16,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     class TaskAdapterUI : TaskAdapter
     {
+        public int TaskRunning {
+            get {
+               if( MinimalViewControl.CurrentTaskId == this.TaskId)
+                   return 1;
+               return 0;
+            }
+        }
         public string TotalTimeString
         {
             get

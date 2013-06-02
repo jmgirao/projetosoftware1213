@@ -34,6 +34,29 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             chkShowInactiveTask.Checked += chkShowInactiveTask_Checked;
             chkShowInactiveTask.Unchecked += chkShowInactiveTask_Checked;
             StaticEvents.OnTaskStarted += StaticEvents_OnTaskStarted;
+            StaticEvents.OnTimeAdded += StaticEvents_OnTimeAdded;
+        }
+
+        void StaticEvents_OnTimeAdded(long TaskID)
+        {
+            lstTaskAdaptUi.Clear();
+            var mhResult = new MethodHandler();
+            try
+            {
+                mhResult = TaskConnector.ReadTaskList(out MainWindow.lstTaskAdapt, chkShowInactiveTask.IsChecked.Value);
+                if (mhResult.Exits) return;
+
+                ReceiveTaskList(MainWindow.lstTaskAdapt);
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+
         }
 
         void StaticEvents_OnTaskStarted(long TaskID)
