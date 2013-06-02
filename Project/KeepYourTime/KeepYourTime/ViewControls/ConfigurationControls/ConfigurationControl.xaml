@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:KeepYourTime.Languages"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="400">
+             d:DesignHeight="550" d:DesignWidth="500">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

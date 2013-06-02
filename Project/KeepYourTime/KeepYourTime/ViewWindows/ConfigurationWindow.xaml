@@ -1,7 +1,7 @@
 ﻿<Window xmlns:ConfigurationControls="clr-namespace:KeepYourTime.ViewControls.ConfigurationControls"  x:Class="KeepYourTime.ViewWindows.ConfigurationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ConfigurationWindow" Height="600" Width="400" ResizeMode="NoResize">
+        Title="ConfigurationWindow" Height="600" Width="500" ResizeMode="NoResize">
     <Grid>
         <ConfigurationControls:ConfigurationControl />
     </Grid>
