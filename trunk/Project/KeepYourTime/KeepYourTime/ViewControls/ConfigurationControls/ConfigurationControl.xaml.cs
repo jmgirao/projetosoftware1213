@@ -87,7 +87,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift2.IsChecked = listShortcuts[1].Shift;
                     chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
                     chkAlt2.IsChecked = listShortcuts[1].Alt;
-                    txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[0].ShortcutKey.ToString()[1].ToString() : "";
+                    txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[1].ShortcutKey.ToString(): "";
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift3.IsChecked = listShortcuts[2].Shift;
                     chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
                     chkAlt3.IsChecked = listShortcuts[2].Alt;
-                    txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString()[2].ToString() : "";
+                    txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString() : "";
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift4.IsChecked = listShortcuts[3].Shift;
                     chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
                     chkAlt4.IsChecked = listShortcuts[3].Alt;
-                    txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString()[3].ToString() : "";
+                    txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString(): "";
                 }
                 else
                 {

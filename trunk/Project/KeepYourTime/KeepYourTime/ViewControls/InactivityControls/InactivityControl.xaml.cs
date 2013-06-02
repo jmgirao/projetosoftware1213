@@ -20,12 +20,18 @@ namespace KeepYourTime.ViewControls.InactivityControls
     /// </summary>
     public partial class InactivityControl : UserControl
     {
+
+        public static int InactiveTime = 0;
+        
         public InactivityControl()
         {
             InitializeComponent();
             btnAddTime.Click += btnAddTime_Click;
             btnDiscardTime.Click += btnDiscardTime_Click;
+            lblInactiveMinutes.Text = InactiveTime.ToString();
         }
+
+
 
         public static bool blnDiscardTime = true;
 

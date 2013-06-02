@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.InactivityControls"
         Title="InactivityWindow" Height="130" Width="280" 
-        WindowState="Maximized" WindowStyle="None" >
+        WindowState="Maximized" WindowStyle="None" Topmost="True" >
 
     <Grid>
         <Rectangle Fill="Black"/>
