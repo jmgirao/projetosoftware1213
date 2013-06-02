@@ -57,10 +57,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 cbShort3.ItemsSource = lstCombo;
                 cbShort4.ItemsSource = lstCombo;
                 cbShort5.ItemsSource = lstCombo;
-
-                //if (cbShort1.SelectedItem != null)
-                //    ((ConfigTaskComboShortcut)cbShort1.SelectedItem).TaskID = 0;
-
+                
                 ConfigurationAdapter configuration;
                 mhResult = ConfigurationConnector.ReadConfiguration(out configuration);
                 List<ShortcutAdapter> listShortcuts = configuration.Shortcuts;
@@ -170,16 +167,36 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
 
         private bool isValideShortcuts()
         {
-            if (cbShort1.SelectedIndex > 0 && txtShortcutKey1.Text.Trim() == "")
+            if (cbShort1.SelectedIndex > 0 && !isAlphaNumeric(txtShortcutKey1.Text))
                 return false;
-            if (cbShort2.SelectedIndex > 0 && txtShortcutKey2.Text.Trim() == "")
+            if (cbShort2.SelectedIndex > 0 && !isAlphaNumeric(txtShortcutKey2.Text))
                 return false;
-            if (cbShort3.SelectedIndex > 0 && txtShortcutKey3.Text.Trim() == "")
+            if (cbShort3.SelectedIndex > 0 && !isAlphaNumeric(txtShortcutKey3.Text))
                 return false;
-            if (cbShort4.SelectedIndex > 0 && txtShortcutKey4.Text.Trim() == "")
+            if (cbShort4.SelectedIndex > 0 && !isAlphaNumeric(txtShortcutKey4.Text))
                 return false;
-            if (cbShort5.SelectedIndex > 0 && txtShortcutKey5.Text.Trim() == "")
+            if (cbShort5.SelectedIndex > 0 && !isAlphaNumeric(txtShortcutKey5.Text))
                 return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Verify if a given string is letter or numeric (alphanumeric)
+        /// </summary>
+        /// <param name="input">A string to verify.</param>
+        public static Boolean isAlphaNumeric(String input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+            String shortcutKey = input.Trim();
+            if (string.IsNullOrEmpty(shortcutKey))
+                return false;
+
+            for (int i = 0; i < shortcutKey.Length; i++)
+            {
+                if (!(char.IsLetter(shortcutKey[i])) && (!(char.IsNumber(shortcutKey[i]))))
+                    return false;
+            }
             return true;
         }
 
@@ -195,7 +212,6 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 return;
             }
 
-
             try
             {
                 List<ShortcutAdapter> listShortcuts = new List<ShortcutAdapter>();
@@ -209,7 +225,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift1.IsChecked.HasValue) ? chkShift1.IsChecked.Value : false,
                         Ctrl = (chkCtrl1.IsChecked.HasValue) ? chkCtrl1.IsChecked.Value : false,
                         Alt = (chkAlt1.IsChecked.HasValue) ? chkAlt1.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text : ""
+                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text.ToLower() : ""
                     });
                 }
 
@@ -222,7 +238,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift2.IsChecked.HasValue) ? chkShift2.IsChecked.Value : false,
                         Ctrl = (chkCtrl2.IsChecked.HasValue) ? chkCtrl2.IsChecked.Value : false,
                         Alt = (chkAlt2.IsChecked.HasValue) ? chkAlt2.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text : ""
+                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text.ToLower() : ""
                     });
                 }
 
@@ -235,7 +251,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift3.IsChecked.HasValue) ? chkShift3.IsChecked.Value : false,
                         Ctrl = (chkCtrl3.IsChecked.HasValue) ? chkCtrl3.IsChecked.Value : false,
                         Alt = (chkAlt3.IsChecked.HasValue) ? chkAlt3.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text : ""
+                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text.ToLower() : ""
                     });
                 }
 
@@ -248,7 +264,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift4.IsChecked.HasValue) ? chkShift4.IsChecked.Value : false,
                         Ctrl = (chkCtrl4.IsChecked.HasValue) ? chkCtrl4.IsChecked.Value : false,
                         Alt = (chkAlt4.IsChecked.HasValue) ? chkAlt4.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text : ""
+                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text.ToLower() : ""
                     });
                 }
 
@@ -261,7 +277,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift5.IsChecked.HasValue) ? chkShift5.IsChecked.Value : false,
                         Ctrl = (chkCtrl5.IsChecked.HasValue) ? chkCtrl5.IsChecked.Value : false,
                         Alt = (chkAlt5.IsChecked.HasValue) ? chkAlt5.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text : ""
+                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text.ToLower() : ""
                     });
                 }
 
@@ -275,7 +291,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 }
                 catch (Exception ex)
                 {
-                    mhResult.Message = "Erro de dados";
+                    mhResult.Message = Languages.Language.InvalideInactivityTimeValue;
                     mhResult.Status = MethodStatus.Exception;
                     return;
                 }
