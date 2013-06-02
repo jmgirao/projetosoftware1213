@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KeepYourTime.ViewControls.TaskDetailsControls;
 using System.Collections.ObjectModel;
-using KeepYourTime.DataBase.Adapters;
 
 namespace KeepYourTimeTestProject.EditTaskTests
 {
