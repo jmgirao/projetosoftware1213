@@ -32,7 +32,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*"/>
@@ -58,7 +58,8 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
             <TextBlock VerticalAlignment="Center" Name="LblDescription" Text="{x:Static p:Language.Description}" FontSize="20" FontWeight="Bold" Width="120"/>
-            <TextBox Name="TxtDescription" Width="200" Height="25" MaxLength="500"/>
+            <TextBox Name="TxtDescription" Width="300" Height="100" MaxLength="500" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+         AcceptsReturn="True" />
         </StackPanel>
 
         <!--<StackPanel Grid.Row="3" Grid.ColumnSpan="4" Orientation="Vertical">-->
