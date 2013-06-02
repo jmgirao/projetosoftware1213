@@ -2,8 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:UserControls="clr-namespace:KeepYourTime.ViewControls.InactivityControls"
-        Title="InactivityWindow" Height="130" Width="280">
+        Title="InactivityWindow" Height="130" Width="280" 
+        WindowState="Maximized" WindowStyle="None" >
 
-        <UserControls:InactivityControl/>
- 
+    <Grid>
+        <Rectangle Fill="Black"/>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="130" Width="280" >
+            <UserControls:InactivityControl/>
+        </Grid>
+    </Grid>
 </Window>
