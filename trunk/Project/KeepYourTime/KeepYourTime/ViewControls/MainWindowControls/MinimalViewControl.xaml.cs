@@ -29,7 +29,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     public partial class MinimalViewControl : UserControl
     {
         //public static long TaskID = 0;    //identify task to select the task data
-        private TaskTimer ttTaskTimer;
+        public static TaskTimer ttTaskTimer;
 
         Hooks.ActivityHook ahInactivity;
 

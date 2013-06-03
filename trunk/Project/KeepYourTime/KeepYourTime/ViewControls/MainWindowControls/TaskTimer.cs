@@ -9,9 +9,9 @@ using System.Timers;
 
 namespace KeepYourTime.ViewControls.MainWindowControls
 {
-    class TaskTimer
+    public class TaskTimer
     {
-        Timer tmTaskTimer;
+        public static Timer tmTaskTimer;
 
         public string TaskName { get; set; }
 

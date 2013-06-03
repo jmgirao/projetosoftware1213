@@ -26,7 +26,7 @@
 
         <DataGrid Grid.Row="2" Name="dgTaskList" FontWeight="Bold" AutoGenerateColumns="False" IsReadOnly="false" CanUserAddRows="False" GridLinesVisibility="Horizontal" ColumnWidth="*" RowEditEnding="dgTaskList_RowEditEnding"  LoadingRow="DataGrid_LoadingRow" HeadersVisibility="Column">
             <DataGrid.Columns>
-                <DataGridTemplateColumn MaxWidth="25" MinWidth="25" Width="25">
+                <DataGridTemplateColumn MaxWidth="28" MinWidth="28" Width="28">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnPlay" Content="Play" Click="btPlay_Click"  ToolTip="{x:Static p:Language.TooltipResumeTask}" IsEnabled="{Binding Active}" CommandParameter="{Binding TaskID}" Style="{StaticResource BtnImage}"  >

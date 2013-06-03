@@ -20,6 +20,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </remarks>  
     public partial class ShowTaskList : UserControl
     {
+        private TaskTimer ttTaskTimer;
         ObservableCollection<TaskAdapterUI> lstTaskAdaptUi = null;
         //ObservableCollection<TaskAdapterUI> lstTaskAdaptUiInactiveTask = null;
 
@@ -262,11 +263,19 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     var taTaskUi = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
                     //TaskDetailsWindow.TaskID = ;
-                    if (taTaskUi.Active == true)
+
+                    if (taTaskUi.TaskId != MinimalViewControl.CurrentTaskId)
                     {
-                        OnStartTask(taTaskUi.TaskId);
-                        lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
-                        taTaskUi.NotifyPropertyChanged("TaskRunning");
+
+                        if (taTaskUi.Active == true)
+                        {
+                            OnStartTask(taTaskUi.TaskId);
+                            lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
+                            taTaskUi.NotifyPropertyChanged("TaskRunning");
+                        }
+                    }
+                    else {
+                        StopTask(0);
                     }
                 }
 
@@ -300,6 +309,30 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
              */
 
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
+        }
+       public void StopTask(int RemoveSeconds)
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                MinimalViewControl.CurrentTaskId = -1;
+                //CurrentTaskId = -1;
+                
+                if (MinimalViewControl.ttTaskTimer.isRunningTask())
+                {
+                    mhResult = TaskConnector.AddTime(MinimalViewControl.ttTaskTimer.StopTimingTask(RemoveSeconds));
+                    if (mhResult.Exits) return;
+                }
+                
             }
             catch (Exception ex)
             {
