@@ -44,12 +44,18 @@ namespace KeepYourTime.ViewWindows
             mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
             stlShowTaskList.OnStartTask += stlShowTaskList_OnStartTask;
+            stlShowTaskList.OnStopTask += stlShowTaskList_OnStopTask;
             // ahActivityAnalyzer = new Hooks.ActivityHook();
             // ahActivityAnalyzer.InitTimer();
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
             CurrentConfigurations.mw = this;
 
               }
+
+        void stlShowTaskList_OnStopTask(long TaskID)
+        {
+            mvMinimalView.StopTaskUI();
+        }
 
         public void stlShowTaskList_OnStartTask(long TaskID)
         {

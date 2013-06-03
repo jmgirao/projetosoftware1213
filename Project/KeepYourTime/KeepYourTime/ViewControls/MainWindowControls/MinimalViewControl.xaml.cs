@@ -379,6 +379,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             return mhResult;
         }
 
+        public void StopTaskUI()
+        {
+            btnStop.Visibility = System.Windows.Visibility.Collapsed;
+            btnAdd.Visibility = System.Windows.Visibility.Collapsed;
+            btnResume.Visibility = Visibility.Visible;
+        }
+
         /// <summary>
         /// Ahes the inactivity_ inactive time refresh.
         /// </summary>
