@@ -275,7 +275,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                         }
                     }
                     else {
-                        StopTask(0);
+                        StopTask(0, taTaskUi.TaskId);
                     }
                 }
 
@@ -319,11 +319,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 MessageWindow.ShowMethodHandler(mhResult, false);
             }
         }
-       public void StopTask(int RemoveSeconds)
+
+       public void StopTask(int RemoveSeconds, long TaskId)
         {
             var mhResult = new MethodHandler();
             try
             {
+                
                 MinimalViewControl.CurrentTaskId = -1;
                 //CurrentTaskId = -1;
                 
@@ -331,6 +333,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 {
                     mhResult = TaskConnector.AddTime(MinimalViewControl.ttTaskTimer.StopTimingTask(RemoveSeconds));
                     if (mhResult.Exits) return;
+                    OnStopTask(TaskId);
                 }
                 
             }
@@ -404,6 +407,9 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         public event StartTaskHandler OnStartTask;
 
+        public delegate void StopTaskHandler(long TaskID);
+
+        public event StopTaskHandler OnStopTask;
 
     }
 }
