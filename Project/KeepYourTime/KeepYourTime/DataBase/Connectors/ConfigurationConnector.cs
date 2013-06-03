@@ -60,7 +60,7 @@ namespace KeepYourTime.DataBase.Connectors
                     Shortcuts = new List<ShortcutAdapter>()
                 };
 
-                strQuery = "SELECT * FROM Shortcut ORDER BY ShortcutId ";
+                strQuery = "SELECT ShortcutId, COALESCE(TaskId,0) TaskId, Shift, ShortcutKey, Ctrl, Alt  FROM Shortcut ORDER BY ShortcutId ";
                 mhResult = DBUtils.SelectTable(strQuery, out dtConfigs);
                 if (mhResult.Exits) return mhResult;
 
