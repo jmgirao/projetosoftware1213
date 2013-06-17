@@ -20,7 +20,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </remarks>  
     public partial class ShowTaskList : UserControl
     {
-        private TaskTimer ttTaskTimer;
+        //private TaskTimer ttTaskTimer;
         ObservableCollection<TaskAdapterUI> lstTaskAdaptUi = null;
         //ObservableCollection<TaskAdapterUI> lstTaskAdaptUiInactiveTask = null;
 
@@ -36,6 +36,12 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             chkShowInactiveTask.Unchecked += chkShowInactiveTask_Checked;
             StaticEvents.OnTaskStarted += StaticEvents_OnTaskStarted;
             StaticEvents.OnTimeAdded += StaticEvents_OnTimeAdded;
+            StaticEvents.OnTaskCreated += StaticEvents_OnTaskCreated;
+        }
+
+        void StaticEvents_OnTaskCreated(TaskAdapter TaskAdapt)
+        {
+            lstTaskAdaptUi.Insert(0, new TaskAdapterUI(TaskAdapt));
         }
 
         void StaticEvents_OnTimeAdded(long TaskID)
@@ -76,7 +82,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
 
         }
-        
+
         void StaticEvents_OnTaskStarted(long TaskID)
         {
 
@@ -119,14 +125,15 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             //InitializeControl();
         }
 
-        /// <summary>
-        /// Createds the task.
-        /// </summary>
-        /// <param name="Task">The task.</param>
-        public void CreatedTask(TaskAdapter Task)
-        {
-            lstTaskAdaptUi.Insert(0, new TaskAdapterUI(Task));
-        }
+        ///// <summary>
+        ///// Createds the task.
+        ///// </summary>
+        ///// <param name="Task">The task.</param>
+        //private void CreatedTask(TaskAdapter Task)
+        //{
+
+
+        //}
 
         /// <summary>
         /// Receives the task list.
@@ -259,24 +266,24 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             //ObservableCollection<TaskAdapterUI> taskAdaptUiPlay = null;
             try
             {
-                if (OnStartTask != null)
+
+                var taTaskUi = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
+                //TaskDetailsWindow.TaskID = ;
+
+                if (taTaskUi.TaskId != MinimalViewControl.CurrentTaskId)
                 {
-                    var taTaskUi = ((FrameworkElement)sender).DataContext as TaskAdapterUI;
-                    //TaskDetailsWindow.TaskID = ;
 
-                    if (taTaskUi.TaskId != MinimalViewControl.CurrentTaskId)
+                    if (taTaskUi.Active == true)
                     {
-
-                        if (taTaskUi.Active == true)
-                        {
-                            OnStartTask(taTaskUi.TaskId);
-                            lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
-                            taTaskUi.NotifyPropertyChanged("TaskRunning");
-                        }
+                        StaticEvents.RaiseEventOnStartTaskPressed(taTaskUi.TaskId);
+                        lstTaskAdaptUi.Move(lstTaskAdaptUi.IndexOf(taTaskUi), 0);
+                        taTaskUi.NotifyPropertyChanged("TaskRunning");
                     }
-                    else {
-                        StopTask(0, taTaskUi.TaskId);
-                    }
+                }
+                else
+                {
+                    StaticEvents.RaiseEventOnStopTaskPressed(taTaskUi.TaskId);
+                    //StopTask(0, taTaskUi.TaskId);
                 }
 
 
@@ -320,22 +327,22 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
-       public void StopTask(int RemoveSeconds, long TaskId)
+        private void StopTask(int RemoveSeconds, long TaskId)
         {
             var mhResult = new MethodHandler();
             try
             {
-                
+
                 MinimalViewControl.CurrentTaskId = -1;
                 //CurrentTaskId = -1;
-                
+
                 if (MinimalViewControl.ttTaskTimer.isRunningTask())
                 {
                     mhResult = TaskConnector.AddTime(MinimalViewControl.ttTaskTimer.StopTimingTask(RemoveSeconds));
                     if (mhResult.Exits) return;
-                    OnStopTask(TaskId);
+                    StaticEvents.RaiseEventOnStopTaskPressed(TaskId);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -403,13 +410,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             }
         }
 
-        public delegate void StartTaskHandler(long TaskID);
+        //private delegate void StartTaskHandler(long TaskID);
 
-        public event StartTaskHandler OnStartTask;
+        //private event StartTaskHandler OnStartTask;
 
-        public delegate void StopTaskHandler(long TaskID);
+        //private delegate void StopTaskHandler(long TaskID);
 
-        public event StopTaskHandler OnStopTask;
+        //private event StopTaskHandler OnStopTask;
 
     }
 }

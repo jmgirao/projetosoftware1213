@@ -30,10 +30,10 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     {
         //public static long TaskID = 0;    //identify task to select the task data
         public static TaskTimer ttTaskTimer;
+        public static long CurrentTaskId = -1;
 
         Hooks.ActivityHook ahInactivity;
 
-        public static long CurrentTaskId = -1;
         ObservableCollection<ConfigTaskComboShortcut> lstTaskID;
 
         /// <summary>
@@ -60,8 +60,44 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             StaticEvents.OnTaskDeleted += StaticEvents_OnTaskDeleted;
             txtNomeTask.SelectionChanged += txtNomeTask_SelectionChanged;
 
+            StaticEvents.OnStartTaskPressed += StaticEvents_OnStartTaskPressed;
+            StaticEvents.OnStopTaskPressed += StaticEvents_OnStopTaskPressed;
+        }
 
+        void StaticEvents_OnStopTaskPressed(long TaskID)
+        {
+            CurrentTaskId = -1;
+            StopTask(0);
+        }
 
+        void StaticEvents_OnStartTaskPressed(long TaskID)
+        {
+            var mhResult = new MethodHandler();
+            try
+            {
+                if (ttTaskTimer.isRunningTask())
+                {
+                    mhResult = TaskConnector.AddTime(ttTaskTimer.StopTimingTask(0));
+                    if (mhResult.Exits) return;
+                }
+                //txtNomeTask.SelectedItem = "";
+                //var x = txtNomeTask.SelectedItem as ConfigTaskComboShortcut;
+
+                ConfigTaskComboShortcut cts = lstTaskID.FirstOrDefault((x) => { return x.TaskID == TaskID; });
+                txtNomeTask.SelectedItem = cts;
+
+                StartTask(TaskID, 0);
+                btnResume.Visibility = Visibility.Collapsed;
+                btnStop.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                mhResult.Exception(ex);
+            }
+            finally
+            {
+                MessageWindow.ShowMethodHandler(mhResult, false);
+            }
         }
 
         void StaticEvents_OnTaskDeleted(long TaskID)
@@ -70,7 +106,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             if (taTask != null)
                 lstTaskID.Remove(taTask);
         }
-
 
         /// <summary>
         /// Handles the SelectionChanged event of the txtNomeTask control.
@@ -234,16 +269,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         #region custom events
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Task">The task.</param>
-        public delegate void TaskCreatedHandler(TaskAdapter Task);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="Task">The task.</param>
+        //private delegate void TaskCreatedHandler(TaskAdapter Task);
 
-        /// <summary>
-        /// Occurs when [on task created].
-        /// </summary>
-        public event TaskCreatedHandler OnTaskCreated;
+        ///// <summary>
+        ///// Occurs when [on task created].
+        ///// </summary>
+        //private event TaskCreatedHandler OnTaskCreated;
 
         #endregion
 
@@ -278,10 +313,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
                 txtNomeTask.SelectedIndex = lstTaskID.Count - 1;
 
-                if (OnTaskCreated != null)
-                {
-                    OnTaskCreated(taTask);
-                }
+                StaticEvents.RaiseEventOnTaskCreated(taTask);
                 StartTask(taskId, 0);
             }
             catch (Exception ex)
@@ -292,7 +324,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             {
                 MessageWindow.ShowMethodHandler(mhResult, true);
             }
-
         }
 
         /// <summary>
@@ -342,7 +373,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// <param name="TaskID">The task ID.</param>
         /// <param name="RemoveSeconds">The remove seconds.</param>
         /// <returns></returns>
-        public MethodHandler StartTask(long TaskID, int RemoveSeconds)
+        private MethodHandler StartTask(long TaskID, int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try
@@ -379,7 +410,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             return mhResult;
         }
 
-        public void StopTaskUI()
+        private void StopTaskUI()
         {
             btnStop.Visibility = System.Windows.Visibility.Collapsed;
             btnAdd.Visibility = System.Windows.Visibility.Collapsed;
@@ -441,7 +472,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// Stops the task.
         /// </summary>
         /// <param name="RemoveSeconds">The remove seconds.</param>
-        public void StopTask(int RemoveSeconds)
+        private void StopTask(int RemoveSeconds)
         {
             var mhResult = new MethodHandler();
             try

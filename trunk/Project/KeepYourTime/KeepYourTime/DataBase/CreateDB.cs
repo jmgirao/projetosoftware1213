@@ -61,8 +61,8 @@ namespace KeepYourTime.DataBase
                 mhResult = CreateForeignKeys();
                 if (mhResult.Exits) return mhResult;
 
-                mhResult = InsertValues();
-                if (mhResult.Exits) return mhResult;
+                //mhResult = InsertValues();
+                //if (mhResult.Exits) return mhResult;
 
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ namespace KeepYourTime.DataBase
             }
             finally
             {
-                if (mhResult.Status != Utils.MethodStatus.Sucess)
+                if (mhResult.Status != MethodStatus.Success)
                 {
                     File.Delete(DBUtils.FileName);
                 }
@@ -278,22 +278,22 @@ namespace KeepYourTime.DataBase
         /// Inserts the values.
         /// </summary>
         /// <returns>Method Handler with the method status</returns>
-        private MethodHandler InsertValues()
-        {
-            var mhResult = new MethodHandler();
-            try
-            {
-                string strSQL = "INSERT INTO Configuration";
-                //Insert nas UI
-                //Insert na BD
+        //private MethodHandler InsertValues()
+        //{
+        //    var mhResult = new MethodHandler();
+        //    try
+        //    {
+        //        //string strSQL = "INSERT INTO Configuration";
+        //        //Insert nas UI
+        //        //Insert na BD
 
-            }
-            catch (Exception ex)
-            {
-                mhResult.Exception(ex);
-            }
-            return mhResult;
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        mhResult.Exception(ex);
+        //    }
+        //    return mhResult;
+        //}
 
     }
 }

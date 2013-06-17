@@ -28,7 +28,7 @@ namespace KeepYourTime
         public MethodHandler()
         {
             Message = "";
-            Status = MethodStatus.Sucess;
+            Status = MethodStatus.Success;
             StackTrace = "";
             Query = "";
             AffectedLines = 0;
@@ -59,7 +59,7 @@ namespace KeepYourTime
         public bool Exits
         {
             get
-            { return (Status != MethodStatus.Sucess); }
+            { return (Status != MethodStatus.Success); }
         }
     }
 }
