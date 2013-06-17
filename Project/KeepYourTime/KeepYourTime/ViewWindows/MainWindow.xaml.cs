@@ -41,10 +41,11 @@ namespace KeepYourTime.ViewWindows
 
             recMove.MouseDown += recMove_MouseDown;
             recSize.MouseDown += recSize_MouseDown;
-            mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
+            //mvMinimalView.OnTaskCreated += mvMinimalView_OnTaskCreated;
             btnExpandir.Click += btnExpandir_Click;
-            stlShowTaskList.OnStartTask += stlShowTaskList_OnStartTask;
-            stlShowTaskList.OnStopTask += stlShowTaskList_OnStopTask;
+            //stlShowTaskList.OnStartTask += stlShowTaskList_OnStartTask;
+            //stlShowTaskList.OnStopTask += stlShowTaskList_OnStopTask;
+
             // ahActivityAnalyzer = new Hooks.ActivityHook();
             // ahActivityAnalyzer.InitTimer();
             // ahActivityAnalyzer.InactiveTimeRefresh += hk_InactiveTimeRefresh;
@@ -52,15 +53,17 @@ namespace KeepYourTime.ViewWindows
 
               }
 
-        void stlShowTaskList_OnStopTask(long TaskID)
-        {
-            mvMinimalView.StopTaskUI();
-        }
+        //void stlShowTaskList_OnStopTask(long TaskID)
+        //{
+        //    //TODO: RG Stop Task
+        //    //mvMinimalView.StopTaskUI();
+        //}
 
-        public void stlShowTaskList_OnStartTask(long TaskID)
-        {
-            mvMinimalView.StartTask(TaskID, 0);
-        }
+        //public void stlShowTaskList_OnStartTask(long TaskID)
+        //{
+        //    //TODO: RG - Start Task
+        //    //mvMinimalView.StartTask(TaskID, 0);
+        //}
 
         void hk_InactiveTimeRefresh(int InactiveSeconds)
         {
@@ -143,10 +146,10 @@ namespace KeepYourTime.ViewWindows
             }
         }
 
-        void mvMinimalView_OnTaskCreated(DataBase.Adapters.TaskAdapter Task)
-        {
-            stlShowTaskList.CreatedTask(Task);
-        }
+        //void mvMinimalView_OnTaskCreated(DataBase.Adapters.TaskAdapter Task)
+        //{
+        //    stlShowTaskList.CreatedTask(Task);
+        //}
 
         void recMove_MouseDown(object sender, MouseButtonEventArgs e)
         {

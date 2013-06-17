@@ -1,6 +1,7 @@
 ﻿using KeepYourTime.DataBase.Adapters;
 using KeepYourTime.DataBase.Connectors;
 using KeepYourTime.ViewWindows;
+using KeepYourTime.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -110,8 +111,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         /// </summary>
         public TaskAdapterUI()
         {
-
-
+            InitializeEvents();
         }
 
         /// <summary>
@@ -127,12 +127,35 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             this.TotalTime = taskBase.TotalTime;
             this.TodayTime = taskBase.TodayTime;
             this.StopTime = taskBase.StopTime;
+            InitializeEvents();
         }
 
+        private void InitializeEvents()
+        {
+            StaticEvents.OnTaskStarted += StaticEvents_OnTaskStarted;
+            StaticEvents.OnTimeAdded += StaticEvents_OnTimeAdded;
+        }
+
+        void StaticEvents_OnTimeAdded(long TaskID)
+        {
+            if (this.TaskId == TaskID)
+            {
+                NotifyPropertyChanged("TaskRunning");
+            }
+        }
+
+        void StaticEvents_OnTaskStarted(long TaskID)
+        {
+            if (this.TaskId == TaskID)
+            {
+                NotifyPropertyChanged("TaskRunning");
+            }
+        }
+        
         /// <summary>
         /// Occurs when [on task deactivated].
         /// </summary>
         public event EventHandler OnTaskDeactivated;
-        public event EventHandler OnTaskDetails;
+        //public event EventHandler OnTaskDetails;
     }
 }

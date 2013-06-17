@@ -37,7 +37,7 @@ namespace KeepYourTime.ViewWindows
         {
 
             this.DataContext = mhResult;
-            if (mhResult.Status != Utils.MethodStatus.Exception)
+            if (mhResult.Status != MethodStatus.Exception)
                 HideMessage(5000);
         }
 
@@ -47,7 +47,7 @@ namespace KeepYourTime.ViewWindows
         {
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
                 return;
-            if (Result.Status == Utils.MethodStatus.Sucess && ShowSucess == false) return;
+            if (Result.Status == MethodStatus.Success && ShowSucess == false) return;
 
             var winMessage = new MessageWindow();
             winMessage.mhResult = Result;

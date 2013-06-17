@@ -126,7 +126,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             {
                 if (EditTaskId == -1)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.InexistentTask;
                     return;
                 }
@@ -139,7 +139,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
                     }
                     else
                     {
-                        mhResult.Status = Utils.MethodStatus.Cancel;
+                        mhResult.Status = MethodStatus.Cancel;
                         mhResult.Message = Languages.Language.InvalidField + ". " + Languages.Language.TimeTaskInvalid;
                         return;
                     }
@@ -147,14 +147,14 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
 
                 if (!ValidateDistinctTime(taskTimesAdapterUI))
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.InvalidField + ". " + Languages.Language.TaskTimesOverlap;
                     return;
                 }
 
                 if (string.IsNullOrEmpty(strTaskName))
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.InvalidField + ". " + Languages.Language.TaskNameMadatory;                    
                     return;
                 }

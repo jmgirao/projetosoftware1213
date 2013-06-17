@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KeepYourTime.Utils
+namespace KeepYourTime
 {
     /// <summary>
     /// Enumeration to have the MethodStatus
@@ -12,7 +12,7 @@ namespace KeepYourTime.Utils
     /// <remarks>CREATED BY Rui Ganhoto</remarks>
     public enum MethodStatus
     {
-        Sucess=0,
+        Success=0,
         Cancel,
         Exception
     }

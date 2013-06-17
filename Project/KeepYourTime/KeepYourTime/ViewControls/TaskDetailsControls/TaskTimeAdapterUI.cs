@@ -12,7 +12,7 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
     /// Class TaskTimeAdapterUI
     /// </summary>
     /// <remarks>CREATED BY João Girão</remarks>
-    public class TaskTimeAdapterUI : TaskTimeAdapter , INotifyPropertyChanged
+    public class TaskTimeAdapterUI : TaskTimeAdapter 
     {      
 
         public string TimeSpent
@@ -76,7 +76,6 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
             this.StopTime = baseTaskTimer.StopTime;
         }
 
-
         //public bool CalculateStopTime(string TimeSpent)
         //{            
 
@@ -107,21 +106,21 @@ namespace KeepYourTime.ViewControls.TaskDetailsControls
         //    return false;
         //}
 
-        /// <summary>
-        /// trigger of changes by the user
-        /// </summary>
-        /// <param name="PropertyName"></param>
-        ///  /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
-        private void NotifyPropertyChanged(string PropertyName)
-        {
-            if(PropertyChanged!=null)
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-        }
+        ///// <summary>
+        ///// trigger of changes by the user
+        ///// </summary>
+        ///// <param name="PropertyName"></param>
+        /////  /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
+        //private void NotifyPropertyChanged(string PropertyName)
+        //{
+        //    if(PropertyChanged!=null)
+        //        PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+        //}
 
-        /// <summary>
-        /// event for when a property is changed by the user
-        /// </summary>
-        /// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
-        public event PropertyChangedEventHandler PropertyChanged;
+        ///// <summary>
+        ///// event for when a property is changed by the user
+        ///// </summary>
+        ///// <remarks>Created by Carla Machado & Rui Ganhoto</remarks>
+        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -48,7 +48,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = String.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
@@ -112,7 +112,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.Exits) return mhResult;
                 if (mhResult.AffectedLines == 1)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.TaskExists;
                     return mhResult;
                 }
@@ -125,7 +125,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.Exits) return mhResult;
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.UnpsecifiedErrorCreateTask;
                     return mhResult;
                 }
@@ -169,7 +169,7 @@ namespace KeepYourTime.DataBase.Connectors
                 if (mhResult.Exits) return mhResult;
                 if (mhResult.AffectedLines == 1 && (long)objReturn != Task.TaskId)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = Languages.Language.TaskExists;
                     return mhResult;
                 }
@@ -196,7 +196,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = string.Format(Languages.Language.TaskNotFound, Task.TaskId);
                     return mhResult;
                 }
@@ -267,7 +267,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = string.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
@@ -308,7 +308,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = string.Format(Languages.Language.TaskNotFound, TaskID);
                     return mhResult;
                 }
@@ -415,7 +415,7 @@ namespace KeepYourTime.DataBase.Connectors
 
                 if (mhResult.AffectedLines == 0)
                 {
-                    mhResult.Status = Utils.MethodStatus.Cancel;
+                    mhResult.Status = MethodStatus.Cancel;
                     mhResult.Message = string.Format(Languages.Language.TaskNotFound, Time.TaskId);
                     return mhResult;
                 }

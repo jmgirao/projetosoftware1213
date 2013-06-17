@@ -45,20 +45,18 @@ namespace KeepYourTime.Utils
                     throw new NullReferenceException();
 
                 allConfig = caConfig;
-                mhResult.Status = MethodStatus.Sucess;
+                mhResult.Status = MethodStatus.Success;
                 return mhResult;
             }
             catch (Exception ex)
             {
                 mhResult.Exception(ex);
                 return mhResult;
-
             }
 
 
 
         }
-
 
         public static List<Hooks.Hotkey> lstHotKeys = new List<Hooks.Hotkey>();
 
@@ -98,7 +96,7 @@ namespace KeepYourTime.Utils
             TaskConnector.ReadTask(TaskID, out taskAdapter);
             if (taskAdapter != null && taskAdapter.Active == true)
             {
-                mw.stlShowTaskList_OnStartTask(TaskID);
+                StaticEvents.RaiseEventOnStartTaskPressed(TaskID);
             }
             else
             {
