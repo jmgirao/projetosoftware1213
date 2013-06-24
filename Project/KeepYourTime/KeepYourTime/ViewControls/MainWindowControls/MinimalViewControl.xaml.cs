@@ -50,6 +50,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             btnTaskDetails.Click += btnTaskDetails_Click;
             btnEdit.Click += btnEdit_Click;
 
+            btnAdd.IsEnabled = false;
+
             ttTaskTimer = new TaskTimer();
             ttTaskTimer.onTimeChanged += ttTaskTimer_onTimeChanged;
 
@@ -501,12 +503,12 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         private void PART_EditableTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            btnAdd.IsEnabled = txtNomeTask.Text != "";
         }
 
         private void PART_EditableTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter && txtNomeTask.Text.Trim()!=string.Empty)
             {
                 if (btnAdd.IsVisible)
                 {
@@ -517,6 +519,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     btnResume_Click(null, null);
                 }
             }
+        }
+
+        private void txtNomeTask_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
 
     }

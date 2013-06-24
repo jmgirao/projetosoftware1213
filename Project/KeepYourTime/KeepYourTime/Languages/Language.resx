@@ -196,7 +196,7 @@
     <value>Shortcuts</value>
   </data>
   <data name="ShortcutIncomplete" xml:space="preserve">
-    <value>One shortcut appear to be incomplete or have invalide characters</value>
+    <value>One shortcut appear to be incomplete or have invalid characters</value>
   </data>
   <data name="ShortcutsConfig" xml:space="preserve">
     <value>Shortcut:</value>
@@ -263,5 +263,8 @@
   </data>
   <data name="UnpsecifiedErrorCreateTask" xml:space="preserve">
     <value>There was an unspecified error creating the task</value>
+  </data>
+  <data name="InvalidInactiveTime" xml:space="preserve">
+    <value>The inactivity time must be between 1 and 60</value>
   </data>
 </root>
