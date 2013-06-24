@@ -233,7 +233,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
                 TaskDetailsWindow.TaskID = lstTaskID[txtNomeTask.SelectedIndex].TaskID;  //The task id that's running or that's selected in the textbox
                 var detailswindows = new TaskDetailsWindow();
-                detailswindows.Show();
+                detailswindows.ShowDialog();
             }
         }
 
@@ -253,7 +253,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 detailswindows.TaskDetails.Visibility = System.Windows.Visibility.Collapsed;
                 detailswindows.EditTask.Visibility = System.Windows.Visibility.Visible;
                 detailswindows.EditTask.LoadTask(TaskDetailsWindow.TaskID);
-                detailswindows.Show();
+                detailswindows.ShowDialog();
             }
         }
 
