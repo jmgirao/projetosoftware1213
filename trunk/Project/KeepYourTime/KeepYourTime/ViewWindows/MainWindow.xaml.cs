@@ -65,10 +65,10 @@ namespace KeepYourTime.ViewWindows
         //    //mvMinimalView.StartTask(TaskID, 0);
         //}
 
-        void hk_InactiveTimeRefresh(int InactiveSeconds)
-        {
-            //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
-        }
+        //void hk_InactiveTimeRefresh(int InactiveSeconds)
+        //{
+        //    //Dispatcher.BeginInvoke((Action)(() => mvMinimalView.txtNomeTask.Text = InactiveSeconds.ToString()));
+        //}
 
         public static MethodHandler LoadTaskList()
         {

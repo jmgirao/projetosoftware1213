@@ -42,6 +42,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         public static bool CheckInactive(int InactiveSeconds)
         {
             if(!Utils.CurrentConfigurations.allConfig.Inactivity) return false;
+            if (MainWindowControls.MinimalViewControl.CurrentTaskId <= 0) return false;
             if (InactiveSeconds >= Utils.CurrentConfigurations.allConfig.InactivityTime * 60 && !isInactive)
             {
                 isInactive = true;

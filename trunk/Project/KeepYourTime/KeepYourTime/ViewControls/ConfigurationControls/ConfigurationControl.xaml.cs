@@ -57,7 +57,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                 cbShort3.ItemsSource = lstCombo;
                 cbShort4.ItemsSource = lstCombo;
                 cbShort5.ItemsSource = lstCombo;
-                
+
                 ConfigurationAdapter configuration;
                 mhResult = ConfigurationConnector.ReadConfiguration(out configuration);
                 List<ShortcutAdapter> listShortcuts = configuration.Shortcuts;
@@ -73,7 +73,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift1.IsChecked = listShortcuts[0].Shift;
                     chkCtrl1.IsChecked = listShortcuts[0].Ctrl;
                     chkAlt1.IsChecked = listShortcuts[0].Alt;
-                    txtShortcutKey1.Text = (listShortcuts[0].ShortcutKey.ToString() != "\0") ? listShortcuts[0].ShortcutKey.ToString()[0].ToString() : "";
+                    txtShortcutKey1.Text = listShortcuts[0].ShortcutKey.ToString()[0].ToString() ;
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift2.IsChecked = listShortcuts[1].Shift;
                     chkCtrl2.IsChecked = listShortcuts[1].Ctrl;
                     chkAlt2.IsChecked = listShortcuts[1].Alt;
-                    txtShortcutKey2.Text = (listShortcuts[1].ShortcutKey.ToString() != "\0") ? listShortcuts[1].ShortcutKey.ToString(): "";
+                    txtShortcutKey2.Text =  listShortcuts[1].ShortcutKey.ToString();
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift3.IsChecked = listShortcuts[2].Shift;
                     chkCtrl3.IsChecked = listShortcuts[2].Ctrl;
                     chkAlt3.IsChecked = listShortcuts[2].Alt;
-                    txtShortcutKey3.Text = (listShortcuts[2].ShortcutKey.ToString() != "\0") ? listShortcuts[2].ShortcutKey.ToString() : "";
+                    txtShortcutKey3.Text = listShortcuts[2].ShortcutKey.ToString() ;
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift4.IsChecked = listShortcuts[3].Shift;
                     chkCtrl4.IsChecked = listShortcuts[3].Ctrl;
                     chkAlt4.IsChecked = listShortcuts[3].Alt;
-                    txtShortcutKey4.Text = (listShortcuts[3].ShortcutKey.ToString() != "\0") ? listShortcuts[3].ShortcutKey.ToString(): "";
+                    txtShortcutKey4.Text = listShortcuts[3].ShortcutKey.ToString() ;
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                     chkShift5.IsChecked = listShortcuts[4].Shift;
                     chkCtrl5.IsChecked = listShortcuts[4].Ctrl;
                     chkAlt5.IsChecked = listShortcuts[4].Alt;
-                    txtShortcutKey5.Text = (listShortcuts[4].ShortcutKey.ToString() != "\0") ? listShortcuts[4].ShortcutKey.ToString()[4].ToString() : "";
+                    txtShortcutKey5.Text =  listShortcuts[4].ShortcutKey.ToString()[4].ToString() ;
                 }
                 else
                 {
@@ -205,16 +205,26 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
         {
             var mhResult = new MethodHandler();
 
-            if (!isValideShortcuts())
-            {
-                mhResult.Message = Languages.Language.ShortcutIncomplete;
-                mhResult.Status = MethodStatus.Cancel;
-                MessageWindow.ShowMethodHandler(mhResult, true);
-                return;
-            }
-
             try
             {
+                if (!isValideShortcuts())
+                {
+                    mhResult.Message = Languages.Language.ShortcutIncomplete;
+                    mhResult.Status = MethodStatus.Cancel;
+                    return;
+                }
+
+                if (chkInactivityAlert.IsChecked == true)
+                {
+                    if (udInactiveTime.Value <= 0 || udInactiveTime.Value >= 60)
+                    {
+                        mhResult.Message = Languages.Language.InvalidInactiveTime;
+                        mhResult.Status = MethodStatus.Cancel;
+                        return;
+                    }
+
+                }
+
                 List<ShortcutAdapter> listShortcuts = new List<ShortcutAdapter>();
 
                 if (((ConfigTaskComboShortcut)cbShort1.SelectedItem).TaskID >= 0)
@@ -226,7 +236,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift1.IsChecked.HasValue) ? chkShift1.IsChecked.Value : false,
                         Ctrl = (chkCtrl1.IsChecked.HasValue) ? chkCtrl1.IsChecked.Value : false,
                         Alt = (chkAlt1.IsChecked.HasValue) ? chkAlt1.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey1.Text.Length > 0) ? txtShortcutKey1.Text.ToLower() : ""
+                        ShortcutKey =  txtShortcutKey1.Text.ToLower()
                     });
                 }
 
@@ -239,7 +249,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift2.IsChecked.HasValue) ? chkShift2.IsChecked.Value : false,
                         Ctrl = (chkCtrl2.IsChecked.HasValue) ? chkCtrl2.IsChecked.Value : false,
                         Alt = (chkAlt2.IsChecked.HasValue) ? chkAlt2.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey2.Text.Length > 0) ? txtShortcutKey2.Text.ToLower() : ""
+                        ShortcutKey =  txtShortcutKey2.Text.ToLower()
                     });
                 }
 
@@ -252,7 +262,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift3.IsChecked.HasValue) ? chkShift3.IsChecked.Value : false,
                         Ctrl = (chkCtrl3.IsChecked.HasValue) ? chkCtrl3.IsChecked.Value : false,
                         Alt = (chkAlt3.IsChecked.HasValue) ? chkAlt3.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey3.Text.Length > 0) ? txtShortcutKey3.Text.ToLower() : ""
+                        ShortcutKey =  txtShortcutKey3.Text.ToLower() 
                     });
                 }
 
@@ -265,7 +275,7 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift4.IsChecked.HasValue) ? chkShift4.IsChecked.Value : false,
                         Ctrl = (chkCtrl4.IsChecked.HasValue) ? chkCtrl4.IsChecked.Value : false,
                         Alt = (chkAlt4.IsChecked.HasValue) ? chkAlt4.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey4.Text.Length > 0) ? txtShortcutKey4.Text.ToLower() : ""
+                        ShortcutKey =  txtShortcutKey4.Text.ToLower() 
                     });
                 }
 
@@ -278,27 +288,20 @@ namespace KeepYourTime.ViewControls.ConfigurationControls
                         Shift = (chkShift5.IsChecked.HasValue) ? chkShift5.IsChecked.Value : false,
                         Ctrl = (chkCtrl5.IsChecked.HasValue) ? chkCtrl5.IsChecked.Value : false,
                         Alt = (chkAlt5.IsChecked.HasValue) ? chkAlt5.IsChecked.Value : false,
-                        ShortcutKey = (txtShortcutKey5.Text.Length > 0) ? txtShortcutKey5.Text.ToLower() : ""
+                        ShortcutKey =  txtShortcutKey5.Text.ToLower()
                     });
                 }
 
+
                 var cf = new ConfigurationAdapter();
-                cf.Inactivity = (chkInactivityAlert.IsChecked.HasValue) ? chkInactivityAlert.IsChecked.Value : false;
-
-                try
-                {
-
-                    cf.InactivityTime = (int)udInactiveTime.Value;
-                }
-                catch (Exception ex)
-                {
-                    mhResult.Message = Languages.Language.InvalideInactivityTimeValue;
-                    mhResult.Status = MethodStatus.Cancel;
-                    return;
-                }
-
+                cf.Inactivity = chkInactivityAlert.IsChecked.Value ;
+                cf.InactivityTime = udInactiveTime.Value.Value;
                 cf.Shortcuts = listShortcuts;
+
+
+
                 mhResult = ConfigurationConnector.SaveConfiguration(cf);
+                if (mhResult.Exits) return;
 
                 Utils.CurrentConfigurations.getConfigurations();
 

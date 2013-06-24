@@ -268,6 +268,15 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The inactivity time must be between 1 and 60.
+        /// </summary>
+        public static string InvalidInactiveTime {
+            get {
+                return ResourceManager.GetString("InvalidInactiveTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have no permission to write on that folder. Please choose another..
         /// </summary>
         public static string NoPermission {
@@ -295,7 +304,7 @@ namespace KeepYourTime.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One shortcut appear to be incomplete or have invalide characters.
+        ///   Looks up a localized string similar to One shortcut appear to be incomplete or have invalid characters.
         /// </summary>
         public static string ShortcutIncomplete {
             get {
