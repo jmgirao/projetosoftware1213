@@ -1,15 +1,47 @@
 Main Contributions
- - Software UI Ideas
- - Software UI Development
- - Software Base Architecture Develpment and Thinking
+ - Software Main Idea
+ - Thecnical Knowledge and Helping the whole team in developing their assignments
+ - Software Base Architecture, Funcionality and UI Develpment
  - Helping Coworkers in Software Development and on Some process Ideas
- - Help In Use Case definitions and some Requirements - xx
+ - Help In Requirement definitions when prompted.
 
 
 Participation on the Team Results
- - 
- - 
+ - Active participation
+ - Always trying to help my coworkers when necessary
+ - Good commitment and positive pariticipation in the team
 
 Lessons Learned
- - 
- - 
+ - It's not easy to keep a big team to work constantly
+ - Rigid documents that doesn't predict exceptions, sometimes will be used.
+
+
+Architecture (TM) - general architecture, tools, etc.
+Risk (Risk Manager) - risk approach, risk mitigation, problem solving, etc. 
+
+
+
+TOOLS:
+SubMain GhostDoc
+Visual Studio 2012
+Tortoise SVN
+Enterprise Architect
+
+
+Software Architecture
+Development Based in Multiple User controls.
+Each user control has his own funtionality.
+Each time a functionality is used an event is launched.
+
+Avaliable Events:
+ - OnTaskListChanged(TaskID) - When a new task is Added, edited, inactivated or deleted
+ - OnTaskUpdated(TaskID) - When Someone edits task details
+ - OnTaskStarted(TaskID) - When task tracking begins
+ - OnTimeAdded(TaskID) - When task tracking stops
+ - OnTaskDeleted(TaskID) - When a task is Deleted
+ - OnStartTaskPressed(TaskID) - When someone presses Start on a Task
+ - OnStopTaskPressed(TaskID) - When someone presses Stop Task to Stop Counting
+ - OnTaskCreated(TaskAdapter) - When a new task is created
+
+
+
