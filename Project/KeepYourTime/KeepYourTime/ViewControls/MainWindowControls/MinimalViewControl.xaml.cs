@@ -64,6 +64,8 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
             StaticEvents.OnStartTaskPressed += StaticEvents_OnStartTaskPressed;
             StaticEvents.OnStopTaskPressed += StaticEvents_OnStopTaskPressed;
+
+            
         }
 
         void StaticEvents_OnStopTaskPressed(long TaskID)
@@ -503,7 +505,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         private void PART_EditableTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            btnAdd.IsEnabled = txtNomeTask.Text != "";
+            Dispatcher.BeginInvoke((Action)(() => btnAdd.IsEnabled = txtNomeTask.Text != ""));
         }
 
         private void PART_EditableTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -519,11 +521,6 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                     btnResume_Click(null, null);
                 }
             }
-        }
-
-        private void txtNomeTask_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
     }
