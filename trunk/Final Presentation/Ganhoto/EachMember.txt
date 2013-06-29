@@ -32,6 +32,7 @@ Software Architecture
 Development Based in Multiple User controls.
 Each user control has his own funtionality.
 Each time a functionality is used an event is launched.
+Events are catched by user controls if they meet their needs.
 
 Avaliable Events:
  - OnTaskListChanged(TaskID) - When a new task is Added, edited, inactivated or deleted

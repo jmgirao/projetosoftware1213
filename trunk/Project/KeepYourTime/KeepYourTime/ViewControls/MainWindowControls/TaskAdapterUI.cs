@@ -134,6 +134,15 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             StaticEvents.OnTaskStarted += StaticEvents_OnTaskStarted;
             StaticEvents.OnTimeAdded += StaticEvents_OnTimeAdded;
+            StaticEvents.OnTaskUpdatedTask += StaticEvents_OnTaskUpdatedTask;
+        }
+
+        void StaticEvents_OnTaskUpdatedTask(TaskAdapter TaskAdapt)
+        {
+            if (TaskAdapt.TaskId == this.TaskId)
+            {
+                this.TaskName = TaskAdapt.TaskName;
+            }
         }
 
         void StaticEvents_OnTimeAdded(long TaskID)
