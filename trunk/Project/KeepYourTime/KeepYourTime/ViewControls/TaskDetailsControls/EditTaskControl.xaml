@@ -53,6 +53,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
             <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
+            
             <TextBox Name="TxtTaskName" Width="200" Height="25" MaxLength="50"/>
         </StackPanel>
 
@@ -81,13 +82,12 @@
         </Grid>
         <!--<ScrollViewer  >-->
             <!--<StackPanel Height="Auto">-->
-            <Grid Grid.Row="5" Grid.ColumnSpan="4">
+            <!--<Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <!--<RowDefinition Height="*"/>-->
-                </Grid.RowDefinitions>
+                </Grid.RowDefinitions>-->
 
-                <ListView Name="dgTaskTimes" BorderThickness="0" MaxHeight="500">
+            <ListView Name="dgTaskTimes" Grid.Row="5" Grid.ColumnSpan="4" BorderThickness="0" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TaskDetailsControls:EditTimeLineControl OnTimeDeleted="OnTimeDeleted" />
@@ -95,7 +95,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
               
-            </Grid>
+            <!--</Grid>-->
             <!--</StackPanel>-->
         <!--</ScrollViewer>-->
         <!--<StackPanel Height="50">-->
