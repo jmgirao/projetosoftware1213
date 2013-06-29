@@ -90,8 +90,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridCheckBoxColumn CanUserResize="False" Width="65" MinWidth="65" MaxWidth="65" IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="colActive" />
-
+                <!--<DataGridCheckBoxColumn CanUserResize="False" Width="65" MinWidth="65" MaxWidth="65" IsReadOnly="False" Header="Inactive" Binding="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />-->
+                <DataGridTemplateColumn Header="Inactive" CanUserResize="False" Width="65" MinWidth="65" MaxWidth="65">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding ActiveChange, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

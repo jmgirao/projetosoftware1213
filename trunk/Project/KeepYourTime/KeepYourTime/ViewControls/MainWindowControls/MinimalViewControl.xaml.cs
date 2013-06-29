@@ -257,13 +257,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
         {
             if (txtNomeTask.SelectedIndex != -1)
             {
-                TaskDetailsWindow.TaskID = lstTaskID[txtNomeTask.SelectedIndex].TaskID;  //The task id that's running or that's selected in the textbox
+                if (lstTaskID[txtNomeTask.SelectedIndex].TaskID != CurrentTaskId)
+                {
+                    TaskDetailsWindow.TaskID = lstTaskID[txtNomeTask.SelectedIndex].TaskID;  //The task id that's running or that's selected in the textbox
 
-                var detailswindows = new TaskDetailsWindow();
-                detailswindows.TaskDetails.Visibility = System.Windows.Visibility.Collapsed;
-                detailswindows.EditTask.Visibility = System.Windows.Visibility.Visible;
-                detailswindows.EditTask.LoadTask(TaskDetailsWindow.TaskID);
-                detailswindows.ShowDialog();
+                    var detailswindows = new TaskDetailsWindow();
+                    detailswindows.TaskDetails.Visibility = System.Windows.Visibility.Collapsed;
+                    detailswindows.EditTask.Visibility = System.Windows.Visibility.Visible;
+                    detailswindows.EditTask.LoadTask(TaskDetailsWindow.TaskID);
+                    detailswindows.ShowDialog();
+                }
             }
         }
 

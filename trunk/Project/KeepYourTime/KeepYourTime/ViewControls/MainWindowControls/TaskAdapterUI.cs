@@ -17,11 +17,13 @@ namespace KeepYourTime.ViewControls.MainWindowControls
     /// </summary>
     class TaskAdapterUI : TaskAdapter
     {
-        public int TaskRunning {
-            get {
-               if( MinimalViewControl.CurrentTaskId == this.TaskId)
-                   return 1;
-               return 0;
+        public int TaskRunning
+        {
+            get
+            {
+                if (MinimalViewControl.CurrentTaskId == this.TaskId)
+                    return 1;
+                return 0;
             }
         }
         public string TotalTimeString
@@ -142,6 +144,12 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             if (TaskAdapt.TaskId == this.TaskId)
             {
                 this.TaskName = TaskAdapt.TaskName;
+                this.TotalTime = (long)(from el in TaskAdapt.Times select (el.StopTime - el.StartTime).TotalSeconds).Sum();
+                this.TodayTime = (long)(from el in TaskAdapt.Times where el.StartTime.Date == DateTime.Today select (el.StopTime - el.StartTime).TotalSeconds).Sum();
+
+                NotifyPropertyChanged("TodayTimeString");
+                NotifyPropertyChanged("TotalTimeString");
+
             }
         }
 
@@ -160,7 +168,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 NotifyPropertyChanged("TaskRunning");
             }
         }
-        
+
         /// <summary>
         /// Occurs when [on task deactivated].
         /// </summary>
