@@ -51,13 +51,13 @@ namespace KeepYourTime.Utils
             //first row is the column names
             Data = TaskConnector.TASK_COLUMN_ID + "," + TaskConnector.TASK_COLUMN_NAME + "," + TaskConnector.TASK_COLUMN_DESCRIPTION + "," + TaskConnector.TASK_COLUMN_ACTIVE + "\n";
 
-            foreach (TaskAdapter task in taskList)
+            foreach (TaskAdapter task in taskList.OrderBy((x) => x.TaskId))
             {
                 Data += "\"" + task.TaskId + "\",\"" + task.TaskName + "\",\"" + task.Description + "\",\"" + task.Active + "\"\n";
 
             }
 
-            
+
 
             return Data;
         }
@@ -73,16 +73,16 @@ namespace KeepYourTime.Utils
             ObservableCollection<TaskAdapter> taskList = new ObservableCollection<TaskAdapter>();
             TaskConnector.ReadTaskList(out taskList, true);
             //first row is the column names
-            Data = TaskConnector.TIME_COLUMN_ID + "," + TaskConnector.TIME_COLUMN_START + "," + TaskConnector.TIME_COLUMN_STOP + "," + TaskConnector.TIME_COLUMN_TASKID + "\n";
+            Data = TaskConnector.TIME_COLUMN_TASKID + "," + TaskConnector.TIME_COLUMN_ID + "," + TaskConnector.TIME_COLUMN_START + "," + TaskConnector.TIME_COLUMN_STOP + "\n";
 
-            foreach (TaskAdapter task in taskList)
+            foreach (TaskAdapter task in taskList.OrderBy((x)=>x.TaskId))
             {
                 TaskAdapter taskWithTimes;
-                TaskConnector.ReadTask(task.TaskId,out taskWithTimes);
+                TaskConnector.ReadTask(task.TaskId, out taskWithTimes);
 
                 foreach (TaskTimeAdapter time in taskWithTimes.Times)
                 {
-                    Data += "\"" + time.TimeId + "\",\"" + time.StartTime + "\",\"" + time.StopTime + "\",\"" + task.TaskId + "\"\n";
+                    Data += "\"" + task.TaskId + "\",\"" + time.TimeId + "\",\"" + time.StartTime + "\",\"" + time.StopTime + "\"\n";
                 }
             }
 

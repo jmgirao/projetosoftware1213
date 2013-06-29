@@ -22,10 +22,10 @@ namespace KeepYourTime.DataBase.Connectors
         public static string TASK_COLUMN_DESCRIPTION = "Description";
         public static string TASK_COLUMN_ACTIVE = "Active";
 
-        public static string TIME_COLUMN_ID = "TaskID";
+        public static string TIME_COLUMN_ID = "TimeID";
         public static string TIME_COLUMN_START = "StartTime";
         public static string TIME_COLUMN_STOP = "StopTime";
-        public static string TIME_COLUMN_TASKID = "Active";
+        public static string TIME_COLUMN_TASKID = "TaskID";
 
 
         /// <summary>
