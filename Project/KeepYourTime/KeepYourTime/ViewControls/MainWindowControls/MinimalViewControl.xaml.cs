@@ -64,8 +64,16 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
             StaticEvents.OnStartTaskPressed += StaticEvents_OnStartTaskPressed;
             StaticEvents.OnStopTaskPressed += StaticEvents_OnStopTaskPressed;
+            StaticEvents.OnTaskUpdated += StaticEvents_OnTaskUpdated;
 
-            
+        }
+
+        void StaticEvents_OnTaskUpdated(long TaskID)
+        {
+            int intSelectedIndex = txtNomeTask.SelectedIndex;
+            txtNomeTask.ItemsSource = null;
+            txtNomeTask.ItemsSource = lstTaskID;
+            txtNomeTask.SelectedIndex = intSelectedIndex;
         }
 
         void StaticEvents_OnStopTaskPressed(long TaskID)
@@ -510,7 +518,7 @@ namespace KeepYourTime.ViewControls.MainWindowControls
 
         private void PART_EditableTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && txtNomeTask.Text.Trim()!=string.Empty)
+            if (e.Key == Key.Enter && txtNomeTask.Text.Trim() != string.Empty)
             {
                 if (btnAdd.IsVisible)
                 {
