@@ -21,7 +21,7 @@
             <Setter Property="Width" Value="25"/>
             <Setter Property="Height" Value="25"/>
         </Style>
-        <Style TargetType="TextBlock" x:Key="ColumnLabel"> 
+        <Style TargetType="TextBlock" x:Key="ColumnLabel">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="14"/>
@@ -53,7 +53,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
             <TextBlock VerticalAlignment="Center" Name="LblTaskName"  Text="{x:Static p:Language.TaskName}" FontSize="20" FontWeight="Bold" Width="120"/>
-            
+
             <TextBox Name="TxtTaskName" Width="200" Height="25" MaxLength="50"/>
         </StackPanel>
 
@@ -81,22 +81,22 @@
             <TextBlock Grid.Column="3" Text="{x:Static p:Language.TimeSpent}" Style="{StaticResource ColumnLabel}"/>
         </Grid>
         <!--<ScrollViewer  >-->
-            <!--<StackPanel Height="Auto">-->
-            <!--<Grid >
+        <!--<StackPanel Height="Auto">-->
+        <!--<Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>-->
 
-            <ListView Name="dgTaskTimes" Grid.Row="5" Grid.ColumnSpan="4" BorderThickness="0" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TaskDetailsControls:EditTimeLineControl OnTimeDeleted="OnTimeDeleted" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-              
-            <!--</Grid>-->
-            <!--</StackPanel>-->
+        <ListBox Name="dgTaskTimes" Grid.Row="5" Grid.ColumnSpan="4" BorderThickness="0"  ScrollViewer.CanContentScroll="False" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TaskDetailsControls:EditTimeLineControl OnTimeDeleted="OnTimeDeleted" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--</Grid>-->
+        <!--</StackPanel>-->
         <!--</ScrollViewer>-->
         <!--<StackPanel Height="50">-->
 
