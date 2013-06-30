@@ -60,7 +60,11 @@ namespace KeepYourTime.ViewControls.MainWindowControls
             get
             {
                 //TODO:converter 1/12/2013 para 01/12/2013
-                if (StopTime.Date != DateTime.Today)
+                if (StopTime == DateTime.MinValue)
+                {
+                    return "";
+                }
+                else if (StopTime.Date != DateTime.Today)
                 {
                     return this.StopTime.ToString("dd/MM/yyyy");
                 }
@@ -146,10 +150,17 @@ namespace KeepYourTime.ViewControls.MainWindowControls
                 this.TaskName = TaskAdapt.TaskName;
                 this.TotalTime = (long)(from el in TaskAdapt.Times select (el.StopTime - el.StartTime).TotalSeconds).Sum();
                 this.TodayTime = (long)(from el in TaskAdapt.Times where el.StartTime.Date == DateTime.Today select (el.StopTime - el.StartTime).TotalSeconds).Sum();
-
+                if (TaskAdapt.Times.Count > 0)
+                {
+                    this.StopTime = (from el in TaskAdapt.Times select el.StopTime).Max();
+                }
+                else 
+                {
+                    this.StopTime = DateTime.MinValue;
+                }
                 NotifyPropertyChanged("TodayTimeString");
                 NotifyPropertyChanged("TotalTimeString");
-
+                NotifyPropertyChanged("StopTimeString");
             }
         }
 
